@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-skia-component';
+import { multiply } from '@mindinventory/react-native-skia-component';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -18,14 +18,14 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   box: {
-    width: 60,
     height: 60,
     marginVertical: 20,
+    width: 60,
+  },
+  container: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
   },
 });
