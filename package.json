@@ -1,6 +1,6 @@
 {
   "name": "@mindinventory/react-native-neopop",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -41,7 +41,7 @@
     "android"
   ],
   "repository": "https://github.com/Mindinventory/react-native-neopop",
-  "author": "Mindinventory <tushar.sanchaniya@mindinventory.com> (https://github.com/Mindinventory/react-native-neopop)",
+  "author": "Mindinventory",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Mindinventory/react-native-neopop/issues"
@@ -150,5 +150,9 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "@shopify/react-native-skia": "^0.1.157",
+    "react-native-reanimated": "^2.12.0"
   }
 }

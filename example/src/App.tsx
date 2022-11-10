@@ -1,31 +1,56 @@
 import * as React from 'react';
-
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from '@mindinventory/react-native-neopop';
+import { StyleSheet, View, Text, ScrollView, SafeAreaView } from 'react-native';
+import {
+  Button,
+  Card,
+  CircularProgressBar,
+  Direction,
+} from '@mindinventory/react-native-neopop';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <ScrollView>
+          <View style={styles.mainContainer}>
+            <Card height={220} width={310} borderWidth={5}>
+              <View style={styles.cardStyle}>
+                <Text style={styles.cardNumber}>
+                  5499 &nbsp; 5008 &nbsp; 9101 &nbsp; 1123
+                </Text>
+                <View style={styles.dateContainer}>
+                  <Text style={styles.validText}>Valid Till</Text>
+                  <Text style={styles.timeText}>12/25</Text>
+                </View>
+                <Text style={styles.carNameText}>Mindinventory</Text>
+              </View>
+            </Card>
+            <CircularProgressBar progress={70} />
+            <Button preset="neoPop" buttonDirection={Direction.Right} />
+            <Button preset="floating" />
+          </View>
+        </ScrollView>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
+  cardStyle: {
+    justifyContent: 'center',
+    height: '100%',
+    paddingHorizontal: 20,
+  },
+  cardNumber: { color: 'gold', fontSize: 22 },
+  dateContainer: {
     marginVertical: 20,
   },
+  validText: { color: 'gold', fontSize: 10 },
+  timeText: { color: 'gold', fontSize: 15 },
+  carNameText: { color: 'gold', fontSize: 15, marginTop: 0 },
 });
