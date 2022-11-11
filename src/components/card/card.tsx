@@ -16,6 +16,7 @@ const Card: React.FC<CardProps> = (props) => {
     cardRadius,
     borderColors,
     borderWidth,
+    blur,
   } = useCard({
     ...props,
   });
@@ -27,6 +28,7 @@ const Card: React.FC<CardProps> = (props) => {
         canvasPadding={canvasPadding}
         cardRadius={cardRadius}
         borderColors={borderColors}
+        blur={blur}
       />
       <View
         style={[

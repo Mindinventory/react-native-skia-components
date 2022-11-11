@@ -19,6 +19,9 @@ export interface ButtonProps {
   sideShadowColor?: string;
   textStyle?: TextStyle;
   titleSize?: number;
-  buttonDirection?: Direction;
   isFloating?: boolean;
+  onPress?: () => void;
+  onPressIn?: () => void;
+  onPressOut?: () => void;
+  onLongPress?: () => void;
 }

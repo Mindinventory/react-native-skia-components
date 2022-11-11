@@ -4,8 +4,8 @@ import type { FloatingButtonProps } from './floatingButton.type';
 
 export const useFloatingButton = (props: FloatingButtonProps) => {
   const {
-    height = 120,
-    width = 300,
+    height: propHeight = 200,
+    width: propWidth = 300,
     depth = 25,
     shadowHeight = 20,
     title = 'Pay',
@@ -15,6 +15,9 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
     bottomShadowColor = 'rgba(0, 0, 0,1)',
     textStyle,
   } = props;
+
+  let height = propHeight * 1.5;
+  let width = propWidth * 1.5;
 
   const [translate, setTranslate] = useState(0);
   const [shadowTranslate, setshadowTranslate] = useState(0);

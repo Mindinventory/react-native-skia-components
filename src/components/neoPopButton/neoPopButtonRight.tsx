@@ -14,6 +14,7 @@ const NeoPopButtonRight = (props: NeoPopButtonProps) => {
     transitionX,
     transitionY,
     x,
+    y,
     animatedWidth,
     animatedX,
     onPressButton,
@@ -42,25 +43,37 @@ const NeoPopButtonRight = (props: NeoPopButtonProps) => {
           height: canvasButtonHeight,
         }}
       >
-        <Group
-          origin={{ x: width, y: 0 }}
-          transform={[{ skewY: -Math.PI / (1.4 * 3) }]}
-        >
+        {/* <Group origin={{ x: 0, y: 0 }} transform={[{ skewY: -5 }]}>
           <Box
             box={rrect(
-              rect(0, -126, -shadowBoxWidth, height + animatedHeight),
+              rect(
+                0,
+                height + 30,
+                width + animatedWidth + 20,
+                -shadowBoxWidth + 15
+              ),
               0,
               0
             )}
             color={sideShadowColor}
           />
+        </Group> */}
+
+        <Group
+          origin={{ x: width, y: 0 }}
+          transform={[{ skewY: Math.PI / (1.4 * 4) }]}
+        >
+          <Box
+            box={rrect(rect(0, height + 8, -y, height + animatedHeight), 0, 0)}
+            color={sideShadowColor}
+          />
         </Group>
 
-        <Group origin={{ x: 0, y: 140 }} transform={[{ skewX: -1.2 }]}>
+        <Group origin={{ x: 0, y: height }} transform={[{ skewX: -1.2 }]}>
           <Box
             box={rrect(
               rect(
-                x + animatedX,
+                x + animatedX + 50,
                 height + 8,
                 width + animatedWidth,
                 -shadowBoxWidth

@@ -10,6 +10,7 @@ export const useCard = (props: CardProps) => {
     cardRadius = 20,
     borderWidth = 5,
     borderColors = ['cyan', 'magenta', 'yellow', 'cyan'],
+    blur = 10,
   } = props;
   const canvasPadding = 40;
   const CARD_WIDTH = width - borderWidth;
@@ -24,5 +25,6 @@ export const useCard = (props: CardProps) => {
     cardRadius,
     borderColors,
     borderWidth,
+    blur,
   };
 };

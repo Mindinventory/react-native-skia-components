@@ -10,20 +10,22 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
     sideShadowColor = '#9dd0e1',
     bottomShadowColor = '#93b8c4',
     textStyle,
-    title = 'Title',
+    title = ' ',
   } = props;
-  const canvasButtonWidth = width + 20;
-  const canvasButtonHeight = height + 20;
+
+  const buttonWidth = width || 250;
+  const buttonHeight = height || 200;
+  const canvasButtonWidth = buttonWidth + 20;
+  const canvasButtonHeight = buttonHeight + 20;
   const [x] = useState<number>(-20);
   const [y] = useState<number>(-20);
-  //
   const [animatedWidth, setAnimatedWidth] = useState<number>(0);
   const [animatedX, setAnimatedX] = useState<number>(0);
   const [animatedHeight, setAnimatedHeight] = useState<number>(0);
   const [animatedY, setAnimatedY] = useState<number>(0);
   const [textPosition, setTextPosition] = useState({
-    x: width / 2 - titleSize,
-    y: height / 2 - titleSize / 2,
+    x: buttonWidth / 2 - titleSize,
+    y: buttonWidth / 2 - titleSize / 2,
   });
   const [boxShadow, setBoxShadow] = useState(0);
 
@@ -75,6 +77,8 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
   return {
     width,
     height,
+    buttonWidth,
+    buttonHeight,
     canvasButtonWidth,
     canvasButtonHeight,
     transitionX,
@@ -85,15 +89,14 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
     animatedWidth,
     animatedY,
     animatedHeight,
-    onPressButton,
-    onPressOut,
-    titleSize,
-    textPosition,
     boxShadow,
     backgroundColor,
     sideShadowColor,
     bottomShadowColor,
     textStyle,
     title,
+    titleSize,
+    onPressButton,
+    onPressOut,
   };
 };

@@ -13,10 +13,12 @@ interface BackgroundGradientProps {
   canvasPadding: number;
   cardRadius?: number;
   borderColors: string[];
+  blur: number;
 }
 
 const BackgroundGradient = (props: BackgroundGradientProps) => {
-  const { width, height, canvasPadding, cardRadius, borderColors } = props;
+  const { width, height, canvasPadding, cardRadius, borderColors, blur } =
+    props;
   return (
     <Canvas
       style={{ width: width + canvasPadding, height: height + canvasPadding }}
@@ -33,7 +35,7 @@ const BackgroundGradient = (props: BackgroundGradientProps) => {
           c={vec((width + canvasPadding) / 2, (height + canvasPadding) / 2)}
           colors={borderColors}
         />
-        <BlurMask blur={10} style="solid" />
+        <BlurMask blur={blur} style="solid" />
       </RoundedRect>
     </Canvas>
   );

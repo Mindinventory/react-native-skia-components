@@ -5,4 +5,5 @@ export interface CardProps {
   cardRadius?: number;
   borderWidth?: number;
   borderColors?: string[];
+  blur?: number;
 }
