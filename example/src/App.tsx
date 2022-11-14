@@ -152,6 +152,7 @@ export default function App() {
           data={components}
           numColumns={2}
           style={styles.flatListStyle}
+          keyExtractor={(_item, index) => index.toString()}
           renderItem={({ item, index }) => {
             return (
               <TouchableOpacity
