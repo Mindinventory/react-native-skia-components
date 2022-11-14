@@ -36,6 +36,13 @@
     "bootstrap": "yarn example && yarn install && yarn example pods"
   },
   "keywords": [
+    "progress circle",
+    "card layout",
+    "card",
+    "floating",
+    "neopop",
+    "button",
+    "circiel progress",
     "react-native",
     "ios",
     "android"
