@@ -2,13 +2,13 @@ import { StyleSheet } from 'react-native';
 
 const textContainer = StyleSheet.create({
   textView: {
-    position: 'absolute',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
   },
   textStyle: {
-    fontWeight: 'bold',
     color: 'gray',
+    fontWeight: 'bold',
   },
 });
 

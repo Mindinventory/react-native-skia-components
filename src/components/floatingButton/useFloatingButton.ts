@@ -4,16 +4,16 @@ import type { FloatingButtonProps } from './floatingButton.type';
 
 export const useFloatingButton = (props: FloatingButtonProps) => {
   const {
-    height: propHeight = 200,
-    width: propWidth = 300,
-    depth = 25,
-    shadowHeight = 20,
-    title = 'Pay',
-    isFloating = true,
     backgroundColor = 'rgba(250, 226, 46,1)',
-    sideShadowColor = 'rgba(195, 161, 60,1)',
     bottomShadowColor = 'rgba(0, 0, 0,1)',
+    depth = 25,
+    height: propHeight = 200,
+    isFloating = true,
+    shadowHeight = 20,
+    sideShadowColor = 'rgba(195, 161, 60,1)',
     textStyle,
+    title = 'Pay',
+    width: propWidth = 300,
   } = props;
 
   let height = propHeight * 1.5;
@@ -64,23 +64,23 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
   nonFloatingDepthPath.lineTo(width, height - depth - shadowHeight);
 
   return {
-    height,
-    width,
-    depth,
-    shadowHeight,
-    translate,
-    shadowTranslate,
-    shadowPath,
-    title,
-    onPressStart,
-    onPressEnd,
-    isFloating,
-    path,
-    depthPath,
-    nonFloatingDepthPath,
     backgroundColor,
-    sideShadowColor,
     bottomShadowColor,
+    depth,
+    depthPath,
+    height,
+    isFloating,
+    nonFloatingDepthPath,
+    onPressEnd,
+    onPressStart,
+    path,
+    shadowHeight,
+    shadowPath,
+    shadowTranslate,
+    sideShadowColor,
     textStyle,
+    title,
+    translate,
+    width,
   };
 };

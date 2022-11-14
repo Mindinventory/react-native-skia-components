@@ -16,15 +16,15 @@ export const useCard = (props: CardProps) => {
   const CARD_WIDTH = width - borderWidth;
   const CARD_HEIGHT = height - borderWidth;
   return {
-    width,
-    height,
-    canvasPadding,
-    CARD_WIDTH,
-    CARD_HEIGHT,
     backgroundColor,
-    cardRadius,
+    blur,
     borderColors,
     borderWidth,
-    blur,
+    canvasPadding,
+    CARD_HEIGHT,
+    CARD_WIDTH,
+    cardRadius,
+    height,
+    width,
   };
 };

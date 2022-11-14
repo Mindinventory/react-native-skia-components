@@ -4,8 +4,8 @@ import { NeoPopButton } from '../neoPopButton/';
 import type { ButtonProps } from './button.type';
 
 const buttonPresets = {
-  neoPop: NeoPopButton,
   floating: FloatingButton,
+  neoPop: NeoPopButton,
 };
 
 export type ButtonPresets = keyof typeof buttonPresets;

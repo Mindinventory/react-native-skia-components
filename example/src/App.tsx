@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  SafeAreaView,
   FlatList,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import {
   Button,

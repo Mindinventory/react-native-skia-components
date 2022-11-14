@@ -3,14 +3,14 @@ import type { NeoPopButtonProps } from './neoPopButton.type';
 
 export const useNeoPopButton = (props: NeoPopButtonProps) => {
   const {
-    titleSize = 30,
-    width = 200,
-    height = 100,
     backgroundColor = '#add8e6',
-    sideShadowColor = '#9dd0e1',
     bottomShadowColor = '#93b8c4',
+    height = 100,
+    sideShadowColor = '#9dd0e1',
     textStyle,
     title = ' ',
+    titleSize = 30,
+    width = 200,
   } = props;
 
   const buttonWidth = width || 250;
@@ -75,28 +75,28 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
   };
 
   return {
-    width,
-    height,
-    buttonWidth,
-    buttonHeight,
-    canvasButtonWidth,
-    canvasButtonHeight,
-    transitionX,
-    transitionY,
-    x,
-    y,
-    animatedX,
-    animatedWidth,
-    animatedY,
     animatedHeight,
-    boxShadow,
+    animatedWidth,
+    animatedX,
+    animatedY,
     backgroundColor,
-    sideShadowColor,
     bottomShadowColor,
+    boxShadow,
+    buttonHeight,
+    buttonWidth,
+    canvasButtonHeight,
+    canvasButtonWidth,
+    height,
+    onPressButton,
+    onPressOut,
+    sideShadowColor,
     textStyle,
     title,
     titleSize,
-    onPressButton,
-    onPressOut,
+    transitionX,
+    transitionY,
+    width,
+    x,
+    y,
   };
 };

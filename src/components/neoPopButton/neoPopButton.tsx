@@ -7,26 +7,26 @@ import { miUiStyle } from '../../themes';
 
 const NeoPopButton = (props: NeoPopButtonProps) => {
   const {
-    width,
-    height,
-    canvasButtonWidth,
-    canvasButtonHeight,
-    transitionX,
-    transitionY,
-    x,
-    y,
+    animatedHeight,
     animatedWidth,
     animatedX,
-    onPressButton,
-    onPressOut,
-    animatedHeight,
     animatedY,
-    titleSize,
-    sideShadowColor,
     backgroundColor,
     bottomShadowColor,
+    canvasButtonHeight,
+    canvasButtonWidth,
+    height,
+    onPressButton,
+    onPressOut,
+    sideShadowColor,
     textStyle,
     title,
+    titleSize,
+    transitionX,
+    transitionY,
+    width,
+    x,
+    y,
   } = useNeoPopButton(props);
 
   return (
@@ -90,10 +90,10 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
         style={[
           miUiStyle.neoPopButtonStyle.textContainer.textView,
           {
-            width: width,
             height: height,
             left: transitionX,
             top: transitionY + 8,
+            width: width,
           },
         ]}
       >

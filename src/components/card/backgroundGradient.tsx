@@ -1,23 +1,23 @@
 import React from 'react';
 import {
+  BlurMask,
   Canvas,
   RoundedRect,
   SweepGradient,
   vec,
-  BlurMask,
 } from '@shopify/react-native-skia';
 
 interface BackgroundGradientProps {
-  height: number;
-  width: number;
+  blur: number;
+  borderColors: string[];
   canvasPadding: number;
   cardRadius?: number;
-  borderColors: string[];
-  blur: number;
+  height: number;
+  width: number;
 }
 
 const BackgroundGradient = (props: BackgroundGradientProps) => {
-  const { width, height, canvasPadding, cardRadius, borderColors, blur } =
+  const { blur, borderColors, canvasPadding, cardRadius, height, width } =
     props;
   return (
     <Canvas

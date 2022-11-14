@@ -10,20 +10,20 @@ import type { CircularProgressBarProps } from './circularProgressBar.type';
 
 export const useCircularProgress = (props: CircularProgressBarProps) => {
   const {
-    radius = 100,
+    backgroundColor = '#32363B',
     colors = ['#2FB8FF', '#9EECD9'],
-    padding = 24,
-    fontSize = 32,
     containerSize = 250, //Dimensions.get('window').width,
-    gradientColors: GradientColors = ['#101113', '#2B2F33'],
-    strokeWidth = 15,
-    shadowOpacity = 0.6,
-    shadowRadius = 10,
     elevation = 8,
+    fontSize = 32,
+    gradientColors: GradientColors = ['#101113', '#2B2F33'],
+    padding = 24,
+    progress = 25,
+    radius = 100,
     shadowColor = '#31C',
     shadowOffset = { width: 0, height: 4 },
-    backgroundColor = '#32363B',
-    progress = 25,
+    shadowOpacity = 0.6,
+    shadowRadius = 10,
+    strokeWidth = 15,
   } = props;
 
   const size = containerSize;
@@ -50,23 +50,23 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
   );
 
   return {
-    size,
-    fromCircle,
+    backgroundColor,
     colors,
-    radius,
-    path,
-    padding,
+    elevation,
     fillProgress,
-    viewWidth,
+    fontSize,
+    fromCircle,
     GradientColors,
-    strokeWidth,
+    padding,
+    path,
+    progress,
+    radius,
+    shadowColor,
+    shadowOffset,
     shadowOpacity,
     shadowRadius,
-    elevation,
-    shadowColor,
-    backgroundColor,
-    shadowOffset,
-    fontSize,
-    progress,
+    size,
+    strokeWidth,
+    viewWidth,
   };
 };

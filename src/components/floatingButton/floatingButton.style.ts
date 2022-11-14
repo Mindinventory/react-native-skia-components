@@ -3,16 +3,16 @@ import { miColor } from '../../themes';
 
 const btnLabel = StyleSheet.create({
   labelView: {
-    position: 'absolute',
+    alignItems: 'center',
     elevation: 2,
     justifyContent: 'center',
-    alignItems: 'center',
     overflow: 'hidden',
+    position: 'absolute',
   },
   labelText: {
     color: miColor.black,
-    fontWeight: 'bold',
     fontSize: 30,
+    fontWeight: 'bold',
   },
   verticalStyle: {
     marginTop: '5%',

@@ -41,33 +41,81 @@ import {
 ```
 
 # Card
+
 ```js
-<Card height={220} width={310} borderWidth={5}>
-  {...}
+<Card
+  height={220}
+  width={310}
+  borderWidth={5}
+  backgroundColor={'#000'}
+  cardRadius={20}
+  borderColors={['cyan', 'magenta', 'yellow', 'cyan']}
+  blur={10}
+>
+{...}
 </Card>
 ```
+
 <img width="372" alt="Screenshot 2022-11-14 at 11 16 07 AM" src="https://user-images.githubusercontent.com/82019401/201584587-5d169c5b-1ae2-4608-ad56-49ee393389ba.png">
 
 # Circle Progress
+
 ```js
-    <CircularProgressBar progress={70} />
+<CircularProgressBar
+  radius={100}
+  colors={['#2FB8FF', '#9EECD9']}
+  padding={24}
+  fontSize={32}
+  containerSize={250}
+  gradientColors={['#101113', '#2B2F33']}
+  strokeWidth={15}
+  shadowOpacity={0.6}
+  shadowRadius={10}
+  elevation={8}
+  shadowColor={'#31C'}
+  shadowOffset={{ width: 0, height: 4 }}
+  backgroundColor="#32363B"
+  progress={50}
+/>
 ```
+
 <img width="303" alt="Screenshot 2022-11-14 at 11 18 46 AM" src="https://user-images.githubusercontent.com/82019401/201584919-627fcece-66e7-45ca-9b6a-ddc203d38901.png">
 
 
 # Neopop
+
 ```js
-    <Button preset="neoPop" />
+<Button
+  preset="neoPop"
+  width={80}
+  height={80}
+  title={`${index + 1}`}
+  sideShadowColor={'#363636'}
+  bottomShadowColor={'#363636'}
+  backgroundColor={'#f96b8f'}
+  textStyle={{
+    color: 'white',
+  }}
+/>
 ```
+
 <img width="364" alt="Screenshot 2022-11-14 at 11 19 29 AM" src="https://user-images.githubusercontent.com/82019401/201585018-814ca046-a13f-4d1a-9396-1282b6f1e7db.png">
 
+# Floating
 
-# Floating 
 ```js
-    <Button preset="floating" />
+<Button
+  preset="floating"
+  width={250}
+  height={65}
+  title="PRESS ME"
+  textStyle={{
+    fontSize: 24,
+  }}
+/>
 ```
-<img width="415" alt="Screenshot 2022-11-14 at 11 19 48 AM" src="https://user-images.githubusercontent.com/82019401/201585058-3af9f8c2-c58d-4d01-9351-36bb4b37d2ef.png">
 
+<img width="415" alt="Screenshot 2022-11-14 at 11 19 48 AM" src="https://user-images.githubusercontent.com/82019401/201585058-3af9f8c2-c58d-4d01-9351-36bb4b37d2ef.png">
 
 # Props to use
 
@@ -86,7 +134,7 @@ import {
 # Circle Progress Props
 
 | Parameter       | Type                       | Description                                                |
-| --------------- | -------------------------- | ------------------------------------------------------     |
+| --------------- | -------------------------- | ---------------------------------------------------------- |
 | progress        | _number_                   | set circle progress                                        |
 | radius          | _number (Optional)_        | Set radius of circle progress.                             |
 | colors          | _Array<string> (Optional)_ | Set gradient color of circle progress bar.                 |

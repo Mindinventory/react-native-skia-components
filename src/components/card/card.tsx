@@ -7,39 +7,39 @@ import { useCard } from './useCard';
 
 const Card: React.FC<CardProps> = (props) => {
   const {
-    height,
-    width,
-    canvasPadding,
-    CARD_WIDTH,
-    CARD_HEIGHT,
     backgroundColor,
-    cardRadius,
+    blur,
     borderColors,
     borderWidth,
-    blur,
+    canvasPadding,
+    CARD_HEIGHT,
+    CARD_WIDTH,
+    cardRadius,
+    height,
+    width,
   } = useCard({
     ...props,
   });
   return (
     <View>
       <BackgroundGradient
-        height={height}
-        width={width}
+        blur={blur}
+        borderColors={borderColors}
         canvasPadding={canvasPadding}
         cardRadius={cardRadius}
-        borderColors={borderColors}
-        blur={blur}
+        height={height}
+        width={width}
       />
       <View
         style={[
           miUiStyle.cardStyle.cardView.card,
           {
-            width: CARD_WIDTH,
-            height: CARD_HEIGHT,
             backgroundColor: backgroundColor,
             borderRadius: cardRadius,
-            top: (canvasPadding + borderWidth) / 2,
+            height: CARD_HEIGHT,
             left: (canvasPadding + borderWidth) / 2,
+            top: (canvasPadding + borderWidth) / 2,
+            width: CARD_WIDTH,
           },
         ]}
       >

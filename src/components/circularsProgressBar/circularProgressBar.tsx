@@ -16,22 +16,22 @@ import { miUiStyle } from '../../themes';
 
 const CircularProgressBar = (props: CircularProgressBarProps) => {
   const {
-    path,
-    radius,
-    fromCircle,
+    backgroundColor,
     colors,
-    viewWidth,
-    fontSize,
-    fillProgress,
-    GradientColors,
-    strokeWidth,
-    shadowOpacity,
     elevation,
-    shadowRadius,
+    fillProgress,
+    fontSize,
+    fromCircle,
+    GradientColors,
+    path,
+    progress,
+    radius,
     shadowColor,
     shadowOffset,
-    backgroundColor,
-    progress,
+    shadowOpacity,
+    shadowRadius,
+    strokeWidth,
+    viewWidth,
   } = useCircularProgress(props);
 
   return (

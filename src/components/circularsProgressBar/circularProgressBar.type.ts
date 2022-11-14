@@ -1,18 +1,18 @@
 export interface CircularProgressBarProps {
   /* to specified radius */
-  radius?: number;
+  backgroundColor?: string;
   colors?: string[];
-  padding?: number;
-  fontSize?: number;
-  progress?: number;
   containerSize?: number;
+  elevation?: number;
+  fontSize?: number;
   gradientColors?: string[];
+  padding?: number;
+  progress?: number;
+  radius?: number;
   shadowBlur?: number;
   shadowColor?: string;
-  shadowRadius?: number;
-  shadowOpacity?: number;
-  elevation?: number;
-  strokeWidth?: number;
   shadowOffset?: { width: number; height: number } | undefined;
-  backgroundColor?: string;
+  shadowOpacity?: number;
+  shadowRadius?: number;
+  strokeWidth?: number;
 }
