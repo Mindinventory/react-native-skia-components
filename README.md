@@ -44,13 +44,13 @@ import {
 
 ```js
 <Card
+  backgroundColor={'#000'}
+  blur={10}
+  borderColors={['cyan', 'magenta', 'yellow', 'cyan']}
+  borderWidth={5}
+  cardRadius={20}
   height={220}
   width={310}
-  borderWidth={5}
-  backgroundColor={'#000'}
-  cardRadius={20}
-  borderColors={['cyan', 'magenta', 'yellow', 'cyan']}
-  blur={10}
 >
 {...}
 </Card>
@@ -62,20 +62,20 @@ import {
 
 ```js
 <CircularProgressBar
-  radius={100}
+  backgroundColor="#32363B"
   colors={['#2FB8FF', '#9EECD9']}
-  padding={24}
-  fontSize={32}
   containerSize={250}
-  gradientColors={['#101113', '#2B2F33']}
-  strokeWidth={15}
-  shadowOpacity={0.6}
-  shadowRadius={10}
   elevation={8}
+  fontSize={32}
+  gradientColors={['#101113', '#2B2F33']}
+  padding={24}
+  progress={50}
+  radius={100}
   shadowColor={'#31C'}
   shadowOffset={{ width: 0, height: 4 }}
-  backgroundColor="#32363B"
-  progress={50}
+  shadowOpacity={0.6}
+  shadowRadius={10}
+  strokeWidth={15}
 />
 ```
 
@@ -86,16 +86,16 @@ import {
 
 ```js
 <Button
-  preset="neoPop"
-  width={80}
-  height={80}
-  title={`${index + 1}`}
-  sideShadowColor={'#363636'}
-  bottomShadowColor={'#363636'}
   backgroundColor={'#f96b8f'}
+  bottomShadowColor={'#363636'}
+  height={80}
+  preset="neoPop"
+  sideShadowColor={'#363636'}
   textStyle={{
     color: 'white',
   }}
+  title={`${index + 1}`}
+  width={80}
 />
 ```
 
@@ -105,13 +105,19 @@ import {
 
 ```js
 <Button
-  preset="floating"
-  width={250}
-  height={65}
-  title="PRESS ME"
-  textStyle={{
-    fontSize: 24,
-  }}
+    backgroundColor={'rgba(250, 226, 46,1)'}
+    bottomShadowColor={'rgba(0, 0, 0,1)'}
+    depth={25}
+    height={200}
+    isFloating={true}
+    preset="floating"
+    shadowHeight={20}
+    sideShadowColor={'rgba(195, 161, 60,1)'}
+    textStyle={{
+      fontSize: 24,
+    }}
+    title={'Press Me'}
+    width={300}
 />
 ```
 
