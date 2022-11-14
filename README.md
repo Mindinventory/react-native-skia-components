@@ -39,17 +39,34 @@ import {
 } from '@mindinventory/react-native-neopop';
 ```
 
+# Card
 ```js
 <Card height={220} width={310} borderWidth={5}>
   {...}
 </Card>
 ```
+<img width="372" alt="Screenshot 2022-11-14 at 11 16 07 AM" src="https://user-images.githubusercontent.com/82019401/201584587-5d169c5b-1ae2-4608-ad56-49ee393389ba.png">
 
+# Circle Progress
 ```js
     <CircularProgressBar progress={70} />
-    <Button preset="neoPop" buttonDirection={Direction.Right} />
+```
+<img width="303" alt="Screenshot 2022-11-14 at 11 18 46 AM" src="https://user-images.githubusercontent.com/82019401/201584919-627fcece-66e7-45ca-9b6a-ddc203d38901.png">
+
+
+# Neopop
+```js
+    <Button preset="neoPop" />
+```
+<img width="364" alt="Screenshot 2022-11-14 at 11 19 29 AM" src="https://user-images.githubusercontent.com/82019401/201585018-814ca046-a13f-4d1a-9396-1282b6f1e7db.png">
+
+
+# Floating 
+```js
     <Button preset="floating" />
 ```
+<img width="415" alt="Screenshot 2022-11-14 at 11 19 48 AM" src="https://user-images.githubusercontent.com/82019401/201585058-3af9f8c2-c58d-4d01-9351-36bb4b37d2ef.png">
+
 
 # Props to use
 
@@ -108,7 +125,7 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License!
 
-@mindinventory/react-native-neopop [MIT-licensed](https://github.com/Mindinventory/mindinventory/react-native-neopop/blob/main/LICENSE).
+@mindinventory/react-native-neopop [MIT-licensed](https://github.com/Mindinventory/react-native-neopop/blob/main/LICENSE).
 
 # Let us know!
 
