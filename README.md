@@ -21,8 +21,16 @@ yarn add @mindinventory/react-native-neopop
 ![Simulator Screen Recording - iPhone 13 - 2022-11-11 at 15 25 19](https://user-images.githubusercontent.com/82019401/201321527-9139c291-9b8a-4ff5-9842-4447c926e155.gif)
 ![Simulator Screen Recording - iPhone 13 - 2022-11-11 at 15 26 23](https://user-images.githubusercontent.com/82019401/201333076-9c50a9df-f41c-4453-ba04-393fbdd957f0.gif)
 
-![Simulator Screen Recording - iPhone 13 - 2022-11-14 at 14 41 22](https://user-images.githubusercontent.com/82019401/201622924-16118568-071b-4bb1-bd7d-4e9d465d1cbb.gif)
-![Simulator Screen Recording - iPhone 13 - 2022-11-14 at 14 35 08](https://user-images.githubusercontent.com/82019401/201623149-6542ead6-5e38-499e-a0a4-6d2ceb42923e.gif)
+
+
+
+https://user-images.githubusercontent.com/82019401/201672542-76016412-a8a0-4931-a59a-6942c1265c43.mp4 
+
+https://user-images.githubusercontent.com/82019401/201672555-2bc57323-b89f-4fa4-a9ac-5aa264bfb841.mp4
+
+
+
+
 
 
 ### Supported platform
