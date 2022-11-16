@@ -31,7 +31,6 @@ const FloatingButton = (props: FloatingButtonProps) => {
   return (
     <View>
       <Canvas
-        // onTouch={onPressBtn}
         style={[
           { width: width, height: height },
           miUiStyle.floatingButtonStyle.containerStyle.canvasStyle,
@@ -55,7 +54,6 @@ const FloatingButton = (props: FloatingButtonProps) => {
             </Group>
           </>
         )}
-
         {isFloating && <Path path={shadowPath} color={bottomShadowColor} />}
       </Canvas>
       <TouchableOpacity
@@ -83,7 +81,6 @@ const FloatingButton = (props: FloatingButtonProps) => {
           adjustsFontSizeToFit
           style={[
             miUiStyle.floatingButtonStyle.btnLabel.labelText,
-            miUiStyle.floatingButtonStyle.btnLabel.verticalStyle,
             { fontSize: height / 3 },
             textStyle && { ...textStyle },
           ]}

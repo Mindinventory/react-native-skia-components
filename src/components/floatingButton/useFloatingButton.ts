@@ -6,10 +6,10 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
   const {
     backgroundColor = 'rgba(250, 226, 46,1)',
     bottomShadowColor = 'rgba(0, 0, 0,1)',
-    depth = 25,
+    depth = 15,
     height: propHeight = 200,
     isFloating = true,
-    shadowHeight = 20,
+    shadowHeight = 15,
     sideShadowColor = 'rgba(195, 161, 60,1)',
     textStyle,
     title = 'Pay',

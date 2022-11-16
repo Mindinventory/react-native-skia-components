@@ -8,14 +8,12 @@ const btnLabel = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     position: 'absolute',
+    marginTop: 10,
   },
   labelText: {
     color: miColor.black,
     fontSize: 30,
     fontWeight: 'bold',
-  },
-  verticalStyle: {
-    marginTop: '5%',
   },
 });
 
