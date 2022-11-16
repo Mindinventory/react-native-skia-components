@@ -12,7 +12,7 @@ import {
   Button,
   Card,
   CircularProgressBar,
-} from '@mindinventory/react-native-neopop';
+} from '@mindinventory/react-native-skia-components';
 
 export default function App() {
   const components = [

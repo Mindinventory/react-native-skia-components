@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@mindinventory/react-native-neopop": ["./src/index"]
+      "@mindinventory/react-native-skia-components": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

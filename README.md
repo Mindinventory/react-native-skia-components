@@ -1,4 +1,4 @@
-# @mindinventory/react-native-neopop
+# @mindinventory/react-native-skia-components
 
 This library provide UIKit like Buttons, Circle Progress and and Card layout.
 
@@ -7,13 +7,13 @@ This library provide UIKit like Buttons, Circle Progress and and Card layout.
 using npm
 
 ```sh
-npm install @mindinventory/react-native-neopop
+npm install @mindinventory/react-native-skia-components
 ```
 
 using yarn
 
 ```sh
-yarn add @mindinventory/react-native-neopop
+yarn add @mindinventory/react-native-skia-components
 ```
 
 ## Preview
@@ -45,7 +45,7 @@ import {
   Button,
   Card,
   CircularProgressBar,
-} from '@mindinventory/react-native-neopop';
+} from '@mindinventory/react-native-skia-components';
 ```
 
 # Card
@@ -188,13 +188,13 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License!
 
-@mindinventory/react-native-neopop [MIT-licensed](https://github.com/Mindinventory/react-native-neopop/blob/main/LICENSE).
+@mindinventory/react-native-skia-components [MIT-licensed](https://github.com/Mindinventory/react-native-skia-components/blob/main/LICENSE).
 
 # Let us know!
 
 If you use our open-source libraries in your project, please make sure to credit us and Give a star to www.mindinventory.com
 
 <p><h4>Please feel free to use this component and Let us know if you are interested to building Apps or Designing Products.</h4>
-<a href="https://www.mindinventory.com/contact-us.php?utm_source=gthb&utm_medium=repo&utm_campaign=react-native-neopop" target="__blank">
+<a href="https://www.mindinventory.com/contact-us.php?utm_source=gthb&utm_medium=repo&utm_campaign=react-native-skia-components" target="__blank">
 <img src="https://github.com/Sammindinventory/MindInventory/blob/main/hirebutton.png" width="203" height="43"  alt="app development">
 </a>

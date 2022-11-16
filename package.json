@@ -1,5 +1,5 @@
 {
-  "name": "@mindinventory/react-native-neopop",
+  "name": "@mindinventory/react-native-skia-components",
   "version": "1.0.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -47,13 +47,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/Mindinventory/react-native-neopop",
+  "repository": "https://github.com/Mindinventory/react-native-skia-components",
   "author": "Mindinventory",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Mindinventory/react-native-neopop/issues"
+    "url": "https://github.com/Mindinventory/react-native-skia-components/issues"
   },
-  "homepage": "https://github.com/Mindinventory/react-native-neopop#readme",
+  "homepage": "https://github.com/Mindinventory/react-native-skia-components#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

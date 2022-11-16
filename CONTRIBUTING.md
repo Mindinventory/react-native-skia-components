@@ -53,9 +53,9 @@ Remember to add tests for your change if possible. Run the unit tests by:
 yarn test
 ```
 
-To edit the Objective-C or Swift files, open `example/ios/ReactNativeNeopopExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > @mindinventory/react-native-neopop`.
+To edit the Objective-C or Swift files, open `example/ios/ReactNativeNeopopExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > @mindinventory/react-native-skia-components`.
 
-To edit the Java or Kotlin files, open `example/android` in Android studio and find the source files at `mindinventory-react-native-neopop` under `Android`.
+To edit the Java or Kotlin files, open `example/android` in Android studio and find the source files at `mindinventory-react-native-skia-components` under `Android`.
 
 ### Commit message convention
 
