@@ -14,6 +14,9 @@ import type { CircularProgressBarProps } from './circularProgressBar.type';
 import { useCircularProgress } from './useCircularProgressBar';
 import { miUiStyle } from '../../themes';
 
+const VEC_START = 12;
+const VEC_END = 200;
+
 const CircularProgressBar = (props: CircularProgressBarProps) => {
   const {
     backgroundColor,
@@ -22,7 +25,7 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
     fillProgress,
     fontSize,
     fromCircle,
-    GradientColors,
+    gradientColors,
     path,
     progress,
     radius,
@@ -34,8 +37,10 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
     viewWidth,
   } = useCircularProgress(props);
 
+  const VIEW_WIDTH_DIV = viewWidth / 2;
+
   return (
-    <View>
+    <>
       <Canvas
         style={{
           width: viewWidth,
@@ -49,15 +54,15 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
       >
         <Group
           transform={translate({
-            x: viewWidth / 2 - radius,
-            y: viewWidth / 2 - radius,
+            x: VIEW_WIDTH_DIV - radius,
+            y: VIEW_WIDTH_DIV - radius,
           })}
         >
           <Group>
             <LinearGradient
-              start={vec(12, 12)}
-              end={vec(200, 200)}
-              colors={GradientColors}
+              start={vec(VEC_START, VEC_START)}
+              end={vec(VEC_END, VEC_END)}
+              colors={gradientColors}
             />
             <Box box={fromCircle(radius, radius, radius)} />
           </Group>
@@ -85,8 +90,8 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
         style={[
           miUiStyle?.circularProgressBarStyle?.textContainer.textView,
           {
-            top: viewWidth / 2 - fontSize / 2,
-            left: viewWidth / 2 - fontSize,
+            top: VIEW_WIDTH_DIV - fontSize / 2,
+            left: VIEW_WIDTH_DIV - fontSize,
           },
         ]}
       >
@@ -99,8 +104,8 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
           {progress}%
         </Text>
       </View>
-    </View>
+    </>
   );
 };
 
-export default CircularProgressBar;
+export default React.memo(CircularProgressBar);

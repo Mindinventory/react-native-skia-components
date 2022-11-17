@@ -1,3 +1,4 @@
+import { miColor } from '../../themes';
 import { StyleSheet } from 'react-native';
 
 const circle = StyleSheet.create({
@@ -20,7 +21,7 @@ const textContainer = StyleSheet.create({
   },
   textStyle: {
     fontWeight: 'bold',
-    color: '#ccc',
+    color: miColor.grayShade,
   },
 });
 

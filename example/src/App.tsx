@@ -14,13 +14,14 @@ import {
   CircularProgressBar,
 } from '@mindinventory/react-native-skia-components';
 
+const components = [
+  { id: 0, name: 'Card' },
+  { id: 1, name: 'Progress' },
+  { id: 2, name: 'New Pop' },
+  { id: 3, name: 'Floating' },
+];
+
 export default function App() {
-  const components = [
-    { id: 0, name: 'Card' },
-    { id: 1, name: 'Progress' },
-    { id: 2, name: 'New Pop' },
-    { id: 3, name: 'Floating' },
-  ];
   const [selected, setSelected] = React.useState(0);
 
   const renderCardLayout = () => {
@@ -52,11 +53,11 @@ export default function App() {
     );
   };
 
-  const remderCircleProgress = () => {
+  const renderCircleProgress = () => {
     return (
       <View style={styles.centerItemStyle}>
         <CircularProgressBar
-          progress={40}
+          progress={100}
           shadowColor={'white'}
           gradientColors={['#292626']}
         />
@@ -67,7 +68,7 @@ export default function App() {
   const renderNeoPopButton = () => {
     return (
       <View style={styles.neoButtonLayout}>
-        {new Array(8).fill('$').map((_value, index) => {
+        {new Array(8).fill('$').map((_, index) => {
           console.log('index >>>', index);
 
           return (
@@ -105,8 +106,8 @@ export default function App() {
       <View style={styles.centerItemStyle}>
         <Button
           preset="floating"
-          width={250}
-          height={65}
+          width={200}
+          height={45}
           title="PRESS ME"
           textStyle={styles.floatingTextStyle}
           onPress={() => {
@@ -126,22 +127,25 @@ export default function App() {
     );
   };
 
-  const renderLayout = () => {
-    if (selected === 0) {
-      return renderCardLayout();
-    } else if (selected === 1) {
-      return remderCircleProgress();
-    } else if (selected === 2) {
-      return renderNeoPopButton();
-    } else {
-      return renderFlaotingButton();
+  const renderSkiaLayout = () => {
+    switch (selected) {
+      case 0:
+        return renderCardLayout();
+      case 1:
+        return renderCircleProgress();
+      case 2:
+        return renderNeoPopButton();
+      case 3:
+        return renderFlaotingButton();
+      default:
+        return <></>;
     }
   };
 
-  const renderComponent = () => {
+  const renderSkiaComponents = () => {
     return (
       <ScrollView>
-        <View style={styles.containerStyle}>{renderLayout()}</View>
+        <View style={styles.containerStyle}>{renderSkiaLayout()}</View>
       </ScrollView>
     );
   };
@@ -152,7 +156,7 @@ export default function App() {
           data={components}
           numColumns={2}
           style={styles.flatListStyle}
-          keyExtractor={(_item, index) => index.toString()}
+          keyExtractor={(_, index) => index.toString()}
           renderItem={({ item, index }) => {
             return (
               <TouchableOpacity
@@ -176,7 +180,7 @@ export default function App() {
             );
           }}
         />
-        {renderComponent()}
+        {renderSkiaComponents()}
       </View>
     </SafeAreaView>
   );
@@ -217,8 +221,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
   },
-  centerItemStyle: { alignSelf: 'center' },
-  marginLeftMinus: { marginLeft: -10 },
+  centerItemStyle: { alignSelf: 'center', bottom: 0 },
+  marginLeftMinus: { marginLeft: 0 },
   validText: { color: 'gold', fontSize: 10 },
   timeText: { color: 'gold', fontSize: 15 },
   coponentListStyle: {
@@ -239,6 +243,7 @@ const styles = StyleSheet.create({
   unSelectedText: { color: 'white', fontWeight: '500' },
   carNameText: { color: 'gold', fontSize: 15, marginTop: 0 },
   floatingTextStyle: {
-    fontSize: 24,
+    fontSize: 12,
+    position: 'absolute',
   },
 });

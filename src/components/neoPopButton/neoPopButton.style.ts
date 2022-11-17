@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { miColor } from '../../themes';
 
 const textContainer = StyleSheet.create({
   textView: {
@@ -7,7 +8,7 @@ const textContainer = StyleSheet.create({
     position: 'absolute',
   },
   textStyle: {
-    color: 'gray',
+    color: miColor.gray,
     fontWeight: 'bold',
   },
 });

@@ -1,22 +1,29 @@
 import { useState } from 'react';
+import { miColor } from '../../themes';
 import type { NeoPopButtonProps } from './neoPopButton.type';
+
+const HEIGHT = 100;
+const WIDTH = 200;
+const TEXT_TITLE_SIZE = 30;
+const BUTTON_RIGHT_SIDE_WIDTH = 20;
 
 export const useNeoPopButton = (props: NeoPopButtonProps) => {
   const {
-    backgroundColor = '#add8e6',
-    bottomShadowColor = '#93b8c4',
-    height = 100,
-    sideShadowColor = '#9dd0e1',
+    backgroundColor = miColor.bluishGray,
+    bottomShadowColor = miColor.yellowGold,
+    height = HEIGHT,
+    sideShadowColor = miColor.bluishGrayLight,
     textStyle,
     title = ' ',
-    titleSize = 30,
-    width = 200,
+    titleSize = TEXT_TITLE_SIZE,
+    width = WIDTH,
   } = props;
 
-  const buttonWidth = width || 250;
-  const buttonHeight = height || 200;
-  const canvasButtonWidth = buttonWidth + 20;
-  const canvasButtonHeight = buttonHeight + 20;
+  const buttonWidth = width;
+  const buttonHeight = height;
+  const canvasButtonWidth = buttonWidth + BUTTON_RIGHT_SIDE_WIDTH;
+  const canvasButtonHeight = buttonHeight + BUTTON_RIGHT_SIDE_WIDTH;
+  const TEXT_POSITION = buttonWidth / 2 - titleSize;
   const [x] = useState<number>(-20);
   const [y] = useState<number>(-20);
   const [animatedWidth, setAnimatedWidth] = useState<number>(0);
@@ -24,8 +31,8 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
   const [animatedHeight, setAnimatedHeight] = useState<number>(0);
   const [animatedY, setAnimatedY] = useState<number>(0);
   const [textPosition, setTextPosition] = useState({
-    x: buttonWidth / 2 - titleSize,
-    y: buttonWidth / 2 - titleSize / 2,
+    x: TEXT_POSITION,
+    y: TEXT_POSITION / 2,
   });
   const [boxShadow, setBoxShadow] = useState(0);
 

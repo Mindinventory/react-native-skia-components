@@ -5,25 +5,41 @@ import {
   Skia,
   useTiming,
 } from '@shopify/react-native-skia';
+import { miColor } from '../../themes';
 
 import type { CircularProgressBarProps } from './circularProgressBar.type';
 
+const CONTAINER_SIZE = 250;
+const CONTAINER_ELEVATION = 8;
+const PROGRESS_FONT_SIZE = 32;
+const PADDING = 24;
+const CIRCLE_PROGRESS = 25;
+const CIRCLE_RADIUS = 100;
+const SHADOW_OPACITY = 0.6;
+const SHADOW_RADIUS = 10;
+const SHADOW_WIDTH = 15;
+const ARC_DEGREE = 270;
+const ANIM_DURATION = 3000;
+
 export const useCircularProgress = (props: CircularProgressBarProps) => {
   const {
-    backgroundColor = '#32363B',
-    colors = ['#2FB8FF', '#9EECD9'],
-    containerSize = 250, //Dimensions.get('window').width,
-    elevation = 8,
-    fontSize = 32,
-    gradientColors: GradientColors = ['#101113', '#2B2F33'],
-    padding = 24,
-    progress = 25,
-    radius = 100,
-    shadowColor = '#31C',
+    backgroundColor = miColor.circleBackground,
+    colors = [miColor.blueShade, miColor.greenShade],
+    containerSize = CONTAINER_SIZE,
+    elevation = CONTAINER_ELEVATION,
+    fontSize = PROGRESS_FONT_SIZE,
+    gradientColors: gradientColors = [
+      miColor.blackShade,
+      miColor.darkGrayShade,
+    ],
+    padding = PADDING,
+    progress = CIRCLE_PROGRESS,
+    radius = CIRCLE_RADIUS,
+    shadowColor = miColor.purple,
     shadowOffset = { width: 0, height: 4 },
-    shadowOpacity = 0.6,
-    shadowRadius = 10,
-    strokeWidth = 15,
+    shadowOpacity = SHADOW_OPACITY,
+    shadowRadius = SHADOW_RADIUS,
+    strokeWidth = SHADOW_WIDTH,
   } = props;
 
   const size = containerSize;
@@ -37,8 +53,7 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
       width: radius * 2,
       height: radius * 2,
     },
-    270,
-    // 360
+    ARC_DEGREE,
     (progress / 100) * 360
   );
   const fromCircle = (cx: number, cy: number, r: number) =>
@@ -46,7 +61,7 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
 
   const fillProgress = useTiming(
     { from: 0, to: progress },
-    { duration: 3000, easing: Easing.circle }
+    { duration: ANIM_DURATION, easing: Easing.circle }
   );
 
   return {
@@ -56,7 +71,7 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
     fillProgress,
     fontSize,
     fromCircle,
-    GradientColors,
+    gradientColors,
     padding,
     path,
     progress,

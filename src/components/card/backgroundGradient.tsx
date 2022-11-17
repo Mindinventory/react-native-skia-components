@@ -19,10 +19,10 @@ interface BackgroundGradientProps {
 const BackgroundGradient = (props: BackgroundGradientProps) => {
   const { blur, borderColors, canvasPadding, cardRadius, height, width } =
     props;
+  const CANVAS_WIDTH = width + canvasPadding;
+  const CANVAS_HEIGHT = height + canvasPadding;
   return (
-    <Canvas
-      style={{ width: width + canvasPadding, height: height + canvasPadding }}
-    >
+    <Canvas style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT }}>
       <RoundedRect
         x={canvasPadding / 2}
         y={canvasPadding / 2}
@@ -32,7 +32,7 @@ const BackgroundGradient = (props: BackgroundGradientProps) => {
         r={cardRadius}
       >
         <SweepGradient
-          c={vec((width + canvasPadding) / 2, (height + canvasPadding) / 2)}
+          c={vec(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2)}
           colors={borderColors}
         />
         <BlurMask blur={blur} style="solid" />

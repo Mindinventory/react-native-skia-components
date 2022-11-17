@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { Canvas, Path, Group } from '@shopify/react-native-skia';
 import { useFloatingButton } from './useFloatingButton';
 import type { FloatingButtonProps } from './floatingButton.type';
@@ -29,7 +29,7 @@ const FloatingButton = (props: FloatingButtonProps) => {
   });
 
   return (
-    <View>
+    <>
       <Canvas
         style={[
           { width: width, height: height },
@@ -88,8 +88,8 @@ const FloatingButton = (props: FloatingButtonProps) => {
           {title}
         </Text>
       </TouchableOpacity>
-    </View>
+    </>
   );
 };
 
-export default FloatingButton;
+export default React.memo(FloatingButton);

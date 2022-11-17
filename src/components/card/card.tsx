@@ -20,8 +20,9 @@ const Card: React.FC<CardProps> = (props) => {
   } = useCard({
     ...props,
   });
+  const CARD_VIEW_MARGIN = canvasPadding + borderWidth;
   return (
-    <View>
+    <>
       <BackgroundGradient
         blur={blur}
         borderColors={borderColors}
@@ -37,15 +38,15 @@ const Card: React.FC<CardProps> = (props) => {
             backgroundColor: backgroundColor,
             borderRadius: cardRadius,
             height: CARD_HEIGHT,
-            left: (canvasPadding + borderWidth) / 2,
-            top: (canvasPadding + borderWidth) / 2,
+            left: CARD_VIEW_MARGIN / 2,
+            top: CARD_VIEW_MARGIN / 2,
             width: CARD_WIDTH,
           },
         ]}
       >
         {props.children}
       </View>
-    </View>
+    </>
   );
 };
 
