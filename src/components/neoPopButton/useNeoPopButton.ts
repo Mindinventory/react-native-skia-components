@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import type { NeoPopButtonProps } from './neoPopButton.type';
 
 export const useNeoPopButton = (props: NeoPopButtonProps) => {

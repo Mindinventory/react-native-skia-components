@@ -1,5 +1,7 @@
-import { Skia } from '@shopify/react-native-skia';
 import { useState } from 'react';
+
+import { Skia } from '@shopify/react-native-skia';
+
 import type { FloatingButtonProps } from './floatingButton.type';
 
 export const useFloatingButton = (props: FloatingButtonProps) => {

@@ -1,5 +1,6 @@
-import type { CardProps } from './card.type';
 import { Dimensions } from 'react-native';
+
+import type { CardProps } from './card.type';
 
 const { width: ScreenWidth } = Dimensions.get('window');
 export const useCard = (props: CardProps) => {

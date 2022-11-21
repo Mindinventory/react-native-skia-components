@@ -20,7 +20,7 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
     progress = 25,
     radius = 100,
     shadowColor = '#31C',
-    shadowOffset = { width: 0, height: 4 },
+    shadowOffset = { height: 4, width: 0 },
     shadowOpacity = 0.6,
     shadowRadius = 10,
     strokeWidth = 15,
@@ -32,10 +32,10 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
   path.moveTo(strokeWidth, viewWidth / 2 - 50);
   path.addArc(
     {
+      height: radius * 2,
+      width: radius * 2,
       x: 0,
       y: 0,
-      width: radius * 2,
-      height: radius * 2,
     },
     270,
     // 360

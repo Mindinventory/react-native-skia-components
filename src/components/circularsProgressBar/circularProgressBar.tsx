@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+
 import {
   Box,
   Canvas,
@@ -10,9 +11,10 @@ import {
   translate,
   vec,
 } from '@shopify/react-native-skia';
+
+import { miUiStyle } from '../../themes';
 import type { CircularProgressBarProps } from './circularProgressBar.type';
 import { useCircularProgress } from './useCircularProgressBar';
-import { miUiStyle } from '../../themes';
 
 const CircularProgressBar = (props: CircularProgressBarProps) => {
   const {
@@ -38,55 +40,58 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
     <View>
       <Canvas
         style={{
-          width: viewWidth,
+          elevation: elevation,
           height: viewWidth,
           shadowColor: shadowColor,
-          shadowRadius: shadowRadius,
-          shadowOpacity: shadowOpacity,
-          elevation: elevation,
           shadowOffset: shadowOffset,
+          shadowOpacity: shadowOpacity,
+          shadowRadius: shadowRadius,
+          width: viewWidth,
         }}
-      >
-        <Group
-          transform={translate({
-            x: viewWidth / 2 - radius,
-            y: viewWidth / 2 - radius,
-          })}
-        >
-          <Group>
-            <LinearGradient
-              start={vec(12, 12)}
-              end={vec(200, 200)}
-              colors={GradientColors}
+        children={(<>
+          <Group
+            transform={translate({
+              x: viewWidth / 2 - radius,
+              y: viewWidth / 2 - radius,
+            })}
+          >
+            <Group>
+              <LinearGradient
+                start={vec(12, 12)}
+                end={vec(200, 200)}
+                colors={GradientColors}
+              />
+              <Box box={fromCircle(radius, radius, radius)} />
+            </Group>
+            <Box
+              box={fromCircle(radius, radius, radius - strokeWidth - 10)}
+              color={backgroundColor}
             />
-            <Box box={fromCircle(radius, radius, radius)} />
-          </Group>
-          <Box
-            box={fromCircle(radius, radius, radius - strokeWidth - 10)}
-            color={backgroundColor}
-          />
 
-          <Group>
-            <SweepGradient
-              c={vec((radius * 3) / 2 + radius, radius * 3)}
-              colors={colors}
-            />
-            <Path
-              path={path}
-              style="stroke"
-              strokeWidth={strokeWidth}
-              end={fillProgress}
-              strokeCap="round"
-            />
+            <Group>
+              <SweepGradient
+                c={vec((radius * 3) / 2 + radius, radius * 3)}
+                colors={colors}
+              />
+              <Path
+                path={path}
+                style="stroke"
+                strokeWidth={strokeWidth}
+                end={fillProgress}
+                strokeCap="round"
+              />
+            </Group>
           </Group>
-        </Group>
-      </Canvas>
+        </>)}
+        accessibilityLabelledBy={undefined}
+        accessibilityLanguage={undefined}
+      />
       <View
         style={[
           miUiStyle?.circularProgressBarStyle?.textContainer.textView,
           {
-            top: viewWidth / 2 - fontSize / 2,
             left: viewWidth / 2 - fontSize,
+            top: viewWidth / 2 - fontSize / 2,
           },
         ]}
       >

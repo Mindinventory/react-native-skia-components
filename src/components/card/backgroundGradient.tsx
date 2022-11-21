@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   BlurMask,
   Canvas,
@@ -21,23 +22,21 @@ const BackgroundGradient = (props: BackgroundGradientProps) => {
     props;
   return (
     <Canvas
-      style={{ width: width + canvasPadding, height: height + canvasPadding }}
-    >
-      <RoundedRect
-        x={canvasPadding / 2}
-        y={canvasPadding / 2}
-        width={width}
-        height={height}
-        color="gold"
-        r={cardRadius}
-      >
-        <SweepGradient
-          c={vec((width + canvasPadding) / 2, (height + canvasPadding) / 2)}
-          colors={borderColors}
-        />
-        <BlurMask blur={blur} style="solid" />
-      </RoundedRect>
-    </Canvas>
+      style={{ height: height + canvasPadding, width: width + canvasPadding }} children={(<>
+        <RoundedRect
+          x={canvasPadding / 2}
+          y={canvasPadding / 2}
+          width={width}
+          height={height}
+          color="gold"
+          r={cardRadius}
+        >
+          <SweepGradient
+            c={vec((width + canvasPadding) / 2, (height + canvasPadding) / 2)}
+            colors={borderColors}
+          />
+          <BlurMask blur={blur} style="solid" />
+        </RoundedRect></>)} accessibilityLabelledBy={undefined} accessibilityLanguage={undefined} />
   );
 };
 

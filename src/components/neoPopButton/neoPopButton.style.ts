@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 const textContainer = StyleSheet.create({
+  textStyle: {
+    color: 'gray',
+    fontWeight: 'bold',
+  },
   textView: {
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-  },
-  textStyle: {
-    color: 'gray',
-    fontWeight: 'bold',
   },
 });
 
@@ -19,6 +19,6 @@ const containerStyle = StyleSheet.create({
 });
 
 export default {
-  textContainer: { ...textContainer },
   containerStyle,
+  textContainer: { ...textContainer },
 };
