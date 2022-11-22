@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import * as React from 'react';
 import {
+  Dimensions,
   FlatList,
   SafeAreaView,
   ScrollView,
@@ -10,11 +11,17 @@ import {
   View,
 } from 'react-native';
 
+import moment from 'moment';
+
 import {
   Button,
   Card,
   CircularProgressBar,
+  LineChart,
 } from '@mindinventory/react-native-neopop';
+
+import { originalData } from '../Data';
+import { lineChartStyles } from '../style';
 
 const ListComponentScreen = () => {
   const components = [
@@ -22,8 +29,26 @@ const ListComponentScreen = () => {
     { id: 1, name: 'Progress' },
     { id: 2, name: 'New Pop' },
     { id: 3, name: 'Floating' },
+    { id: 4, name: 'LineChart' },
   ];
   const [selected, setSelected] = React.useState(0);
+  const [data, setData] = React.useState<number[]>([]);
+
+  React.useEffect(() => {
+    let dataList = [];
+
+    if (originalData.length === 1) {
+      dataList.push(0);
+    }
+    originalData.map((item) => {
+      dataList.push({
+        data: item.data,
+        value: item.value,
+      });
+    });
+
+    setData(dataList);
+  }, []);
 
   const renderCardLayout = () => {
     return (
@@ -141,9 +166,28 @@ const ListComponentScreen = () => {
       return remderCircleProgress();
     } else if (selected === 2) {
       return renderNeoPopButton();
-    } else {
+    } else if (selected === 3) {
       return renderFlaotingButton();
+    } else if (selected === 4) {
+      return renderLineChart();
     }
+  };
+
+  const renderLineChart = () => {
+    return (
+      <View style={lineChartStyles.container}>
+        <LineChart
+          canvasHeight={Dimensions.get('window').height * 0.5}
+          canvasWidth={Dimensions.get('window').width * 0.85}
+          fontPath={require('../assets/font/Roboto-Bold.ttf')}
+          data={data}
+          isGradient={true}
+          isGridLines={true}
+          labelStyle={lineChartStyles.labelStyle}
+          axisStyle={lineChartStyles.axisStyle}
+        />
+      </View>
+    );
   };
 
   const renderComponent = () => {
