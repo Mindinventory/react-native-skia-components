@@ -34,4 +34,4 @@ call_lefthook()
 
 
 
-call_lefthook "run pre-commit $@"
+call_lefthook "run commit-msg $@"

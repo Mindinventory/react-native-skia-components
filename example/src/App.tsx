@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+
 import {
   Button,
   Card,
@@ -185,60 +186,60 @@ export default function App() {
 
 */
 const styles = StyleSheet.create({
-  safeAreabackground: {
-    backgroundColor: '#202020',
-  },
-  mainContainer: {
-    height: '100%',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: '#202020',
-  },
-  containerStyle: {},
-  flatListStyle: { alignSelf: 'center' },
+  cardNumber: { color: 'gold', fontSize: 22 },
   cardStyle: {
-    justifyContent: 'center',
-    height: '100%',
     flex: 1,
+    height: '100%',
+    justifyContent: 'center',
     paddingHorizontal: 20,
   },
-  cardNumber: { color: 'gold', fontSize: 22 },
+  carNameText: { color: 'gold', fontSize: 15, marginTop: 0 },
+  centerItemStyle: { alignSelf: 'center' },
+  containerStyle: {},
+  coponentListStyle: {
+    borderColor: 'white',
+    borderRadius: 10,
+    borderWidth: 0.9,
+    marginHorizontal: 10,
+    marginVertical: 5,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+  },
   dateContainer: {
     marginVertical: 20,
   },
+  flatListStyle: { alignSelf: 'center' },
   flexDirectionRow: {
-    flexDirection: 'row',
     alignSelf: 'center',
+    flexDirection: 'row',
   },
+  floatingTextStyle: {
+    fontSize: 24,
+  },
+  mainContainer: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#202020',
+    height: '100%',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  marginLeftMinus: { marginLeft: -10 },
+  neoBtnTextStyle: { color: 'white' },
   neoButtonLayout: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
   },
-  centerItemStyle: { alignSelf: 'center' },
-  marginLeftMinus: { marginLeft: -10 },
-  validText: { color: 'gold', fontSize: 10 },
-  timeText: { color: 'gold', fontSize: 15 },
-  coponentListStyle: {
-    marginHorizontal: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    marginVertical: 5,
-    borderWidth: 0.9,
-    borderColor: 'white',
-    borderRadius: 10,
+  safeAreabackground: {
+    backgroundColor: '#202020',
   },
   selectedItem: {
     backgroundColor: '#f96b8f',
     borderWidth: 0,
   },
-  neoBtnTextStyle: { color: 'white' },
   selectedText: { color: 'white', fontWeight: '800' },
+  timeText: { color: 'gold', fontSize: 15 },
   unSelectedText: { color: 'white', fontWeight: '500' },
-  carNameText: { color: 'gold', fontSize: 15, marginTop: 0 },
-  floatingTextStyle: {
-    fontSize: 24,
-  },
+  validText: { color: 'gold', fontSize: 10 },
 });

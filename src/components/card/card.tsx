@@ -33,7 +33,7 @@ const Card: React.FC<CardProps> = (props) => {
       />
       <View
         style={[
-          miUiStyle.cardStyle.cardView.card,
+          miUiStyle.cardStyle.card,
           {
             backgroundColor: backgroundColor,
             borderRadius: cardRadius,
