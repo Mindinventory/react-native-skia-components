@@ -11,13 +11,11 @@ import {
   View,
 } from 'react-native';
 
-import moment from 'moment';
-
 import {
   Button,
   Card,
   CircularProgressBar,
-  LineChart,
+  LineChartComponent,
 } from '@mindinventory/react-native-neopop';
 
 import { originalData } from '../Data';
@@ -168,7 +166,7 @@ const ListComponentScreen = () => {
       return renderNeoPopButton();
     } else if (selected === 3) {
       return renderFlaotingButton();
-    } else if (selected === 4) {
+    } else {
       return renderLineChart();
     }
   };
@@ -176,7 +174,7 @@ const ListComponentScreen = () => {
   const renderLineChart = () => {
     return (
       <View style={lineChartStyles.container}>
-        <LineChart
+        <LineChartComponent
           canvasHeight={Dimensions.get('window').height * 0.5}
           canvasWidth={Dimensions.get('window').width * 0.85}
           fontPath={require('../assets/font/Roboto-Bold.ttf')}

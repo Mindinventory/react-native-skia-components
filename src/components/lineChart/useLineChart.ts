@@ -46,7 +46,7 @@ export const useLineChart = (props: LineChartProps) => {
       strokeWidth: 1,
       style: 'stroke',
     },
-    selectionLabelStyle = { textColor: black },
+    selectionLabelStyle = { color: black },
   } = props;
   const { styles } = useMiUiContext();
 

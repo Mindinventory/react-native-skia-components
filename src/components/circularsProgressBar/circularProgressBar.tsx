@@ -48,41 +48,43 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
           shadowRadius: shadowRadius,
           width: viewWidth,
         }}
-        children={(<>
-          <Group
-            transform={translate({
-              x: viewWidth / 2 - radius,
-              y: viewWidth / 2 - radius,
-            })}
-          >
-            <Group>
-              <LinearGradient
-                start={vec(12, 12)}
-                end={vec(200, 200)}
-                colors={GradientColors}
+        children={
+          <>
+            <Group
+              transform={translate({
+                x: viewWidth / 2 - radius,
+                y: viewWidth / 2 - radius,
+              })}
+            >
+              <Group>
+                <LinearGradient
+                  start={vec(12, 12)}
+                  end={vec(200, 200)}
+                  colors={GradientColors}
+                />
+                <Box box={fromCircle(radius, radius, radius)} />
+              </Group>
+              <Box
+                box={fromCircle(radius, radius, radius - strokeWidth - 10)}
+                color={backgroundColor}
               />
-              <Box box={fromCircle(radius, radius, radius)} />
-            </Group>
-            <Box
-              box={fromCircle(radius, radius, radius - strokeWidth - 10)}
-              color={backgroundColor}
-            />
 
-            <Group>
-              <SweepGradient
-                c={vec((radius * 3) / 2 + radius, radius * 3)}
-                colors={colors}
-              />
-              <Path
-                path={path}
-                style="stroke"
-                strokeWidth={strokeWidth}
-                end={fillProgress}
-                strokeCap="round"
-              />
+              <Group>
+                <SweepGradient
+                  c={vec((radius * 3) / 2 + radius, radius * 3)}
+                  colors={colors}
+                />
+                <Path
+                  path={path}
+                  style={'stroke'}
+                  strokeWidth={strokeWidth}
+                  end={fillProgress}
+                  strokeCap={'round'}
+                />
+              </Group>
             </Group>
-          </Group>
-        </>)}
+          </>
+        }
         accessibilityLabelledBy={undefined}
         accessibilityLanguage={undefined}
       />

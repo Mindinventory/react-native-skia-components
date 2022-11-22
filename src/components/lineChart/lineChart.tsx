@@ -14,7 +14,6 @@ import { useLineChart } from './useLineChart';
 
 const LineChart = (props: LineChartProps) => {
   const {
-    animateChart,
     animationState,
     chartPathStyle,
     cursorStyle,

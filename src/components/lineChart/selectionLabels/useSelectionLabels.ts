@@ -9,10 +9,10 @@ import type {
   SelectedPositions,
 } from '../LineChartProps';
 
-export const useSelectionLabels = (props: SelectedPointProps<any>) => {
+export const useSelectionLabels = (props: SelectedPointProps) => {
   const { xLabel, yLabel, x, data, selectionLabelStyle, y, yAxisData, max } =
     props;
-  const { textColor } = selectionLabelStyle;
+  const { color } = selectionLabelStyle;
   const [selectedPositions, setSelectedPositions] =
     useState<SelectedPositions>();
   const [selectedData, setSelectedData] = useState<string>();
@@ -125,6 +125,6 @@ export const useSelectionLabels = (props: SelectedPointProps<any>) => {
     ...props,
     selectedData,
     selectedPositions,
-    textColor,
+    color,
   };
 };

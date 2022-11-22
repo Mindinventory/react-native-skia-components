@@ -46,12 +46,12 @@ export interface LabelProps {
   color: string | Float32Array | number;
 }
 
-export interface SelectedPointProps<T> {
+export interface SelectedPointProps {
   xLabel: SkiaValue<number>;
   yLabel: SkiaValue<number>;
   x: ScaleTime<number, number, never>;
   font: any;
-  data: T[];
+  data: number[];
   selectionLabelStyle: LabelProps;
   y: ScaleLinear<number, number, never>;
   yAxisData: number[];
