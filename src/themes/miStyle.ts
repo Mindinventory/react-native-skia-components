@@ -1,6 +1,6 @@
 import { cardStyle, circularProgressBarStyle } from '../components';
-import { floatingButtonStyle } from '../components/floatingButton/floatingButton.style';
-import { neoPopButtonStyle } from '../components/neoPopButton/neoPopButton.style';
+import { floatingButtonStyle } from '../components/floatingButton';
+import { neoPopButtonStyle } from '../components/neoPopButton';
 
 export const miUiStyle = () => {
   return {
