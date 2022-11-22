@@ -1,24 +1,26 @@
 import { StyleSheet } from 'react-native';
 
-const textContainer = StyleSheet.create({
-  textStyle: {
-    color: 'gray',
-    fontWeight: 'bold',
-  },
-  textView: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-  },
-});
+export const neoPopButtonStyle = () => {
+  const textContainer = StyleSheet.create({
+    textStyle: {
+      color: 'gray',
+      fontWeight: 'bold',
+    },
+    textView: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+    },
+  });
 
-const containerStyle = StyleSheet.create({
-  canvasStyle: {
-    marginVertical: 10,
-  },
-});
+  const containerStyle = StyleSheet.create({
+    canvasStyle: {
+      marginVertical: 10,
+    },
+  });
 
-export default {
-  containerStyle,
-  textContainer: { ...textContainer },
+  return {
+    containerStyle,
+    textContainer: { ...textContainer },
+  };
 };
