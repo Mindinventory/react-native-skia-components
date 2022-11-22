@@ -42,6 +42,8 @@ const LineChart = (props: LineChartProps) => {
     yLabel,
     canvasHeight,
     canvasWidth,
+    formateXLabel,
+    formateYLabel,
   } = useLineChart(props);
   const { color, style, strokeWidth } = chartPathStyle;
 
@@ -107,6 +109,8 @@ const LineChart = (props: LineChartProps) => {
                 graphHeight={graphHeight}
                 yAxisData={yAxisData}
                 y={y}
+                formateXLabel={formateXLabel}
+                formateYLabel={formateYLabel}
               />
             )}
 

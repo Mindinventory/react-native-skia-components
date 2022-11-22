@@ -23,8 +23,8 @@ export interface LineChartProps {
   gridStyle?: StyleProps;
   cursorStyle?: StyleProps;
   selectionLabelStyle?: LabelProps;
-  formateXAxis?: any;
-  formateYAxis?: any;
+  formateXLabel?: any;
+  formateYLabel?: any;
 }
 
 export interface GraphData {
@@ -102,4 +102,6 @@ export interface AxisLabelsProps {
   yAxisData: any[];
   y: ScaleLinear<number, number, never>;
   x: ScaleTime<number, number, never>;
+  formateXLabel?: any;
+  formateYLabel?: any;
 }

@@ -47,6 +47,8 @@ export const useLineChart = (props: LineChartProps) => {
       style: 'stroke',
     },
     selectionLabelStyle = { color: black },
+    formateXLabel,
+    formateYLabel,
   } = props;
   const { styles } = useMiUiContext();
 
@@ -97,6 +99,8 @@ export const useLineChart = (props: LineChartProps) => {
     cursorStyle,
     data,
     font,
+    formateXLabel,
+    formateYLabel,
     gradientColors,
     graphHeight,
     graphMargin,

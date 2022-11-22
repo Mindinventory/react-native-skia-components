@@ -1,13 +1,22 @@
 import React from 'react';
 
 import { Text } from '@shopify/react-native-skia';
-import moment from 'moment';
 
 import { MARGIN } from '../../../utils/graphUtils';
 import type { AxisLabelsProps } from '../LineChartProps';
 
 const AxisLabels = (props: AxisLabelsProps) => {
-  const { xAxisData, font, textColor, x, graphHeight, yAxisData, y } = props;
+  const {
+    xAxisData,
+    font,
+    textColor,
+    x,
+    graphHeight,
+    yAxisData,
+    y,
+    formateXLabel,
+    formateYLabel,
+  } = props;
 
   return (
     <>
@@ -17,7 +26,7 @@ const AxisLabels = (props: AxisLabelsProps) => {
             color={textColor}
             key={index.toString()}
             font={font}
-            text={moment(item).format('DDMMM')}
+            text={formateXLabel(item)}
             x={x(item)}
             y={graphHeight + MARGIN}
           />
@@ -27,7 +36,9 @@ const AxisLabels = (props: AxisLabelsProps) => {
       {yAxisData.map((item, index) => {
         return (
           <Text
-            text={item.toString()}
+            text={
+              formateYLabel ? formateYLabel(item.toString()) : item.toString()
+            }
             color={textColor}
             x={2}
             y={y(item) + 2}

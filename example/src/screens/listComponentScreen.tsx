@@ -11,6 +11,8 @@ import {
   View,
 } from 'react-native';
 
+import moment from 'moment';
+
 import {
   Button,
   Card,
@@ -183,6 +185,7 @@ const ListComponentScreen = () => {
           isGridLines={true}
           labelStyle={lineChartStyles.labelStyle}
           axisStyle={lineChartStyles.axisStyle}
+          formateXLabel={(value: string) => `${moment(value).format('DDMMM')}`}
         />
       </View>
     );
