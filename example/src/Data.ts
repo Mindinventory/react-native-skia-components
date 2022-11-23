@@ -1,5 +1,5 @@
 export type DataPoint = {
-  data: string;
+  data: string | number | Date;
   value: number;
 };
 
@@ -20,3 +20,39 @@ export const originalData: DataPoint[] = [
   { data: '2000-02-14', value: 500.47 },
   { data: '2000-02-15', value: 600.47 },
 ];
+
+// export const originalData: DataPoint[] = [
+//   { data: 10, value: 250 },
+//   { data: 13, value: 300.35 },
+//   { data: 34, value: 150.84 },
+//   { data: 23, value: 500.92 },
+//   { data: 67, value: 200.8 },
+//   { data: 34, value: 150.47 },
+//   { data: 43, value: 1000.47 },
+//   { data: 3, value: 200.47 },
+//   { data: 10, value: 1500.47 },
+//   { data: 78, value: 83.8 },
+//   { data: 45, value: 100.47 },
+//   { data: 90, value: 1000.47 },
+//   { data: 25, value: 200.47 },
+//   { data: 67, value: 500.47 },
+//   { data: 84, value: 600.47 },
+// ];
+
+// export const originalData: DataPoint[] = [
+//   { data: 'jan', value: 250 },
+//   { data: 'feb', value: 300.35 },
+//   { data: 'mar', value: 150.84 },
+//   { data: 'april', value: 500.92 },
+//   { data: 'may', value: 200.8 },
+//   { data: 'jun', value: 150.47 },
+//   { data: 'july', value: 1000.47 },
+//   { data: 'aug', value: 200.47 },
+//   { data: 'sept', value: 1500.47 },
+//   { data: 'oct', value: 83.8 },
+//   { data: 'nov', value: 100.47 },
+//   { data: 'dec', value: 1000.47 },
+//   { data: 'jan', value: 200.47 },
+//   { data: 'feb', value: 500.47 },
+//   { data: 'dec', value: 600.47 },
+// ];

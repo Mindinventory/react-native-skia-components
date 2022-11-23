@@ -16,8 +16,8 @@ const GridLines = (props: GridLineProps) => {
         xAxisData.map((item, index) => {
           return (
             <Line
-              p1={vec(x(item) + 5, 0)}
-              p2={vec(x(item) + 5, graphHeight + 5)}
+              p1={vec(x(item), 0)}
+              p2={vec(x(item), graphHeight + 5)}
               color={color}
               key={index.toString()}
               style={style}

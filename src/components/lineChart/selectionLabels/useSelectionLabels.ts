@@ -123,8 +123,8 @@ export const useSelectionLabels = (props: SelectedPointProps) => {
 
   return {
     ...props,
+    color,
     selectedData,
     selectedPositions,
-    color,
   };
 };

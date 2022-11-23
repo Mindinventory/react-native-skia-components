@@ -16,6 +16,7 @@ const AxisLabels = (props: AxisLabelsProps) => {
     y,
     formateXLabel,
     formateYLabel,
+    data,
   } = props;
 
   return (
@@ -26,7 +27,11 @@ const AxisLabels = (props: AxisLabelsProps) => {
             color={textColor}
             key={index.toString()}
             font={font}
-            text={formateXLabel(item)}
+            text={
+              formateXLabel
+                ? formateXLabel(data[item].data)
+                : data[item].data.toString()
+            }
             x={x(item)}
             y={graphHeight + MARGIN}
           />

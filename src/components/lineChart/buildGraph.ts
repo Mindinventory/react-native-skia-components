@@ -1,6 +1,6 @@
 import { Skia } from '@shopify/react-native-skia';
 import { curveLinear, line } from 'd3';
-import { scaleLinear, scaleTime } from 'd3-scale';
+import { scaleLinear } from 'd3-scale';
 
 import { miColor } from '../../themes';
 
@@ -18,15 +18,18 @@ export const buildGraph = (
   const min = Math.min(...data.map((val) => val.value));
 
   const sorted = data.sort((a, b) => a.data - b.data);
-  const minDate = sorted[0];
-  const maxDate = sorted.reverse()[0];
-  const x = scaleTime()
-    .domain([new Date(minDate?.data!), new Date(maxDate?.data!)])
+  const minDate = data.findIndex((item) => item.data === sorted[0].data);
+  const maxDate = data.findIndex(
+    (item) => item.data === sorted.reverse()[0].data
+  );
+
+  const x = scaleLinear()
+    .domain([minDate, maxDate])
     .range([graphMargin, graphWidth - 10]);
   const y = scaleLinear().domain([min, max]).range([graphHeight, 0]);
 
   const curvedLine = line<any>()
-    .x((d) => x(new Date(d.data)))
+    .x((_d, index) => x(index))
     .y((d) => y(d.value))
     .curve(curveLinear)(data.reverse());
 

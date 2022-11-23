@@ -111,6 +111,7 @@ const LineChart = (props: LineChartProps) => {
                 y={y}
                 formateXLabel={formateXLabel}
                 formateYLabel={formateYLabel}
+                data={data}
               />
             )}
 

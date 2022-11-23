@@ -4,7 +4,7 @@ import type {
   SkiaValue,
   SkPath,
 } from '@shopify/react-native-skia';
-import type { ScaleLinear, ScaleTime } from 'd3-scale';
+import type { ScaleLinear } from 'd3-scale';
 
 export interface LineChartProps {
   canvasHeight: number;
@@ -49,7 +49,7 @@ export interface LabelProps {
 export interface SelectedPointProps {
   xLabel: SkiaValue<number>;
   yLabel: SkiaValue<number>;
-  x: ScaleTime<number, number, never>;
+  x: ScaleLinear<number, number, never>;
   font: any;
   data: number[];
   selectionLabelStyle: LabelProps;
@@ -64,7 +64,7 @@ export interface GridLineProps {
   graphWidth: number;
   graphHeight: number;
   y: ScaleLinear<number, number, never>;
-  x: ScaleTime<number, number, never>;
+  x: ScaleLinear<number, number, never>;
   gridStyle: StyleProps;
 }
 
@@ -101,7 +101,8 @@ export interface AxisLabelsProps {
   graphHeight: number;
   yAxisData: any[];
   y: ScaleLinear<number, number, never>;
-  x: ScaleTime<number, number, never>;
+  x: ScaleLinear<number, number, never>;
   formateXLabel?: any;
   formateYLabel?: any;
+  data: any[];
 }
