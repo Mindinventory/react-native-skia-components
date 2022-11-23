@@ -33,7 +33,8 @@
     "prepare": "husky install",
     "release": "release-it",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install && yarn example pods"
+    "bootstrap": "yarn example && yarn install && yarn example pods",
+    "ios": "cd example && yarn ios"
   },
   "keywords": [
     "progress circle",

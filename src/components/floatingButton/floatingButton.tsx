@@ -93,6 +93,7 @@ const FloatingButton = (props: FloatingButtonProps) => {
             miUiStyle.floatingButtonStyle.btnLabel.verticalStyle,
             { fontSize: height / 3 },
             textStyle && { ...textStyle },
+            { transform: [{ rotateX: '45deg' }, { rotateZ: '0deg' }] },
           ]}
         >
           {title}
