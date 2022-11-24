@@ -43,24 +43,36 @@ export const StarWarButtonComponent = () => {
     scaledButton,
     transformAnimation,
     gradient,
+    opacity,
   } = useStarWarButton();
 
   useDerivedValue(() => {
     if (scale.value === 0.85) {
       scale.value = withTiming(1, {
-        duration: 100,
+        duration: 500,
         easing: Easing.linear,
       });
     }
-  }, [scale.value]);
+
+    if (opacity.value === 0) {
+      opacity.value = withTiming(1, {
+        duration: 500,
+        easing: Easing.linear,
+      });
+    }
+  }, [scale.value, opacity.value]);
 
   return (
-    <Animated.View style={[{ flex: 1 }, scaledButton]}>
+    <Animated.View style={[{ flex: 1 }, scaledButton, style]}>
       <Pressable
-        style={[styles.starWarButtonStyle.container, style || {}]}
+        style={[styles.starWarButtonStyle.container || {}]}
         onPress={() => {
           scale.value = withTiming(0.85, {
-            duration: 100,
+            duration: 500,
+            easing: Easing.linear,
+          });
+          opacity.value = withTiming(0, {
+            duration: 500,
             easing: Easing.linear,
           });
           props.onPress && props.onPress();

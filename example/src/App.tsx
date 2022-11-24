@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import ListComponentScreen from './screens/listComponentScreen';
+import CardComponent from './screens/cards/cardComponent';
 
 const App = () => {
-  return <ListComponentScreen />;
+  return <CardComponent />;
 };
 
 export default App;

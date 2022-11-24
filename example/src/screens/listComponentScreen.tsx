@@ -32,6 +32,7 @@ const ListComponentScreen = () => {
         scrollEnabled
         horizontal
         showsHorizontalScrollIndicator={false}
+        // contentContainerStyle={{ backgroundColor: 'red' }}
       >
         <View style={styles.flexDirectionRow}>
           {new Array(5).fill('1').map((_, index) => {
@@ -41,6 +42,7 @@ const ListComponentScreen = () => {
                 width={310}
                 borderWidth={5}
                 key={index.toString()}
+                // borderColors={['cyan', 'red', 'red', 'cyan']}
               >
                 <View style={styles.cardStyle}>
                   <Text style={styles.cardNumber}>

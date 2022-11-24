@@ -107,16 +107,18 @@ export const useStarWarButton = () => {
   );
 
   const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
 
   const scaledButton = useAnimatedStyle(() => {
     return {
+      opacity: opacity.value,
       transform: [
         {
           scale: scale.value,
         },
       ],
     };
-  }, [scale.value]);
+  }, [scale.value, opacity.value]);
 
   const transformAnimation = animation ? transform : undefined;
 
@@ -133,6 +135,7 @@ export const useStarWarButton = () => {
       gradient,
       gradientType,
       height,
+      opacity,
       progress,
       props,
       scale,
@@ -158,6 +161,7 @@ export const useStarWarButton = () => {
     gradient,
     gradientType,
     height,
+    opacity,
     progress,
     props,
     scale,
@@ -173,40 +177,3 @@ export const useStarWarButton = () => {
     width,
   ]);
 };
-
-// const center = props.center
-//   ? props.center
-//   : {
-//       x: (canvasButtonWidth + canvasPadding) / 2,
-//       y: (canvasButtonHeight + canvasPadding) / 2,
-//     };
-
-// const start = props.start
-//   ? props.start
-//   : {
-//       x: (canvasButtonWidth + canvasPadding) / 2,
-//       y: (canvasButtonWidth + canvasPadding) / 2,
-//     };
-
-// const end = props.end
-//   ? props.end
-//   : { x: 0, y: (canvasButtonHeight + canvasPadding) / 2 };
-
-// return {
-//   center: props.center
-//     ? props.center
-//     : {
-//         x: (canvasButtonWidth + canvasPadding) / 2,
-//         y: (canvasButtonHeight + canvasPadding) / 2,
-//       },
-//   end: props.end
-//     ? props.end
-//     : { x: 0, y: (canvasButtonHeight + canvasPadding) / 2 },
-//   radius: props.radius ? props.radius : 150,
-//   start: props.start
-//     ? props.start
-//     : {
-//         x: (canvasButtonWidth + canvasPadding) / 2,
-//         y: (canvasButtonWidth + canvasPadding) / 2,
-//       },
-// };

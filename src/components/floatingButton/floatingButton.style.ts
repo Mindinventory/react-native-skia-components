@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { miColor } from '../../themes';
+import { miColor } from '../../themes/miColor';
 
 export const floatingButtonStyle = () => {
   const btnLabel = StyleSheet.create({
