@@ -4,7 +4,7 @@ import { miColor } from '../../themes';
 
 const { width: ScreenWidth } = Dimensions.get('window');
 const CARD_BLUR = 10;
-const CARD_BORDER_WIDTH = 20;
+const CARD_BORDER_WIDTH = 5;
 const CARD_RADIUS = 20;
 const HEIGHT = 256;
 const PADDING = 40;
@@ -23,6 +23,7 @@ export const useCard = (props: CardProps) => {
       miColor.cyan,
     ],
     blur = CARD_BLUR,
+    children,
   } = props;
   const canvasPadding = PADDING;
   const CARD_WIDTH = width - borderWidth;
@@ -38,5 +39,6 @@ export const useCard = (props: CardProps) => {
     cardRadius,
     height,
     width,
+    children,
   };
 };

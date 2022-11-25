@@ -42,57 +42,87 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
     setshadowTranslate(0);
   };
 
-  const SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT = height - depth - shadowHeight;
-  const SUBTRACT_DEPTH_TRANSLATE = depth - translate;
-  const SUBTRACT_HEIGHT_SHADOW_HEIGHT = height - shadowHeight;
-  const TOTAL_HEIGHT_SHADOW_TRANSLATE = height - shadowTranslate;
+  // const SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT = height - depth - shadowHeight;
+  // const SUBTRACT_DEPTH_TRANSLATE = depth - translate;
+  // const SUBTRACT_HEIGHT_SHADOW_HEIGHT = height - shadowHeight;
+  // const TOTAL_HEIGHT_SHADOW_TRANSLATE = height - shadowTranslate;
+
+  // const shadowPath = Skia.Path.Make();
+  // shadowPath.moveTo(BOTTOM_SHADOW_SKEW_H_MARGIN, SUBTRACT_HEIGHT_SHADOW_HEIGHT);
+  // shadowPath.lineTo(
+  //   BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH,
+  //   TOTAL_HEIGHT_SHADOW_TRANSLATE
+  // );
+  // shadowPath.lineTo(
+  //   width - BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH,
+  //   TOTAL_HEIGHT_SHADOW_TRANSLATE
+  // );
+  // shadowPath.lineTo(
+  //   width - BOTTOM_SHADOW_SKEW_H_MARGIN,
+  //   SUBTRACT_HEIGHT_SHADOW_HEIGHT
+  // );
+
+  // const path = Skia.Path.Make();
+  // path.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
+  // path.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
+  // path.lineTo(width - SKEW_H_MARGIN, 0);
+  // path.lineTo(SKEW_H_MARGIN, 1);
+  // path.close();
+
+  // const depthPath = Skia.Path.Make();
+  // depthPath.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
+  // depthPath.lineTo(
+  //   SKEW_DEPTH_H_MARGIN,
+  //   SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + depth
+  // );
+  // depthPath.lineTo(
+  //   width - SKEW_DEPTH_H_MARGIN,
+  //   SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + depth
+  // );
+  // depthPath.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
+
+  // const nonFloatingDepthPath = Skia.Path.Make();
+  // nonFloatingDepthPath.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
+  // nonFloatingDepthPath.lineTo(
+  //   6,
+  //   SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + SUBTRACT_DEPTH_TRANSLATE
+  // );
+  // nonFloatingDepthPath.lineTo(
+  //   width - 6,
+  //   SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + SUBTRACT_DEPTH_TRANSLATE
+  // );
+  // nonFloatingDepthPath.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
 
   const shadowPath = Skia.Path.Make();
-  shadowPath.moveTo(BOTTOM_SHADOW_SKEW_H_MARGIN, SUBTRACT_HEIGHT_SHADOW_HEIGHT);
-  shadowPath.lineTo(
-    BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH,
-    TOTAL_HEIGHT_SHADOW_TRANSLATE
-  );
-  shadowPath.lineTo(
-    width - BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH,
-    TOTAL_HEIGHT_SHADOW_TRANSLATE
-  );
-  shadowPath.lineTo(
-    width - BOTTOM_SHADOW_SKEW_H_MARGIN,
-    SUBTRACT_HEIGHT_SHADOW_HEIGHT
-  );
+  shadowPath.moveTo(25, height - shadowHeight);
+  shadowPath.lineTo(22, height + shadowTranslate);
+  shadowPath.lineTo(width - 20, height + shadowTranslate);
+  shadowPath.lineTo(width - 24, height - shadowHeight);
 
   const path = Skia.Path.Make();
-  path.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-  path.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-  path.lineTo(width - SKEW_H_MARGIN, 0);
-  path.lineTo(SKEW_H_MARGIN, 1);
+  path.moveTo(0, height - depth - shadowHeight);
+  path.lineTo(width, height - depth - shadowHeight);
+  path.lineTo(width - 25, 0);
+  path.lineTo(25, 1);
   path.close();
 
   const depthPath = Skia.Path.Make();
-  depthPath.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-  depthPath.lineTo(
-    SKEW_DEPTH_H_MARGIN,
-    SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + depth
-  );
-  depthPath.lineTo(
-    width - SKEW_DEPTH_H_MARGIN,
-    SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + depth
-  );
-  depthPath.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
+  depthPath.moveTo(0, height - depth - shadowHeight);
+  depthPath.lineTo(6, height - depth - shadowHeight + depth);
+  depthPath.lineTo(width - 6, height - depth - shadowHeight + depth);
+  depthPath.lineTo(width, height - depth - shadowHeight);
 
   const nonFloatingDepthPath = Skia.Path.Make();
-  nonFloatingDepthPath.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
+  nonFloatingDepthPath.moveTo(0, height - depth - shadowHeight);
   nonFloatingDepthPath.lineTo(
     6,
-    SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + SUBTRACT_DEPTH_TRANSLATE
+    height - depth - shadowHeight + depth - translate
   );
   nonFloatingDepthPath.lineTo(
     width - 6,
-    SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + SUBTRACT_DEPTH_TRANSLATE
+    height - depth - shadowHeight + depth - translate
   );
-  nonFloatingDepthPath.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-
+  nonFloatingDepthPath.lineTo(width, height - depth - shadowHeight);
   return {
     backgroundColor,
     bottomShadowColor,

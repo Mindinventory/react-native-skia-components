@@ -52,6 +52,8 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
           width: canvasButtonWidth,
           height: canvasButtonHeight,
         }}
+        accessibilityLabelledBy={undefined}
+        accessibilityLanguage={undefined}
       >
         <Group
           origin={{ x: width, y: 0 }}

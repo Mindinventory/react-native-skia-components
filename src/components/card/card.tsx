@@ -17,6 +17,7 @@ const Card: React.FC<CardProps> = (props) => {
     cardRadius,
     height,
     width,
+    children,
   } = useCard({
     ...props,
   });
@@ -44,7 +45,7 @@ const Card: React.FC<CardProps> = (props) => {
           },
         ]}
       >
-        {props.children}
+        {children}
       </View>
     </>
   );

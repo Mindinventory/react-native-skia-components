@@ -22,7 +22,11 @@ const BackgroundGradient = (props: BackgroundGradientProps) => {
   const CANVAS_WIDTH = width + canvasPadding;
   const CANVAS_HEIGHT = height + canvasPadding;
   return (
-    <Canvas style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT }}>
+    <Canvas
+      style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT }}
+      accessibilityLabelledBy={undefined}
+      accessibilityLanguage={undefined}
+    >
       <RoundedRect
         x={canvasPadding / 2}
         y={canvasPadding / 2}

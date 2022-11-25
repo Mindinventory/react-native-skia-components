@@ -5,10 +5,6 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./'],
-        alias: {
-          '@app_theme': './src/themes/index.ts',
-        },
         extensions: [
           '.ios.js',
           '.android.js',

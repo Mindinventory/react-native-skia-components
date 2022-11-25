@@ -51,6 +51,8 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
           elevation: elevation,
           shadowOffset: shadowOffset,
         }}
+        accessibilityLabelledBy={undefined}
+        accessibilityLanguage={undefined}
       >
         <Group
           transform={translate({

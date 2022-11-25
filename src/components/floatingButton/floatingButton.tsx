@@ -36,6 +36,8 @@ const FloatingButton = (props: FloatingButtonProps) => {
           miUiStyle.floatingButtonStyle.containerStyle.canvasStyle,
           props.style || {},
         ]}
+        accessibilityLabelledBy={undefined}
+        accessibilityLanguage={undefined}
       >
         {isFloating ? (
           <>
@@ -92,4 +94,4 @@ const FloatingButton = (props: FloatingButtonProps) => {
   );
 };
 
-export default React.memo(FloatingButton);
+export default FloatingButton;
