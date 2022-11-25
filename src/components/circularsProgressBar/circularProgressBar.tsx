@@ -81,10 +81,10 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
                 />
                 <Path
                   path={path}
-                  style="stroke"
+                  style={'stroke'}
                   strokeWidth={strokeWidth}
                   end={fillProgress}
-                  strokeCap="round"
+                  strokeCap={'round'}
                 />
               </Group>
             </Group>
@@ -97,8 +97,8 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
         style={[
           miUiStyle?.circularProgressBarStyle?.textContainer.textView,
           {
-            top: VIEW_WIDTH_DIV - fontSize / 2,
             left: VIEW_WIDTH_DIV - fontSize,
+            top: VIEW_WIDTH_DIV - fontSize / 2,
           },
         ]}
       >

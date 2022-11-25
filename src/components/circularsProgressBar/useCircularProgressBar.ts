@@ -5,8 +5,8 @@ import {
   Skia,
   useTiming,
 } from '@shopify/react-native-skia';
-import { miColor } from '../../themes';
 
+import { miColor } from '../../themes';
 import type { CircularProgressBarProps } from './circularProgressBar.type';
 
 const CONTAINER_SIZE = 250;
@@ -36,7 +36,7 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
     progress = CIRCLE_PROGRESS,
     radius = CIRCLE_RADIUS,
     shadowColor = miColor.purple,
-    shadowOffset = { width: 0, height: 4 },
+    shadowOffset = { height: 4, width: 0 },
     shadowOpacity = SHADOW_OPACITY,
     shadowRadius = SHADOW_RADIUS,
     strokeWidth = SHADOW_WIDTH,

@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-export const cardStyle = () => {
+export const starWarButtonStyle = () => {
   return StyleSheet.create({
-    card: {
-      overflow: 'hidden',
+    buttonTextView: {
+      alignItems: 'center',
+      justifyContent: 'center',
       position: 'absolute',
+      zIndex: 300,
     },
     container: {
       alignItems: 'center',

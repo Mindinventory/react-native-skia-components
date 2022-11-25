@@ -33,7 +33,10 @@
     "prepare": "husky install",
     "release": "release-it",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install && yarn example pods"
+    "bootstrap": "yarn example && yarn install && yarn example pods",
+    "run:start": "cd example && yarn start",
+    "run:ios": "cd example && yarn ios",
+    "run:android": "cd example && yarn android"
   },
   "keywords": [
     "progress circle",
@@ -248,6 +251,7 @@
   },
   "dependencies": {
     "@shopify/react-native-skia": "^0.1.157",
+    "react-native-gesture-handler": "^2.8.0",
     "react-native-reanimated": "^2.12.0"
   }
 }

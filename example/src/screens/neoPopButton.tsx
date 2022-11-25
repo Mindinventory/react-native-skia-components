@@ -1,17 +1,20 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import { Button } from '@mindinventory/react-native-skia-components';
 
-const FloatingButton = () => {
+import { styles } from './componentStyle.style';
+
+const NeoPopButton = () => {
   return (
-    <>
+    <View style={[styles.centerItemStyle]}>
       <Button
         preset="floating"
-        width={250}
-        height={65}
+        width={220}
+        height={50}
         title="PRESS ME"
+        bottomShadowColor={'gray'}
         textStyle={styles.floatingTextStyle}
         onPress={() => {
           console.log('floating onPress');
@@ -26,14 +29,7 @@ const FloatingButton = () => {
           console.log('floating onLongPress');
         }}
       />
-    </>
+    </View>
   );
 };
-
-export default FloatingButton;
-
-const styles = StyleSheet.create({
-  floatingTextStyle: {
-    fontSize: 24,
-  },
-});
+export default NeoPopButton;

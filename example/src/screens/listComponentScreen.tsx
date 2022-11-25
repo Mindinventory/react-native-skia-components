@@ -14,7 +14,7 @@ import {
   Button,
   Card,
   CircularProgressBar,
-} from '@mindinventory/react-native-neopop';
+} from '@mindinventory/react-native-skia-components';
 
 const ListComponentScreen = () => {
   const components = [
@@ -22,6 +22,7 @@ const ListComponentScreen = () => {
     { id: 1, name: 'Progress' },
     { id: 2, name: 'New Pop' },
     { id: 3, name: 'Floating' },
+    { id: 4, name: 'Star War' },
   ];
   const [selected, setSelected] = React.useState(0);
 
@@ -31,6 +32,7 @@ const ListComponentScreen = () => {
         scrollEnabled
         horizontal
         showsHorizontalScrollIndicator={false}
+        // contentContainerStyle={{ backgroundColor: 'red' }}
       >
         <View style={styles.flexDirectionRow}>
           {new Array(5).fill('1').map((_, index) => {
@@ -40,6 +42,7 @@ const ListComponentScreen = () => {
                 width={310}
                 borderWidth={5}
                 key={index.toString()}
+                // borderColors={['cyan', 'red', 'red', 'cyan']}
               >
                 <View style={styles.cardStyle}>
                   <Text style={styles.cardNumber}>
@@ -108,13 +111,13 @@ const ListComponentScreen = () => {
     );
   };
 
-  const renderFlaotingButton = () => {
+  const renderFloatingButton = () => {
     return (
       <View style={styles.centerItemStyle}>
         <Button
           preset="floating"
-          width={250}
-          height={65}
+          width={150}
+          height={50}
           title="PRESS ME"
           textStyle={styles.floatingTextStyle}
           onPress={() => {
@@ -134,6 +137,70 @@ const ListComponentScreen = () => {
     );
   };
 
+  const renderStarWarButton = () => {
+    return (
+      <View style={styles.centerItemStyle}>
+        <Button
+          preset="starWar"
+          onPress={() => console.log('Hello')}
+          title="Button"
+          colors={['cyan', 'magenta', 'yellow', 'cyan']}
+          filled={'outer'}
+          gradientType={'linear'}
+          buttonBorderRadius={50}
+          width={200}
+          height={20}
+          titleSize={20}
+          titleColor={'white'}
+          animation
+          backgroundColor={'white'}
+        />
+        <Button
+          preset="starWar"
+          onPressIn={() => console.log('Hello 2')}
+          title="Button 2"
+          colors={['cyan', 'magenta', 'yellow', 'cyan']}
+          filled={'solid'}
+          gradientType={'sweep'}
+          titleSize={20}
+          blurRadius={10}
+          titleColor={'white'}
+          width={200}
+          height={20}
+          animation={true}
+        />
+        <Button
+          preset="starWar"
+          onPressIn={() => console.log('Hello 2')}
+          title="Button 2"
+          colors={['cyan', 'magenta', 'black', 'cyan']}
+          filled={'inner'}
+          gradientType={'radial'}
+          titleSize={20}
+          blurRadius={10}
+          titleColor={'white'}
+          width={200}
+          height={20}
+          animation={false}
+        />
+        <Button
+          preset="starWar"
+          onLongPress={() => console.log('Hello 3')}
+          title="Button 3"
+          colors={'darkblue'}
+          filled={'normal'}
+          gradientType={'linear'}
+          titleSize={20}
+          blurRadius={5}
+          titleColor={'white'}
+          width={200}
+          height={20}
+          animation={true}
+        />
+      </View>
+    );
+  };
+
   const renderLayout = () => {
     if (selected === 0) {
       return renderCardLayout();
@@ -141,8 +208,10 @@ const ListComponentScreen = () => {
       return remderCircleProgress();
     } else if (selected === 2) {
       return renderNeoPopButton();
+    } else if (selected === 3) {
+      return renderFloatingButton();
     } else {
-      return renderFlaotingButton();
+      return renderStarWarButton();
     }
   };
 

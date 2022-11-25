@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 import { Canvas, Group, Path } from '@shopify/react-native-skia';
 
@@ -91,6 +91,7 @@ const FloatingButton = (props: FloatingButtonProps) => {
             miUiStyle.floatingButtonStyle.btnLabel.labelText,
             { fontSize: height / 3 },
             textStyle && { ...textStyle },
+            { transform: [{ rotateX: '45deg' }, { rotateZ: '0deg' }] },
           ]}
         >
           {title}

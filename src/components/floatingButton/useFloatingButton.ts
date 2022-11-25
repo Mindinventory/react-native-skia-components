@@ -2,16 +2,16 @@ import { useState } from 'react';
 
 import { Skia } from '@shopify/react-native-skia';
 
-import type { FloatingButtonProps } from './floatingButton.type';
 import { miColor } from '../../themes';
+import type { FloatingButtonProps } from './floatingButton.type';
 
-const BOTTOM_SHADOW_SKEW_H_MARGIN = 26;
-const BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH = 22;
+// const BOTTOM_SHADOW_SKEW_H_MARGIN = 26;
+// const BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH = 22;
 const DEPTH = 10;
 const HEIGHT = 200;
 const SHADOW_HEIGHT = 10;
-const SKEW_DEPTH_H_MARGIN = 6;
-const SKEW_H_MARGIN = 24;
+// const SKEW_DEPTH_H_MARGIN = 6;
+// const SKEW_H_MARGIN = 24;
 const WIDTH = 300;
 
 export const useFloatingButton = (props: FloatingButtonProps) => {

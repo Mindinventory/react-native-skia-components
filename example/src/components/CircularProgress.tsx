@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { CircularProgressBar } from '@mindinventory/react-native-skia-components';
 
 interface ICircularProgress {

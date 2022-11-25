@@ -1,5 +1,6 @@
 import React, { createContext, useMemo } from 'react';
 
+import type { StarWarButtonProps } from '../components/starWarButton/starWarButton.type';
 import { miColor, miUiStyle } from '../themes';
 
 export * from './useMiUiContext';
@@ -7,7 +8,7 @@ export * from './useMiUiContext';
 export type MiUiContextType = {
   colors: typeof miColor;
   styles: typeof miUiStyle;
-  props: any;
+  props: StarWarButtonProps;
 };
 
 export const MiUiContext = createContext<MiUiContextType | undefined>(

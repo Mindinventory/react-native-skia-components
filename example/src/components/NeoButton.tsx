@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { StyleSheet } from 'react-native';
+
 import { Button } from '@mindinventory/react-native-skia-components';
 
 interface INeoButtonProps {

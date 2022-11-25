@@ -1,6 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import Animated from 'react-native-reanimated';
+
 import { miUiStyle } from '../../themes';
 import BackgroundGradient from './backgroundGradient';
 import type { CardProps } from './card.type';
@@ -11,20 +13,23 @@ const Card: React.FC<CardProps> = (props) => {
     backgroundColor,
     blur,
     borderColors,
-    borderWidth,
     canvasPadding,
     CARD_HEIGHT,
     CARD_WIDTH,
     cardRadius,
     height,
     width,
-    children,
+    cardStyle,
+    zIndex,
+    style,
+    animateBorder,
+    duration,
   } = useCard({
     ...props,
   });
-  const CARD_VIEW_MARGIN = canvasPadding + borderWidth;
+
   return (
-    <>
+    <View style={miUiStyle.cardStyle.container}>
       <BackgroundGradient
         blur={blur}
         borderColors={borderColors}
@@ -32,23 +37,26 @@ const Card: React.FC<CardProps> = (props) => {
         cardRadius={cardRadius}
         height={height}
         width={width}
+        animateBorder={animateBorder}
+        duration={duration}
       />
-      <View
+      <Animated.View
         style={[
           miUiStyle.cardStyle.card,
           {
             backgroundColor: backgroundColor,
             borderRadius: cardRadius,
             height: CARD_HEIGHT,
-            left: CARD_VIEW_MARGIN / 2,
-            top: CARD_VIEW_MARGIN / 2,
             width: CARD_WIDTH,
+            zIndex: zIndex,
           },
+          cardStyle,
+          style,
         ]}
       >
-        {children}
-      </View>
-    </>
+        {props.children}
+      </Animated.View>
+    </View>
   );
 };
 

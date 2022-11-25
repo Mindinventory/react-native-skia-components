@@ -1,11 +1,9 @@
-import { View, Text } from 'react-native';
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
 import { Card } from '@mindinventory/react-native-skia-components';
-import { StyleSheet } from 'react-native';
 
 const DebitCard: React.FC = () => {
-  console.log('DebitCard');
-
   return (
     <Card height={220} width={310} borderWidth={5}>
       <View style={[styles.cardStyle]}>
@@ -25,17 +23,17 @@ const DebitCard: React.FC = () => {
 export default DebitCard;
 
 const styles = StyleSheet.create({
+  cardNameText: { color: 'gold', fontSize: 15, marginTop: 0 },
+  cardNumber: { color: 'gold', fontSize: 22 },
   cardStyle: {
-    justifyContent: 'center',
-    height: '100%',
     flex: 1,
+    height: '100%',
+    justifyContent: 'center',
     paddingHorizontal: 20,
   },
-  cardNumber: { color: 'gold', fontSize: 22 },
   dateContainer: {
     marginVertical: 20,
   },
-  cardNameText: { color: 'gold', fontSize: 15, marginTop: 0 },
-  validText: { color: 'gold', fontSize: 10 },
   timeText: { color: 'gold', fontSize: 15 },
+  validText: { color: 'gold', fontSize: 10 },
 });

@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+
 import { miColor } from '../../themes';
 
 export const neoPopButtonStyle = () => {
   const textContainer = StyleSheet.create({
     textStyle: {
-      color: 'gray',
+      color: miColor.gray,
       fontWeight: 'bold',
     },
     textView: {
