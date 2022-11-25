@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { Box, Canvas, Group, rect, rrect } from '@shopify/react-native-skia';
 
-import { miUiStyle } from '../../themes';
+import { miUiStyle } from '../theme';
 import type { NeoPopButtonProps } from './neoPopButton.type';
 import { useNeoPopButton } from './useNeoPopButton';
 

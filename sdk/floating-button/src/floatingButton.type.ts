@@ -1,3 +1,3 @@
-import type { ButtonProps } from '../button/button.type';
+import type { ButtonProps } from '../types/button';
 
 export interface FloatingButtonProps extends ButtonProps {}

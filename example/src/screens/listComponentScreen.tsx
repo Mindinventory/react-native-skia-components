@@ -10,11 +10,8 @@ import {
   View,
 } from 'react-native';
 
-import {
-  Button,
-  Card,
-  CircularProgressBar,
-} from '@mindinventory/react-native-neopop';
+// import { FloatingButton } from '@mindinventory/react-native-floating-button';
+import { NeoPopButton } from '@mindinventory/react-native-neopop-button';
 
 const ListComponentScreen = () => {
   const components = [
@@ -32,7 +29,7 @@ const ListComponentScreen = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
       >
-        <View style={styles.flexDirectionRow}>
+        {/* <View style={styles.flexDirectionRow}>
           {new Array(5).fill('1').map((_, index) => {
             return (
               <Card
@@ -54,7 +51,7 @@ const ListComponentScreen = () => {
               </Card>
             );
           })}
-        </View>
+        </View> */}
       </ScrollView>
     );
   };
@@ -62,11 +59,11 @@ const ListComponentScreen = () => {
   const remderCircleProgress = () => {
     return (
       <View style={styles.centerItemStyle}>
-        <CircularProgressBar
+        {/* <CircularProgressBar
           progress={40}
           shadowColor={'white'}
           gradientColors={['#292626']}
-        />
+        /> */}
       </View>
     );
   };
@@ -80,7 +77,7 @@ const ListComponentScreen = () => {
               style={index !== 0 && styles.marginLeftMinus}
               key={index.toString()}
             >
-              <Button
+              <NeoPopButton
                 width={80}
                 height={80}
                 title={`${index + 1}`}
@@ -111,8 +108,7 @@ const ListComponentScreen = () => {
   const renderFlaotingButton = () => {
     return (
       <View style={styles.centerItemStyle}>
-        <Button
-          preset="floating"
+        {/* <FloatingButton
           width={250}
           height={65}
           title="PRESS ME"
@@ -129,7 +125,7 @@ const ListComponentScreen = () => {
           onLongPress={() => {
             console.log('floating onLongPress');
           }}
-        />
+        /> */}
       </View>
     );
   };

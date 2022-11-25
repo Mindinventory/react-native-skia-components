@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { Canvas, Group, Path } from '@shopify/react-native-skia';
 
-import { miUiStyle } from '../../themes';
+import { miUiStyle } from '../themes/index';
 import type { FloatingButtonProps } from './floatingButton.type';
 import { useFloatingButton } from './useFloatingButton';
 
