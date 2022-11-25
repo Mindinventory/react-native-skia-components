@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { Canvas, Path, Group } from '@shopify/react-native-skia';
-import { useFloatingButton } from './useFloatingButton';
-import type { FloatingButtonProps } from './floatingButton.type';
+import { Text, TouchableOpacity, View } from 'react-native';
+
+import { Canvas, Group, Path } from '@shopify/react-native-skia';
+
 import { miUiStyle } from '../../themes';
+import type { FloatingButtonProps } from './floatingButton.type';
+import { useFloatingButton } from './useFloatingButton';
 
 const FloatingButton = (props: FloatingButtonProps) => {
   const {
@@ -32,32 +34,36 @@ const FloatingButton = (props: FloatingButtonProps) => {
     <>
       <Canvas
         style={[
-          { width: width, height: height },
+          { height: height, width: width },
           miUiStyle.floatingButtonStyle.containerStyle.canvasStyle,
           props.style || {},
         ]}
+        children={
+          <>
+            {isFloating ? (
+              <>
+                <Group transform={[{ translateY: translate }]}>
+                  <Path path={path} color={backgroundColor} />
+                  <Path path={depthPath} color={sideShadowColor} />
+                </Group>
+              </>
+            ) : (
+              <>
+                <Group transform={[{ translateY: translate }]}>
+                  <Path path={path} color={backgroundColor} />
+                </Group>
+                <Group>
+                  <Path path={nonFloatingDepthPath} color={sideShadowColor} />
+                </Group>
+              </>
+            )}
+
+            {isFloating && <Path path={shadowPath} color={bottomShadowColor} />}
+          </>
+        }
         accessibilityLabelledBy={undefined}
         accessibilityLanguage={undefined}
-      >
-        {isFloating ? (
-          <>
-            <Group transform={[{ translateY: translate }]}>
-              <Path path={path} color={backgroundColor} />
-              <Path path={depthPath} color={sideShadowColor} />
-            </Group>
-          </>
-        ) : (
-          <>
-            <Group transform={[{ translateY: translate }]}>
-              <Path path={path} color={backgroundColor} />
-            </Group>
-            <Group>
-              <Path path={nonFloatingDepthPath} color={sideShadowColor} />
-            </Group>
-          </>
-        )}
-        {isFloating && <Path path={shadowPath} color={bottomShadowColor} />}
-      </Canvas>
+      />
       <TouchableOpacity
         onPress={props.onPress}
         onLongPress={props.onLongPress}
@@ -74,8 +80,8 @@ const FloatingButton = (props: FloatingButtonProps) => {
           miUiStyle.floatingButtonStyle.btnLabel.labelView,
           {
             height: height - shadowHeight - depth,
-            width: width,
             transform: [{ translateY: translate }],
+            width: width,
           },
         ]}
       >

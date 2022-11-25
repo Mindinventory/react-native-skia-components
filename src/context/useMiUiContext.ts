@@ -1,7 +1,9 @@
-import { miUiStyle } from '../themes';
+import { useContext } from 'react';
+
+import { MiUiContext } from '.';
 
 export const useMiUiContext = () => {
-  return {
-    miUiStyle: miUiStyle,
-  };
+  const context = useContext(MiUiContext);
+  if (!context) throw Error('useMiUiContext must be used inside MiUiContext');
+  return context;
 };

@@ -1,32 +1,34 @@
 import { miColor } from '../../themes';
 import { StyleSheet } from 'react-native';
 
-const circle = StyleSheet.create({
-  container: {
-    width: 358,
-    height: 358,
-  },
-});
+export const circularProgressBarStyle = () => {
+  const circle = StyleSheet.create({
+    container: {
+      height: 358,
+      width: 358,
+    },
+  });
 
-const itemsExample = StyleSheet.create({
-  container: {
-    width: 260,
-    height: 260,
-  },
-});
+  const itemsExample = StyleSheet.create({
+    container: {
+      height: 260,
+      width: 260,
+    },
+  });
 
-const textContainer = StyleSheet.create({
-  textView: {
-    position: 'absolute',
-  },
-  textStyle: {
-    fontWeight: 'bold',
-    color: miColor.grayShade,
-  },
-});
+  const textContainer = StyleSheet.create({
+    textStyle: {
+      color: '#ccc',
+      fontWeight: 'bold',
+    },
+    textView: {
+      position: 'absolute',
+    },
+  });
 
-export default {
-  circle: circle,
-  itemsExample: itemsExample,
-  textContainer: { ...textContainer },
+  return {
+    circle: circle,
+    itemsExample: itemsExample,
+    textContainer: { ...textContainer },
+  };
 };

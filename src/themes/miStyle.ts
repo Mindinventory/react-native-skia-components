@@ -1,10 +1,12 @@
-import floatingButtonStyle from '../components/floatingButton/floatingButton.style';
-import neoPopButtonStyle from '../components/neoPopButton/neoPopButton.style';
-import { circularProgressBarStyle, cardStyle } from '../components';
+import { cardStyle, circularProgressBarStyle } from '../components';
+import { floatingButtonStyle } from '../components/floatingButton';
+import { neoPopButtonStyle } from '../components/neoPopButton';
 
-export const miUiStyle = {
-  neoPopButtonStyle: neoPopButtonStyle,
-  floatingButtonStyle: floatingButtonStyle,
-  circularProgressBarStyle: circularProgressBarStyle,
-  cardStyle: cardStyle,
+export const miUiStyle = () => {
+  return {
+    cardStyle: cardStyle(),
+    circularProgressBarStyle: circularProgressBarStyle(),
+    floatingButtonStyle: floatingButtonStyle(),
+    neoPopButtonStyle: neoPopButtonStyle(),
+  };
 };

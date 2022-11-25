@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+
 import { miUiStyle } from '../../themes';
 import BackgroundGradient from './backgroundGradient';
 import type { CardProps } from './card.type';
@@ -34,7 +35,7 @@ const Card: React.FC<CardProps> = (props) => {
       />
       <View
         style={[
-          miUiStyle.cardStyle.cardView.card,
+          miUiStyle.cardStyle.card,
           {
             backgroundColor: backgroundColor,
             borderRadius: cardRadius,

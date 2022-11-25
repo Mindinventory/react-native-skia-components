@@ -1,7 +1,9 @@
-import { Skia } from '@shopify/react-native-skia';
 import { useState } from 'react';
-import { miColor } from '../../themes/';
+
+import { Skia } from '@shopify/react-native-skia';
+
 import type { FloatingButtonProps } from './floatingButton.type';
+import { miColor } from '../../themes';
 
 const BOTTOM_SHADOW_SKEW_H_MARGIN = 26;
 const BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH = 22;

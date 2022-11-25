@@ -48,10 +48,10 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
   path.moveTo(strokeWidth, viewWidth / 2 - 50);
   path.addArc(
     {
+      height: radius * 2,
+      width: radius * 2,
       x: 0,
       y: 0,
-      width: radius * 2,
-      height: radius * 2,
     },
     ARC_DEGREE,
     (progress / 100) * 360

@@ -1,6 +1,7 @@
-import type { CardProps } from './card.type';
 import { Dimensions } from 'react-native';
 import { miColor } from '../../themes';
+
+import type { CardProps } from './card.type';
 
 const { width: ScreenWidth } = Dimensions.get('window');
 const CARD_BLUR = 10;
