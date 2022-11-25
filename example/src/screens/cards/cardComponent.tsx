@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ImageBackground,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,77 +12,24 @@ import { Card } from '@mindinventory/react-native-neopop';
 
 const CardComponent = () => {
   return (
-    <ScrollView
-      scrollEnabled
-      // horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.container}
-      bounces={false}
-    >
-      <View style={styles.flexDirectionRow}>
-        <Card
-          height={220}
-          width={310}
-          borderWidth={5}
-          // borderColors={['cyan', 'red', 'red', 'cyan']}
-          animation={'BOUNCE'}
-          style={styles.card}
-          animateBorder={'NORMAL'}
-        >
-          <View style={styles.cardStyle}>
-            <Text style={styles.cardNumber}>
-              5499 &nbsp; 5008 &nbsp; 9101 &nbsp; 1123
-            </Text>
-            <View style={styles.dateContainer}>
-              <Text style={styles.validText}>Valid Till</Text>
-              <Text style={styles.timeText}>12/25</Text>
-            </View>
-            <Text style={styles.carNameText}>Mindinventory</Text>
-          </View>
-        </Card>
-        <Card
-          height={220}
-          width={310}
-          borderWidth={5}
-          borderColors={[
-            '#FF9933',
-            '#FF9933',
-            '#FFFFFF',
-            '#FFFFFF',
-            '#138808',
-            '#138808',
-            '#FF9933',
-          ]}
-          animation={'ROTATE'}
-          style={styles.card}
-          animateBorder={'YOYO'}
-        >
-          <View style={styles.cardStyle}>
-            <Text style={styles.cardNumber}>
-              5499 &nbsp; 5008 &nbsp; 9101 &nbsp; 1123
-            </Text>
-            <View style={styles.dateContainer}>
-              <Text style={styles.validText}>Valid Till</Text>
-              <Text style={styles.timeText}>12/25</Text>
-            </View>
-            <Text style={styles.carNameText}>Mindinventory</Text>
-          </View>
-        </Card>
-        <Card
-          height={220}
-          width={310}
-          borderWidth={5}
-          // borderColors={['cyan', 'red', 'red', 'cyan']}
-          // animation={'ROTATE'}
-          animateBorder={'NONE'}
-        >
-          <ImageBackground
-            source={{
-              uri: 'https://source.unsplash.com/random/1920x1080/?debitcard',
-            }}
-            style={[styles.cardStyle]}
+    <SafeAreaView>
+      <ScrollView
+        scrollEnabled
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.container}
+        bounces={false}
+      >
+        <View style={styles.flexDirectionRow}>
+          <Card
+            height={220}
+            width={310}
+            borderWidth={5}
+            // borderColors={['cyan', 'red', 'red', 'cyan']}
+            animation={'BOUNCE'}
+            style={styles.card}
+            animateBorder={'NORMAL'}
           >
-            <View style={styles.imageView}>
+            <View style={styles.cardStyle}>
               <Text style={styles.cardNumber}>
                 5499 &nbsp; 5008 &nbsp; 9101 &nbsp; 1123
               </Text>
@@ -91,10 +39,65 @@ const CardComponent = () => {
               </View>
               <Text style={styles.carNameText}>Mindinventory</Text>
             </View>
-          </ImageBackground>
-        </Card>
-      </View>
-    </ScrollView>
+          </Card>
+          <Card
+            height={220}
+            width={310}
+            borderWidth={5}
+            borderColors={[
+              '#FF9933',
+              '#FF9933',
+              '#FFFFFF',
+              '#FFFFFF',
+              '#138808',
+              '#138808',
+              '#FF9933',
+            ]}
+            animation={'ROTATE'}
+            style={styles.card}
+            animateBorder={'YOYO'}
+            duration={1000}
+          >
+            <View style={styles.cardStyle}>
+              <Text style={styles.cardNumber}>
+                5499 &nbsp; 5008 &nbsp; 9101 &nbsp; 1123
+              </Text>
+              <View style={styles.dateContainer}>
+                <Text style={styles.validText}>Valid Till</Text>
+                <Text style={styles.timeText}>12/25</Text>
+              </View>
+              <Text style={styles.carNameText}>Mindinventory</Text>
+            </View>
+          </Card>
+          <Card
+            height={220}
+            width={310}
+            borderWidth={5}
+            // borderColors={['cyan', 'red', 'red', 'cyan']}
+            // animation={'ROTATE'}
+            animateBorder={'NONE'}
+          >
+            <ImageBackground
+              source={{
+                uri: 'https://source.unsplash.com/random/1920x1080/?debitcard',
+              }}
+              style={[styles.cardStyle]}
+            >
+              <View style={styles.imageView}>
+                <Text style={styles.cardNumber}>
+                  5499 &nbsp; 5008 &nbsp; 9101 &nbsp; 1123
+                </Text>
+                <View style={styles.dateContainer}>
+                  <Text style={styles.validText}>Valid Till</Text>
+                  <Text style={styles.timeText}>12/25</Text>
+                </View>
+                <Text style={styles.carNameText}>Mindinventory</Text>
+              </View>
+            </ImageBackground>
+          </Card>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -123,7 +126,6 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: 'black',
-    marginTop: 50,
   },
   dateContainer: {
     marginVertical: 20,

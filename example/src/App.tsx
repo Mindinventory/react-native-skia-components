@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import CardComponent from './screens/cards/cardComponent';
+import StackNavigation from './navigation/navigation';
 
 const App = () => {
-  return <CardComponent />;
+  return <StackNavigation />;
 };
 
 export default App;

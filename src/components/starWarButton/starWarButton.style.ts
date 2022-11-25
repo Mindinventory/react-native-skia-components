@@ -4,8 +4,13 @@ export const starWarButtonStyle = () => {
   return StyleSheet.create({
     container: {
       alignItems: 'center',
-      flex: 1,
       justifyContent: 'center',
+    },
+    buttonTextView: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      zIndex: 300,
     },
   });
 };

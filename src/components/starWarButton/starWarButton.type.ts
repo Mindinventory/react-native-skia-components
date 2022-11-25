@@ -19,6 +19,8 @@ export type StarWarButtonType = {
   buttonBorderRadius?: number;
   titleColor?: string;
   animation?: boolean;
+  animationDuration?: number;
+  buttonEffectDuration?: number;
 } & ButtonProps;
 
 export type GradientType = 'sweep' | 'linear' | 'radial';
@@ -27,6 +29,13 @@ export enum GradientTypes {
   Linear = 'linear',
   Radial = 'radial',
   Sweep = 'sweep',
+}
+
+export enum FilledTypes {
+  Solid = 'solid',
+  Outer = 'outer',
+  Inner = 'inner',
+  Normal = 'normal',
 }
 
 export type StarWarButtonProps<TGradientType = GradientType> =
@@ -46,25 +55,3 @@ export type StarWarButtonProps<TGradientType = GradientType> =
         gradientType?: TGradientType;
         center?: Vector;
       };
-
-// const start: StarWarButtonProps = {
-//   gradientType: 'radial',
-
-// };
-
-// interface gradientLinear {
-//   gradientType?: GradientTypes.Linear;
-//   start?: Vector;
-//   end?: Vector;
-// }
-
-// interface gradientSweep {
-//   gradientType?: GradientTypes.Sweep;
-//   center?: Vector;
-// }
-
-// interface gradientRadial {
-//   gradientType?: GradientTypes.Radial;
-//   radius?: number;
-//   center?: Vector;
-// }

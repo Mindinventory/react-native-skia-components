@@ -14,7 +14,7 @@ const StarWarsButtonScreen = () => {
         onPress={() => console.log('Hello')}
         title="Button"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
-        filled={'outer'}
+        filled={'inner'}
         gradientType={'linear'}
         buttonBorderRadius={50}
         width={200}
@@ -22,14 +22,14 @@ const StarWarsButtonScreen = () => {
         titleSize={20}
         titleColor={'white'}
         animation={true}
-        backgroundColor={'white'}
+        backgroundColor={'green'}
       />
       <Button
         preset="starWar"
         onPressIn={() => console.log('Hello 2')}
         title="Button 2"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
-        filled={'outer'}
+        filled={'solid'}
         gradientType={'sweep'}
         titleSize={20}
         blurRadius={10}
@@ -37,10 +37,11 @@ const StarWarsButtonScreen = () => {
         width={200}
         height={20}
         animation={true}
+        backgroundColor={'darkred'}
       />
       <Button
         preset="starWar"
-        onPressIn={() => console.log('Hello 2')}
+        onPressOut={() => console.log('Hello 2')}
         title="Button 2"
         colors={['cyan', 'magenta', 'black', 'cyan']}
         filled={'inner'}
@@ -51,6 +52,7 @@ const StarWarsButtonScreen = () => {
         width={200}
         height={20}
         animation={false}
+        backgroundColor={'#d29cf8'}
       />
       <Button
         preset="starWar"
@@ -65,6 +67,7 @@ const StarWarsButtonScreen = () => {
         width={200}
         height={20}
         animation={true}
+        backgroundColor={'rgba(250, 226, 46,1)'}
       />
     </View>
   );

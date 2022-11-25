@@ -1,22 +1,32 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import {
   useComputedValue,
   useTiming,
   Vector,
 } from '@shopify/react-native-skia';
-import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
 import { useMiUiContext } from '../../context';
-import { GradientTypes } from './starWarButton.type';
+import { miColor } from '../../themes';
+import { FilledTypes, GradientTypes } from './starWarButton.type';
 
 export const useStarWarButton = () => {
   const { styles, props } = useMiUiContext();
 
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
+
   const {
     style,
-    gradientType = 'linear',
-    filled = 'outer',
+    gradientType = GradientTypes.Linear,
+    filled = FilledTypes.Solid,
     textStyle,
     titleSize = 20,
     title = 'Button',
@@ -24,8 +34,11 @@ export const useStarWarButton = () => {
     height = 100,
     blurRadius = 10,
     buttonBorderRadius = 10,
-    titleColor = 'black',
+    titleColor = miColor.black,
     animation = true,
+    backgroundColor = '#ffffff',
+    animationDuration = 3000,
+    buttonEffectDuration = 250,
   } = props;
 
   const buttonWidth = width || 250;
@@ -94,24 +107,26 @@ export const useStarWarButton = () => {
     props.start,
   ]);
 
-  const progress = useTiming({
-    from: 0,
-    loop: true,
-    to: 6,
-    // yoyo: true,
-  });
+  const progress = useTiming(
+    {
+      from: 0,
+      loop: true,
+      to: 6.3,
+    },
+    {
+      duration: animationDuration,
+      easing: Easing.linear,
+    }
+  );
 
   const transform = useComputedValue(
     () => [{ rotate: progress.current }],
     [progress]
   );
 
-  const scale = useSharedValue(1);
-  const opacity = useSharedValue(1);
-
   const scaledButton = useAnimatedStyle(() => {
     return {
-      opacity: opacity.value,
+      perspective: 300,
       transform: [
         {
           scale: scale.value,
@@ -120,11 +135,43 @@ export const useStarWarButton = () => {
     };
   }, [scale.value, opacity.value]);
 
+  const opacityButton = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+    };
+  }, [opacity]);
+
   const transformAnimation = animation ? transform : undefined;
+
+  const handlePress = useCallback(() => {
+    scale.value = withSequence(
+      withTiming(0.85, {
+        duration: buttonEffectDuration,
+        easing: Easing.linear,
+      }),
+      withTiming(1, {
+        duration: buttonEffectDuration,
+        easing: Easing.linear,
+      })
+    );
+
+    opacity.value = withSequence(
+      withTiming(0, {
+        duration: buttonEffectDuration,
+        easing: Easing.linear,
+      }),
+      withTiming(1, {
+        duration: buttonEffectDuration,
+        easing: Easing.linear,
+      })
+    );
+    props.onPress?.();
+  }, [buttonEffectDuration, opacity, props, scale]);
 
   return useMemo(() => {
     return {
       animation,
+      backgroundColor,
       blurRadius,
       buttonBorderRadius,
       canvasButtonHeight,
@@ -134,8 +181,10 @@ export const useStarWarButton = () => {
       filled,
       gradient,
       gradientType,
+      handlePress,
       height,
       opacity,
+      opacityButton,
       progress,
       props,
       scale,
@@ -175,5 +224,8 @@ export const useStarWarButton = () => {
     transform,
     transformAnimation,
     width,
+    backgroundColor,
+    opacityButton,
+    handlePress,
   ]);
 };

@@ -10,7 +10,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import type { StackNavigationParamList } from '../navigations/stackNavigation';
+import type { StackNavigationParamList } from '../navigation/navigation';
 
 type StackNavigation = NativeStackNavigationProp<
   StackNavigationParamList,
@@ -25,6 +25,12 @@ const SelectComponentScreen = () => {
         <View style={styles.selectAnimContainer}>
           <Text style={styles.selectAnimText}>SELECT COMPONENT TYPE</Text>
         </View>
+        <TouchableOpacity
+          style={styles.animOptionStyle}
+          onPress={() => navigation.navigate('CardScreen')}
+        >
+          <Text style={styles.animOptionText}>CARD EXAMPLE SCREEN</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.animOptionStyle}
           onPress={() => navigation.navigate('CardComponent')}

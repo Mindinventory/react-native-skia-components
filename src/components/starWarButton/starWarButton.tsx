@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, Text } from 'react-native';
 
 import {
   BlurMask,
@@ -11,12 +10,9 @@ import {
   SweepGradient,
   vec,
 } from '@shopify/react-native-skia';
-import Animated, {
-  Easing,
-  useDerivedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
+import { miUiStyle } from '../../themes';
 import { GradientTypes } from './starWarButton.type';
 import { useStarWarButton } from './useStarWarButton';
 
@@ -30,62 +26,31 @@ export const StarWarButtonComponent = () => {
     colors,
     filled,
     gradientType,
-    height,
     styles,
     textStyle,
     title,
     titleColor,
-    width,
     props,
     titleSize,
     style,
-    scale,
     scaledButton,
     transformAnimation,
     gradient,
-    opacity,
+    backgroundColor,
+    opacityButton,
+    handlePress,
   } = useStarWarButton();
 
-  useDerivedValue(() => {
-    if (scale.value === 0.85) {
-      scale.value = withTiming(1, {
-        duration: 500,
-        easing: Easing.linear,
-      });
-    }
-
-    if (opacity.value === 0) {
-      opacity.value = withTiming(1, {
-        duration: 500,
-        easing: Easing.linear,
-      });
-    }
-  }, [scale.value, opacity.value]);
-
   return (
-    <Animated.View style={[{ flex: 1 }, scaledButton, style]}>
-      <Pressable
-        style={[styles.starWarButtonStyle.container || {}]}
-        onPress={() => {
-          scale.value = withTiming(0.85, {
-            duration: 500,
-            easing: Easing.linear,
-          });
-          opacity.value = withTiming(0, {
-            duration: 500,
-            easing: Easing.linear,
-          });
-          props.onPress && props.onPress();
-        }}
-        onLongPress={() => {
-          props.onLongPress && props.onLongPress();
-        }}
-        onPressIn={() => {
-          props.onPressIn?.();
-        }}
-        onPressOut={() => {
-          props.onPressOut?.();
-        }}
+    <Pressable
+      style={[styles.starWarButtonStyle.container || {}]}
+      onPress={handlePress}
+      onLongPress={props.onLongPress}
+      onPressIn={props.onPressIn}
+      onPressOut={props.onPressOut}
+    >
+      <Animated.View
+        style={[styles.starWarButtonStyle.container, scaledButton]}
       >
         <Canvas
           style={[
@@ -143,15 +108,18 @@ export const StarWarButtonComponent = () => {
           accessibilityLabelledBy={undefined}
           accessibilityLanguage={undefined}
         />
-        <View
+        <Animated.View
           style={[
+            miUiStyle.cardStyle.card,
+            styles.starWarButtonStyle.buttonTextView,
             {
-              alignItems: 'center',
-              height: height,
-              justifyContent: 'center',
-              position: 'absolute',
-              width: width,
+              backgroundColor: backgroundColor,
+              borderRadius: buttonBorderRadius,
+              height: canvasButtonHeight,
+              width: canvasButtonWidth,
             },
+            opacityButton,
+            style,
           ]}
         >
           <Text
@@ -159,15 +127,14 @@ export const StarWarButtonComponent = () => {
               {
                 color: titleColor,
                 fontSize: titleSize,
-                fontWeight: 'bold',
               },
               textStyle && { ...textStyle },
             ]}
           >
             {title}
           </Text>
-        </View>
-      </Pressable>
-    </Animated.View>
+        </Animated.View>
+      </Animated.View>
+    </Pressable>
   );
 };

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CardComponent from '../screens/cards/cardComponent';
+import CardScreen from '../screens/cards/cardScreen';
 import NeoPopButton from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
 import StarWarsButtonScreen from '../screens/starWarsButtonScreen';
@@ -13,6 +14,7 @@ export type StackNavigationParamList = {
   CardComponent: undefined;
   NeoPopButton: undefined;
   StarWarsButtonScreen: undefined;
+  CardScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +29,7 @@ const StackNavigation = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen name={'CardComponent'} component={CardComponent} />
+        <Stack.Screen name={'CardScreen'} component={CardScreen} />
         <Stack.Screen name={'NeoPopButton'} component={NeoPopButton} />
         <Stack.Screen
           name={'StarWarsButtonScreen'}
