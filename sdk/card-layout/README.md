@@ -1,17 +1,17 @@
-# @mindinventory/react-native-neopop-button
+# @mindinventory/react-native-card-layout
 
 Skia neopop button effect
 
 ## Installation
 
 ```sh
-npm install @mindinventory/react-native-neopop-button
+npm install @mindinventory/react-native-card-layout
 ```
 
 ## Usage
 
 ```js
-import { multiply } from '@mindinventory/react-native-neopop-button';
+import { multiply } from '@mindinventory/react-native-card-layout';
 
 // ...
 

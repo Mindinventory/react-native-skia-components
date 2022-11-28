@@ -1,17 +1,17 @@
-# @mindinventory/react-native-neopop-button
+# @mindinventory/react-native-circular-progress
 
 Skia neopop button effect
 
 ## Installation
 
 ```sh
-npm install @mindinventory/react-native-neopop-button
+npm install @mindinventory/react-native-circular-progress
 ```
 
 ## Usage
 
 ```js
-import { multiply } from '@mindinventory/react-native-neopop-button';
+import { multiply } from '@mindinventory/react-native-circular-progress';
 
 // ...
 
