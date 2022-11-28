@@ -10,7 +10,9 @@ import {
   View,
 } from 'react-native';
 
-// import { FloatingButton } from '@mindinventory/react-native-floating-button';
+import { Card } from '@mindinventory/react-native-card-layout';
+import { CircularProgressBar } from '@mindinventory/react-native-circular-progress';
+import { FloatingButton } from '@mindinventory/react-native-floating-button';
 import { NeoPopButton } from '@mindinventory/react-native-neopop-button';
 
 const ListComponentScreen = () => {
@@ -29,7 +31,7 @@ const ListComponentScreen = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
       >
-        {/* <View style={styles.flexDirectionRow}>
+        <View style={styles.flexDirectionRow}>
           {new Array(5).fill('1').map((_, index) => {
             return (
               <Card
@@ -51,7 +53,7 @@ const ListComponentScreen = () => {
               </Card>
             );
           })}
-        </View> */}
+        </View>
       </ScrollView>
     );
   };
@@ -59,11 +61,11 @@ const ListComponentScreen = () => {
   const remderCircleProgress = () => {
     return (
       <View style={styles.centerItemStyle}>
-        {/* <CircularProgressBar
+        <CircularProgressBar
           progress={40}
           shadowColor={'white'}
           gradientColors={['#292626']}
-        /> */}
+        />
       </View>
     );
   };
@@ -108,7 +110,7 @@ const ListComponentScreen = () => {
   const renderFlaotingButton = () => {
     return (
       <View style={styles.centerItemStyle}>
-        {/* <FloatingButton
+        <FloatingButton
           width={250}
           height={65}
           title="PRESS ME"
@@ -125,7 +127,7 @@ const ListComponentScreen = () => {
           onLongPress={() => {
             console.log('floating onLongPress');
           }}
-        /> */}
+        />
       </View>
     );
   };

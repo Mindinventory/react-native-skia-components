@@ -7,7 +7,9 @@ import { miUiStyle } from '../theme';
 import type { NeoPopButtonProps } from './neoPopButton.type';
 import { useNeoPopButton } from './useNeoPopButton';
 
-const NeoPopButton = (props: NeoPopButtonProps) => {
+const NeoPopButton: React.FC<NeoPopButtonProps> = (
+  props: NeoPopButtonProps
+) => {
   const {
     animatedHeight,
     animatedWidth,

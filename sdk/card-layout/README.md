@@ -1,17 +1,17 @@
-# @mindinventory/react-native-floating-button
+# @mindinventory/react-native-neopop-button
 
-Skia floating button effect
+Skia neopop button effect
 
 ## Installation
 
 ```sh
-npm install @mindinventory/react-native-floating-button
+npm install @mindinventory/react-native-neopop-button
 ```
 
 ## Usage
 
 ```js
-import { multiply } from '@mindinventory/react-native-floating-button';
+import { multiply } from '@mindinventory/react-native-neopop-button';
 
 // ...
 

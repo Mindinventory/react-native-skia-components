@@ -1,6 +1,6 @@
 import React, { createContext, useMemo } from 'react';
 
-import { miColor, miUiStyle } from '../themes';
+import { miColor, miUiStyle } from '../../sdk/card-layout/themes';
 
 export * from './useMiUiContext';
 

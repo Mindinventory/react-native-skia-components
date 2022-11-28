@@ -5,7 +5,14 @@
       "@mindinventory/react-native-neopop": ["./src/index"],
       "@mindinventory/react-native-neopop-button": [
         "./sdk/neopop-button/src/index"
-      ]
+      ],
+      "@mindinventory/react-native-floating-button": [
+        "./sdk/floating-button/src/index"
+      ],
+      "@mindinventory/react-native-circular-progress": [
+        "./sdk/circular-progress/src/index"
+      ],
+      "@mindinventory/react-native-card-layout": ["./sdk/card-layout/src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

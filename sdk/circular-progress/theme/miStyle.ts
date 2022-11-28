@@ -1,8 +1,7 @@
-import { cardStyle, circularProgressBarStyle } from '../components';
+import { circularProgressBarStyle } from '../src/circularProgressBar.style';
 
 export const miUiStyle = () => {
   return {
-    cardStyle: cardStyle(),
     circularProgressBarStyle: circularProgressBarStyle(),
   };
 };

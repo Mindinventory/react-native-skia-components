@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { miUiStyle } from '../../themes';
+import { miUiStyle } from '../themes';
 import BackgroundGradient from './backgroundGradient';
 import type { CardProps } from './card.type';
 import { useCard } from './useCard';
