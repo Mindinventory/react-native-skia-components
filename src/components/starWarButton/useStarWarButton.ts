@@ -15,7 +15,7 @@ import {
 
 import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
-import { FilledTypes, GradientTypes } from './starWarButton.type';
+import { FilledType, GradientType } from './starWarButton.type';
 
 export const useStarWarButton = () => {
   const { styles, props } = useMiUiContext();
@@ -25,8 +25,8 @@ export const useStarWarButton = () => {
 
   const {
     style,
-    gradientType = GradientTypes.Linear,
-    filled = FilledTypes.Solid,
+    gradientType = GradientType.Linear,
+    filled = FilledType.Solid,
     textStyle,
     titleSize = 20,
     title = 'Button',
@@ -59,7 +59,7 @@ export const useStarWarButton = () => {
     center?: Vector;
     radius: number;
   } = useMemo(() => {
-    if (props.gradientType && props.gradientType === GradientTypes.Sweep) {
+    if (props.gradientType && props.gradientType === GradientType.Sweep) {
       return {
         center: props.center
           ? props.center
@@ -70,7 +70,7 @@ export const useStarWarButton = () => {
       };
     }
 
-    if (props.gradientType === GradientTypes.Radial) {
+    if (props.gradientType === GradientType.Radial) {
       return {
         center: props.center
           ? props.center
@@ -82,7 +82,7 @@ export const useStarWarButton = () => {
       };
     }
 
-    if (props.gradientType === GradientTypes.Linear) {
+    if (props.gradientType === GradientType.Linear) {
       return {
         end: props.end
           ? props.end

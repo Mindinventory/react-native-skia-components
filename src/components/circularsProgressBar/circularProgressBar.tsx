@@ -12,14 +12,12 @@ import {
   vec,
 } from '@shopify/react-native-skia';
 
-import { miUiStyle } from '../../themes';
-import type { CircularProgressBarProps } from './circularProgressBar.type';
 import { useCircularProgress } from './useCircularProgressBar';
 
 const VEC_START = 12;
 const VEC_END = 200;
 
-const CircularProgressBar = (props: CircularProgressBarProps) => {
+const CircularProgressBar = () => {
   const {
     backgroundColor,
     colors,
@@ -37,7 +35,8 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
     shadowRadius,
     strokeWidth,
     viewWidth,
-  } = useCircularProgress(props);
+    styles,
+  } = useCircularProgress();
 
   const VIEW_WIDTH_DIV = viewWidth / 2;
 
@@ -95,7 +94,7 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
       />
       <View
         style={[
-          miUiStyle?.circularProgressBarStyle?.textContainer.textView,
+          styles?.circularProgressBarStyle?.textContainer.textView,
           {
             left: VIEW_WIDTH_DIV - fontSize,
             top: VIEW_WIDTH_DIV - fontSize / 2,
@@ -104,7 +103,7 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
       >
         <Text
           style={[
-            miUiStyle?.circularProgressBarStyle?.textContainer.textStyle,
+            styles?.circularProgressBarStyle?.textContainer.textStyle,
             { fontSize: fontSize },
           ]}
         >

@@ -4,7 +4,7 @@ import { FloatingButton } from '../floatingButton';
 import type { FloatingButtonProps } from '../floatingButton/floatingButton.type';
 import { NeoPopButton, NeoPopButtonProps } from '../neoPopButton/';
 import type { StarWarButtonProps } from '../starWarButton/starWarButton.type';
-import StarWarButton from '../starWarButton/starWarButtonContainer';
+import { StarWarButton } from '../starWarButton/starWarButtonContainer';
 
 const buttonPresets = {
   floating: FloatingButton,
@@ -14,20 +14,20 @@ const buttonPresets = {
 
 export type ButtonPresets = keyof typeof buttonPresets;
 
-export type Button2Props<TGradientType = 'neoPop' | 'starWar' | 'floating'> =
-  TGradientType extends 'neoPop'
+export type ButtonProps<TPresetType = 'neoPop' | 'starWar' | 'floating'> =
+  TPresetType extends 'neoPop'
     ? NeoPopButtonProps & {
-        preset?: TGradientType;
+        preset?: TPresetType;
       }
-    : TGradientType extends 'starWar'
+    : TPresetType extends 'starWar'
     ? StarWarButtonProps & {
-        preset?: TGradientType;
+        preset?: TPresetType;
       }
     : FloatingButtonProps & {
-        preset?: TGradientType;
+        preset?: TPresetType;
       };
 
-const Button = (props: Button2Props) => {
+const Button = (props: ButtonProps) => {
   const { preset = 'neoPop' } = props;
   const ButtonComponent = buttonPresets[preset];
 

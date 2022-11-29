@@ -12,8 +12,7 @@ import {
 } from '@shopify/react-native-skia';
 import Animated from 'react-native-reanimated';
 
-import { miUiStyle } from '../../themes';
-import { GradientTypes } from './starWarButton.type';
+import { GradientType } from './starWarButton.type';
 import { useStarWarButton } from './useStarWarButton';
 
 export const StarWarButtonComponent = () => {
@@ -50,7 +49,14 @@ export const StarWarButtonComponent = () => {
       onPressOut={props.onPressOut}
     >
       <Animated.View
-        style={[styles.starWarButtonStyle.container, scaledButton]}
+        style={[
+          styles.starWarButtonStyle.container,
+          scaledButton,
+          {
+            height: canvasButtonHeight,
+            width: canvasButtonWidth,
+          },
+        ]}
       >
         <Canvas
           style={[
@@ -67,7 +73,7 @@ export const StarWarButtonComponent = () => {
               width={canvasButtonWidth}
               r={buttonBorderRadius}
             >
-              {gradientType === GradientTypes.Sweep && (
+              {gradientType === GradientType.Sweep && (
                 <SweepGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,
@@ -78,7 +84,7 @@ export const StarWarButtonComponent = () => {
                   transform={transformAnimation}
                 />
               )}
-              {gradientType === GradientTypes.Radial && (
+              {gradientType === GradientType.Radial && (
                 <RadialGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,
@@ -90,7 +96,7 @@ export const StarWarButtonComponent = () => {
                   transform={transformAnimation}
                 />
               )}
-              {gradientType === GradientTypes.Linear && (
+              {gradientType === GradientType.Linear && (
                 <LinearGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,
@@ -110,7 +116,7 @@ export const StarWarButtonComponent = () => {
         />
         <Animated.View
           style={[
-            miUiStyle.cardStyle.card,
+            styles.cardStyle.card,
             styles.starWarButtonStyle.buttonTextView,
             {
               backgroundColor: backgroundColor,

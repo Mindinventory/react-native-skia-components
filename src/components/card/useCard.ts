@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Dimensions } from 'react-native';
 
 import {
@@ -10,8 +11,9 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
+import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
-import type { CardProps } from './card.type';
+import { AnimateBorderType, AnimationType } from './card.type';
 
 const { width: ScreenWidth } = Dimensions.get('window');
 const CARD_BLUR = 10;
@@ -20,7 +22,9 @@ const CARD_RADIUS = 20;
 const HEIGHT = 256;
 const PADDING = 40;
 
-export const useCard = (props: CardProps) => {
+export const useCard = () => {
+  const { props, styles } = useMiUiContext();
+
   const {
     width = ScreenWidth * 0.9,
     height = HEIGHT,
@@ -34,8 +38,8 @@ export const useCard = (props: CardProps) => {
       miColor.cyan,
     ],
     blur = CARD_BLUR,
-    animation = 'NONE',
-    animateBorder = 'NORMAL',
+    animation = props.animation && AnimationType.NONE,
+    animateBorder = AnimateBorderType.NORMAL,
     style,
     duration = 3000,
   } = props;
@@ -70,7 +74,7 @@ export const useCard = (props: CardProps) => {
   }, [rotateX.value, rotateY.value, scale.value]);
 
   useDerivedValue(() => {
-    if (animation !== 'NONE') {
+    if (animation !== AnimationType.NONE) {
       if (rotatePoint.value === 0) {
         rotatePoint.value = withTiming(1, {
           duration: 500,
@@ -94,7 +98,7 @@ export const useCard = (props: CardProps) => {
       }
     }
 
-    if (animation === 'ROTATE') {
+    if (animation === AnimationType.ROTATE) {
       rotateX.value = interpolate(
         rotatePoint.value,
         [0, 1, 2, 3, 4],
@@ -107,7 +111,7 @@ export const useCard = (props: CardProps) => {
         [-6, 6, 6, -6],
         Extrapolate.CLAMP
       );
-    } else if (animation === 'BOUNCE') {
+    } else if (animation === AnimationType.ROTATE) {
       rotateX.value = withTiming(0, {
         duration: 1000,
         easing: Easing.bounce,
@@ -139,7 +143,28 @@ export const useCard = (props: CardProps) => {
     }
   }, [rotatePoint.value, animation]);
 
-  return {
+  return useMemo(() => {
+    return {
+      animateBorder,
+      animation,
+      backgroundColor,
+      blur,
+      borderColors,
+      borderWidth,
+      canvasPadding,
+      CARD_HEIGHT,
+      CARD_WIDTH,
+      cardRadius,
+      cardStyle,
+      duration,
+      height,
+      props,
+      style,
+      styles,
+      width,
+      zIndex,
+    };
+  }, [
     animateBorder,
     animation,
     backgroundColor,
@@ -153,8 +178,10 @@ export const useCard = (props: CardProps) => {
     cardStyle,
     duration,
     height,
+    props,
     style,
+    styles,
     width,
     zIndex,
-  };
+  ]);
 };

@@ -22,4 +22,16 @@ export const miColor = {
   white: '#FFFFFF',
   yellow: 'yellow',
   yellowGold: '#s93b8c4',
+  // dark: {
+  //   greenShade: '#9EECD9',
+  //   lightYellowShade: 'rgba(250, 226, 46, 1)',
+  //   magenta: 'magenta',
+  //   pink: '#ed184f',
+  //   purple: '#31C',
+  //   red: 'red',
+  //   white: '#FFFFFF',
+  //   yellow: 'yellow',
+  //   yellowGold: '#s93b8c4',
+  // },
+  // light: {},
 };

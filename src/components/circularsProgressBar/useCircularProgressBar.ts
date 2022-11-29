@@ -6,8 +6,8 @@ import {
   useTiming,
 } from '@shopify/react-native-skia';
 
+import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
-import type { CircularProgressBarProps } from './circularProgressBar.type';
 
 const CONTAINER_SIZE = 250;
 const CONTAINER_ELEVATION = 8;
@@ -21,7 +21,9 @@ const SHADOW_WIDTH = 15;
 const ARC_DEGREE = 270;
 const ANIM_DURATION = 3000;
 
-export const useCircularProgress = (props: CircularProgressBarProps) => {
+export const useCircularProgress = () => {
+  const { props, styles } = useMiUiContext();
+
   const {
     backgroundColor = miColor.circleBackground,
     colors = [miColor.blueShade, miColor.greenShade],
@@ -75,6 +77,7 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
     padding,
     path,
     progress,
+    props,
     radius,
     shadowColor,
     shadowOffset,
@@ -82,6 +85,7 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
     shadowRadius,
     size,
     strokeWidth,
+    styles,
     viewWidth,
   };
 };

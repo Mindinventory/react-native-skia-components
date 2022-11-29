@@ -11,7 +11,7 @@ import {
 } from '@shopify/react-native-skia';
 import { Easing } from 'react-native-reanimated';
 
-import type { AnimateBorderType } from './card.type';
+import type { AnimateBorderTypes } from './card.type';
 
 interface BackgroundGradientProps {
   blur: number;
@@ -20,7 +20,7 @@ interface BackgroundGradientProps {
   cardRadius?: number;
   height: number;
   width: number;
-  animateBorder?: AnimateBorderType;
+  animateBorder?: AnimateBorderTypes;
   duration?: number;
 }
 

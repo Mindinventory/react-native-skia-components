@@ -3,12 +3,10 @@ import { View } from 'react-native';
 
 import Animated from 'react-native-reanimated';
 
-import { miUiStyle } from '../../themes';
 import BackgroundGradient from './backgroundGradient';
-import type { CardProps } from './card.type';
 import { useCard } from './useCard';
 
-const Card: React.FC<CardProps> = (props) => {
+const Card = () => {
   const {
     backgroundColor,
     blur,
@@ -24,12 +22,12 @@ const Card: React.FC<CardProps> = (props) => {
     style,
     animateBorder,
     duration,
-  } = useCard({
-    ...props,
-  });
+    props,
+    styles,
+  } = useCard();
 
   return (
-    <View style={miUiStyle.cardStyle.container}>
+    <View style={styles.cardStyle.container}>
       <BackgroundGradient
         blur={blur}
         borderColors={borderColors}
@@ -42,7 +40,7 @@ const Card: React.FC<CardProps> = (props) => {
       />
       <Animated.View
         style={[
-          miUiStyle.cardStyle.card,
+          styles.cardStyle.card,
           {
             backgroundColor: backgroundColor,
             borderRadius: cardRadius,

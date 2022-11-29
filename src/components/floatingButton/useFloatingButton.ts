@@ -1,20 +1,30 @@
 import { useState } from 'react';
 
-import { Skia } from '@shopify/react-native-skia';
+import {
+  Easing,
+  Skia,
+  useComputedValue,
+  useTiming,
+  useValue,
+} from '@shopify/react-native-skia';
+import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
+import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
-import type { FloatingButtonProps } from './floatingButton.type';
 
 // const BOTTOM_SHADOW_SKEW_H_MARGIN = 26;
 // const BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH = 22;
+// const SKEW_DEPTH_H_MARGIN = 6;
+// const SKEW_H_MARGIN = 24;
+
 const DEPTH = 10;
 const HEIGHT = 200;
 const SHADOW_HEIGHT = 10;
-// const SKEW_DEPTH_H_MARGIN = 6;
-// const SKEW_H_MARGIN = 24;
 const WIDTH = 300;
 
-export const useFloatingButton = (props: FloatingButtonProps) => {
+export const useFloatingButton = () => {
+  const { props, styles } = useMiUiContext();
+
   const {
     backgroundColor = miColor.lightYellowShade,
     bottomShadowColor = miColor.black,
@@ -26,74 +36,31 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
     textStyle,
     title = 'Pay',
     width: propWidth = WIDTH,
+    titleSize = 10,
+    floatAnimation = true,
+    duration = 800,
   } = props;
 
   let height = propHeight * 1.5;
   let width = propWidth * 1.5;
 
-  const [translate, setTranslate] = useState(0);
-  const [shadowTranslate, setshadowTranslate] = useState(0);
+  const [shadowTranslate, setShadowTranslate] = useState(0);
+  const [pressed, setPressed] = useState(false);
 
-  const onPressStart = () => {
-    setTranslate(isFloating ? shadowHeight : depth);
-    setshadowTranslate(-shadowHeight);
-  };
+  const translate = useTiming(
+    {
+      from: 0,
+      loop: true,
+      to: floatAnimation ? 11 : 0,
+      yoyo: true,
+    },
+    {
+      duration: duration,
+      easing: Easing.linear,
+    }
+  );
 
-  const onPressEnd = () => {
-    setTranslate(0);
-    setshadowTranslate(0);
-  };
-
-  // const SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT = height - depth - shadowHeight;
-  // const SUBTRACT_DEPTH_TRANSLATE = depth - translate;
-  // const SUBTRACT_HEIGHT_SHADOW_HEIGHT = height - shadowHeight;
-  // const TOTAL_HEIGHT_SHADOW_TRANSLATE = height - shadowTranslate;
-
-  // const shadowPath = Skia.Path.Make();
-  // shadowPath.moveTo(BOTTOM_SHADOW_SKEW_H_MARGIN, SUBTRACT_HEIGHT_SHADOW_HEIGHT);
-  // shadowPath.lineTo(
-  //   BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH,
-  //   TOTAL_HEIGHT_SHADOW_TRANSLATE
-  // );
-  // shadowPath.lineTo(
-  //   width - BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH,
-  //   TOTAL_HEIGHT_SHADOW_TRANSLATE
-  // );
-  // shadowPath.lineTo(
-  //   width - BOTTOM_SHADOW_SKEW_H_MARGIN,
-  //   SUBTRACT_HEIGHT_SHADOW_HEIGHT
-  // );
-
-  // const path = Skia.Path.Make();
-  // path.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-  // path.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-  // path.lineTo(width - SKEW_H_MARGIN, 0);
-  // path.lineTo(SKEW_H_MARGIN, 1);
-  // path.close();
-
-  // const depthPath = Skia.Path.Make();
-  // depthPath.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-  // depthPath.lineTo(
-  //   SKEW_DEPTH_H_MARGIN,
-  //   SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + depth
-  // );
-  // depthPath.lineTo(
-  //   width - SKEW_DEPTH_H_MARGIN,
-  //   SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + depth
-  // );
-  // depthPath.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-
-  // const nonFloatingDepthPath = Skia.Path.Make();
-  // nonFloatingDepthPath.moveTo(0, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
-  // nonFloatingDepthPath.lineTo(
-  //   6,
-  //   SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + SUBTRACT_DEPTH_TRANSLATE
-  // );
-  // nonFloatingDepthPath.lineTo(
-  //   width - 6,
-  //   SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT + SUBTRACT_DEPTH_TRANSLATE
-  // );
-  // nonFloatingDepthPath.lineTo(width, SUBTRACT_HEIGHT_DEPTH_SHADOW_HEIGHT);
+  const translateY = useValue(0);
 
   const shadowPath = Skia.Path.Make();
   shadowPath.moveTo(25, height - shadowHeight);
@@ -108,40 +75,113 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
   path.lineTo(25, 1);
   path.close();
 
+  const path2 = Skia.Path.Make();
+  path2.moveTo(0, height - depth - shadowHeight);
+  path2.lineTo(15, height - depth - shadowHeight);
+  path2.lineTo(35, 0);
+  path2.lineTo(25, 0);
+  path2.close();
+
   const depthPath = Skia.Path.Make();
   depthPath.moveTo(0, height - depth - shadowHeight);
   depthPath.lineTo(6, height - depth - shadowHeight + depth);
   depthPath.lineTo(width - 6, height - depth - shadowHeight + depth);
   depthPath.lineTo(width, height - depth - shadowHeight);
 
+  const depthPath2 = Skia.Path.Make();
+  depthPath2.moveTo(0, height);
+  depthPath2.lineTo(25, 100);
+  depthPath2.lineTo(35, 0);
+  depthPath2.lineTo(25, 45);
+  depthPath2.close();
+
   const nonFloatingDepthPath = Skia.Path.Make();
   nonFloatingDepthPath.moveTo(0, height - depth - shadowHeight);
   nonFloatingDepthPath.lineTo(
     6,
-    height - depth - shadowHeight + depth - translate
+    height - depth - shadowHeight + depth - translate.current
   );
   nonFloatingDepthPath.lineTo(
     width - 6,
-    height - depth - shadowHeight + depth - translate
+    height - depth - shadowHeight + depth - translate.current
   );
   nonFloatingDepthPath.lineTo(width, height - depth - shadowHeight);
+
+  const onPressStart = () => {
+    setPressed(true);
+    translateY.current = isFloating ? shadowHeight : depth;
+    setShadowTranslate(-shadowHeight);
+  };
+
+  const onPressEnd = () => {
+    setPressed(false);
+    translateY.current = 0;
+    setShadowTranslate(0);
+  };
+
+  const textTransform = useSharedValue(0);
+
+  const transform = useComputedValue(() => {
+    textTransform.value = translate.current;
+    return [
+      { translateY: pressed ? 10 : !floatAnimation ? 0 : translate.current },
+    ];
+  }, [translate, pressed, floatAnimation]);
+
+  const shineValue = useTiming(
+    {
+      from: 0,
+      loop: true,
+      to: width - 60,
+      // yoyo: true,
+    },
+    {
+      duration: 2000,
+    }
+  );
+
+  const shineTransform = useComputedValue(() => {
+    return [{ translateX: pressed ? 15000 : shineValue.current }];
+  }, [shineValue, pressed]);
+
+  const textTransformStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: pressed ? 0 : textTransform.value - 12,
+        },
+        { rotateX: '25deg' },
+        { rotateZ: '0deg' },
+      ],
+    };
+  }, [textTransform, pressed]);
+
   return {
     backgroundColor,
     bottomShadowColor,
     depth,
     depthPath,
+    depthPath2,
+    floatAnimation,
     height,
     isFloating,
     nonFloatingDepthPath,
     onPressEnd,
     onPressStart,
     path,
+    path2,
+    props,
     shadowHeight,
     shadowPath,
     shadowTranslate,
+    shineTransform,
     sideShadowColor,
+    styles,
     textStyle,
+    textTransformStyle,
     title,
+    titleSize,
+    transform,
     translate,
     width,
   };

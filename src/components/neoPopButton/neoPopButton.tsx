@@ -3,11 +3,9 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { Box, Canvas, Group, rect, rrect } from '@shopify/react-native-skia';
 
-import { miUiStyle } from '../../themes';
-import type { NeoPopButtonProps } from './neoPopButton.type';
 import { useNeoPopButton } from './useNeoPopButton';
 
-const NeoPopButton = (props: NeoPopButtonProps) => {
+const NeoPopButton = () => {
   const {
     animatedHeight,
     animatedWidth,
@@ -29,12 +27,14 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
     width,
     x,
     y,
-  } = useNeoPopButton(props);
+    props,
+    styles,
+  } = useNeoPopButton();
 
   return (
     <TouchableOpacity
       style={[
-        miUiStyle.neoPopButtonStyle.containerStyle.canvasStyle,
+        styles.neoPopButtonStyle.containerStyle.canvasStyle,
         props.style || {},
       ]}
       onPress={props.onPress}
@@ -99,7 +99,7 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
       />
       <View
         style={[
-          miUiStyle.neoPopButtonStyle.textContainer.textView,
+          styles.neoPopButtonStyle.textContainer.textView,
           {
             height: height,
             left: transitionX,
@@ -110,7 +110,7 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
       >
         <Text
           style={[
-            miUiStyle.neoPopButtonStyle.textContainer.textStyle,
+            styles.neoPopButtonStyle.textContainer.textStyle,
             {
               fontSize: titleSize,
             },

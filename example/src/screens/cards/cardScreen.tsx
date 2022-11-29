@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import {
   ImageBackground,
@@ -8,7 +9,10 @@ import {
   View,
 } from 'react-native';
 
-import { Card } from '@mindinventory/react-native-skia-components';
+import {
+  Card,
+  FloatingButton,
+} from '@mindinventory/react-native-skia-components';
 
 const CardScreen = () => {
   return (
@@ -48,13 +52,12 @@ const CardScreen = () => {
           </ImageBackground>
         </Card>
         <Text style={styles.chooseCardText}>Choose a Card</Text>
-        {/* <Button
-          preset="floating"
+        <FloatingButton
           width={220}
           height={50}
-          title={'Next Card'}
-          textStyle={{ backgroundColor: 'red' }}
+          title="NEXT CARD"
           bottomShadowColor={'gray'}
+          textStyle={styles.floatingTextStyle}
           onPress={() => {
             console.log('floating onPress');
           }}
@@ -67,7 +70,9 @@ const CardScreen = () => {
           onLongPress={() => {
             console.log('floating onLongPress');
           }}
-        /> */}
+          floatAnimation={true}
+          duration={1000}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -115,6 +120,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     flex: 1,
     justifyContent: 'center',
+  },
+  floatingTextStyle: {
+    fontSize: 15,
   },
   headText: {
     color: '#ffffff',

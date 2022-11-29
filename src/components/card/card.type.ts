@@ -1,6 +1,8 @@
 import type { ViewStyle } from 'react-native';
 
-export type AnimateBorderType = 'NONE' | 'NORMAL' | 'DISCO' | 'YOYO';
+export type AnimateBorderTypes = 'NONE' | 'NORMAL' | 'DISCO' | 'YOYO';
+
+export type AnimationTypes = 'NONE' | 'ROTATE' | 'BOUNCE';
 export interface CardProps {
   backgroundColor?: string;
   blur?: number;
@@ -10,8 +12,21 @@ export interface CardProps {
   children: JSX.Element;
   height?: number;
   width?: number;
-  animation?: 'NONE' | 'ROTATE' | 'BOUNCE';
+  animation?: AnimationTypes;
   style?: ViewStyle;
-  animateBorder?: AnimateBorderType;
+  animateBorder?: AnimateBorderTypes;
   duration?: number;
+}
+
+export enum AnimateBorderType {
+  NONE = 'NONE',
+  NORMAL = 'NORMAL',
+  DISCO = 'DISCO',
+  YOYO = 'YOYO',
+}
+
+export enum AnimationType {
+  NONE = 'NONE',
+  ROTATE = 'ROTATE',
+  BOUNCE = 'BOUNCE',
 }

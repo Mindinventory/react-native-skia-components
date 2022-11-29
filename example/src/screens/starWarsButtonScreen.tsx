@@ -2,14 +2,14 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { Button } from '@mindinventory/react-native-skia-components';
+import { StarWarButton } from '@mindinventory/react-native-skia-components';
 
 import { styles } from './componentStyle.style';
 
 const StarWarsButtonScreen = () => {
   return (
     <View style={styles.centerItemStyle}>
-      <Button
+      <StarWarButton
         preset="starWar"
         onPress={() => console.log('Hello')}
         title="Button"
@@ -24,7 +24,7 @@ const StarWarsButtonScreen = () => {
         animation={true}
         backgroundColor={'green'}
       />
-      <Button
+      <StarWarButton
         preset="starWar"
         onPressIn={() => console.log('Hello 2')}
         title="Button 2"
@@ -39,7 +39,7 @@ const StarWarsButtonScreen = () => {
         animation={true}
         backgroundColor={'darkred'}
       />
-      <Button
+      <StarWarButton
         preset="starWar"
         onPressOut={() => console.log('Hello 2')}
         title="Button 2"
@@ -54,7 +54,7 @@ const StarWarsButtonScreen = () => {
         animation={false}
         backgroundColor={'#d29cf8'}
       />
-      <Button
+      <StarWarButton
         preset="starWar"
         onLongPress={() => console.log('Hello 3')}
         title="Button 3"
@@ -67,7 +67,7 @@ const StarWarsButtonScreen = () => {
         width={200}
         height={20}
         animation={true}
-        backgroundColor={'rgba(250, 226, 46,1)'}
+        backgroundColor={'transparent'}
       />
     </View>
   );

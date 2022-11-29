@@ -1,5 +1,4 @@
-import CircularProgressBar from './circularProgressBar';
 import { circularProgressBarStyle } from './circularProgressBar.style';
+import { CircularProgressBar } from './circularProgressBarContainer';
 
-export { CircularProgressBar };
-export { circularProgressBarStyle };
+export { CircularProgressBar, circularProgressBarStyle };
