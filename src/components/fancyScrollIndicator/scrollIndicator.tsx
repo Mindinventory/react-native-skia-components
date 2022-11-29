@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     height: 100,
     margin: 10,
-    width: 300,
+    width: 100,
   },
 });
 
