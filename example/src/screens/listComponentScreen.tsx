@@ -14,6 +14,7 @@ import {
   Button,
   Card,
   CircularProgressBar,
+  ScrollIndicator,
 } from '@mindinventory/react-native-neopop';
 
 const ListComponentScreen = () => {
@@ -22,6 +23,7 @@ const ListComponentScreen = () => {
     { id: 1, name: 'Progress' },
     { id: 2, name: 'New Pop' },
     { id: 3, name: 'Floating' },
+    { id: 4, name: 'scrollIndicator' },
   ];
   const [selected, setSelected] = React.useState(0);
 
@@ -141,9 +143,19 @@ const ListComponentScreen = () => {
       return remderCircleProgress();
     } else if (selected === 2) {
       return renderNeoPopButton();
-    } else {
+    } else if (selected === 3) {
       return renderFlaotingButton();
+    } else {
+      return renderScrollIndicator();
     }
+  };
+
+  const renderScrollIndicator = () => {
+    return (
+      <View style={styles.centerItemStyle}>
+        <ScrollIndicator />
+      </View>
+    );
   };
 
   const renderComponent = () => {
