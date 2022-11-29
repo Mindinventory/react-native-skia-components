@@ -2,17 +2,17 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@mindinventory/react-native-neopop": ["./src/index"],
       "@mindinventory/react-native-neopop-button": [
-        "./sdk/neopop-button/src/index"
+        "./sdk/neopop-button/index.ts"
       ],
       "@mindinventory/react-native-floating-button": [
-        "./sdk/floating-button/src/index"
+        "./sdk/floating-button/index.ts"
       ],
       "@mindinventory/react-native-circular-progress": [
-        "./sdk/circular-progress/src/index"
+        "./sdk/circular-progress/index.ts"
       ],
-      "@mindinventory/react-native-card-layout": ["./sdk/card-layout/src/index"]
+      "@mindinventory/react-native-card-layout": ["./sdk/card-layout/index.ts"],
+      "@mindinventory/react-native-bar-chart": ["./sdk/bar-chart/index.ts"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
