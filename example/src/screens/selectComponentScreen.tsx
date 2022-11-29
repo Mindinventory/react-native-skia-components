@@ -102,9 +102,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.5,
   },
   selectAnimText: {
+    color: 'black',
     fontSize: 24,
     fontWeight: 'bold',
-    marginStart: 16,
     paddingBottom: 10,
     textAlign: 'center',
   },

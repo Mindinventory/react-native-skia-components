@@ -18,7 +18,6 @@ const CardScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContain}>
-        {/* <Text style={styles.helloText}>Hello Mindinventory</Text> */}
         <Text style={styles.headText}>
           Give Your {'\n'}Banking card{'\n'}a{' '}
           <Text style={styles.newLook}>New Look</Text>
@@ -61,15 +60,6 @@ const CardScreen = () => {
           onPress={() => {
             console.log('floating onPress');
           }}
-          onPressIn={() => {
-            console.log('floating onPressIn');
-          }}
-          onPressOut={() => {
-            console.log('floating onPressOut');
-          }}
-          onLongPress={() => {
-            console.log('floating onLongPress');
-          }}
           floatAnimation={true}
           duration={1000}
         />
@@ -93,7 +83,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     padding: 15,
-    // opacity: 0.5,
   },
   cardNumber: {
     color: '#ffffff',
@@ -122,7 +111,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   floatingTextStyle: {
-    fontSize: 15,
+    fontSize: 12,
   },
   headText: {
     color: '#ffffff',

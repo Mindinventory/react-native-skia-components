@@ -111,7 +111,7 @@ export const useCard = () => {
         [-6, 6, 6, -6],
         Extrapolate.CLAMP
       );
-    } else if (animation === AnimationType.ROTATE) {
+    } else if (animation === AnimationType.BOUNCE) {
       rotateX.value = withTiming(0, {
         duration: 1000,
         easing: Easing.bounce,
