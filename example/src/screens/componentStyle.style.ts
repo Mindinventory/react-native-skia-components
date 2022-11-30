@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
+import { miColor } from '../constant/colors';
+
 export const styles = StyleSheet.create({
   cardNumber: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 22,
   },
   cardStyle: {
@@ -12,20 +14,19 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   carNameText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 15,
     marginTop: 0,
   },
   centerItemStyle: {
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: miColor.black,
     flex: 1,
     justifyContent: 'center',
     width: '100%',
   },
-  containerStyle: {},
   coponentListStyle: {
-    borderColor: 'white',
+    borderColor: miColor.white,
     borderRadius: 10,
     borderWidth: 0.9,
     marginHorizontal: 10,
@@ -49,7 +50,7 @@ export const styles = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#202020',
+    backgroundColor: miColor.darkBlack,
     height: '100%',
     justifyContent: 'center',
     width: '100%',
@@ -58,7 +59,7 @@ export const styles = StyleSheet.create({
     marginLeft: -10,
   },
   neoBtnTextStyle: {
-    color: 'white',
+    color: miColor.white,
   },
   neoButtonLayout: {
     flexDirection: 'row',
@@ -66,26 +67,26 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   safeAreabackground: {
-    backgroundColor: '#202020',
+    backgroundColor: miColor.darkBlack,
   },
   selectedItem: {
-    backgroundColor: '#f96b8f',
+    backgroundColor: miColor.lightPink,
     borderWidth: 0,
   },
   selectedText: {
-    color: 'white',
+    color: miColor.white,
     fontWeight: '800',
   },
   timeText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 15,
   },
   unSelectedText: {
-    color: 'white',
+    color: miColor.white,
     fontWeight: '500',
   },
   validText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 10,
   },
 });

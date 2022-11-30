@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import { View } from 'react-native';
 
@@ -11,7 +10,7 @@ const StarWarsButtonScreen = () => {
     <View style={styles.centerItemStyle}>
       <StarWarButton
         preset="starWar"
-        onPress={() => console.log('Hello')}
+        onPress={() => {}}
         title="Button"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
         filled={'inner'}
@@ -28,7 +27,7 @@ const StarWarsButtonScreen = () => {
       />
       <StarWarButton
         preset="starWar"
-        onPressIn={() => console.log('Hello 2')}
+        onPressIn={() => {}}
         title="Button 2"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
         filled={'solid'}
@@ -43,7 +42,7 @@ const StarWarsButtonScreen = () => {
       />
       <StarWarButton
         preset="starWar"
-        onPressOut={() => console.log('Hello 2')}
+        onPressOut={() => {}}
         title="Button 2"
         colors={['cyan', 'magenta', 'black', 'cyan']}
         filled={'inner'}
@@ -58,7 +57,7 @@ const StarWarsButtonScreen = () => {
       />
       <StarWarButton
         preset="starWar"
-        onLongPress={() => console.log('Hello 3')}
+        onLongPress={() => {}}
         title="Button 3"
         colors={'darkblue'}
         filled={'normal'}

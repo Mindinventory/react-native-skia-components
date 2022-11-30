@@ -1,8 +1,9 @@
-/* eslint-disable no-console */
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import { Button } from '@mindinventory/react-native-skia-components';
+
+import { miColor } from '../constant/colors';
 
 interface INeoButtonProps {
   index: number;
@@ -13,22 +14,14 @@ const NeoButton: React.FC<INeoButtonProps> = ({ index }) => {
       width={80}
       height={80}
       title={`${index + 1}`}
-      sideShadowColor={'red'}
-      bottomShadowColor={'green'}
-      backgroundColor={'#f96b8f'}
+      sideShadowColor={miColor.red}
+      bottomShadowColor={miColor.green}
+      backgroundColor={miColor.lightPink}
       textStyle={styles.neoBtnTextStyle}
-      onPress={() => {
-        console.log('NeoPop onPress');
-      }}
-      onPressIn={() => {
-        console.log('NeoPop onPressIn');
-      }}
-      onPressOut={() => {
-        console.log('NeoPop onPressOut');
-      }}
-      onLongPress={() => {
-        console.log('NeoPop onLongPress');
-      }}
+      onPress={() => {}}
+      onPressIn={() => {}}
+      onPressOut={() => {}}
+      onLongPress={() => {}}
     />
   );
 };
@@ -36,5 +29,7 @@ const NeoButton: React.FC<INeoButtonProps> = ({ index }) => {
 export default NeoButton;
 
 const styles = StyleSheet.create({
-  neoBtnTextStyle: { color: 'white' },
+  neoBtnTextStyle: {
+    color: miColor.white,
+  },
 });

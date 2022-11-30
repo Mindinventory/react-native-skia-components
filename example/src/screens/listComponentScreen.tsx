@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import {
   FlatList,
@@ -15,6 +14,8 @@ import {
   Card,
   CircularProgressBar,
 } from '@mindinventory/react-native-skia-components';
+
+import { miColor } from '../constant/colors';
 
 const ListComponentScreen = () => {
   const components = [
@@ -65,7 +66,7 @@ const ListComponentScreen = () => {
       <View style={styles.centerItemStyle}>
         <CircularProgressBar
           progress={40}
-          shadowColor={'white'}
+          shadowColor={miColor.white}
           gradientColors={['#292626']}
         />
       </View>
@@ -85,22 +86,11 @@ const ListComponentScreen = () => {
                 width={80}
                 height={80}
                 title={`${index + 1}`}
-                sideShadowColor={'#363636'}
-                bottomShadowColor={'#363636'}
-                backgroundColor={'#f96b8f'}
+                sideShadowColor={miColor.lightGray}
+                bottomShadowColor={miColor.lightGray}
+                backgroundColor={miColor.lightPink}
                 textStyle={styles.neoBtnTextStyle}
-                onPress={() => {
-                  console.log('NeoPop onPress');
-                }}
-                onPressIn={() => {
-                  console.log('NeoPop onPressIn');
-                }}
-                onPressOut={() => {
-                  console.log('NeoPop onPressOut');
-                }}
-                onLongPress={() => {
-                  console.log('NeoPop onLongPress');
-                }}
+                onPress={() => {}}
               />
             </View>
           );
@@ -118,18 +108,7 @@ const ListComponentScreen = () => {
           height={50}
           title="PRESS ME"
           textStyle={styles.floatingTextStyle}
-          onPress={() => {
-            console.log('floating onPress');
-          }}
-          onPressIn={() => {
-            console.log('floating onPressIn');
-          }}
-          onPressOut={() => {
-            console.log('floating onPressOut');
-          }}
-          onLongPress={() => {
-            console.log('floating onLongPress');
-          }}
+          onPress={() => {}}
         />
       </View>
     );
@@ -140,57 +119,57 @@ const ListComponentScreen = () => {
       <View style={styles.centerItemStyle}>
         <Button
           preset="starWar"
-          onPress={() => console.log('Hello')}
+          onPress={() => {}}
           title="Button"
-          colors={['cyan', 'magenta', 'yellow', 'cyan']}
+          colors={[miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan]}
           filled={'outer'}
           gradientType={'linear'}
           buttonBorderRadius={50}
           width={200}
           height={20}
           titleSize={20}
-          titleColor={'white'}
+          titleColor={miColor.white}
           animation
-          backgroundColor={'white'}
+          backgroundColor={miColor.white}
         />
         <Button
           preset="starWar"
-          onPressIn={() => console.log('Hello 2')}
+          onPressIn={() => {}}
           title="Button 2"
-          colors={['cyan', 'magenta', 'yellow', 'cyan']}
+          colors={[miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan]}
           filled={'solid'}
           gradientType={'sweep'}
           titleSize={20}
           blurRadius={10}
-          titleColor={'white'}
+          titleColor={miColor.white}
           width={200}
           height={20}
           animation={true}
         />
         <Button
           preset="starWar"
-          onPressIn={() => console.log('Hello 2')}
+          onPressIn={() => {}}
           title="Button 2"
-          colors={['cyan', 'magenta', 'black', 'cyan']}
+          colors={[miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan]}
           filled={'inner'}
           gradientType={'radial'}
           titleSize={20}
           blurRadius={10}
-          titleColor={'white'}
+          titleColor={miColor.white}
           width={200}
           height={20}
           animation={false}
         />
         <Button
           preset="starWar"
-          onLongPress={() => console.log('Hello 3')}
+          onLongPress={() => {}}
           title="Button 3"
-          colors={'darkblue'}
+          colors={miColor.darkYellowShade}
           filled={'normal'}
           gradientType={'linear'}
           titleSize={20}
           blurRadius={5}
-          titleColor={'white'}
+          titleColor={miColor.white}
           width={200}
           height={20}
           animation={true}
@@ -216,7 +195,7 @@ const ListComponentScreen = () => {
   const renderComponent = () => {
     return (
       <ScrollView>
-        <View style={styles.containerStyle}>{renderLayout()}</View>
+        <View>{renderLayout()}</View>
       </ScrollView>
     );
   };
@@ -261,7 +240,7 @@ export default ListComponentScreen;
 
 const styles = StyleSheet.create({
   cardNumber: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 22,
   },
   cardStyle: {
@@ -271,16 +250,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   carNameText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 15,
     marginTop: 0,
   },
   centerItemStyle: {
     alignSelf: 'center',
   },
-  containerStyle: {},
   coponentListStyle: {
-    borderColor: 'white',
+    borderColor: miColor.white,
     borderRadius: 10,
     borderWidth: 0.9,
     marginHorizontal: 10,
@@ -304,7 +282,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#202020',
+    backgroundColor: miColor.darkBlack,
     height: '100%',
     justifyContent: 'center',
     width: '100%',
@@ -313,7 +291,7 @@ const styles = StyleSheet.create({
     marginLeft: -10,
   },
   neoBtnTextStyle: {
-    color: 'white',
+    color: miColor.white,
   },
   neoButtonLayout: {
     flexDirection: 'row',
@@ -321,26 +299,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   safeAreabackground: {
-    backgroundColor: '#202020',
+    backgroundColor: miColor.darkBlack,
   },
   selectedItem: {
-    backgroundColor: '#f96b8f',
+    backgroundColor: miColor.lightPink,
     borderWidth: 0,
   },
   selectedText: {
-    color: 'white',
+    color: miColor.white,
     fontWeight: '800',
   },
   timeText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 15,
   },
   unSelectedText: {
-    color: 'white',
+    color: miColor.white,
     fontWeight: '500',
   },
   validText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 10,
   },
 });

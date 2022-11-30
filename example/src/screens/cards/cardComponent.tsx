@@ -73,7 +73,7 @@ const CardComponent = () => {
               source={{
                 uri: 'https://source.unsplash.com/random/1920x1080/?debitcard',
               }}
-              style={[styles.cardStyle]}
+              style={styles.cardStyle}
             >
               <View style={styles.imageView}>
                 <Text style={styles.cardNumber}>

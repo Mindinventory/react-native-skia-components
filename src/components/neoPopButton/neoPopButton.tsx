@@ -67,8 +67,8 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
         accessibilityLanguage={undefined}
       />
       <TouchableOpacity
-        onPress={props.onPress}
-        onLongPress={props.onLongPress}
+        onPress={props?.onPress}
+        onLongPress={props?.onLongPress}
         onPressIn={() => {
           onPressStart();
         }}

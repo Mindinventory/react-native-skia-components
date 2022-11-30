@@ -15,6 +15,8 @@ import {
   NeoPopButton,
 } from '@mindinventory/react-native-skia-components';
 
+import { miColor } from '../../constant/colors';
+
 const { width } = Dimensions.get('window');
 
 const cardItems = [
@@ -64,6 +66,7 @@ const CardItems = ({ flatListRef }) => {
             animation={item.animation}
             style={styles.card}
             animateBorder={item.animateBorder}
+            blur={10}
           >
             <ImageBackground
               source={{
@@ -92,7 +95,7 @@ const CardItems = ({ flatListRef }) => {
 };
 
 const CardScreen = () => {
-  const flatListRef = useRef().current;
+  const flatListRef = useRef<FlatList>();
   let indexes = 0;
 
   return (
@@ -112,7 +115,7 @@ const CardScreen = () => {
           width={220}
           height={50}
           title="NEXT CARD"
-          bottomShadowColor={'gray'}
+          bottomShadowColor={miColor.gray}
           textStyle={styles.floatingTextStyle}
           onPress={() => {
             if (indexes === cardItems.length - 1) {
@@ -122,11 +125,12 @@ const CardScreen = () => {
             }
 
             if (flatListRef) {
-              flatListRef?.scrollToIndex({
-                animated: true,
-                index: indexes,
-                viewOffset: 0,
-              });
+              flatListRef.current &&
+                flatListRef.current.scrollToIndex({
+                  animated: true,
+                  index: indexes,
+                  viewOffset: 0,
+                });
             }
           }}
           floatAnimation={true}
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   card: {
-    backgroundColor: '#ffffff00',
+    backgroundColor: miColor.transparent,
   },
   cardContain: {
     flex: 1,
@@ -154,7 +158,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   cardNumber: {
-    color: '#ffffff',
+    color: miColor.white,
     fontSize: 25,
     fontWeight: '400',
   },
@@ -163,19 +167,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   cardText: {
-    color: '#ffffff',
+    color: miColor.white,
     fontSize: 20,
     fontWeight: 'normal',
   },
   chooseCardText: {
-    color: '#ffffff',
+    color: miColor.white,
     fontSize: 20,
     fontWeight: '300',
     textAlign: 'center',
   },
   container: {
     alignItems: 'center',
-    backgroundColor: '#000000',
+    backgroundColor: miColor.black,
     flex: 1,
     justifyContent: 'center',
   },
@@ -188,12 +192,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   headText: {
-    color: '#ffffff',
+    color: miColor.white,
     fontSize: 40,
     fontWeight: '300',
   },
   helloText: {
-    color: '#ffffff',
+    color: miColor.white,
     fontSize: 20,
     fontWeight: '700',
   },
@@ -206,7 +210,7 @@ const styles = StyleSheet.create({
     width: width * 0.91,
   },
   newLook: {
-    color: '#d29cf8',
+    color: miColor.indigo,
     fontWeight: 'bold',
     textDecorationLine: 'underline',
   },
