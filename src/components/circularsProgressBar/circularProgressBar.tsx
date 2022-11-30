@@ -12,12 +12,13 @@ import {
   vec,
 } from '@shopify/react-native-skia';
 
+import type { CircularProgressBarProps } from './circularProgressBar.type';
 import { useCircularProgress } from './useCircularProgressBar';
 
 const VEC_START = 12;
 const VEC_END = 200;
 
-const CircularProgressBar = () => {
+const CircularProgressBar = (props: CircularProgressBarProps) => {
   const {
     backgroundColor,
     colors,
@@ -36,7 +37,7 @@ const CircularProgressBar = () => {
     strokeWidth,
     viewWidth,
     styles,
-  } = useCircularProgress();
+  } = useCircularProgress(props);
 
   const VIEW_WIDTH_DIV = viewWidth / 2;
 

@@ -12,10 +12,10 @@ import {
 } from '@shopify/react-native-skia';
 import Animated from 'react-native-reanimated';
 
-import { GradientType } from './starWarButton.type';
+import { GradientType, StarWarButtonProps } from './starWarButton.type';
 import { useStarWarButton } from './useStarWarButton';
 
-export const StarWarButtonComponent = () => {
+export const StarWarButtonComponent = (props: StarWarButtonProps) => {
   const {
     blurRadius,
     buttonBorderRadius,
@@ -29,7 +29,6 @@ export const StarWarButtonComponent = () => {
     textStyle,
     title,
     titleColor,
-    props,
     titleSize,
     style,
     scaledButton,
@@ -38,7 +37,7 @@ export const StarWarButtonComponent = () => {
     backgroundColor,
     opacityButton,
     handlePress,
-  } = useStarWarButton();
+  } = useStarWarButton(props);
 
   return (
     <Pressable
@@ -73,7 +72,7 @@ export const StarWarButtonComponent = () => {
               width={canvasButtonWidth}
               r={buttonBorderRadius}
             >
-              {gradientType === GradientType.Sweep && (
+              {gradientType === GradientType.sweep && (
                 <SweepGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,
@@ -84,7 +83,7 @@ export const StarWarButtonComponent = () => {
                   transform={transformAnimation}
                 />
               )}
-              {gradientType === GradientType.Radial && (
+              {gradientType === GradientType.radial && (
                 <RadialGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,
@@ -96,7 +95,7 @@ export const StarWarButtonComponent = () => {
                   transform={transformAnimation}
                 />
               )}
-              {gradientType === GradientType.Linear && (
+              {gradientType === GradientType.linear && (
                 <LinearGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,

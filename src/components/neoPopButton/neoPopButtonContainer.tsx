@@ -7,7 +7,7 @@ import type { NeoPopButtonProps } from './neoPopButton.type';
 export const NeoPopButton: React.FC<NeoPopButtonProps> = (
   props: NeoPopButtonProps
 ) => (
-  <MiUiProvider props={props}>
-    <NeoPopButtonComponent />
+  <MiUiProvider>
+    <NeoPopButtonComponent {...props} />
   </MiUiProvider>
 );

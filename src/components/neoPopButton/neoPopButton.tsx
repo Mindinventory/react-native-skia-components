@@ -3,9 +3,10 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { Box, Canvas, Group, rect, rrect } from '@shopify/react-native-skia';
 
+import type { NeoPopButtonProps } from './neoPopButton.type';
 import { useNeoPopButton } from './useNeoPopButton';
 
-const NeoPopButton = () => {
+const NeoPopButton = (props: NeoPopButtonProps) => {
   const {
     animatedHeight,
     animatedWidth,
@@ -27,9 +28,8 @@ const NeoPopButton = () => {
     width,
     x,
     y,
-    props,
     styles,
-  } = useNeoPopButton();
+  } = useNeoPopButton(props);
 
   return (
     <TouchableOpacity

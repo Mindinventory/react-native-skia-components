@@ -1,11 +1,14 @@
 import type { ViewStyle } from 'react-native';
 
-export type AnimateBorderTypes = 'NONE' | 'NORMAL' | 'DISCO' | 'YOYO';
-
-export type AnimationTypes = 'NONE' | 'ROTATE' | 'BOUNCE';
 export interface CardProps {
+  /*
+  badfkdkn ex
+  */
   backgroundColor?: string;
   blur?: number;
+  /*
+  badfkdkn exampe ['grey'. '#fgfff', 'reg.()]
+  */
   borderColors?: string[];
   borderWidth?: number;
   cardRadius?: number;
@@ -24,9 +27,10 @@ export enum AnimateBorderType {
   DISCO = 'DISCO',
   YOYO = 'YOYO',
 }
-
 export enum AnimationType {
   NONE = 'NONE',
   ROTATE = 'ROTATE',
   BOUNCE = 'BOUNCE',
 }
+export type AnimateBorderTypes = keyof typeof AnimateBorderType;
+export type AnimationTypes = keyof typeof AnimationType;

@@ -2,14 +2,15 @@ import { useState } from 'react';
 
 import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
+import type { NeoPopButtonProps } from './neoPopButton.type';
 
 const HEIGHT = 100;
 const WIDTH = 200;
 const TEXT_TITLE_SIZE = 30;
 const BUTTON_RIGHT_SIDE_WIDTH = 20;
 
-export const useNeoPopButton = () => {
-  const { props, styles } = useMiUiContext();
+export const useNeoPopButton = (props: NeoPopButtonProps) => {
+  const { styles } = useMiUiContext();
 
   const {
     backgroundColor = miColor.bluishGray,

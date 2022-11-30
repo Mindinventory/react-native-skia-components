@@ -11,14 +11,15 @@ import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
+import type { FloatingButtonProps } from './floatingButton.type';
 
 const DEPTH = 10;
 const HEIGHT = 50;
 const SHADOW_HEIGHT = 10;
 const WIDTH = 150;
 
-export const useFloatingButton = () => {
-  const { props, styles } = useMiUiContext();
+export const useFloatingButton = (props: FloatingButtonProps) => {
+  const { styles } = useMiUiContext();
 
   const {
     backgroundColor = miColor.lightYellowShade,

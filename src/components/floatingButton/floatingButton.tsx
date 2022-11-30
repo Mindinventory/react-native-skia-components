@@ -4,9 +4,10 @@ import { TouchableOpacity, View } from 'react-native';
 import { Canvas, Group, Path } from '@shopify/react-native-skia';
 import Animated from 'react-native-reanimated';
 
+import type { FloatingButtonProps } from './floatingButton.type';
 import { useFloatingButton } from './useFloatingButton';
 
-const FloatingButton = () => {
+const FloatingButton = (props: FloatingButtonProps) => {
   const {
     backgroundColor,
     bottomShadowColor,
@@ -22,12 +23,11 @@ const FloatingButton = () => {
     textStyle,
     title,
     width,
-    props,
     styles,
     transform,
     textTransformStyle,
     titleSize,
-  } = useFloatingButton();
+  } = useFloatingButton(props);
 
   return (
     <View style={styles.starWarButtonStyle.container}>
@@ -71,11 +71,9 @@ const FloatingButton = () => {
         onLongPress={props.onLongPress}
         onPressIn={() => {
           onPressStart();
-          props.onPressIn?.();
         }}
         onPressOut={() => {
           onPressEnd();
-          props.onPressOut?.();
         }}
         activeOpacity={1}
         style={[

@@ -1,6 +1,3 @@
-import { useMemo } from 'react';
-import { Dimensions } from 'react-native';
-
 import {
   Easing,
   Extrapolate,
@@ -11,40 +8,29 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-import { DURATION } from '../../constants/constant';
 import { useMiUiContext } from '../../context';
-import { miColor } from '../../themes';
-import { AnimateBorderType, AnimationType } from './card.type';
+import { CardConstant } from './card.constant';
+import { AnimationType, CardProps } from './card.type';
 
-const { width: ScreenWidth } = Dimensions.get('window');
-const CARD_BLUR = 10;
-const CARD_BORDER_WIDTH = 5;
-const CARD_RADIUS = 20;
-const HEIGHT = 256;
-const PADDING = 40;
-
-export const useCard = () => {
-  const { props, styles } = useMiUiContext();
+export const useCard = ({ props }: { props: CardProps }) => {
+  const { styles } = useMiUiContext();
 
   const {
-    width = ScreenWidth * 0.9,
-    height = HEIGHT,
-    backgroundColor = miColor.black,
-    cardRadius = CARD_RADIUS,
-    borderWidth = CARD_BORDER_WIDTH,
-    borderColors = [
-      miColor.cyan,
-      miColor.magenta,
-      miColor.yellow,
-      miColor.cyan,
-    ],
-    blur = CARD_BLUR,
-    animation = props.animation && AnimationType.NONE,
-    animateBorder = AnimateBorderType.NORMAL,
+    width = CardConstant.default.width,
+    height = CardConstant.default.height,
+    backgroundColor = CardConstant.default.backgroundColor,
+    cardRadius = CardConstant.default.cardRadius,
+    borderWidth = CardConstant.default.borderWidth,
+    borderColors = CardConstant.default.borderColors,
+    blur = CardConstant.default.blur,
+    animation = CardConstant.default.animation,
+    animateBorder = CardConstant.default.animateBorder,
     style,
-    duration = 3000,
+    duration = CardConstant.default.duration,
   } = props;
-  const canvasPadding = PADDING;
+
+  const canvasPadding = CardConstant.default.padding;
+
   const CARD_WIDTH = width - borderWidth;
   const CARD_HEIGHT = height - borderWidth;
 
@@ -55,7 +41,7 @@ export const useCard = () => {
 
   const rotatePoint = useSharedValue(0);
 
-  const zIndex = 300;
+  const zIndex = CardConstant.default.perspective;
 
   const cardStyle = useAnimatedStyle(() => {
     const rotateXValue = `${rotateX.value}deg`;
@@ -65,7 +51,7 @@ export const useCard = () => {
     return {
       transform: [
         {
-          perspective: 300,
+          perspective: CardConstant.default.perspective,
         },
         { rotateX: rotateXValue },
         { rotateY: rotateYValue },
@@ -78,22 +64,22 @@ export const useCard = () => {
     if (animation !== AnimationType.NONE) {
       if (rotatePoint.value === 0) {
         rotatePoint.value = withTiming(1, {
-          duration: 500,
+          duration: CardConstant.duration.rotationDuration,
           easing: Easing.linear,
         });
       } else if (rotatePoint.value === 1) {
         rotatePoint.value = withTiming(2, {
-          duration: 500,
+          duration: CardConstant.duration.rotationDuration,
           easing: Easing.linear,
         });
       } else if (rotatePoint.value === 2) {
         rotatePoint.value = withTiming(3, {
-          duration: 500,
+          duration: CardConstant.duration.rotationDuration,
           easing: Easing.linear,
         });
       } else if (rotatePoint.value === 3) {
         rotatePoint.value = withTiming(0, {
-          duration: 1500,
+          duration: CardConstant.duration.rotationDuration3,
           easing: Easing.linear,
         });
       }
@@ -114,11 +100,11 @@ export const useCard = () => {
       );
     } else if (animation === AnimationType.BOUNCE) {
       rotateX.value = withTiming(0, {
-        duration: DURATION.SEC1,
+        duration: CardConstant.duration.rotationDuration1,
         easing: Easing.bounce,
       });
       rotateY.value = withTiming(0, {
-        duration: DURATION.SEC1,
+        duration: CardConstant.duration.rotationDuration1,
         easing: Easing.bounce,
       });
 
@@ -130,42 +116,21 @@ export const useCard = () => {
       );
     } else {
       rotateX.value = withTiming(0, {
-        duration: DURATION.SEC1,
+        duration: CardConstant.duration.rotationDuration1,
         easing: Easing.linear,
       });
       rotateY.value = withTiming(0, {
-        duration: DURATION.SEC1,
+        duration: CardConstant.duration.rotationDuration1,
         easing: Easing.linear,
       });
       scale.value = withTiming(1, {
-        duration: DURATION.SEC1,
+        duration: CardConstant.duration.rotationDuration1,
         easing: Easing.linear,
       });
     }
   }, [rotatePoint.value, animation]);
 
-  return useMemo(() => {
-    return {
-      animateBorder,
-      animation,
-      backgroundColor,
-      blur,
-      borderColors,
-      borderWidth,
-      canvasPadding,
-      CARD_HEIGHT,
-      CARD_WIDTH,
-      cardRadius,
-      cardStyle,
-      duration,
-      height,
-      props,
-      style,
-      styles,
-      width,
-      zIndex,
-    };
-  }, [
+  return {
     animateBorder,
     animation,
     backgroundColor,
@@ -184,5 +149,5 @@ export const useCard = () => {
     styles,
     width,
     zIndex,
-  ]);
+  };
 };

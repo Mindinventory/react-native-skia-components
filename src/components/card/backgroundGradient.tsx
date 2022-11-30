@@ -14,12 +14,12 @@ import { Easing } from 'react-native-reanimated';
 import type { AnimateBorderTypes } from './card.type';
 
 interface BackgroundGradientProps {
-  blur: number;
-  borderColors: string[];
-  canvasPadding: number;
+  blur?: number;
+  borderColors?: string[];
+  canvasPadding?: number;
   cardRadius?: number;
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
   animateBorder?: AnimateBorderTypes;
   duration?: number;
 }

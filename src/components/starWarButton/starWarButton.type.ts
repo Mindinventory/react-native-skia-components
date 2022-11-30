@@ -3,8 +3,8 @@ import type { Vector } from '@shopify/react-native-skia';
 import type { ButtonProps } from '../button/button.type';
 
 export type StarWarButtonType = {
-  colors?: string | string[];
-  filled?: 'solid' | 'outer' | 'inner' | 'normal';
+  colors: string | string[];
+  filled?: FilledTypes;
   blurRadius?: number;
   buttonBorderRadius?: number;
   titleColor?: string;
@@ -13,35 +13,37 @@ export type StarWarButtonType = {
   buttonEffectDuration?: number;
 } & ButtonProps;
 
-export type GradientTypes = 'sweep' | 'linear' | 'radial';
-
 export enum GradientType {
-  Linear = 'linear',
-  Radial = 'radial',
-  Sweep = 'sweep',
+  linear = 'linear',
+  radial = 'radial',
+  sweep = 'sweep',
 }
+
+export type GradientTypes = keyof typeof GradientType;
 
 export enum FilledType {
-  Solid = 'solid',
-  Outer = 'outer',
-  Inner = 'inner',
-  Normal = 'normal',
+  solid = 'solid',
+  outer = 'outer',
+  inner = 'inner',
+  normal = 'normal',
 }
+
+export type FilledTypes = keyof typeof FilledType;
 
 export type StarWarButtonProps<TGradientType = GradientTypes> =
   TGradientType extends 'linear'
     ? StarWarButtonType & {
         gradientType?: TGradientType;
-        start?: Vector;
-        end?: Vector;
+        start: Vector;
+        end: Vector;
       }
     : TGradientType extends 'radial'
     ? StarWarButtonType & {
         gradientType?: TGradientType;
-        radius?: number;
-        center?: Vector;
+        radius: number;
+        center: Vector;
       }
     : StarWarButtonType & {
         gradientType?: TGradientType;
-        center?: Vector;
+        center: Vector;
       };

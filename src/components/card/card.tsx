@@ -4,9 +4,10 @@ import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
 import BackgroundGradient from './backgroundGradient';
+import type { CardProps } from './card.type';
 import { useCard } from './useCard';
 
-const Card = () => {
+const Card = (props: CardProps) => {
   const {
     backgroundColor,
     blur,
@@ -22,9 +23,8 @@ const Card = () => {
     style,
     animateBorder,
     duration,
-    props,
     styles,
-  } = useCard();
+  } = useCard({ props });
 
   return (
     <View style={styles.cardStyle.container}>

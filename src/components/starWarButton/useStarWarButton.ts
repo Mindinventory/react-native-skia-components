@@ -1,10 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
-import {
-  useComputedValue,
-  useTiming,
-  Vector,
-} from '@shopify/react-native-skia';
+import { useComputedValue, useTiming } from '@shopify/react-native-skia';
 import {
   Easing,
   useAnimatedStyle,
@@ -15,18 +11,22 @@ import {
 
 import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
-import { FilledType, GradientType } from './starWarButton.type';
+import {
+  FilledType,
+  GradientType,
+  StarWarButtonProps,
+} from './starWarButton.type';
 
-export const useStarWarButton = () => {
-  const { styles, props } = useMiUiContext();
+export const useStarWarButton = (props: StarWarButtonProps) => {
+  const { styles } = useMiUiContext();
 
   const scale = useSharedValue(1);
   const opacity = useSharedValue(1);
 
   const {
     style,
-    gradientType = GradientType.Linear,
-    filled = FilledType.Solid,
+    gradientType = GradientType.linear,
+    filled = FilledType.solid,
     textStyle,
     titleSize = 20,
     title = 'Button',
@@ -53,13 +53,8 @@ export const useStarWarButton = () => {
     [props.colors]
   );
 
-  const gradient: {
-    end: Vector;
-    start: Vector;
-    center?: Vector;
-    radius: number;
-  } = useMemo(() => {
-    if (props.gradientType && props.gradientType === GradientType.Sweep) {
+  const gradient = useMemo(() => {
+    if (props.gradientType === GradientType.sweep) {
       return {
         center: props.center
           ? props.center
@@ -70,7 +65,7 @@ export const useStarWarButton = () => {
       };
     }
 
-    if (props.gradientType === GradientType.Radial) {
+    if (props.gradientType === GradientType.radial) {
       return {
         center: props.center
           ? props.center
@@ -82,7 +77,7 @@ export const useStarWarButton = () => {
       };
     }
 
-    if (props.gradientType === GradientType.Linear) {
+    if (props.gradientType === GradientType.linear) {
       return {
         end: props.end
           ? props.end
