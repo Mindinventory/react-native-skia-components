@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useRef } from 'react';
 import {
   Dimensions,
@@ -20,81 +19,82 @@ const { width } = Dimensions.get('window');
 
 const cardItems = [
   {
-    title: 'Card title 1',
-    animation: 'ROTATE',
     animateBorder: 'NORMAL',
+    animation: 'ROTATE',
+    title: 'Card title 1',
   },
   {
-    title: 'Card title 2',
-    animation: 'BOUNCE',
     animateBorder: 'YOYO',
+    animation: 'BOUNCE',
+    title: 'Card title 2',
   },
   {
-    title: 'Card title 3',
-    animation: 'NONE',
     animateBorder: 'DISCO',
+    animation: 'NONE',
+    title: 'Card title 3',
   },
 ];
 
+type CARDITEMS = {
+  animateBorder: 'NORMAL' | 'YOYO' | 'NONE' | 'DISCO';
+  animation: 'ROTATE' | 'NONE' | 'BOUNCE';
+  title: string;
+};
+
 const CardItems = ({ flatListRef }) => {
   return (
-    <FlatList
-      horizontal
-      data={cardItems}
-      keyExtractor={(_item, index) => index.toString()}
-      style={{
-        width: width * 0.91,
-        maxHeight: 250,
-      }}
-      contentContainerStyle={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxHeight: 250,
-      }}
-      ref={flatListRef}
-      getItemLayout={(data, index) => ({
-        length: 350,
-        offset: 350 * index,
-        index,
-      })}
-      renderItem={({ item, index }) => {
-        return (
-          <Card
-            height={180}
-            width={310}
-            borderWidth={5}
-            animation={item.animation}
-            style={styles.card}
-            animateBorder={item.animateBorder}
-          >
-            <ImageBackground
-              source={{
-                uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
-              }}
-              style={styles.cardContain}
-              resizeMode={'cover'}
+    cardItems.length > 0 && (
+      <FlatList
+        horizontal
+        data={cardItems}
+        keyExtractor={(_item, index) => index.toString()}
+        style={styles.listItemStyle}
+        contentContainerStyle={styles.contentListItem}
+        ref={flatListRef}
+        getItemLayout={(_data, index) => ({
+          index,
+          length: 350,
+          offset: 350 * index,
+        })}
+        renderItem={({ item }: { item: CARDITEMS }) => {
+          return (
+            <Card
+              height={180}
+              width={310}
+              borderWidth={5}
+              animation={item.animation}
+              style={styles.card}
+              animateBorder={item.animateBorder}
             >
-              <View style={styles.cardStyle}>
-                <Text style={styles.cardNumber}>
-                  {'\u2022'}
-                  {'\u2022'}
-                  {'\u2022'}
-                  {'\u2022'}
-                  {'\t'}
-                  <Text style={styles.cardText}>5008</Text>
-                </Text>
-                <Text style={styles.cardText}>Mindinventory</Text>
-              </View>
-            </ImageBackground>
-          </Card>
-        );
-      }}
-    />
+              <ImageBackground
+                source={{
+                  uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
+                }}
+                style={styles.cardContain}
+                resizeMode={'cover'}
+              >
+                <View style={styles.cardStyle}>
+                  <Text style={styles.cardNumber}>
+                    {'\u2022'}
+                    {'\u2022'}
+                    {'\u2022'}
+                    {'\u2022'}
+                    {'\t'}
+                    <Text style={styles.cardText}>5008</Text>
+                  </Text>
+                  <Text style={styles.cardText}>Mindinventory</Text>
+                </View>
+              </ImageBackground>
+            </Card>
+          );
+        }}
+      />
+    )
   );
 };
 
 const CardScreen = () => {
-  const flatListRef = useRef(null);
+  const flatListRef = useRef().current;
   let indexes = 0;
 
   return (
@@ -108,34 +108,7 @@ const CardScreen = () => {
           <Text style={styles.newLook}>New Look</Text>
         </Text>
         <CardItems flatListRef={flatListRef} />
-        {/* <Card
-          height={180}
-          width={310}
-          borderWidth={5}
-          animation={'ROTATE'}
-          style={styles.card}
-          animateBorder={'DISCO'}
-        >
-          <ImageBackground
-            source={{
-              uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
-            }}
-            style={styles.cardContain}
-            resizeMode={'cover'}
-          >
-            <View style={styles.cardStyle}>
-              <Text style={styles.cardNumber}>
-                {'\u2022'}
-                {'\u2022'}
-                {'\u2022'}
-                {'\u2022'}
-                {'\t'}
-                <Text style={styles.cardText}>5008</Text>
-              </Text>
-              <Text style={styles.cardText}>Mindinventory</Text>
-            </View>
-          </ImageBackground>
-        </Card> */}
+
         <Text style={styles.chooseCardText}>Choose a Card</Text>
         <NeoPopButton
           width={220}
@@ -144,11 +117,6 @@ const CardScreen = () => {
           bottomShadowColor={'gray'}
           textStyle={styles.floatingTextStyle}
           onPress={() => {
-            console.log('floating onPress');
-
-            console.log('indexes: ', indexes);
-
-            console.log('cardItems: ', cardItems.length);
             if (indexes === cardItems.length - 1) {
               indexes = 0;
             } else {
@@ -156,7 +124,7 @@ const CardScreen = () => {
             }
 
             if (flatListRef) {
-              flatListRef.current.scrollToIndex({
+              flatListRef?.scrollToIndex({
                 animated: true,
                 index: indexes,
                 viewOffset: 0,
@@ -213,6 +181,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  contentListItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    maxHeight: 250,
+  },
   floatingTextStyle: {
     fontSize: 12,
   },
@@ -229,6 +202,10 @@ const styles = StyleSheet.create({
   image: {
     height: '100%',
     width: '100%',
+  },
+  listItemStyle: {
+    maxHeight: 250,
+    width: width * 0.91,
   },
   newLook: {
     color: '#d29cf8',

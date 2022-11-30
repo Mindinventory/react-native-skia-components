@@ -10,12 +10,8 @@ import {
 } from 'react-native-reanimated';
 
 import { useMiUiContext } from '../../context';
-import { miColor } from '../../themes';
-import {
-  FilledType,
-  GradientType,
-  StarWarButtonProps,
-} from './starWarButton.type';
+import { StarWarButtonConstant } from './starWarButton.constant';
+import { GradientType, StarWarButtonProps } from './starWarButton.type';
 
 export const useStarWarButton = (props: StarWarButtonProps) => {
   const { styles } = useMiUiContext();
@@ -25,28 +21,30 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
 
   const {
     style,
-    gradientType = GradientType.linear,
-    filled = FilledType.solid,
+    gradientType = StarWarButtonConstant.default.gradientType,
+    filled = StarWarButtonConstant.default.filled,
     textStyle,
-    titleSize = 20,
-    title = 'Button',
-    width = 200,
-    height = 100,
-    blurRadius = 10,
-    buttonBorderRadius = 10,
-    titleColor = miColor.black,
-    animation = true,
-    backgroundColor = '#ffffff',
-    animationDuration = 3000,
-    buttonEffectDuration = 250,
+    titleSize = StarWarButtonConstant.default.titleSize,
+    title = StarWarButtonConstant.default.title,
+    width = StarWarButtonConstant.default.width,
+    height = StarWarButtonConstant.default.height,
+    blurRadius = StarWarButtonConstant.default.blurRadius,
+    buttonBorderRadius = StarWarButtonConstant.default.buttonBorderRadius,
+    titleColor = StarWarButtonConstant.default.titleColor,
+    animation = StarWarButtonConstant.default.animation,
+    backgroundColor = StarWarButtonConstant.default.backgroundColor,
+    animationDuration = StarWarButtonConstant.default.animationDuration,
+    buttonEffectDuration = StarWarButtonConstant.default.buttonEffectDuration,
   } = props;
 
-  const buttonWidth = width || 250;
-  const buttonHeight = height || 200;
-  const canvasButtonWidth = buttonWidth + 30;
-  const canvasButtonHeight = buttonHeight + 30;
+  const buttonWidth = width;
+  const buttonHeight = height;
+  const canvasButtonWidth =
+    buttonWidth + StarWarButtonConstant.default.buttonPadding;
+  const canvasButtonHeight =
+    buttonHeight + StarWarButtonConstant.default.buttonPadding;
 
-  const canvasPadding = 40;
+  const canvasPadding = StarWarButtonConstant.default.canvasPadding;
 
   const colors: string[] = useMemo(
     () => (!Array.isArray(props.colors) ? [props.colors] : props.colors),
@@ -54,7 +52,7 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
   );
 
   const gradient = useMemo(() => {
-    if (props.gradientType === GradientType.sweep) {
+    if (props.gradientType === GradientType.SWEEP) {
       return {
         center: props.center
           ? props.center
@@ -65,7 +63,7 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
       };
     }
 
-    if (props.gradientType === GradientType.radial) {
+    if (props.gradientType === GradientType.RADIAL) {
       return {
         center: props.center
           ? props.center
@@ -77,7 +75,7 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
       };
     }
 
-    if (props.gradientType === GradientType.linear) {
+    if (props.gradientType === GradientType.LINEAR) {
       return {
         end: props.end
           ? props.end
@@ -95,6 +93,7 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
   }, [
     canvasButtonHeight,
     canvasButtonWidth,
+    canvasPadding,
     props.center,
     props.end,
     props.gradientType,
@@ -102,11 +101,11 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
     props.start,
   ]);
 
-  const progress = useTiming(
+  const rotate = useTiming(
     {
-      from: 0,
+      from: StarWarButtonConstant.default.rotateValueFrom,
       loop: true,
-      to: 6.3,
+      to: StarWarButtonConstant.default.rotateValueTo,
     },
     {
       duration: animationDuration,
@@ -115,13 +114,13 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
   );
 
   const transform = useComputedValue(
-    () => [{ rotate: progress.current }],
-    [progress]
+    () => [{ rotate: rotate.current }],
+    [rotate]
   );
 
   const scaledButton = useAnimatedStyle(() => {
     return {
-      perspective: 300,
+      perspective: StarWarButtonConstant.default.perspective,
       transform: [
         {
           scale: scale.value,
@@ -163,50 +162,23 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
     props.onPress?.();
   }, [buttonEffectDuration, opacity, props, scale]);
 
-  return useMemo(() => {
-    return {
-      animation,
-      backgroundColor,
-      blurRadius,
-      buttonBorderRadius,
-      canvasButtonHeight,
-      canvasButtonWidth,
-      canvasPadding,
-      colors,
-      filled,
-      gradient,
-      gradientType,
-      handlePress,
-      height,
-      opacity,
-      opacityButton,
-      progress,
-      props,
-      scale,
-      scaledButton,
-      style,
-      styles,
-      textStyle,
-      title,
-      titleColor,
-      titleSize,
-      transform,
-      transformAnimation,
-      width,
-    };
-  }, [
+  return {
     animation,
+    backgroundColor,
     blurRadius,
     buttonBorderRadius,
     canvasButtonHeight,
     canvasButtonWidth,
+    canvasPadding,
     colors,
     filled,
     gradient,
     gradientType,
+    handlePress,
     height,
     opacity,
-    progress,
+    opacityButton,
+    progress: rotate,
     props,
     scale,
     scaledButton,
@@ -219,8 +191,5 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
     transform,
     transformAnimation,
     width,
-    backgroundColor,
-    opacityButton,
-    handlePress,
-  ]);
+  };
 };

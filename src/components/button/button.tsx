@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FloatingButton } from '../floatingButton';
 import type { FloatingButtonProps } from '../floatingButton/floatingButton.type';
-import { NeoPopButton, NeoPopButtonProps } from '../neoPopButton/';
+import { NeoPopButton, NeoPopButtonProps } from '../neoPopButton';
 import type { StarWarButtonProps } from '../starWarButton/starWarButton.type';
 import { StarWarButton } from '../starWarButton/starWarButtonContainer';
 

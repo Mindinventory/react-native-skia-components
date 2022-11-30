@@ -15,7 +15,7 @@ const StarWarsButtonScreen = () => {
         title="Button"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
         filled={'inner'}
-        gradientType={'linear'}
+        gradientType={'LINEAR'}
         buttonBorderRadius={50}
         width={200}
         height={20}
@@ -23,6 +23,8 @@ const StarWarsButtonScreen = () => {
         titleColor={'white'}
         animation={true}
         backgroundColor={'green'}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 0 }}
       />
       <StarWarButton
         preset="starWar"
@@ -30,7 +32,7 @@ const StarWarsButtonScreen = () => {
         title="Button 2"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
         filled={'solid'}
-        gradientType={'sweep'}
+        gradientType={'SWEEP'}
         titleSize={20}
         blurRadius={10}
         titleColor={'white'}
@@ -45,7 +47,7 @@ const StarWarsButtonScreen = () => {
         title="Button 2"
         colors={['cyan', 'magenta', 'black', 'cyan']}
         filled={'inner'}
-        gradientType={'radial'}
+        gradientType={'RADIAL'}
         titleSize={20}
         blurRadius={10}
         titleColor={'white'}
@@ -60,7 +62,7 @@ const StarWarsButtonScreen = () => {
         title="Button 3"
         colors={'darkblue'}
         filled={'normal'}
-        gradientType={'linear'}
+        gradientType={'LINEAR'}
         titleSize={20}
         blurRadius={5}
         titleColor={'white'}

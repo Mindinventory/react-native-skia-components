@@ -32,7 +32,6 @@ const ListComponentScreen = () => {
         scrollEnabled
         horizontal
         showsHorizontalScrollIndicator={false}
-        // contentContainerStyle={{ backgroundColor: 'red' }}
       >
         <View style={styles.flexDirectionRow}>
           {new Array(5).fill('1').map((_, index) => {
@@ -42,7 +41,6 @@ const ListComponentScreen = () => {
                 width={310}
                 borderWidth={5}
                 key={index.toString()}
-                // borderColors={['cyan', 'red', 'red', 'cyan']}
               >
                 <View style={styles.cardStyle}>
                   <Text style={styles.cardNumber}>
@@ -146,7 +144,7 @@ const ListComponentScreen = () => {
           title="Button"
           colors={['cyan', 'magenta', 'yellow', 'cyan']}
           filled={'outer'}
-          gradientType={'linear'}
+          gradientType={'LINEAR'}
           buttonBorderRadius={50}
           width={200}
           height={20}
@@ -161,7 +159,7 @@ const ListComponentScreen = () => {
           title="Button 2"
           colors={['cyan', 'magenta', 'yellow', 'cyan']}
           filled={'solid'}
-          gradientType={'sweep'}
+          gradientType={'SWEEP'}
           titleSize={20}
           blurRadius={10}
           titleColor={'white'}
@@ -175,7 +173,7 @@ const ListComponentScreen = () => {
           title="Button 2"
           colors={['cyan', 'magenta', 'black', 'cyan']}
           filled={'inner'}
-          gradientType={'radial'}
+          gradientType={'RADIAL'}
           titleSize={20}
           blurRadius={10}
           titleColor={'white'}
@@ -189,7 +187,7 @@ const ListComponentScreen = () => {
           title="Button 3"
           colors={'darkblue'}
           filled={'normal'}
-          gradientType={'linear'}
+          gradientType={'LINEAR'}
           titleSize={20}
           blurRadius={5}
           titleColor={'white'}

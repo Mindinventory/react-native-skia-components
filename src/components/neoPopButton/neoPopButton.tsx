@@ -81,7 +81,6 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
           {
             height: height,
             width: width,
-            // backgroundColor: 'red',
           },
         ]}
       >

@@ -72,7 +72,7 @@ export const StarWarButtonComponent = (props: StarWarButtonProps) => {
               width={canvasButtonWidth}
               r={buttonBorderRadius}
             >
-              {gradientType === GradientType.sweep && (
+              {gradientType === GradientType.SWEEP && (
                 <SweepGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,
@@ -83,7 +83,7 @@ export const StarWarButtonComponent = (props: StarWarButtonProps) => {
                   transform={transformAnimation}
                 />
               )}
-              {gradientType === GradientType.radial && (
+              {gradientType === GradientType.RADIAL && (
                 <RadialGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,
@@ -95,7 +95,7 @@ export const StarWarButtonComponent = (props: StarWarButtonProps) => {
                   transform={transformAnimation}
                 />
               )}
-              {gradientType === GradientType.linear && (
+              {gradientType === GradientType.LINEAR && (
                 <LinearGradient
                   origin={vec(
                     (canvasButtonWidth + canvasPadding) / 2,

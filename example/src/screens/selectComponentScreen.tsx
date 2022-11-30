@@ -58,7 +58,7 @@ const SelectComponentScreen = () => {
   );
 };
 
-export default SelectComponentScreen;
+export default React.memo(SelectComponentScreen);
 
 const styles = StyleSheet.create({
   animOptionNoneStyle: {

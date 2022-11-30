@@ -24,7 +24,6 @@ const CardComponent = () => {
             height={220}
             width={310}
             borderWidth={5}
-            // borderColors={['cyan', 'red', 'red', 'cyan']}
             animation={'BOUNCE'}
             style={styles.card}
             animateBorder={'NORMAL'}
@@ -69,14 +68,7 @@ const CardComponent = () => {
               <Text style={styles.carNameText}>Mindinventory</Text>
             </View>
           </Card>
-          <Card
-            height={220}
-            width={310}
-            borderWidth={5}
-            // borderColors={['cyan', 'red', 'red', 'cyan']}
-            // animation={'ROTATE'}
-            animateBorder={'NONE'}
-          >
+          <Card height={220} width={310} borderWidth={5} animateBorder={'NONE'}>
             <ImageBackground
               source={{
                 uri: 'https://source.unsplash.com/random/1920x1080/?debitcard',
@@ -132,7 +124,6 @@ const styles = StyleSheet.create({
   },
   flexDirectionRow: {
     alignSelf: 'center',
-    // flexDirection: 'row',
   },
   image: {
     alignSelf: 'center',

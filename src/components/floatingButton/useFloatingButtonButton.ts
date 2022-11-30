@@ -1,33 +1,32 @@
 import { useState } from 'react';
 
 import { useMiUiContext } from '../../context';
-import { miColor } from '../../themes';
+import { FloatingButtonConstant } from './floatingButton.constant';
 import type { FloatingButtonProps } from './floatingButton.type';
-
-const HEIGHT = 100;
-const WIDTH = 200;
-const TEXT_TITLE_SIZE = 30;
-const BUTTON_RIGHT_SIDE_WIDTH = 20;
 
 export const useFloatingButton = (props: FloatingButtonProps) => {
   const { styles } = useMiUiContext();
 
   const {
-    backgroundColor = miColor.bluishGray,
-    bottomShadowColor = miColor.yellowGold,
-    height = HEIGHT,
-    sideShadowColor = miColor.bluishGrayLight,
+    backgroundColor = FloatingButtonConstant.default.backgroundColor,
+    bottomShadowColor = FloatingButtonConstant.default.height,
+    height = FloatingButtonConstant.default.height,
+    sideShadowColor = FloatingButtonConstant.default.sideShadowColor,
     textStyle,
-    title = ' ',
-    titleSize = TEXT_TITLE_SIZE,
-    width = WIDTH,
+    title = FloatingButtonConstant.default.title,
+    titleSize = FloatingButtonConstant.default.titleSize,
+    width = FloatingButtonConstant.default.width,
   } = props;
 
   const buttonWidth = width;
   const buttonHeight = height;
-  const canvasButtonWidth = buttonWidth + BUTTON_RIGHT_SIDE_WIDTH;
-  const canvasButtonHeight = buttonHeight + BUTTON_RIGHT_SIDE_WIDTH;
+  const canvasButtonWidth =
+    buttonWidth + FloatingButtonConstant.default.buttonRightSideWidth;
+  const canvasButtonHeight =
+    buttonHeight + FloatingButtonConstant.default.buttonRightSideWidth;
+
   const TEXT_POSITION = buttonWidth / 2 - titleSize;
+
   const [x] = useState<number>(-20);
   const [y] = useState<number>(-20);
   const [animatedWidth, setAnimatedWidth] = useState<number>(0);

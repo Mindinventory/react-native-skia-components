@@ -2,10 +2,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import {
-  FloatingButton,
-  NeoPopButton,
-} from '@mindinventory/react-native-skia-components';
+import { NeoPopButton } from '@mindinventory/react-native-skia-components';
 
 import { styles } from './componentStyle.style';
 

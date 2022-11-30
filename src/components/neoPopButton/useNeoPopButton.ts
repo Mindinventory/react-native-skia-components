@@ -10,31 +10,26 @@ import {
 import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 import { useMiUiContext } from '../../context';
-import { miColor } from '../../themes';
+import { NeoPopButtonConstant } from './neoPopButton.constant';
 import type { NeoPopButtonProps } from './neoPopButton.type';
-
-const DEPTH = 10;
-const HEIGHT = 50;
-const SHADOW_HEIGHT = 10;
-const WIDTH = 150;
 
 export const useNeoPopButton = (props: NeoPopButtonProps) => {
   const { styles } = useMiUiContext();
 
   const {
-    backgroundColor = miColor.lightYellowShade,
-    bottomShadowColor = miColor.black,
-    depth = DEPTH,
-    height: propHeight = HEIGHT,
-    isFloating = true,
-    shadowHeight = SHADOW_HEIGHT,
-    sideShadowColor = miColor.darkYellowShade,
+    backgroundColor = NeoPopButtonConstant.default.backgroundColor,
+    bottomShadowColor = NeoPopButtonConstant.default.bottomShadowColor,
+    depth = NeoPopButtonConstant.default.depth,
+    height: propHeight = NeoPopButtonConstant.default.height,
+    isFloating = NeoPopButtonConstant.default.isFloating,
+    shadowHeight = NeoPopButtonConstant.default.shadowHeight,
+    sideShadowColor = NeoPopButtonConstant.default.sideShadowColor,
     textStyle,
-    title = 'Pay',
-    width: propWidth = WIDTH,
-    titleSize = 10,
-    floatAnimation = true,
-    duration = 800,
+    title = NeoPopButtonConstant.default.title,
+    width: propWidth = NeoPopButtonConstant.default.width,
+    titleSize = NeoPopButtonConstant.default.titleSize,
+    floatAnimation = NeoPopButtonConstant.default.floatAnimation,
+    duration = NeoPopButtonConstant.default.duration,
   } = props;
 
   let height = propHeight * 1.5;
