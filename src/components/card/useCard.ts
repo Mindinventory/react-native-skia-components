@@ -61,7 +61,7 @@ export const useCard = ({ props }: { props: CardProps }) => {
   }, [rotateX.value, rotateY.value, scale.value]);
 
   useDerivedValue(() => {
-    if (animation !== AnimationType.NONE) {
+    if (animation !== AnimationType.none) {
       if (rotatePoint.value === 0) {
         rotatePoint.value = withTiming(1, {
           duration: CardConstant.duration.rotationDuration,
@@ -85,7 +85,7 @@ export const useCard = ({ props }: { props: CardProps }) => {
       }
     }
 
-    if (animation === AnimationType.ROTATE) {
+    if (animation === AnimationType.rotate) {
       rotateX.value = interpolate(
         rotatePoint.value,
         [0, 1, 2, 3, 4],
@@ -98,7 +98,7 @@ export const useCard = ({ props }: { props: CardProps }) => {
         [-6, 6, 6, -6],
         Extrapolate.CLAMP
       );
-    } else if (animation === AnimationType.BOUNCE) {
+    } else if (animation === AnimationType.bounce) {
       rotateX.value = withTiming(0, {
         duration: CardConstant.duration.rotationDuration1,
         easing: Easing.bounce,

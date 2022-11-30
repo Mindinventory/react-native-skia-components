@@ -19,77 +19,75 @@ const { width } = Dimensions.get('window');
 
 const cardItems = [
   {
-    animateBorder: 'NORMAL',
-    animation: 'ROTATE',
+    animateBorder: 'normal',
+    animation: 'rotate',
     title: 'Card title 1',
   },
   {
-    animateBorder: 'YOYO',
-    animation: 'BOUNCE',
+    animateBorder: 'yoyo',
+    animation: 'bounce',
     title: 'Card title 2',
   },
   {
-    animateBorder: 'DISCO',
-    animation: 'NONE',
+    animateBorder: 'disco',
+    animation: 'none',
     title: 'Card title 3',
   },
 ];
 
 type CARDITEMS = {
-  animateBorder: 'NORMAL' | 'YOYO' | 'NONE' | 'DISCO';
-  animation: 'ROTATE' | 'NONE' | 'BOUNCE';
+  animateBorder: 'normal' | 'yoyo' | 'none' | 'disco';
+  animation: 'rotate' | 'none' | 'bounce';
   title: string;
 };
 
 const CardItems = ({ flatListRef }) => {
   return (
-    cardItems.length > 0 && (
-      <FlatList
-        horizontal
-        data={cardItems}
-        keyExtractor={(_item, index) => index.toString()}
-        style={styles.listItemStyle}
-        contentContainerStyle={styles.contentListItem}
-        ref={flatListRef}
-        getItemLayout={(_data, index) => ({
-          index,
-          length: 350,
-          offset: 350 * index,
-        })}
-        renderItem={({ item }: { item: CARDITEMS }) => {
-          return (
-            <Card
-              height={180}
-              width={310}
-              borderWidth={5}
-              animation={item.animation}
-              style={styles.card}
-              animateBorder={item.animateBorder}
+    <FlatList
+      horizontal
+      data={cardItems}
+      keyExtractor={(_item, index) => index.toString()}
+      style={styles.listItemStyle}
+      contentContainerStyle={styles.contentListItem}
+      ref={flatListRef}
+      getItemLayout={(_data, index) => ({
+        index,
+        length: 350,
+        offset: 350 * index,
+      })}
+      renderItem={({ item }: { item: CARDITEMS }) => {
+        return (
+          <Card
+            height={180}
+            width={310}
+            borderWidth={5}
+            animation={item.animation}
+            style={styles.card}
+            animateBorder={item.animateBorder}
+          >
+            <ImageBackground
+              source={{
+                uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
+              }}
+              style={styles.cardContain}
+              resizeMode={'cover'}
             >
-              <ImageBackground
-                source={{
-                  uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
-                }}
-                style={styles.cardContain}
-                resizeMode={'cover'}
-              >
-                <View style={styles.cardStyle}>
-                  <Text style={styles.cardNumber}>
-                    {'\u2022'}
-                    {'\u2022'}
-                    {'\u2022'}
-                    {'\u2022'}
-                    {'\t'}
-                    <Text style={styles.cardText}>5008</Text>
-                  </Text>
-                  <Text style={styles.cardText}>Mindinventory</Text>
-                </View>
-              </ImageBackground>
-            </Card>
-          );
-        }}
-      />
-    )
+              <View style={styles.cardStyle}>
+                <Text style={styles.cardNumber}>
+                  {'\u2022'}
+                  {'\u2022'}
+                  {'\u2022'}
+                  {'\u2022'}
+                  {'\t'}
+                  <Text style={styles.cardText}>5008</Text>
+                </Text>
+                <Text style={styles.cardText}>Mindinventory</Text>
+              </View>
+            </ImageBackground>
+          </Card>
+        );
+      }}
+    />
   );
 };
 

@@ -72,15 +72,15 @@ export interface BackgroundGradientProps {
 }
 
 export enum AnimateBorderType {
-  NONE = 'NONE',
-  NORMAL = 'NORMAL',
-  DISCO = 'DISCO',
-  YOYO = 'YOYO',
+  none = 'none',
+  normal = 'normal',
+  disco = 'disco',
+  yoyo = 'yoyo',
 }
 export enum AnimationType {
-  NONE = 'NONE',
-  ROTATE = 'ROTATE',
-  BOUNCE = 'BOUNCE',
+  none = 'none',
+  rotate = 'rotate',
+  bounce = 'bounce',
 }
 export type AnimateBorderTypes = keyof typeof AnimateBorderType;
 export type AnimationTypes = keyof typeof AnimationType;

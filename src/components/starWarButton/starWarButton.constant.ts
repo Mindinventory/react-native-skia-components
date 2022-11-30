@@ -12,7 +12,7 @@ export const StarWarButtonConstant = {
     buttonPadding: 30,
     canvasPadding: 40,
     filled: FilledType.solid,
-    gradientType: GradientType.LINEAR,
+    gradientType: GradientType.linear,
     height: 100,
     perspective: 300,
     rotateValueFrom: 0,

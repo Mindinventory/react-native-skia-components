@@ -7,8 +7,8 @@ const { width: ScreenWidth } = Dimensions.get('window');
 
 export const CardConstant = {
   default: {
-    animateBorder: AnimateBorderType.NORMAL,
-    animation: AnimationType.ROTATE,
+    animateBorder: AnimateBorderType.normal,
+    animation: AnimationType.rotate,
     backgroundColor: miColor.black,
     blur: 10,
     borderColors: [miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan],

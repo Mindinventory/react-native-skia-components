@@ -144,7 +144,7 @@ const ListComponentScreen = () => {
           title="Button"
           colors={['cyan', 'magenta', 'yellow', 'cyan']}
           filled={'outer'}
-          gradientType={'LINEAR'}
+          gradientType={'linear'}
           buttonBorderRadius={50}
           width={200}
           height={20}
@@ -159,7 +159,7 @@ const ListComponentScreen = () => {
           title="Button 2"
           colors={['cyan', 'magenta', 'yellow', 'cyan']}
           filled={'solid'}
-          gradientType={'SWEEP'}
+          gradientType={'sweep'}
           titleSize={20}
           blurRadius={10}
           titleColor={'white'}
@@ -173,7 +173,7 @@ const ListComponentScreen = () => {
           title="Button 2"
           colors={['cyan', 'magenta', 'black', 'cyan']}
           filled={'inner'}
-          gradientType={'RADIAL'}
+          gradientType={'radial'}
           titleSize={20}
           blurRadius={10}
           titleColor={'white'}
@@ -187,7 +187,7 @@ const ListComponentScreen = () => {
           title="Button 3"
           colors={'darkblue'}
           filled={'normal'}
-          gradientType={'LINEAR'}
+          gradientType={'linear'}
           titleSize={20}
           blurRadius={5}
           titleColor={'white'}

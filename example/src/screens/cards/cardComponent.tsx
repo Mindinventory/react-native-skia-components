@@ -24,9 +24,9 @@ const CardComponent = () => {
             height={220}
             width={310}
             borderWidth={5}
-            animation={'BOUNCE'}
+            animation={'bounce'}
             style={styles.card}
-            animateBorder={'NORMAL'}
+            animateBorder={'normal'}
           >
             <View style={styles.cardStyle}>
               <Text style={styles.cardNumber}>
@@ -52,9 +52,9 @@ const CardComponent = () => {
               '#138808',
               '#FF9933',
             ]}
-            animation={'ROTATE'}
+            animation={'rotate'}
             style={styles.card}
-            animateBorder={'YOYO'}
+            animateBorder={'yoyo'}
             duration={1000}
           >
             <View style={styles.cardStyle}>
@@ -68,7 +68,7 @@ const CardComponent = () => {
               <Text style={styles.carNameText}>Mindinventory</Text>
             </View>
           </Card>
-          <Card height={220} width={310} borderWidth={5} animateBorder={'NONE'}>
+          <Card height={220} width={310} borderWidth={5} animateBorder={'none'}>
             <ImageBackground
               source={{
                 uri: 'https://source.unsplash.com/random/1920x1080/?debitcard',

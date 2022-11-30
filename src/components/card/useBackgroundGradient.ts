@@ -22,8 +22,8 @@ export const useBackgroundGradient = (props: BackgroundGradientProps) => {
 
   const progressToValue = useMemo(
     () =>
-      animateBorder === AnimateBorderType.NORMAL ||
-      animateBorder === AnimateBorderType.YOYO
+      animateBorder === AnimateBorderType.normal ||
+      animateBorder === AnimateBorderType.yoyo
         ? 6.3
         : 50,
     [animateBorder]
@@ -34,7 +34,7 @@ export const useBackgroundGradient = (props: BackgroundGradientProps) => {
       from: 0,
       loop: true,
       to: progressToValue,
-      yoyo: AnimateBorderType.YOYO ? true : false,
+      yoyo: AnimateBorderType.yoyo ? true : false,
     },
     {
       duration: duration,
@@ -44,7 +44,7 @@ export const useBackgroundGradient = (props: BackgroundGradientProps) => {
 
   const transform = useComputedValue(
     () =>
-      animateBorder !== AnimateBorderType.NONE
+      animateBorder !== AnimateBorderType.none
         ? [{ rotate: progress.current }]
         : undefined,
     [progress, animateBorder]

@@ -52,7 +52,7 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
   );
 
   const gradient = useMemo(() => {
-    if (props.gradientType === GradientType.SWEEP) {
+    if (props.gradientType === GradientType.sweep) {
       return {
         center: props.center
           ? props.center
@@ -63,7 +63,7 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
       };
     }
 
-    if (props.gradientType === GradientType.RADIAL) {
+    if (props.gradientType === GradientType.radial) {
       return {
         center: props.center
           ? props.center
@@ -75,7 +75,7 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
       };
     }
 
-    if (props.gradientType === GradientType.LINEAR) {
+    if (props.gradientType === GradientType.linear) {
       return {
         end: props.end
           ? props.end

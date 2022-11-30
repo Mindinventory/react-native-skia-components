@@ -14,9 +14,9 @@ export type StarWarButtonType = {
 } & ButtonProps;
 
 export enum GradientType {
-  LINEAR = 'LINEAR',
-  RADIAL = 'RADIAL',
-  SWEEP = 'SWEEP',
+  linear = 'linear',
+  radial = 'radial',
+  sweep = 'sweep',
 }
 
 export type GradientTypes = keyof typeof GradientType;
@@ -31,13 +31,13 @@ export enum FilledType {
 export type FilledTypes = keyof typeof FilledType;
 
 export type StarWarButtonProps<TGradientType = GradientTypes> =
-  TGradientType extends 'LINEAR'
+  TGradientType extends 'linear'
     ? StarWarButtonType & {
         gradientType?: TGradientType;
         start?: Vector;
         end?: Vector;
       }
-    : TGradientType extends 'RADIAL'
+    : TGradientType extends 'radial'
     ? StarWarButtonType & {
         gradientType?: TGradientType;
         radius?: number;
