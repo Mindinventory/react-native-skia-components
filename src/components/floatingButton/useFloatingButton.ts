@@ -12,15 +12,10 @@ import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
 
-// const BOTTOM_SHADOW_SKEW_H_MARGIN = 26;
-// const BOTTOM_SHADOW_SKEW_Z_INDEX_DEPTH = 22;
-// const SKEW_DEPTH_H_MARGIN = 6;
-// const SKEW_H_MARGIN = 24;
-
 const DEPTH = 10;
-const HEIGHT = 200;
+const HEIGHT = 50;
 const SHADOW_HEIGHT = 10;
-const WIDTH = 300;
+const WIDTH = 150;
 
 export const useFloatingButton = () => {
   const { props, styles } = useMiUiContext();
@@ -128,22 +123,6 @@ export const useFloatingButton = () => {
     ];
   }, [translate, pressed, floatAnimation]);
 
-  const shineValue = useTiming(
-    {
-      from: 0,
-      loop: true,
-      to: width - 60,
-      // yoyo: true,
-    },
-    {
-      duration: 2000,
-    }
-  );
-
-  const shineTransform = useComputedValue(() => {
-    return [{ translateX: pressed ? 15000 : shineValue.current }];
-  }, [shineValue, pressed]);
-
   const textTransformStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -174,7 +153,6 @@ export const useFloatingButton = () => {
     shadowHeight,
     shadowPath,
     shadowTranslate,
-    shineTransform,
     sideShadowColor,
     styles,
     textStyle,

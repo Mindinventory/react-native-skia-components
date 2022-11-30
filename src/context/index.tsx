@@ -25,12 +25,14 @@ export const MiUiContext = createContext<MiUiContextType | undefined>(
 
 export interface MiUiProviderPropsType {
   children: JSX.Element;
-  props: any;
+  props: CardProps &
+    StarWarButtonProps &
+    NeoPopButtonProps &
+    FloatingButtonProps &
+    CircularProgressBarProps;
 }
 
 export const MiUiProvider = ({ children, props }: MiUiProviderPropsType) => {
-  // const theme = 'dark';
-
   const miUiContext = useMemo(() => {
     return {
       colors: miColor,

@@ -11,6 +11,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
+import { DURATION } from '../../constants/constant';
 import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
 import { AnimateBorderType, AnimationType } from './card.type';
@@ -113,11 +114,11 @@ export const useCard = () => {
       );
     } else if (animation === AnimationType.BOUNCE) {
       rotateX.value = withTiming(0, {
-        duration: 1000,
+        duration: DURATION.SEC1,
         easing: Easing.bounce,
       });
       rotateY.value = withTiming(0, {
-        duration: 1000,
+        duration: DURATION.SEC1,
         easing: Easing.bounce,
       });
 
@@ -129,15 +130,15 @@ export const useCard = () => {
       );
     } else {
       rotateX.value = withTiming(0, {
-        duration: 1000,
+        duration: DURATION.SEC1,
         easing: Easing.linear,
       });
       rotateY.value = withTiming(0, {
-        duration: 1000,
+        duration: DURATION.SEC1,
         easing: Easing.linear,
       });
       scale.value = withTiming(1, {
-        duration: 1000,
+        duration: DURATION.SEC1,
         easing: Easing.linear,
       });
     }

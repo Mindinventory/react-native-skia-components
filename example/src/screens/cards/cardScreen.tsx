@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useRef } from 'react';
 import {
+  Dimensions,
+  FlatList,
   ImageBackground,
   SafeAreaView,
   ScrollView,
@@ -14,15 +16,99 @@ import {
   FloatingButton,
 } from '@mindinventory/react-native-skia-components';
 
+const { width } = Dimensions.get('window');
+
+const cardItems = [
+  {
+    title: 'Card title 1',
+    animation: 'ROTATE',
+    animateBorder: 'NORMAL',
+  },
+  {
+    title: 'Card title 2',
+    animation: 'BOUNCE',
+    animateBorder: 'YOYO',
+  },
+  {
+    title: 'Card title 3',
+    animation: 'NONE',
+    animateBorder: 'DISCO',
+  },
+];
+
+const CardItems = ({ flatListRef }) => {
+  return (
+    <FlatList
+      horizontal
+      data={cardItems}
+      keyExtractor={(_item, index) => index.toString()}
+      style={{
+        width: width * 0.91,
+        maxHeight: 250,
+      }}
+      contentContainerStyle={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxHeight: 250,
+      }}
+      ref={flatListRef}
+      getItemLayout={(data, index) => ({
+        length: 350,
+        offset: 350 * index,
+        index,
+      })}
+      renderItem={({ item, index }) => {
+        return (
+          <Card
+            height={180}
+            width={310}
+            borderWidth={5}
+            animation={item.animation}
+            style={styles.card}
+            animateBorder={item.animateBorder}
+          >
+            <ImageBackground
+              source={{
+                uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
+              }}
+              style={styles.cardContain}
+              resizeMode={'cover'}
+            >
+              <View style={styles.cardStyle}>
+                <Text style={styles.cardNumber}>
+                  {'\u2022'}
+                  {'\u2022'}
+                  {'\u2022'}
+                  {'\u2022'}
+                  {'\t'}
+                  <Text style={styles.cardText}>5008</Text>
+                </Text>
+                <Text style={styles.cardText}>Mindinventory</Text>
+              </View>
+            </ImageBackground>
+          </Card>
+        );
+      }}
+    />
+  );
+};
+
 const CardScreen = () => {
+  const flatListRef = useRef(null);
+  let indexes = 0;
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContain}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContain}
+        nestedScrollEnabled
+      >
         <Text style={styles.headText}>
           Give Your {'\n'}Banking card{'\n'}a{' '}
           <Text style={styles.newLook}>New Look</Text>
         </Text>
-        <Card
+        <CardItems flatListRef={flatListRef} />
+        {/* <Card
           height={180}
           width={310}
           borderWidth={5}
@@ -49,7 +135,7 @@ const CardScreen = () => {
               <Text style={styles.cardText}>Mindinventory</Text>
             </View>
           </ImageBackground>
-        </Card>
+        </Card> */}
         <Text style={styles.chooseCardText}>Choose a Card</Text>
         <FloatingButton
           width={220}
@@ -59,6 +145,23 @@ const CardScreen = () => {
           textStyle={styles.floatingTextStyle}
           onPress={() => {
             console.log('floating onPress');
+
+            console.log('indexes: ', indexes);
+
+            console.log('cardItems: ', cardItems.length);
+            if (indexes === cardItems.length - 1) {
+              indexes = 0;
+            } else {
+              indexes++;
+            }
+
+            if (flatListRef) {
+              flatListRef.current.scrollToIndex({
+                animated: true,
+                index: indexes,
+                viewOffset: 0,
+              });
+            }
           }}
           floatAnimation={true}
           duration={1000}
@@ -128,14 +231,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   newLook: {
-    // color: '#e5003e',
     color: '#d29cf8',
     fontWeight: 'bold',
     textDecorationLine: 'underline',
   },
   scrollContain: {
     flexGrow: 1,
-    // backgroundColor: 'black',
     justifyContent: 'space-evenly',
   },
 });
