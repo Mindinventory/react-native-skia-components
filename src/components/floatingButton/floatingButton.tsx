@@ -1,105 +1,127 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
-import { Canvas, Group, Path } from '@shopify/react-native-skia';
-import Animated from 'react-native-reanimated';
+import { Box, Canvas, Group, rect, rrect } from '@shopify/react-native-skia';
 
 import type { FloatingButtonProps } from './floatingButton.type';
-import { useFloatingButton } from './useFloatingButton';
+import { useFloatingButton } from './useFloatingButtonButton';
 
 const FloatingButton = (props: FloatingButtonProps) => {
   const {
+    animatedHeight,
+    animatedWidth,
+    animatedX,
+    animatedY,
     backgroundColor,
     bottomShadowColor,
-    depthPath,
+    canvasButtonHeight,
+    canvasButtonWidth,
     height,
-    isFloating,
-    nonFloatingDepthPath,
-    onPressEnd,
-    onPressStart,
-    path,
-    shadowPath,
+    onPressButton,
+    onPressOut,
     sideShadowColor,
     textStyle,
     title,
-    width,
-    styles,
-    transform,
-    textTransformStyle,
     titleSize,
+    transitionX,
+    transitionY,
+    width,
+    x,
+    y,
+    styles,
   } = useFloatingButton(props);
 
   return (
-    <View style={styles.starWarButtonStyle.container}>
+    <TouchableOpacity
+      style={[
+        styles.floatingButtonStyle.containerStyle.canvasStyle,
+        props.style || {},
+      ]}
+      onPress={props.onPress}
+      onLongPress={props.onLongPress}
+      onPressIn={() => {
+        onPressButton();
+        props.onPressIn?.();
+      }}
+      onPressOut={() => {
+        onPressOut();
+        props.onPressOut?.();
+      }}
+      activeOpacity={1}
+    >
       <Canvas
-        style={[
-          { height: height, width: width },
-          styles.floatingButtonStyle.containerStyle.canvasStyle,
-          props.style || {},
-        ]}
+        style={{
+          height: canvasButtonHeight,
+          width: canvasButtonWidth,
+        }}
         children={
           <>
-            {isFloating ? (
-              <>
-                <Group transform={transform}>
-                  <Path path={path} color={backgroundColor} />
-                  <Path path={depthPath} color={sideShadowColor} />
-                </Group>
-                <Path
-                  path={shadowPath}
-                  color={bottomShadowColor}
-                  transform={transform}
-                />
-              </>
-            ) : (
-              <>
-                <Group transform={transform}>
-                  <Path path={path} color={backgroundColor} />
-                </Group>
-                <Group>
-                  <Path path={nonFloatingDepthPath} color={sideShadowColor} />
-                </Group>
-              </>
-            )}
+            <Group
+              origin={{ x: width, y: 0 }}
+              transform={[{ skewY: Math.PI / (1.4 * 3) }]}
+            >
+              <Box
+                box={rrect(
+                  rect(width + animatedY, 8, -y, height + animatedHeight),
+                  0,
+                  0
+                )}
+                color={sideShadowColor}
+              />
+            </Group>
+
+            <Group
+              origin={{ x: 0, y: height }}
+              transform={[{ skewX: Math.PI / 1.4 }]}
+            >
+              <Box
+                box={rrect(
+                  rect(x + animatedX, height, width + animatedWidth, -x),
+                  0,
+                  0
+                )}
+                color={bottomShadowColor}
+              />
+            </Group>
+
+            <Box
+              box={rrect(
+                rect(transitionX, transitionY + 8, width, height),
+                0,
+                0
+              )}
+              color={backgroundColor}
+            />
           </>
         }
         accessibilityLabelledBy={undefined}
         accessibilityLanguage={undefined}
       />
-      <TouchableOpacity
-        onPress={props.onPress}
-        onLongPress={props.onLongPress}
-        onPressIn={() => {
-          onPressStart();
-        }}
-        onPressOut={() => {
-          onPressEnd();
-        }}
-        activeOpacity={1}
+      <View
         style={[
-          styles.floatingButtonStyle.btnLabel.labelView,
+          styles.floatingButtonStyle.textContainer.textView,
           {
             height: height,
+            left: transitionX,
+            top: transitionY + 8,
             width: width,
-            // backgroundColor: 'red',
           },
         ]}
       >
-        <Animated.Text
-          adjustsFontSizeToFit
+        <Text
           style={[
-            styles.floatingButtonStyle.btnLabel.labelText,
-            { fontSize: titleSize },
+            styles.floatingButtonStyle.textContainer.textStyle,
+            {
+              fontSize: titleSize,
+            },
             textStyle && { ...textStyle },
-            { transform: [{ rotateX: '45deg' }, { rotateZ: '0deg' }] },
-            textTransformStyle,
           ]}
         >
           {title}
-        </Animated.Text>
-      </TouchableOpacity>
-    </View>
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
-export default FloatingButton;
+export default React.memo(FloatingButton);

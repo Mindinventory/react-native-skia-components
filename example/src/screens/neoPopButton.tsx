@@ -2,14 +2,17 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { FloatingButton } from '@mindinventory/react-native-skia-components';
+import {
+  FloatingButton,
+  NeoPopButton,
+} from '@mindinventory/react-native-skia-components';
 
 import { styles } from './componentStyle.style';
 
-const NeoPopButton = () => {
+const NeoPopButtonExample = () => {
   return (
     <View style={[styles.centerItemStyle]}>
-      <FloatingButton
+      <NeoPopButton
         width={220}
         height={50}
         title="PRESS ME"
@@ -31,4 +34,4 @@ const NeoPopButton = () => {
     </View>
   );
 };
-export default NeoPopButton;
+export default NeoPopButtonExample;

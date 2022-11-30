@@ -4,9 +4,7 @@ import { MiUiProvider } from '../../context';
 import FloatingButtonComponent from './floatingButton';
 import type { FloatingButtonProps } from './floatingButton.type';
 
-export const FloatingButton: React.FC<FloatingButtonProps> = (
-  props: FloatingButtonProps
-) => (
+export const FloatingButton = (props: FloatingButtonProps) => (
   <MiUiProvider>
     <FloatingButtonComponent {...props} />
   </MiUiProvider>

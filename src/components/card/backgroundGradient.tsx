@@ -1,67 +1,28 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import {
   BlurMask,
   Canvas,
   RoundedRect,
   SweepGradient,
-  useComputedValue,
-  useTiming,
   vec,
 } from '@shopify/react-native-skia';
-import { Easing } from 'react-native-reanimated';
 
-import type { AnimateBorderTypes } from './card.type';
-
-interface BackgroundGradientProps {
-  blur?: number;
-  borderColors?: string[];
-  canvasPadding?: number;
-  cardRadius?: number;
-  height?: number;
-  width?: number;
-  animateBorder?: AnimateBorderTypes;
-  duration?: number;
-}
+import type { BackgroundGradientProps } from './card.type';
+import { useBackgroundGradient } from './useBackgroundGradient';
 
 const BackgroundGradient = (props: BackgroundGradientProps) => {
   const {
-    blur,
-    borderColors,
+    CANVAS_HEIGHT,
+    CANVAS_WIDTH,
     canvasPadding,
-    cardRadius,
-    height,
     width,
-    animateBorder,
-    duration,
-  } = props;
-
-  const progressToValue = useMemo(
-    () => (animateBorder === 'NORMAL' || animateBorder === 'YOYO' ? 6.3 : 50),
-    [animateBorder]
-  );
-
-  const progress = useTiming(
-    {
-      from: 0,
-      loop: true,
-      to: progressToValue,
-      yoyo: animateBorder === 'YOYO' ? true : false,
-    },
-    {
-      duration: duration,
-      easing: Easing.linear,
-    }
-  );
-
-  const transform = useComputedValue(
-    () =>
-      animateBorder !== 'NONE' ? [{ rotate: progress.current }] : undefined,
-    [progress, animateBorder]
-  );
-
-  const CANVAS_WIDTH = width + canvasPadding;
-  const CANVAS_HEIGHT = height + canvasPadding;
+    height,
+    cardRadius,
+    borderColors,
+    transform,
+    blur,
+  } = useBackgroundGradient(props);
 
   return (
     <Canvas
@@ -75,7 +36,6 @@ const BackgroundGradient = (props: BackgroundGradientProps) => {
           y={canvasPadding / 2}
           width={width}
           height={height}
-          color={'gold'}
           r={cardRadius}
         >
           <SweepGradient

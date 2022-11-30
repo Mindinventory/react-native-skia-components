@@ -4,9 +4,7 @@ import { MiUiProvider } from '../../context';
 import NeoPopButtonComponent from './neoPopButton';
 import type { NeoPopButtonProps } from './neoPopButton.type';
 
-export const NeoPopButton: React.FC<NeoPopButtonProps> = (
-  props: NeoPopButtonProps
-) => (
+export const NeoPopButton = (props: NeoPopButtonProps) => (
   <MiUiProvider>
     <NeoPopButtonComponent {...props} />
   </MiUiProvider>

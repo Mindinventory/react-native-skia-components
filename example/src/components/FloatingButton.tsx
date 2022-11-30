@@ -2,11 +2,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import { FloatingButton } from '@mindinventory/react-native-skia-components';
+import { NeoPopButton } from '@mindinventory/react-native-skia-components';
 
 const FloatingButtonExample = () => {
   return (
-    <FloatingButton
+    <NeoPopButton
       width={220}
       height={50}
       title="PRESS ME"

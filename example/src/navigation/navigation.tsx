@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CardComponent from '../screens/cards/cardComponent';
 import CardScreen from '../screens/cards/cardScreen';
-import NeoPopButton from '../screens/neoPopButton';
+import NeoPopButtonExample from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
 import StarWarsButtonScreen from '../screens/starWarsButtonScreen';
 
@@ -30,7 +30,7 @@ const StackNavigation = () => {
         />
         <Stack.Screen name={'CardComponent'} component={CardComponent} />
         <Stack.Screen name={'CardScreen'} component={CardScreen} />
-        <Stack.Screen name={'NeoPopButton'} component={NeoPopButton} />
+        <Stack.Screen name={'NeoPopButton'} component={NeoPopButtonExample} />
         <Stack.Screen
           name={'StarWarsButtonScreen'}
           component={StarWarsButtonScreen}

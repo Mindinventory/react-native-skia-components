@@ -13,7 +13,7 @@ import {
 
 import {
   Card,
-  FloatingButton,
+  NeoPopButton,
 } from '@mindinventory/react-native-skia-components';
 
 const { width } = Dimensions.get('window');
@@ -137,7 +137,7 @@ const CardScreen = () => {
           </ImageBackground>
         </Card> */}
         <Text style={styles.chooseCardText}>Choose a Card</Text>
-        <FloatingButton
+        <NeoPopButton
           width={220}
           height={50}
           title="NEXT CARD"

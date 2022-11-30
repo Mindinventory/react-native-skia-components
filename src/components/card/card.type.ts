@@ -21,6 +21,17 @@ export interface CardProps {
   duration?: number;
 }
 
+export interface BackgroundGradientProps {
+  blur: number;
+  borderColors: string[];
+  canvasPadding: number;
+  cardRadius: number;
+  height: number;
+  width: number;
+  animateBorder: AnimateBorderTypes;
+  duration: number;
+}
+
 export enum AnimateBorderType {
   NONE = 'NONE',
   NORMAL = 'NORMAL',
