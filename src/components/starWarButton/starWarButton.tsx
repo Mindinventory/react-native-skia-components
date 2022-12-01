@@ -36,16 +36,17 @@ export const StarWarButtonComponent = (props: StarWarButtonProps) => {
     gradient,
     backgroundColor,
     opacityButton,
-    handlePress,
+    onPressEnd,
+    onPressStart,
   } = useStarWarButton(props);
 
   return (
     <Pressable
       style={[styles.starWarButtonStyle.container || {}]}
-      onPress={handlePress}
+      onPress={props.onPress}
       onLongPress={props.onLongPress}
-      onPressIn={props.onPressIn}
-      onPressOut={props.onPressOut}
+      onPressIn={onPressStart}
+      onPressOut={onPressEnd}
     >
       <Animated.View
         style={[

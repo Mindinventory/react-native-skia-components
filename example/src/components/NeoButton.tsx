@@ -19,8 +19,6 @@ const NeoButton: React.FC<INeoButtonProps> = ({ index }) => {
       backgroundColor={miColor.lightPink}
       textStyle={styles.neoBtnTextStyle}
       onPress={() => {}}
-      onPressIn={() => {}}
-      onPressOut={() => {}}
       onLongPress={() => {}}
     />
   );

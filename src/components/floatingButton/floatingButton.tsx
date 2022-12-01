@@ -41,11 +41,9 @@ const FloatingButton = (props: FloatingButtonProps) => {
       onLongPress={props.onLongPress}
       onPressIn={() => {
         onPressButton();
-        props.onPressIn?.();
       }}
       onPressOut={() => {
         onPressOut();
-        props.onPressOut?.();
       }}
       activeOpacity={1}
     >

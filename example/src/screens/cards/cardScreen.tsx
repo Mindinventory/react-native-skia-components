@@ -115,7 +115,7 @@ const CardScreen = () => {
           width={220}
           height={50}
           title="NEXT CARD"
-          bottomShadowColor={miColor.gray}
+          bottomShadowColor={miColor.lightGray}
           textStyle={styles.floatingTextStyle}
           onPress={() => {
             if (indexes === cardItems.length - 1) {

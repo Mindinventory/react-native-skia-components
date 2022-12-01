@@ -137,30 +137,29 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
 
   const transformAnimation = animation ? transform : undefined;
 
-  const handlePress = useCallback(() => {
-    scale.value = withSequence(
-      withTiming(0.85, {
-        duration: buttonEffectDuration,
-        easing: Easing.linear,
-      }),
-      withTiming(1, {
-        duration: buttonEffectDuration,
-        easing: Easing.linear,
-      })
-    );
+  const onPressStart = useCallback(() => {
+    scale.value = withTiming(0.85, {
+      duration: buttonEffectDuration,
+      easing: Easing.linear,
+    });
 
-    opacity.value = withSequence(
-      withTiming(0, {
-        duration: buttonEffectDuration,
-        easing: Easing.linear,
-      }),
-      withTiming(1, {
-        duration: buttonEffectDuration,
-        easing: Easing.linear,
-      })
-    );
-    props.onPress?.();
-  }, [buttonEffectDuration, opacity, props, scale]);
+    opacity.value = withTiming(0, {
+      duration: buttonEffectDuration,
+      easing: Easing.linear,
+    });
+  }, [buttonEffectDuration, opacity, scale]);
+
+  const onPressEnd = useCallback(() => {
+    scale.value = withTiming(1, {
+      duration: buttonEffectDuration,
+      easing: Easing.linear,
+    });
+
+    opacity.value = withTiming(1, {
+      duration: buttonEffectDuration,
+      easing: Easing.linear,
+    });
+  }, [buttonEffectDuration, opacity, scale]);
 
   return {
     animation,
@@ -174,8 +173,9 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
     filled,
     gradient,
     gradientType,
-    handlePress,
     height,
+    onPressEnd,
+    onPressStart,
     opacity,
     opacityButton,
     progress: rotate,

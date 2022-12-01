@@ -27,7 +27,6 @@ const StarWarsButtonScreen = () => {
       />
       <StarWarButton
         preset="starWar"
-        onPressIn={() => {}}
         title="Button 2"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
         filled={'solid'}
@@ -42,7 +41,6 @@ const StarWarsButtonScreen = () => {
       />
       <StarWarButton
         preset="starWar"
-        onPressOut={() => {}}
         title="Button 2"
         colors={['cyan', 'magenta', 'black', 'cyan']}
         filled={'inner'}
@@ -57,7 +55,6 @@ const StarWarsButtonScreen = () => {
       />
       <StarWarButton
         preset="starWar"
-        onLongPress={() => {}}
         title="Button 3"
         colors={'darkblue'}
         filled={'normal'}

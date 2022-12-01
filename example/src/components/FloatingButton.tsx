@@ -12,8 +12,6 @@ const FloatingButtonExample = () => {
       bottomShadowColor={'gray'}
       textStyle={styles.floatingTextStyle}
       onPress={() => {}}
-      onPressIn={() => {}}
-      onPressOut={() => {}}
       onLongPress={() => {}}
     />
   );

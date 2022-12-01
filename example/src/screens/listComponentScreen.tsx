@@ -134,7 +134,6 @@ const ListComponentScreen = () => {
         />
         <Button
           preset="starWar"
-          onPressIn={() => {}}
           title="Button 2"
           colors={[miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan]}
           filled={'solid'}
@@ -148,7 +147,6 @@ const ListComponentScreen = () => {
         />
         <Button
           preset="starWar"
-          onPressIn={() => {}}
           title="Button 2"
           colors={[miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan]}
           filled={'inner'}
@@ -162,7 +160,6 @@ const ListComponentScreen = () => {
         />
         <Button
           preset="starWar"
-          onLongPress={() => {}}
           title="Button 3"
           colors={miColor.darkYellowShade}
           filled={'normal'}

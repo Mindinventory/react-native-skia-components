@@ -1,4 +1,9 @@
-import type { TextStyle, ViewStyle } from 'react-native';
+import type {
+  GestureResponderEvent,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
 
 import type { ButtonPresets } from './button';
 
@@ -45,16 +50,74 @@ export interface ButtonProps {
    * @type boolean
    */
   isFloating?: boolean;
-  onLongPress?: () => void;
-  onPress?: () => void;
-  onPressIn?: () => void;
-  onPressOut?: () => void;
+  /**
+   * Called when the touch is released,
+   * but not if cancelled (e.g. by a scroll that steals the responder lock).
+   */
+  onLongPress?: (event: GestureResponderEvent) => void;
+  /**
+   * Called when the touch is released,
+   * but not if cancelled (e.g. by a scroll that steals the responder lock).
+   */
+  onPress?: (event: GestureResponderEvent) => void;
+  /**
+   * Defines which button should you want to display
+   * @enum
+   * - `floating`: floating button
+   * - `neoPop`: NeoPopButton
+   * - `starWar`:  StarWarButton
+   * @example
+   * preset={'neoPop'}
+   * @default "neoPop"
+   * @type `"floating" | "neoPop" | "starWar"`
+   */
   preset?: ButtonPresets;
+  /**
+   * Defines height of the button shadow
+   * @example
+   * shadowHeight={15}
+   * @default 10
+   * @type number
+   */
   shadowHeight?: number;
+  /**
+   * Defines button side shadow color
+   * @example
+   * sideShadowColor={"red"}
+   * sideShadowColor={"#000000"}
+   * sideShadowColor={"rgba(250, 226, 46, 1)"}
+   * @default rgba(195, 161, 60,1)
+   * @type string
+   */
   sideShadowColor?: string;
-  style?: ViewStyle;
+  /**
+   * Provide an style to button.
+   * @type StyleProp<ViewStyle>
+   */
+  style?: StyleProp<ViewStyle>;
+  /**
+   * Provide an style to button title text.
+   * @type TextStyle
+   */
   textStyle?: TextStyle;
+  /**
+   * Provide an title to button.
+   * @type string
+   */
   title?: string;
+  /**
+   * Provide an button title size font size of title.
+   * @example
+   * titleSize={10}
+   * @type number
+   */
   titleSize?: number;
+  /**
+   * Defines width of the button.
+   * @example
+   * width={40}
+   * @default 150
+   * @type number
+   */
   width?: number;
 }
