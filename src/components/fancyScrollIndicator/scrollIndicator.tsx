@@ -1,5 +1,12 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import {
   Canvas,
@@ -11,28 +18,41 @@ import {
   useValue,
 } from '@shopify/react-native-skia';
 
-const indicatorBgWidth = 140;
 const indicatorWidth = 30;
 var bgWidth = 0;
+const ItemWidth = Dimensions.get('screen').width - 20;
+const indicatorContainerWidth = ItemWidth / 1.5;
+const INDICATOR_SPEED = 0.02;
 
 const ScrollIndicator = () => {
-  const data: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
-  const path = Skia.Path.Make();
-  path.moveTo(8, 0);
-  path.lineTo(11, 5);
-  path.lineTo(15, 6);
-  path.lineTo(12, 9);
-  path.lineTo(13, 15);
-  path.lineTo(8, 13);
-  path.lineTo(3, 15);
-  path.lineTo(5, 9);
-  path.lineTo(0, 6);
-  path.lineTo(6, 5);
-  path.lineTo(8, 0);
-  path.close();
+  const starPath = Skia.Path.Make();
+  starPath.moveTo(8, 0);
+  starPath.lineTo(10, 5);
+  starPath.lineTo(16, 5);
+  starPath.lineTo(12, 9);
+  starPath.lineTo(14, 15);
+  starPath.lineTo(8, 12);
+  starPath.lineTo(3, 15);
+  starPath.lineTo(5, 9);
+  starPath.lineTo(0, 6);
+  starPath.lineTo(6, 5);
+  starPath.lineTo(8, 0);
+  starPath.close();
 
   const animationValue = useValue(0);
+  const rotateValue = useValue(0);
+  const data = new Array(6).fill('_');
+
+  const arcPath = Skia.Path.Make();
+  arcPath.moveTo(0, 20);
+  // arcPath.addArc({ height: 30, width: 25, x: 15, y: 0 }, 125, 125);
+  arcPath.addOval({
+    height: 15,
+    width: (indicatorContainerWidth + indicatorWidth) / 2,
+    x: 0,
+    y: 0,
+  });
+  arcPath.close();
 
   const translateX = useComputedValue(() => {
     return [
@@ -42,30 +62,75 @@ const ScrollIndicator = () => {
     ];
   }, [animationValue]);
 
+  const rotationValue = useComputedValue(() => {
+    return [
+      {
+        rotate: rotateValue.current,
+      },
+    ];
+  }, [rotateValue]);
+
   return (
     <SafeAreaView>
       <>
-        <ScrollView
+        <FlatList
+          data={data}
           horizontal
           showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
           onScroll={({ nativeEvent }) => {
             bgWidth =
               (nativeEvent?.contentSize?.width || 0) -
               (nativeEvent?.layoutMeasurement?.width || 0);
 
-            animationValue.current =
-              nativeEvent.contentOffset.x * (indicatorBgWidth / bgWidth);
+            const calculated =
+              nativeEvent.contentOffset.x * (indicatorContainerWidth / bgWidth);
+            if (animationValue.current > calculated) {
+              rotateValue.current -= INDICATOR_SPEED;
+              if (rotateValue.current < 0) {
+                rotateValue.current = 0;
+              }
+            } else {
+              rotateValue.current += INDICATOR_SPEED;
+            }
+
+            rotateValue.current;
+            animationValue.current = calculated;
+          }}
+          renderItem={({ index }) => {
+            return (
+              <View style={styles.rowContainer}>
+                <Text style={styles.indexStyle}>{index + 1}</Text>
+              </View>
+            );
+          }}
+        />
+        {/* <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={({ nativeEvent }) => {
+            bgWidth =
+              (nativeEvent?.contentSize?.width || 0) -
+              (nativeEvent?.layoutMeasurement?.width || 0);
+
+            const calculated =
+              nativeEvent.contentOffset.x * (indicatorContainerWidth / bgWidth);
+            animationValue.current = calculated;
+            // if (calculated > indicatorContainerWidth) {
+            //   animationValue.current = indicatorContainerWidth + 10;
+            // }
           }}
         >
           {data.map((item) => {
             return (
               <View style={styles.rowContainer}>
-                <Text>{item}</Text>
+                <Text style={styles.indexStyle}>{item}</Text>
               </View>
             );
           })}
-        </ScrollView>
-        <View>
+        </ScrollView> */}
+        <View style={styles.indicatorContainer}>
           <Canvas
             style={styles.canvasStyle}
             children={
@@ -73,16 +138,60 @@ const ScrollIndicator = () => {
                 <RoundedRect
                   x={0}
                   y={0}
-                  width={indicatorBgWidth + indicatorWidth - 10}
+                  width={indicatorContainerWidth + indicatorWidth - 5}
                   height={20}
-                  r={10}
+                  r={20}
                   color="lightblue"
                   style={'stroke'}
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                 />
                 <Group transform={translateX}>
-                  <Path path={path} color="lightblue" />
+                  <Path
+                    path={starPath}
+                    color="red"
+                    origin={{
+                      x: 8,
+                      y: 8.5,
+                    }}
+                    style={'fill'}
+                    transform={rotationValue}
+                  />
                 </Group>
+                {/* {new Array(data.length / 2).fill('').map((_item, index) => {
+                  const xPos = 20 * index + 1;
+                  return (
+                    <>
+                      <RoundedRect
+                        x={xPos * 2.2}
+                        y={0}
+                        width={(indicatorContainerWidth + indicatorWidth) / 2}
+                        height={20}
+                        r={20}
+                        origin={{
+                          x: 10,
+                          y: 0,
+                        }}
+                        color={index === 0 ? 'white' : 'red'}
+                        style={'stroke'}
+                        strokeWidth={1.5}
+                      />
+                      {index === data.length / 2 - 1 && (
+                        <Group transform={translateX}>
+                          <Path
+                            path={starPath}
+                            color="red"
+                            origin={{
+                              x: 8,
+                              y: 8.5,
+                            }}
+                            style={'fill'}
+                            transform={rotationValue}
+                          />
+                        </Group>
+                      )}
+                    </>
+                  );
+                })} */}
               </>
             }
             accessibilityLabelledBy={undefined}
@@ -95,12 +204,25 @@ const ScrollIndicator = () => {
 };
 
 const styles = StyleSheet.create({
-  canvasStyle: { height: 200, width: indicatorBgWidth + indicatorWidth },
+  canvasStyle: {
+    height: 20,
+    marginHorizontal: 40,
+    width: indicatorContainerWidth + indicatorWidth,
+  },
+  indexStyle: { fontSize: 30, fontWeight: '700' },
+  indicatorContainer: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 5,
+    width: indicatorContainerWidth + indicatorWidth,
+  },
   rowContainer: {
+    alignItems: 'center',
     backgroundColor: 'red',
     height: 100,
-    margin: 10,
-    width: 100,
+    justifyContent: 'center',
+    marginHorizontal: 10,
+    width: ItemWidth,
   },
 });
 

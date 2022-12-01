@@ -25,7 +25,7 @@ const ListComponentScreen = () => {
     { id: 3, name: 'Floating' },
     { id: 4, name: 'scrollIndicator' },
   ];
-  const [selected, setSelected] = React.useState(0);
+  const [selected, setSelected] = React.useState(4);
 
   const renderCardLayout = () => {
     return (
@@ -165,6 +165,7 @@ const ListComponentScreen = () => {
       </ScrollView>
     );
   };
+
   return (
     <SafeAreaView style={styles.safeAreabackground}>
       <View style={styles.mainContainer}>
