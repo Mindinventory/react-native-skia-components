@@ -17,7 +17,7 @@ import {
 import { miColor } from '../../constant/colors';
 import { bullets } from '../../constant/constant';
 
-const data = new Array(3);
+const data = new Array(4);
 
 type CardItems = {
   animateBorder: string;
@@ -29,35 +29,6 @@ const CardItems = ({ flatListRef }: any) => {
   const renderItem = () => {
     return (
       <>
-        <Card
-          height={180}
-          width={310}
-          borderWidth={5}
-          style={styles.card}
-          blur={20}
-          animation={'bounce'}
-          borderColors={[miColor.bluishGray, miColor.gray]}
-        >
-          <ImageBackground
-            source={{
-              uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
-            }}
-            style={styles.cardContain}
-            resizeMode={'cover'}
-          >
-            <View style={styles.cardStyle}>
-              <Text style={styles.cardNumber}>
-                {bullets}
-                {bullets}
-                {bullets}
-                {bullets}
-                {'\t'}
-                <Text style={styles.cardText}>5008</Text>
-              </Text>
-              <Text style={styles.cardText}>Mindinventory</Text>
-            </View>
-          </ImageBackground>
-        </Card>
         <Card
           height={180}
           width={310}
@@ -91,6 +62,36 @@ const CardItems = ({ flatListRef }: any) => {
           width={310}
           borderWidth={5}
           style={styles.card}
+          blur={16}
+          animation={'bounce'}
+          borderColors={[miColor.bluishGray, miColor.gray]}
+          animateBorder={'yoyo'}
+        >
+          <ImageBackground
+            source={{
+              uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
+            }}
+            style={styles.cardContain}
+            resizeMode={'cover'}
+          >
+            <View style={styles.cardStyle}>
+              <Text style={styles.cardNumber}>
+                {bullets}
+                {bullets}
+                {bullets}
+                {bullets}
+                {'\t'}
+                <Text style={styles.cardText}>5008</Text>
+              </Text>
+              <Text style={styles.cardText}>Mindinventory</Text>
+            </View>
+          </ImageBackground>
+        </Card>
+        <Card
+          height={180}
+          width={310}
+          borderWidth={5}
+          style={styles.card}
           blur={15}
           animation={'none'}
           animateBorder={'normal'}
@@ -98,6 +99,37 @@ const CardItems = ({ flatListRef }: any) => {
           <ImageBackground
             source={{
               uri: 'https://cdn.dribbble.com/userupload/3154457/file/original-0ac7ee3314f9e2cc3c31843e6b8befa4.png?compress=1&resize=1024x768&vertical=center',
+            }}
+            style={styles.cardContain}
+            resizeMode={'cover'}
+          >
+            <View style={styles.cardStyle}>
+              <Text style={styles.cardNumber}>
+                {bullets}
+                {bullets}
+                {bullets}
+                {bullets}
+                {'\t'}
+                <Text style={styles.cardText}>5008</Text>
+              </Text>
+              <Text style={styles.cardText}>Mindinventory</Text>
+            </View>
+          </ImageBackground>
+        </Card>
+        <Card
+          height={180}
+          width={310}
+          borderWidth={5}
+          style={styles.card}
+          blur={16}
+          animation={'rotate'}
+          borderColors={[miColor.white, miColor.magenta]}
+          animateBorder={'disco'}
+          duration={1500}
+        >
+          <ImageBackground
+            source={{
+              uri: 'https://cdn.dribbble.com/userupload/2432734/file/original-41ed58712d7174189914d9e8d267302e.jpg?compress=1&resize=752x',
             }}
             style={styles.cardContain}
             resizeMode={'cover'}
