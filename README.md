@@ -18,16 +18,9 @@ yarn add @mindinventory/react-native-skia-components
 
 ## Preview
 
-![Simulator Screen Recording - iPhone 13 - 2022-12-02 at 12 59 04](https://user-images.githubusercontent.com/104554054/205252819-78266743-b58e-405b-91e4-630784715b68.gif)
-
-![Simulator Screen Recording - iPhone 13 - 2022-11-11 at 15 26 23](https://user-images.githubusercontent.com/82019401/201333076-9c50a9df-f41c-4453-ba04-393fbdd957f0.gif)
-
-![Simulator Screen Recording - iPhone 13 - 2022-12-02 at 12 59 51](https://user-images.githubusercontent.com/104554054/205252970-1b463c2e-35f7-4b73-afda-098483c2edd8.gif)
-
-https://user-images.githubusercontent.com/82019401/201672555-2bc57323-b89f-4fa4-a9ac-5aa264bfb841.mp4
 
 
-
+https://user-images.githubusercontent.com/104554054/205281639-be9eb3cd-ae53-4764-b678-b7683d6c2bae.mov
 
 
 
@@ -64,31 +57,9 @@ import {
 {...}
 </Card>
 ```
-
-<img width="372" alt="Screenshot 2022-11-14 at 11 16 07 AM" src="https://user-images.githubusercontent.com/82019401/201584587-5d169c5b-1ae2-4608-ad56-49ee393389ba.png">
-
-# Circle Progress
-
-```js
-<CircularProgressBar
-  backgroundColor="#32363B"
-  colors={['#2FB8FF', '#9EECD9']}
-  containerSize={250}
-  elevation={8}
-  fontSize={32}
-  gradientColors={['#101113', '#2B2F33']}
-  padding={24}
-  progress={50}
-  radius={100}
-  shadowColor={'#31C'}
-  shadowOffset={{ width: 0, height: 4 }}
-  shadowOpacity={0.6}
-  shadowRadius={10}
-  strokeWidth={15}
-/>
-```
-
-<img width="303" alt="Screenshot 2022-11-14 at 11 18 46 AM" src="https://user-images.githubusercontent.com/82019401/201584919-627fcece-66e7-45ca-9b6a-ddc203d38901.png">
+![cardJeko](https://user-images.githubusercontent.com/104554054/205283144-d7020c40-8e49-433f-9f39-fa5a984bb29e.gif)
+![card](https://user-images.githubusercontent.com/104554054/205283171-993ec474-ad73-4b6c-8449-cf1ec031c4c2.gif)
+![card3](https://user-images.githubusercontent.com/104554054/205283190-18b3db6e-dfd1-45a7-b988-bee258fe7f1d.gif)
 
 
 # Neopop
@@ -114,8 +85,8 @@ import {
   titleSize={10}
 />
 ```
+![neoPop](https://user-images.githubusercontent.com/104554054/205282417-e10ca1da-cfe6-46b7-ae2b-0fb7843951fe.gif)
 
-<img width="415" alt="Screenshot 2022-11-14 at 11 19 48 AM" src="https://user-images.githubusercontent.com/82019401/201585058-3af9f8c2-c58d-4d01-9351-36bb4b37d2ef.png">
 
 # Floating
 
@@ -154,25 +125,6 @@ import {
 | animateBorder   |  string                    | Set animation of card border in ('normal', 'disco', 'none', 'yoyo').    |
 | duration        |  number                    | Set duration of animating border of card.    |
 
-# Circle Progress Props
-
-| Parameter       | Type                       | Description                                                |
-| --------------- | -------------------------- | ---------------------------------------------------------- |
-| progress        | _number_                   | set circle progress                                        |
-| radius          | _number (Optional)_        | Set radius of circle progress.                             |
-| colors          | _Array<string> (Optional)_ | Set gradient color of circle progress bar.                 |
-| padding         | _number (Optional)_        | Set padding in circle progress.                            |
-| fontSize        | _number (Optional)_        | Set font size of progress in circle progress.              |
-| containerSize   | _number (Optional)_        | Set circle progress container size.                        |
-| gradientColors  | _Array<string> (Optional)_ | Set gradient color of inner progress bar.                  |
-| strokeWidth     | _number (Optional)_        | Set strock of progress.                                    |
-| shadowOpacity   | _number (Optional)_        | Set opacity of progress shadow between `0` to `1`.         |
-| shadowRadius    | _number (Optional)_        | Set corner radius of progress shadow.                      |
-| elevation       | _number (Optional)_        | Set elevation for circle progress.                         |
-| shadowColor     | _string (Optional)_        | Set shadow color of progress bar.                          |
-| shadowOffset    | _object (Optional)_        | Set shadow offset of progress bar, (`width` and `height`). |
-| backgroundColor | _object (Optional)_        | Set background of Circle inner view.                       |
-
 # NeoPopButton Props
 
 | Parameter         | Type                 | Description                                                          |
@@ -183,15 +135,31 @@ import {
 | height            | _number (Optional)_  | Set height of button.                                                |
 | depth             | _number (Optional)_  | Set depth of button.                                                 |
 | shadowHeight      | _number (Optional)_  | Add shadow height for button.                                        |
-| backgroundColor   | _string (Optional)_  | Add backgroud color to button.                                       |
+| backgroundColor   | _string (Optional)_  | Add background color to button.                                       |
 | bottomShadowColor | _string (Optional)_  | Add bottom shadow color of button.                                   |
 | sideShadowColor   | _string (Optional)_  | Add right shadow color of button.                                    |
 | textStyle         | _style (Optional)_   | Give TextStyle button title texts.                                   |
 | titleSize         | _number (Optional)_  | Set text size of title.                                              |
-| isFloating        | _boolean (Optional)_ | set value `true` or `false` to get either Flaoting or Neopop button. |
+| isFloating        | _boolean (Optional)_ | set value `true` or `false` to get either Floating or NeoPop button. |
 | floatAnimation    | _boolean (Optional)_ | set value `true` or `false` to get button float animation on or off. |
 | duration          | _number (Optional)_  | set duration of the floatAnimation of the button. |
 
+# FloatingButton Props
+
+| Parameter         | Type                 | Description                                                          |
+| ----------------- | -------------------- | -------------------------------------------------------------------- |
+| style             | _style (Optional)_   | Give style of button.                                                |
+| title             | _string (Optional)_  | Title of button.                                                     |
+| width             | _number (Optional)_  | Set width of button.                                                 |
+| height            | _number (Optional)_  | Set height of button.                                                |
+| depth             | _number (Optional)_  | Set depth of button.                                                 |
+| shadowHeight      | _number (Optional)_  | Add shadow height for button.                                        |
+| backgroundColor   | _string (Optional)_  | Add background color to button.                                       |
+| bottomShadowColor | _string (Optional)_  | Add bottom shadow color of button.                                   |
+| sideShadowColor   | _string (Optional)_  | Add right shadow color of button.                                    |
+| textStyle         | _style (Optional)_   | Give TextStyle button title texts.                                   |
+| titleSize         | _number (Optional)_  | Set text size of title.                                              |
+| isFloating        | _boolean (Optional)_ | set value `true` or `false` to get Floating button. |
 ## Contributing!
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
