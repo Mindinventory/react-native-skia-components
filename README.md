@@ -18,13 +18,11 @@ yarn add @mindinventory/react-native-skia-components
 
 ## Preview
 
-![Simulator Screen Recording - iPhone 13 - 2022-12-01 at 15 10 54](https://user-images.githubusercontent.com/104554054/205020580-9d6e80bb-ec8d-40bc-a990-5378d142d3fe.gif)
+![Simulator Screen Recording - iPhone 13 - 2022-12-02 at 12 59 04](https://user-images.githubusercontent.com/104554054/205252819-78266743-b58e-405b-91e4-630784715b68.gif)
+
 ![Simulator Screen Recording - iPhone 13 - 2022-11-11 at 15 26 23](https://user-images.githubusercontent.com/82019401/201333076-9c50a9df-f41c-4453-ba04-393fbdd957f0.gif)
 
-
-
-
-https://user-images.githubusercontent.com/82019401/201672542-76016412-a8a0-4931-a59a-6942c1265c43.mp4
+![Simulator Screen Recording - iPhone 13 - 2022-12-02 at 12 59 51](https://user-images.githubusercontent.com/104554054/205252970-1b463c2e-35f7-4b73-afda-098483c2edd8.gif)
 
 https://user-images.githubusercontent.com/82019401/201672555-2bc57323-b89f-4fa4-a9ac-5aa264bfb841.mp4
 
