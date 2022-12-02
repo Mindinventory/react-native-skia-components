@@ -19,8 +19,7 @@ yarn add @mindinventory/react-native-skia-components
 ## Preview
 
 
-
-https://user-images.githubusercontent.com/104554054/205281639-be9eb3cd-ae53-4764-b678-b7683d6c2bae.mov
+https://user-images.githubusercontent.com/104554054/205296197-bd0966fc-d72d-4c55-ba95-df4883a5dcc0.mp4
 
 
 
