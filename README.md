@@ -32,9 +32,9 @@ https://user-images.githubusercontent.com/104554054/205296197-bd0966fc-d72d-4c55
 
 ```js
 import {
-  Button,
   Card,
-  CircularProgressBar,
+  NeoPopButton,
+  FloatingButton,
 } from '@mindinventory/react-native-skia-components';
 ```
 
