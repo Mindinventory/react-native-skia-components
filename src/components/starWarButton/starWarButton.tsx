@@ -15,54 +15,49 @@ import Animated from 'react-native-reanimated';
 import { GradientType, StarWarButtonProps } from './starWarButton.type';
 import { useStarWarButton } from './useStarWarButton';
 
-export const StarWarButtonComponent = (props: StarWarButtonProps) => {
-  const {
-    blurRadius,
-    buttonBorderRadius,
-    canvasButtonHeight,
-    canvasButtonWidth,
-    canvasPadding,
-    colors,
-    filled,
-    gradientType,
-    styles,
-    textStyle,
-    title,
-    titleColor,
-    titleSize,
-    style,
-    scaledButton,
-    transformAnimation,
-    gradient,
-    backgroundColor,
-    opacityButton,
-    onPressEnd,
-    onPressStart,
-  } = useStarWarButton(props);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-  return (
-    <Pressable
-      style={[styles.starWarButtonStyle.container || {}]}
-      onPress={props.onPress}
-      onLongPress={props.onLongPress}
-      onPressIn={onPressStart}
-      onPressOut={onPressEnd}
-    >
-      <Animated.View
-        style={[
-          styles.starWarButtonStyle.container,
-          scaledButton,
-          {
-            height: canvasButtonHeight,
-            width: canvasButtonWidth,
-          },
-        ]}
+export const StarWarButtonComponent = React.memo(
+  (props: StarWarButtonProps) => {
+    const {
+      blurRadius,
+      buttonBorderRadius,
+      canvasButtonHeight,
+      canvasButtonWidth,
+      canvasPadding,
+      colors,
+      filled,
+      gradientType,
+      styles,
+      textStyle,
+      title,
+      titleColor,
+      titleSize,
+      style,
+      scaledButton,
+      transformAnimation,
+      gradient,
+      backgroundColor,
+      opacityButton,
+      onPressEnd,
+      onPressStart,
+      CANVAS_HEIGHT,
+      CANVAS_WIDTH,
+    } = useStarWarButton(props);
+
+    return (
+      <AnimatedPressable
+        style={[styles.starWarButtonStyle.container || {}, scaledButton]}
+        onPress={props.onPress}
+        onLongPress={props.onLongPress}
+        onPressIn={onPressStart}
+        onPressOut={onPressEnd}
       >
         <Canvas
           style={[
             {
-              height: canvasButtonHeight + canvasPadding,
-              width: canvasButtonWidth + canvasPadding,
+              height: CANVAS_HEIGHT,
+              width: CANVAS_WIDTH,
             },
           ]}
           children={
@@ -75,10 +70,7 @@ export const StarWarButtonComponent = (props: StarWarButtonProps) => {
             >
               {gradientType === GradientType.sweep && (
                 <SweepGradient
-                  origin={vec(
-                    (canvasButtonWidth + canvasPadding) / 2,
-                    (canvasButtonHeight + canvasPadding) / 2
-                  )}
+                  origin={vec(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2)}
                   c={vec(gradient?.center?.x, gradient?.center?.y)}
                   colors={colors}
                   transform={transformAnimation}
@@ -86,10 +78,7 @@ export const StarWarButtonComponent = (props: StarWarButtonProps) => {
               )}
               {gradientType === GradientType.radial && (
                 <RadialGradient
-                  origin={vec(
-                    (canvasButtonWidth + canvasPadding) / 2,
-                    (canvasButtonHeight + canvasPadding) / 2
-                  )}
+                  origin={vec(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2)}
                   c={vec(gradient?.center?.x, gradient?.center?.y)}
                   r={gradient?.radius}
                   colors={colors}
@@ -98,10 +87,7 @@ export const StarWarButtonComponent = (props: StarWarButtonProps) => {
               )}
               {gradientType === GradientType.linear && (
                 <LinearGradient
-                  origin={vec(
-                    (canvasButtonWidth + canvasPadding) / 2,
-                    (canvasButtonHeight + canvasPadding) / 2
-                  )}
+                  origin={vec(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2)}
                   start={vec(gradient?.start?.x, gradient?.start?.y)}
                   end={vec(gradient?.end?.x, gradient?.end?.y)}
                   colors={colors}
@@ -140,7 +126,7 @@ export const StarWarButtonComponent = (props: StarWarButtonProps) => {
             {title}
           </Text>
         </Animated.View>
-      </Animated.View>
-    </Pressable>
-  );
-};
+      </AnimatedPressable>
+    );
+  }
+);

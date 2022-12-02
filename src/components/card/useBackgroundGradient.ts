@@ -34,7 +34,7 @@ export const useBackgroundGradient = (props: BackgroundGradientProps) => {
       from: 0,
       loop: true,
       to: progressToValue,
-      yoyo: AnimateBorderType.yoyo ? true : false,
+      yoyo: animateBorder === AnimateBorderType.yoyo ? true : false,
     },
     {
       duration: duration,

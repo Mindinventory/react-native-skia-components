@@ -101,4 +101,4 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
   );
 };
 
-export default NeoPopButton;
+export default React.memo(NeoPopButton);

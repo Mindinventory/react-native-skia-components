@@ -46,12 +46,20 @@ const SelectComponentScreen = () => {
           <Text style={styles.animOtherOptionText}>NEO-POP BUTTON</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.animOptionNoneStyle}
+          style={styles.animOptionStyle}
           onPress={() => {
             navigation.navigate('StarWarsButtonScreen');
           }}
         >
           <Text style={styles.animOtherOptionText}>STAR WAR BUTTON</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.animOptionNoneStyle}
+          onPress={() => {
+            navigation.navigate('FloatingButton');
+          }}
+        >
+          <Text style={styles.animOtherOptionText}>FLOATING BUTTON</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

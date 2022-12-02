@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: miColor.black,
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     width: '100%',
   },
   coponentListStyle: {

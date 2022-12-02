@@ -3,6 +3,7 @@ import type { Vector } from '@shopify/react-native-skia';
 import type { ButtonProps } from '../button/button.type';
 
 export type StarWarButtonType = {
+  [key: string]: Vector | number | any;
   /**
    * Provide an colors to button border and inside.
    * @example
@@ -13,7 +14,7 @@ export type StarWarButtonType = {
    * @default['cyan', 'magenta', 'yellow', 'cyan'].
    * @type  string | string[]
    */
-  colors?: string | string[];
+  colors?: string[] | string;
   /**
    * Button inside filled type "solid" | "outer" | "inner" | "inner".
    * @enum

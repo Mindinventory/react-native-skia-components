@@ -5,7 +5,7 @@ export const StarWarButtonConstant = {
   default: {
     animation: true,
     animationDuration: 3000,
-    backgroundColor: '#ffffff',
+    backgroundColor: miColor.transparent,
     blurRadius: 10,
     buttonBorderRadius: 10,
     buttonEffectDuration: 250,

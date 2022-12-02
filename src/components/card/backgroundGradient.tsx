@@ -53,4 +53,4 @@ const BackgroundGradient = (props: BackgroundGradientProps) => {
   );
 };
 
-export default BackgroundGradient;
+export default React.memo(BackgroundGradient);

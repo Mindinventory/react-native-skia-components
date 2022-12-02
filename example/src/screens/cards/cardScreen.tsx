@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import {
-  Dimensions,
   FlatList,
   ImageBackground,
   SafeAreaView,
@@ -16,38 +15,114 @@ import {
 } from '@mindinventory/react-native-skia-components';
 
 import { miColor } from '../../constant/colors';
+import { bullets } from '../../constant/constant';
 
-const { width } = Dimensions.get('window');
+const data = new Array(3);
 
-const cardItems = [
-  {
-    animateBorder: 'normal',
-    animation: 'rotate',
-    title: 'Card title 1',
-  },
-  {
-    animateBorder: 'yoyo',
-    animation: 'bounce',
-    title: 'Card title 2',
-  },
-  {
-    animateBorder: 'disco',
-    animation: 'none',
-    title: 'Card title 3',
-  },
-];
-
-type CARDITEMS = {
-  animateBorder: 'normal' | 'yoyo' | 'none' | 'disco';
-  animation: 'rotate' | 'none' | 'bounce';
+type CardItems = {
+  animateBorder: string;
+  animation: string;
   title: string;
 };
 
-const CardItems = ({ flatListRef }) => {
+const CardItems = ({ flatListRef }: any) => {
+  const renderItem = () => {
+    return (
+      <>
+        <Card
+          height={180}
+          width={310}
+          borderWidth={5}
+          style={styles.card}
+          blur={20}
+          animation={'bounce'}
+          borderColors={[miColor.bluishGray, miColor.gray]}
+        >
+          <ImageBackground
+            source={{
+              uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
+            }}
+            style={styles.cardContain}
+            resizeMode={'cover'}
+          >
+            <View style={styles.cardStyle}>
+              <Text style={styles.cardNumber}>
+                {bullets}
+                {bullets}
+                {bullets}
+                {bullets}
+                {'\t'}
+                <Text style={styles.cardText}>5008</Text>
+              </Text>
+              <Text style={styles.cardText}>Mindinventory</Text>
+            </View>
+          </ImageBackground>
+        </Card>
+        <Card
+          height={180}
+          width={310}
+          borderWidth={5}
+          style={styles.card}
+          blur={10}
+          borderColors={[miColor.black, miColor.red]}
+        >
+          <ImageBackground
+            source={{
+              uri: 'https://cdn.dribbble.com/userupload/3687484/file/original-d7a21496147ff53566f169184d6a8d47.png?compress=1&resize=1024x768&vertical=center',
+            }}
+            style={styles.cardContain}
+            resizeMode={'cover'}
+          >
+            <View style={styles.cardStyle}>
+              <Text style={styles.cardNumber}>
+                {bullets}
+                {bullets}
+                {bullets}
+                {bullets}
+                {'\t'}
+                <Text style={styles.cardText}>5008</Text>
+              </Text>
+              <Text style={styles.cardText}>Mindinventory</Text>
+            </View>
+          </ImageBackground>
+        </Card>
+        <Card
+          height={180}
+          width={310}
+          borderWidth={5}
+          style={styles.card}
+          blur={15}
+          animation={'none'}
+          animateBorder={'normal'}
+        >
+          <ImageBackground
+            source={{
+              uri: 'https://cdn.dribbble.com/userupload/3154457/file/original-0ac7ee3314f9e2cc3c31843e6b8befa4.png?compress=1&resize=1024x768&vertical=center',
+            }}
+            style={styles.cardContain}
+            resizeMode={'cover'}
+          >
+            <View style={styles.cardStyle}>
+              <Text style={styles.cardNumber}>
+                {bullets}
+                {bullets}
+                {bullets}
+                {bullets}
+                {'\t'}
+                <Text style={styles.cardText}>5008</Text>
+              </Text>
+              <Text style={styles.cardText}>Mindinventory</Text>
+            </View>
+          </ImageBackground>
+        </Card>
+      </>
+    );
+  };
+
   return (
     <FlatList
       horizontal
-      data={cardItems}
+      data={data}
       keyExtractor={(_item, index) => index.toString()}
       style={styles.listItemStyle}
       contentContainerStyle={styles.contentListItem}
@@ -57,39 +132,7 @@ const CardItems = ({ flatListRef }) => {
         length: 350,
         offset: 350 * index,
       })}
-      renderItem={({ item }: { item: CARDITEMS }) => {
-        return (
-          <Card
-            height={180}
-            width={310}
-            borderWidth={5}
-            animation={item.animation}
-            style={styles.card}
-            animateBorder={item.animateBorder}
-            blur={10}
-          >
-            <ImageBackground
-              source={{
-                uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
-              }}
-              style={styles.cardContain}
-              resizeMode={'cover'}
-            >
-              <View style={styles.cardStyle}>
-                <Text style={styles.cardNumber}>
-                  {'\u2022'}
-                  {'\u2022'}
-                  {'\u2022'}
-                  {'\u2022'}
-                  {'\t'}
-                  <Text style={styles.cardText}>5008</Text>
-                </Text>
-                <Text style={styles.cardText}>Mindinventory</Text>
-              </View>
-            </ImageBackground>
-          </Card>
-        );
-      }}
+      renderItem={renderItem}
     />
   );
 };
@@ -108,7 +151,7 @@ const CardScreen = () => {
           Give Your {'\n'}Banking card{'\n'}a{' '}
           <Text style={styles.newLook}>New Look</Text>
         </Text>
-        <CardItems flatListRef={flatListRef} />
+        {CardItems({ flatListRef })}
 
         <Text style={styles.chooseCardText}>Choose a Card</Text>
         <NeoPopButton
@@ -118,7 +161,7 @@ const CardScreen = () => {
           bottomShadowColor={miColor.lightGray}
           textStyle={styles.floatingTextStyle}
           onPress={() => {
-            if (indexes === cardItems.length - 1) {
+            if (indexes === data.length - 1) {
               indexes = 0;
             } else {
               indexes++;
@@ -179,7 +222,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    backgroundColor: miColor.black,
+    backgroundColor: miColor.blackShade,
     flex: 1,
     justifyContent: 'center',
   },
@@ -207,7 +250,6 @@ const styles = StyleSheet.create({
   },
   listItemStyle: {
     maxHeight: 250,
-    width: width * 0.91,
   },
   newLook: {
     color: miColor.indigo,

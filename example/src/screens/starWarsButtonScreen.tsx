@@ -9,24 +9,21 @@ const StarWarsButtonScreen = () => {
   return (
     <View style={styles.centerItemStyle}>
       <StarWarButton
-        preset="starWar"
         onPress={() => {}}
         title="Button"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
-        filled={'inner'}
+        filled={'solid'}
         gradientType={'linear'}
         buttonBorderRadius={50}
-        width={200}
+        width={250}
         height={20}
         titleSize={20}
         titleColor={'white'}
         animation={true}
-        backgroundColor={'green'}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 0 }}
+        start={{ x: 100, y: 0 }}
+        end={{ x: 0, y: 10 }}
       />
       <StarWarButton
-        preset="starWar"
         title="Button 2"
         colors={['cyan', 'magenta', 'yellow', 'cyan']}
         filled={'solid'}
@@ -37,10 +34,9 @@ const StarWarsButtonScreen = () => {
         width={200}
         height={20}
         animation={true}
-        backgroundColor={'darkred'}
+        backgroundColor={'gray'}
       />
       <StarWarButton
-        preset="starWar"
         title="Button 2"
         colors={['cyan', 'magenta', 'black', 'cyan']}
         filled={'inner'}
@@ -54,7 +50,6 @@ const StarWarsButtonScreen = () => {
         backgroundColor={'#d29cf8'}
       />
       <StarWarButton
-        preset="starWar"
         title="Button 3"
         colors={'darkblue'}
         filled={'normal'}

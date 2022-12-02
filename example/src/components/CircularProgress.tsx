@@ -7,12 +7,12 @@ import { miColor } from '../constant/colors';
 interface ICircularProgress {
   progress: number;
 }
-const CircularProgress: React.FC<ICircularProgress> = ({ progress }) => {
+const CircularProgress = ({ progress }: ICircularProgress) => {
   return (
     <CircularProgressBar
       progress={progress}
       shadowColor={miColor.white}
-      gradientColors={['#292626']}
+      gradientColors={[miColor.nero]}
     />
   );
 };

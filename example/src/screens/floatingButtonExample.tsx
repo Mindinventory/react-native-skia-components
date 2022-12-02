@@ -1,37 +1,24 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { FloatingButton } from '@mindinventory/react-native-skia-components';
 
 import { miColor } from '../constant/colors';
+import { styles } from './componentStyle.style';
 
 const FloatingButtonExample = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.centerItemStyle}>
       <FloatingButton
         width={220}
         height={50}
         title="PRESS ME"
-        bottomShadowColor={'gray'}
+        bottomShadowColor={miColor.lightGray}
         textStyle={styles.floatingTextStyle}
-        sideShadowColor={'red'}
+        backgroundColor={miColor.yellowGold}
         onPress={() => {}}
-        onLongPress={() => {}}
       />
     </View>
   );
 };
-
 export default FloatingButtonExample;
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: miColor.darkBlack,
-    flex: 1,
-    justifyContent: 'center',
-  },
-  floatingTextStyle: {
-    fontSize: 24,
-  },
-});

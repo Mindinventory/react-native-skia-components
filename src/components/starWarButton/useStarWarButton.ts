@@ -5,7 +5,6 @@ import {
   Easing,
   useAnimatedStyle,
   useSharedValue,
-  withSequence,
   withTiming,
 } from 'react-native-reanimated';
 
@@ -46,8 +45,12 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
 
   const canvasPadding = StarWarButtonConstant.default.canvasPadding;
 
+  const CANVAS_WIDTH = canvasButtonWidth + canvasPadding;
+  const CANVAS_HEIGHT = canvasButtonHeight + canvasPadding;
+
   const colors: string[] = useMemo(
-    () => (!Array.isArray(props.colors) ? [props.colors] : props.colors),
+    () =>
+      Array.isArray(props.colors) ? props.colors : ([props.colors] as string[]),
     [props.colors]
   );
 
@@ -57,8 +60,8 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
         center: props.center
           ? props.center
           : {
-              x: (canvasButtonWidth + canvasPadding) / 2,
-              y: (canvasButtonHeight + canvasPadding) / 2,
+              x: CANVAS_WIDTH / 2,
+              y: CANVAS_HEIGHT / 2,
             },
       };
     }
@@ -68,8 +71,8 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
         center: props.center
           ? props.center
           : {
-              x: (canvasButtonWidth + canvasPadding) / 2,
-              y: (canvasButtonHeight + canvasPadding) / 2,
+              x: CANVAS_WIDTH / 2,
+              y: CANVAS_HEIGHT / 2,
             },
         radius: props.radius ? props.radius : 150,
       };
@@ -77,23 +80,20 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
 
     if (props.gradientType === GradientType.linear) {
       return {
-        end: props.end
-          ? props.end
-          : { x: 0, y: (canvasButtonHeight + canvasPadding) / 2 },
+        end: props.end ? props.end : { x: 0, y: CANVAS_HEIGHT / 2 },
         start: props.start
           ? props.start
           : {
-              x: (canvasButtonWidth + canvasPadding) / 2,
-              y: (canvasButtonWidth + canvasPadding) / 2,
+              x: CANVAS_WIDTH / 2,
+              y: CANVAS_WIDTH / 2,
             },
       };
     }
 
     return;
   }, [
-    canvasButtonHeight,
-    canvasButtonWidth,
-    canvasPadding,
+    CANVAS_HEIGHT,
+    CANVAS_WIDTH,
     props.center,
     props.end,
     props.gradientType,
@@ -166,6 +166,8 @@ export const useStarWarButton = (props: StarWarButtonProps) => {
     backgroundColor,
     blurRadius,
     buttonBorderRadius,
+    CANVAS_HEIGHT,
+    CANVAS_WIDTH,
     canvasButtonHeight,
     canvasButtonWidth,
     canvasPadding,
