@@ -31,7 +31,11 @@ const StackNavigation = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen name={'CardComponent'} component={CardComponent} />
-        <Stack.Screen name={'CardScreen'} component={CardScreen} />
+        <Stack.Screen
+          name={'CardScreen'}
+          component={CardScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name={'NeoPopButton'} component={NeoPopButtonExample} />
         <Stack.Screen
           name={'StarWarsButtonScreen'}

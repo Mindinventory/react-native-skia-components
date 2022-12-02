@@ -259,5 +259,6 @@ const styles = StyleSheet.create({
   scrollContain: {
     flexGrow: 1,
     justifyContent: 'space-evenly',
+    paddingHorizontal: '5%',
   },
 });
