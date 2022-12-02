@@ -71,6 +71,11 @@ animation={'none'}
 animateBorder={'normal'}
 ```
 ![card3](https://user-images.githubusercontent.com/104554054/205283190-18b3db6e-dfd1-45a7-b988-bee258fe7f1d.gif)
+```js
+animation={'rotate'}
+animateBorder={'disco'}
+```
+![thank](https://user-images.githubusercontent.com/104554054/205297001-87106883-a507-4208-b5ae-f1162922f525.gif)
 
 
 # Neopop
