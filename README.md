@@ -18,13 +18,13 @@ yarn add @mindinventory/react-native-skia-components
 
 ## Preview
 
-![Simulator Screen Recording - iPhone 13 - 2022-11-11 at 15 25 19](https://user-images.githubusercontent.com/82019401/201321527-9139c291-9b8a-4ff5-9842-4447c926e155.gif)
+![Simulator Screen Recording - iPhone 13 - 2022-12-01 at 15 10 54](https://user-images.githubusercontent.com/104554054/205020580-9d6e80bb-ec8d-40bc-a990-5378d142d3fe.gif)
 ![Simulator Screen Recording - iPhone 13 - 2022-11-11 at 15 26 23](https://user-images.githubusercontent.com/82019401/201333076-9c50a9df-f41c-4453-ba04-393fbdd957f0.gif)
 
 
 
 
-https://user-images.githubusercontent.com/82019401/201672542-76016412-a8a0-4931-a59a-6942c1265c43.mp4 
+https://user-images.githubusercontent.com/82019401/201672542-76016412-a8a0-4931-a59a-6942c1265c43.mp4
 
 https://user-images.githubusercontent.com/82019401/201672555-2bc57323-b89f-4fa4-a9ac-5aa264bfb841.mp4
 
@@ -59,6 +59,9 @@ import {
   cardRadius={20}
   height={220}
   width={310}
+  animation={'rotate'}
+  animateBorder={'normal'}
+  duration={1000}
 >
 {...}
 </Card>
@@ -93,32 +96,38 @@ import {
 # Neopop
 
 ```js
-<Button
+<NeoPopButton
   backgroundColor={'#f96b8f'}
   bottomShadowColor={'#363636'}
+  depth={10}
   height={80}
-  preset="neoPop"
   sideShadowColor={'#363636'}
+  isFloating={false}
   textStyle={{
     color: 'white',
+    ...textStyle
   }}
-  title={`${index + 1}`}
+  title={`Neo Pop Button`}
   width={80}
+  onPress={()=>{}}
+  shadowHeight={15}
+  sideShadowColor={"rgba(250, 226, 46, 1)"}
+  style={...style}
+  titleSize={10}
 />
 ```
 
-<img width="364" alt="Screenshot 2022-11-14 at 11 19 29 AM" src="https://user-images.githubusercontent.com/82019401/201585018-814ca046-a13f-4d1a-9396-1282b6f1e7db.png">
+<img width="415" alt="Screenshot 2022-11-14 at 11 19 48 AM" src="https://user-images.githubusercontent.com/82019401/201585058-3af9f8c2-c58d-4d01-9351-36bb4b37d2ef.png">
 
 # Floating
 
 ```js
-<Button
+<FloatingButton
     backgroundColor={'rgba(250, 226, 46,1)'}
     bottomShadowColor={'rgba(0, 0, 0,1)'}
     depth={25}
     height={200}
     isFloating={true}
-    preset="floating"
     shadowHeight={20}
     sideShadowColor={'rgba(195, 161, 60,1)'}
     textStyle={{
@@ -128,8 +137,7 @@ import {
     width={300}
 />
 ```
-
-<img width="415" alt="Screenshot 2022-11-14 at 11 19 48 AM" src="https://user-images.githubusercontent.com/82019401/201585058-3af9f8c2-c58d-4d01-9351-36bb4b37d2ef.png">
+<img width="364" alt="Screenshot 2022-11-14 at 11 19 29 AM" src="https://user-images.githubusercontent.com/82019401/201585018-814ca046-a13f-4d1a-9396-1282b6f1e7db.png">
 
 # Props to use
 
@@ -144,6 +152,9 @@ import {
 | borderWidth     | _number (Optional)_        | Set border width of card.          |
 | borderColors    | _Array<string> (Optional)_ | Set border gradient color of card. |
 | blur            | _number (Optional)_        | Set border blur radius of card.    |
+| animation       |  string                    | Set animation of card in ('rotate', 'bounce', 'none').    |
+| animateBorder   |  string                    | Set animation of card border in ('normal', 'disco', 'none', 'yoyo').    |
+| duration        |  number                    | Set duration of animating border of card.    |
 
 # Circle Progress Props
 
@@ -164,11 +175,10 @@ import {
 | shadowOffset    | _object (Optional)_        | Set shadow offset of progress bar, (`width` and `height`). |
 | backgroundColor | _object (Optional)_        | Set background of Circle inner view.                       |
 
-# Button Props
+# NeoPopButton Props
 
 | Parameter         | Type                 | Description                                                          |
 | ----------------- | -------------------- | -------------------------------------------------------------------- |
-| preset            | _string_             | Type of button that you need to show either `NeoPop` or `Floating`   |
 | style             | _style (Optional)_   | Give style of button.                                                |
 | title             | _string (Optional)_  | Title of button.                                                     |
 | width             | _number (Optional)_  | Set width of button.                                                 |
@@ -181,6 +191,8 @@ import {
 | textStyle         | _style (Optional)_   | Give TextStyle button title texts.                                   |
 | titleSize         | _number (Optional)_  | Set text size of title.                                              |
 | isFloating        | _boolean (Optional)_ | set value `true` or `false` to get either Flaoting or Neopop button. |
+| floatAnimation    | _boolean (Optional)_ | set value `true` or `false` to get button float animation on or off. |
+| duration          | _number (Optional)_  | set duration of the floatAnimation of the button. |
 
 ## Contributing!
 
