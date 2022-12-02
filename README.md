@@ -57,8 +57,20 @@ import {
 {...}
 </Card>
 ```
+```js
+animation={'rotate'}
+animateBorder={'normal'}
+```
 ![cardJeko](https://user-images.githubusercontent.com/104554054/205283144-d7020c40-8e49-433f-9f39-fa5a984bb29e.gif)
+```js
+animation={'bounce'}
+animateBorder={'normal'}
+```
 ![card](https://user-images.githubusercontent.com/104554054/205283171-993ec474-ad73-4b6c-8449-cf1ec031c4c2.gif)
+```js
+animation={'none'}
+animateBorder={'normal'}
+```
 ![card3](https://user-images.githubusercontent.com/104554054/205283190-18b3db6e-dfd1-45a7-b988-bee258fe7f1d.gif)
 
 
