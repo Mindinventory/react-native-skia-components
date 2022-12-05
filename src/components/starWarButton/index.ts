@@ -1,3 +1,4 @@
+import type { StarWarButtonType } from './starWarButton.type';
 import { StarWarButton } from './starWarButtonContainer';
 
-export { StarWarButton };
+export { StarWarButton, StarWarButtonType };

@@ -1,0 +1,365 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@mindinventory/react-native-skia-components</title><meta name="description" content="Documentation for @mindinventory/react-native-skia-components"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@mindinventory/react-native-skia-components</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-8 col-content">
+<div class="tsd-page-title">
+<h2>@mindinventory/react-native-skia-components</h2></div>
+<div class="tsd-panel tsd-typography">
+<a href="#mindinventoryreact-native-skia-components" id="mindinventoryreact-native-skia-components" style="color: inherit; text-decoration: none;">
+  <h1>@mindinventory/react-native-skia-components</h1>
+</a>
+<p>This library provide UIKit like Buttons, Circle Progress and and Card layout.</p>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<p>using npm</p>
+<pre><code class="language-sh"><span class="hl-0">npm install @mindinventory/react-native-skia-components</span>
+</code></pre>
+<p>using yarn</p>
+<pre><code class="language-sh"><span class="hl-0">yarn add @mindinventory/react-native-skia-components</span>
+</code></pre>
+
+<a href="#preview" id="preview" style="color: inherit; text-decoration: none;">
+  <h2>Preview</h2>
+</a>
+<p><a href="https://user-images.githubusercontent.com/104554054/205296197-bd0966fc-d72d-4c55-ba95-df4883a5dcc0.mp4">https://user-images.githubusercontent.com/104554054/205296197-bd0966fc-d72d-4c55-ba95-df4883a5dcc0.mp4</a></p>
+
+<a href="#supported-platform" id="supported-platform" style="color: inherit; text-decoration: none;">
+  <h3>Supported platform</h3>
+</a>
+<ul>
+<li>Android</li>
+<li>Ios</li>
+</ul>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<pre><code class="language-js"><span class="hl-1">import</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-2">Card</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">NeoPopButton</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">FloatingButton</span><span class="hl-0">,</span><br/><span class="hl-0">} </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-3">&#39;@mindinventory/react-native-skia-components&#39;</span><span class="hl-0">;</span>
+</code></pre>
+
+<a href="#card" id="card" style="color: inherit; text-decoration: none;">
+  <h1>Card</h1>
+</a>
+<pre><code class="language-js"><span class="hl-4">&lt;</span><span class="hl-5">Card</span><br/><span class="hl-0">  </span><span class="hl-6">backgroundColor</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;#000&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">blur</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">10</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">borderColors</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-9">[</span><span class="hl-3">&#39;cyan&#39;</span><span class="hl-9">, </span><span class="hl-3">&#39;magenta&#39;</span><span class="hl-9">, </span><span class="hl-3">&#39;yellow&#39;</span><span class="hl-9">, </span><span class="hl-3">&#39;cyan&#39;</span><span class="hl-9">]</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">borderWidth</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">5</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">cardRadius</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">20</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">height</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">220</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">width</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">310</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">animation</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;rotate&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">animateBorder</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;normal&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">duration</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">1000</span><span class="hl-7">}</span><br/><span class="hl-4">&gt;</span><br/><span class="hl-7">{</span><span class="hl-0">...</span><span class="hl-7">}</span><br/><span class="hl-4">&lt;/</span><span class="hl-5">Card</span><span class="hl-4">&gt;</span>
+</code></pre>
+<pre><code class="language-js"><span class="hl-2">animation</span><span class="hl-0">={</span><span class="hl-3">&#39;rotate&#39;</span><span class="hl-0">}</span><br/><span class="hl-2">animateBorder</span><span class="hl-0">={</span><span class="hl-3">&#39;normal&#39;</span><span class="hl-0">}</span>
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/104554054/205283144-d7020c40-8e49-433f-9f39-fa5a984bb29e.gif" alt="cardJeko"></p>
+<pre><code class="language-js"><span class="hl-2">animation</span><span class="hl-0">={</span><span class="hl-3">&#39;bounce&#39;</span><span class="hl-0">}</span><br/><span class="hl-2">animateBorder</span><span class="hl-0">={</span><span class="hl-3">&#39;normal&#39;</span><span class="hl-0">}</span>
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/104554054/205283171-993ec474-ad73-4b6c-8449-cf1ec031c4c2.gif" alt="card"></p>
+<pre><code class="language-js"><span class="hl-2">animation</span><span class="hl-0">={</span><span class="hl-3">&#39;none&#39;</span><span class="hl-0">}</span><br/><span class="hl-2">animateBorder</span><span class="hl-0">={</span><span class="hl-3">&#39;normal&#39;</span><span class="hl-0">}</span>
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/104554054/205283190-18b3db6e-dfd1-45a7-b988-bee258fe7f1d.gif" alt="card3"></p>
+<pre><code class="language-js"><span class="hl-2">animation</span><span class="hl-0">={</span><span class="hl-3">&#39;rotate&#39;</span><span class="hl-0">}</span><br/><span class="hl-2">animateBorder</span><span class="hl-0">={</span><span class="hl-3">&#39;disco&#39;</span><span class="hl-0">}</span>
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/104554054/205297001-87106883-a507-4208-b5ae-f1162922f525.gif" alt="thank"></p>
+
+<a href="#neopop" id="neopop" style="color: inherit; text-decoration: none;">
+  <h1>Neopop</h1>
+</a>
+<pre><code class="language-js"><span class="hl-4">&lt;</span><span class="hl-5">NeoPopButton</span><br/><span class="hl-0">  </span><span class="hl-6">backgroundColor</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;#f96b8f&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">bottomShadowColor</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;#363636&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">depth</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">10</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">height</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">80</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">sideShadowColor</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;#363636&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">isFloating</span><span class="hl-0">=</span><span class="hl-7">{false}</span><br/><span class="hl-0">  </span><span class="hl-6">textStyle</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-9">{</span><br/><span class="hl-9">    </span><span class="hl-2">color:</span><span class="hl-9"> </span><span class="hl-3">&#39;white&#39;</span><span class="hl-9">,</span><br/><span class="hl-9">    </span><span class="hl-0">...</span><span class="hl-2">textStyle</span><br/><span class="hl-9">  }</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">title</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">`Neo Pop Button`</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">width</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">80</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">onPress</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-9">()</span><span class="hl-7">=&gt;</span><span class="hl-9">{}</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">shadowHeight</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">15</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">sideShadowColor</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&quot;rgba(250, 226, 46, 1)&quot;</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">style</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-0">...</span><span class="hl-2">style</span><span class="hl-7">}</span><br/><span class="hl-0">  </span><span class="hl-6">titleSize</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">10</span><span class="hl-7">}</span><br/><span class="hl-4">/&gt;</span>
+</code></pre>
+<p><img src="https://user-images.githubusercontent.com/104554054/205282417-e10ca1da-cfe6-46b7-ae2b-0fb7843951fe.gif" alt="neoPop"></p>
+
+<a href="#floating" id="floating" style="color: inherit; text-decoration: none;">
+  <h1>Floating</h1>
+</a>
+<pre><code class="language-js"><span class="hl-4">&lt;</span><span class="hl-5">FloatingButton</span><br/><span class="hl-0">    </span><span class="hl-6">backgroundColor</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;rgba(250, 226, 46,1)&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">    </span><span class="hl-6">bottomShadowColor</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;rgba(0, 0, 0,1)&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">    </span><span class="hl-6">depth</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">25</span><span class="hl-7">}</span><br/><span class="hl-0">    </span><span class="hl-6">height</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">200</span><span class="hl-7">}</span><br/><span class="hl-0">    </span><span class="hl-6">isFloating</span><span class="hl-0">=</span><span class="hl-7">{true}</span><br/><span class="hl-0">    </span><span class="hl-6">shadowHeight</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">20</span><span class="hl-7">}</span><br/><span class="hl-0">    </span><span class="hl-6">sideShadowColor</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;rgba(195, 161, 60,1)&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">    </span><span class="hl-6">textStyle</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-9">{</span><br/><span class="hl-9">      </span><span class="hl-2">fontSize:</span><span class="hl-9"> </span><span class="hl-8">24</span><span class="hl-9">,</span><br/><span class="hl-9">    }</span><span class="hl-7">}</span><br/><span class="hl-0">    </span><span class="hl-6">title</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-3">&#39;Press Me&#39;</span><span class="hl-7">}</span><br/><span class="hl-0">    </span><span class="hl-6">width</span><span class="hl-0">=</span><span class="hl-7">{</span><span class="hl-8">300</span><span class="hl-7">}</span><br/><span class="hl-4">/&gt;</span>
+</code></pre>
+<img width="364" alt="Screenshot 2022-11-14 at 11 19 29 AM" src="https://user-images.githubusercontent.com/82019401/201585018-814ca046-a13f-4d1a-9396-1282b6f1e7db.png">
+
+
+<a href="#props-to-use" id="props-to-use" style="color: inherit; text-decoration: none;">
+  <h1>Props to use</h1>
+</a>
+
+<a href="#card-props" id="card-props" style="color: inherit; text-decoration: none;">
+  <h1>Card Props</h1>
+</a>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>width</td>
+<td><em>number (Optional)</em></td>
+<td>Set width of card layout.</td>
+</tr>
+<tr>
+<td>height</td>
+<td><em>number (Optional)</em></td>
+<td>Set height of card layout.</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td><em>string (Optional)</em></td>
+<td>Set background of card.</td>
+</tr>
+<tr>
+<td>cardRadius</td>
+<td><em>number (Optional)</em></td>
+<td>Set corner radius of card.</td>
+</tr>
+<tr>
+<td>borderWidth</td>
+<td><em>number (Optional)</em></td>
+<td>Set border width of card.</td>
+</tr>
+<tr>
+<td>borderColors</td>
+<td><em>Array<string> (Optional)</em></td>
+<td>Set border gradient color of card.</td>
+</tr>
+<tr>
+<td>blur</td>
+<td><em>number (Optional)</em></td>
+<td>Set border blur radius of card.</td>
+</tr>
+<tr>
+<td>animation</td>
+<td>string</td>
+<td>Set animation of card in (&#39;rotate&#39;, &#39;bounce&#39;, &#39;none&#39;).</td>
+</tr>
+<tr>
+<td>animateBorder</td>
+<td>string</td>
+<td>Set animation of card border in (&#39;normal&#39;, &#39;disco&#39;, &#39;none&#39;, &#39;yoyo&#39;).</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>number</td>
+<td>Set duration of animating border of card.</td>
+</tr>
+</tbody></table>
+
+<a href="#neopopbutton-props" id="neopopbutton-props" style="color: inherit; text-decoration: none;">
+  <h1>NeoPopButton Props</h1>
+</a>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>style</td>
+<td><em>style (Optional)</em></td>
+<td>Give style of button.</td>
+</tr>
+<tr>
+<td>title</td>
+<td><em>string (Optional)</em></td>
+<td>Title of button.</td>
+</tr>
+<tr>
+<td>width</td>
+<td><em>number (Optional)</em></td>
+<td>Set width of button.</td>
+</tr>
+<tr>
+<td>height</td>
+<td><em>number (Optional)</em></td>
+<td>Set height of button.</td>
+</tr>
+<tr>
+<td>depth</td>
+<td><em>number (Optional)</em></td>
+<td>Set depth of button.</td>
+</tr>
+<tr>
+<td>shadowHeight</td>
+<td><em>number (Optional)</em></td>
+<td>Add shadow height for button.</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td><em>string (Optional)</em></td>
+<td>Add background color to button.</td>
+</tr>
+<tr>
+<td>bottomShadowColor</td>
+<td><em>string (Optional)</em></td>
+<td>Add bottom shadow color of button.</td>
+</tr>
+<tr>
+<td>sideShadowColor</td>
+<td><em>string (Optional)</em></td>
+<td>Add right shadow color of button.</td>
+</tr>
+<tr>
+<td>textStyle</td>
+<td><em>style (Optional)</em></td>
+<td>Give TextStyle button title texts.</td>
+</tr>
+<tr>
+<td>titleSize</td>
+<td><em>number (Optional)</em></td>
+<td>Set text size of title.</td>
+</tr>
+<tr>
+<td>isFloating</td>
+<td><em>boolean (Optional)</em></td>
+<td>set value <code>true</code> or <code>false</code> to get either Floating or NeoPop button.</td>
+</tr>
+<tr>
+<td>floatAnimation</td>
+<td><em>boolean (Optional)</em></td>
+<td>set value <code>true</code> or <code>false</code> to get button float animation on or off.</td>
+</tr>
+<tr>
+<td>duration</td>
+<td><em>number (Optional)</em></td>
+<td>set duration of the floatAnimation of the button.</td>
+</tr>
+</tbody></table>
+
+<a href="#floatingbutton-props" id="floatingbutton-props" style="color: inherit; text-decoration: none;">
+  <h1>FloatingButton Props</h1>
+</a>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>style</td>
+<td><em>style (Optional)</em></td>
+<td>Give style of button.</td>
+</tr>
+<tr>
+<td>title</td>
+<td><em>string (Optional)</em></td>
+<td>Title of button.</td>
+</tr>
+<tr>
+<td>width</td>
+<td><em>number (Optional)</em></td>
+<td>Set width of button.</td>
+</tr>
+<tr>
+<td>height</td>
+<td><em>number (Optional)</em></td>
+<td>Set height of button.</td>
+</tr>
+<tr>
+<td>depth</td>
+<td><em>number (Optional)</em></td>
+<td>Set depth of button.</td>
+</tr>
+<tr>
+<td>shadowHeight</td>
+<td><em>number (Optional)</em></td>
+<td>Add shadow height for button.</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td><em>string (Optional)</em></td>
+<td>Add background color to button.</td>
+</tr>
+<tr>
+<td>bottomShadowColor</td>
+<td><em>string (Optional)</em></td>
+<td>Add bottom shadow color of button.</td>
+</tr>
+<tr>
+<td>sideShadowColor</td>
+<td><em>string (Optional)</em></td>
+<td>Add right shadow color of button.</td>
+</tr>
+<tr>
+<td>textStyle</td>
+<td><em>style (Optional)</em></td>
+<td>Give TextStyle button title texts.</td>
+</tr>
+<tr>
+<td>titleSize</td>
+<td><em>number (Optional)</em></td>
+<td>Set text size of title.</td>
+</tr>
+<tr>
+<td>isFloating</td>
+<td><em>boolean (Optional)</em></td>
+<td>set value <code>true</code> or <code>false</code> to get Floating button.</td>
+</tr>
+</tbody></table>
+
+<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+  <h2>Contributing!</h2>
+</a>
+<p>See the <a href="CONTRIBUTING.md">contributing guide</a> to learn how to contribute to the repository and the development workflow.</p>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License!</h2>
+</a>
+<p>@mindinventory/react-native-skia-components <a href="https://github.com/Mindinventory/react-native-skia-components/blob/main/LICENSE">MIT-licensed</a>.</p>
+
+<a href="#let-us-know" id="let-us-know" style="color: inherit; text-decoration: none;">
+  <h1>Let us know!</h1>
+</a>
+<p>If you use our open-source libraries in your project, please make sure to credit us and Give a star to <a href="http://www.mindinventory.com">www.mindinventory.com</a></p>
+<p><h4>Please feel free to use this component and Let us know if you are interested to building Apps or Designing Products.</h4>
+<a href="https://www.mindinventory.com/contact-us.php?utm_source=gthb&utm_medium=repo&utm_campaign=react-native-skia-components" target="__blank">
+<img src="https://github.com/Sammindinventory/MindInventory/blob/main/hirebutton.png" width="203" height="43"  alt="app development">
+</a></div></div>
+<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<nav class="tsd-navigation primary">
+<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li class="current selected"><a href="modules.html">@mindinventory/react-<wbr/>native-<wbr/>skia-<wbr/>components</a>
+<ul></ul></li></ul></div></details></nav>
+<nav class="tsd-navigation secondary menu-sticky">
+<ul>
+<li class="tsd-kind-interface"><a href="interfaces/CardProps.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-256-path"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)" id="icon-256-text"></path></svg>Card<wbr/>Props</a></li>
+<li class="tsd-kind-interface"><a href="interfaces/CircularProgressBarProps.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Circular<wbr/>Progress<wbr/>Bar<wbr/>Props</a></li>
+<li class="tsd-kind-interface"><a href="interfaces/FloatingButtonProps.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Floating<wbr/>Button<wbr/>Props</a></li>
+<li class="tsd-kind-interface"><a href="interfaces/NeoPopButtonProps.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Neo<wbr/>Pop<wbr/>Button<wbr/>Props</a></li>
+<li class="tsd-kind-interface"><a href="interfaces/StarWarButtonType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Star<wbr/>War<wbr/>Button<wbr/>Type</a></li>
+<li class="tsd-kind-type-alias"><a href="types/ButtonProps.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg>Button<wbr/>Props</a></li>
+<li class="tsd-kind-function"><a href="functions/Button.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg>Button</a></li>
+<li class="tsd-kind-function"><a href="functions/Card.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>Card</a></li>
+<li class="tsd-kind-function"><a href="functions/CircularProgressBar.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>Circular<wbr/>Progress<wbr/>Bar</a></li>
+<li class="tsd-kind-function"><a href="functions/FloatingButton.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>Floating<wbr/>Button</a></li>
+<li class="tsd-kind-function"><a href="functions/NeoPopButton.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>Neo<wbr/>Pop<wbr/>Button</a></li>
+<li class="tsd-kind-function"><a href="functions/StarWarButton.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>Star<wbr/>War<wbr/>Button</a></li>
+<li class="tsd-kind-function"><a href="functions/cardStyle.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>card<wbr/>Style</a></li>
+<li class="tsd-kind-function"><a href="functions/circularProgressBarStyle.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>circular<wbr/>Progress<wbr/>Bar<wbr/>Style</a></li>
+<li class="tsd-kind-function"><a href="functions/floatingButtonStyle.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>floating<wbr/>Button<wbr/>Style</a></li>
+<li class="tsd-kind-function"><a href="functions/neoPopButtonStyle.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>neo<wbr/>Pop<wbr/>Button<wbr/>Style</a></li></ul></nav></div></div>
+<div class="container tsd-generator">
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div><script src="assets/main.js"></script></body></html>

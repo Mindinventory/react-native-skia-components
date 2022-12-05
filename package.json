@@ -36,7 +36,8 @@
     "bootstrap": "yarn example && yarn install && yarn example pods",
     "run:start": "cd example && yarn start",
     "run:ios": "cd example && yarn ios",
-    "run:android": "cd example && yarn android"
+    "run:android": "cd example && yarn android",
+    "typedoc": "yarn run typedoc"
   },
   "keywords": [
     "progress circle",
@@ -86,6 +87,7 @@
     "react-native": "0.70.5",
     "react-native-builder-bob": "^0.20.0",
     "release-it": "^15.0.0",
+    "typedoc": "^0.23.21",
     "typescript": "^4.5.2"
   },
   "resolutions": {

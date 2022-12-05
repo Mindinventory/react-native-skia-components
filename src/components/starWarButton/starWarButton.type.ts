@@ -2,7 +2,7 @@ import type { Vector } from '@shopify/react-native-skia';
 
 import type { ButtonProps } from '../button/button.type';
 
-export type StarWarButtonType = {
+export interface StarWarButtonType extends ButtonProps {
   [key: string]: Vector | number | any;
   /**
    * Provide an colors to button border and inside.
@@ -76,7 +76,7 @@ export type StarWarButtonType = {
    * @type number
    */
   buttonEffectDuration?: number;
-} & ButtonProps;
+}
 
 export enum GradientType {
   linear = 'linear',
