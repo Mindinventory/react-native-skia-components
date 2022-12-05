@@ -22,8 +22,10 @@ var bgWidth = 0;
 const ItemWidth = Dimensions.get('screen').width - 20;
 const indicatorContainerWidth = ItemWidth / 1.5;
 const INDICATOR_SPEED = 0.025;
-const xPosition = 25;
+const xPosition = 0;
 type IndictorType = 'star' | 'square';
+
+var scrollInWidth = 0;
 
 interface IScrollIndicatorProps {
   indicatorType?: IndictorType;
@@ -49,18 +51,30 @@ const ScrollIndicator = ({
   const animationValue = useValue(0);
   const rotateValue = useValue(0);
   const data = new Array(6).fill('_');
-  let firstRoundedViewIndex = 0;
-  let lastRoundedViewIndex = 0;
 
   let flatListref = useRef<FlatList>(null);
 
-  const translateX = useComputedValue(() => {
-    return [
-      {
-        translateX: animationValue.current,
-      },
-    ];
-  }, [animationValue]);
+  const translateX = () => {
+    return useComputedValue(() => {
+      console.log('animationValue: ', animationValue.current);
+      return [
+        {
+          translateX: animationValue.current,
+        },
+      ];
+    }, [animationValue]);
+  };
+
+  const translate = (indexes: number) => {
+    return useComputedValue(() => {
+      console.log('animationValue: ', animationValue.current);
+      return [
+        {
+          translateX: animationValue.current * indexes,
+        },
+      ];
+    }, [animationValue]);
+  };
 
   const rotationValue = useComputedValue(() => {
     return [
@@ -76,33 +90,42 @@ const ScrollIndicator = ({
     return new Array(3).fill('').map((_item, index) => {
       iMultiply += 2;
       const nextIndex = index + 1;
+      const indexes = index + 1;
+
       if (index === 0) {
-        firstRoundedViewIndex = indicatorContainerWidth - 25 * iMultiply + 1;
+        scrollInWidth = indicatorContainerWidth * 0.2 * 3;
+      } else if (index === 1) {
+        scrollInWidth = indicatorContainerWidth * 0.2 * 2;
       } else if (index === 2) {
-        lastRoundedViewIndex = indicatorContainerWidth - 25 * iMultiply + 1;
-      } else {
+        scrollInWidth = indicatorContainerWidth * 0.2 * 1;
       }
 
+      console.log('scrollInWidth: ', scrollInWidth);
+      console.log('indicatorContainerWidth: ', indicatorContainerWidth);
+
       return (
-        <>
-          <Group key={index} style="fill" color={'red'} transform={translateX}>
-            <RoundedRect
-              x={xPosition * nextIndex}
-              y={0}
-              width={indicatorContainerWidth - 25 * iMultiply + 1}
-              height={20}
-              r={20}
-              origin={{
-                x: 10,
-                y: 8,
-              }}
-              color={'white'}
-              style={'stroke'}
-              strokeWidth={0.9}
-            />
-            {getscrollIndicatorComponent()}
-          </Group>
-        </>
+        <Group
+          key={index.toString()}
+          style="fill"
+          color={'red'}
+          transform={translate(indexes)}
+        >
+          <RoundedRect
+            x={xPosition * nextIndex}
+            y={0}
+            width={scrollInWidth}
+            height={20}
+            r={20}
+            origin={{
+              x: 10,
+              y: 8,
+            }}
+            color={'white'}
+            style={'stroke'}
+            strokeWidth={0.9}
+          />
+          {index === 2 && getscrollIndicatorComponent()}
+        </Group>
       );
     });
   };
@@ -202,14 +225,14 @@ const ScrollIndicator = ({
       case 'square':
         return (
           <RoundedRect
-            x={120}
+            x={12}
             y={4}
             height={10}
             width={10}
             style={'fill'}
             color={'gold'}
             origin={{
-              x: 125,
+              x: 16,
               y: 9,
             }}
             transform={rotationValue}
@@ -234,72 +257,66 @@ const ScrollIndicator = ({
 
   return (
     <SafeAreaView>
-      <>
-        <FlatList
-          ref={flatListref}
-          data={data}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onScroll={({ nativeEvent }) => {
-            bgWidth =
-              (nativeEvent?.contentSize?.width || 0) -
-              (nativeEvent?.layoutMeasurement?.width || 0);
+      <FlatList
+        ref={flatListref}
+        data={data}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        scrollEventThrottle={16}
+        bounces={false}
+        onScroll={(e) => {
+          const { nativeEvent } = e;
+          bgWidth = nativeEvent?.contentSize?.width || 0;
 
-            const calculated =
-              nativeEvent.contentOffset.x * (indicatorContainerWidth / bgWidth);
+          const calculated =
+            (nativeEvent.contentOffset.x *
+              (indicatorContainerWidth / bgWidth)) /
+            4.2;
 
-            console.log('calculated >>>> : ', calculated);
-            console.log(
-              'firstRoundedViewIndex >>>',
-              firstRoundedViewIndex,
-              'lastRoundedViewIndex >>>> : ',
-              lastRoundedViewIndex
-            );
+          console.log('calculated >>>> : ', calculated);
 
-            if (animationValue.current > calculated) {
-              rotateValue.current -= INDICATOR_SPEED;
-              if (rotateValue.current < 0) {
-                rotateValue.current = 0;
-              }
-            } else {
-              rotateValue.current += INDICATOR_SPEED;
+          if (animationValue.current > calculated) {
+            rotateValue.current -= INDICATOR_SPEED;
+            if (rotateValue.current < 0) {
+              rotateValue.current = 0;
             }
+          } else {
+            rotateValue.current += INDICATOR_SPEED;
+          }
 
-            rotateValue.current;
-            animationValue.current = Math.abs(calculated);
-          }}
-          renderItem={({ index }) => {
-            return (
-              <View style={styles.rowContainer}>
-                <Text style={styles.indexStyle}>{index + 1}</Text>
-              </View>
-            );
-          }}
+          animationValue.current = Math.abs(calculated);
+        }}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={({ index }) => {
+          return (
+            <View style={styles.rowContainer}>
+              <Text style={styles.indexStyle}>{index + 1}</Text>
+            </View>
+          );
+        }}
+      />
+      <View style={styles.indicatorContainer}>
+        <Canvas
+          style={[styles.canvasStyle]}
+          children={
+            <>
+              <RoundedRect
+                x={0}
+                y={0}
+                width={indicatorContainerWidth - 1}
+                height={20}
+                r={20}
+                color="white"
+                style={'stroke'}
+                strokeWidth={1.5}
+              />
+              <Group transform={translateX()}>{getSliderSubView()}</Group>
+            </>
+          }
+          accessibilityLabelledBy={undefined}
+          accessibilityLanguage={undefined}
         />
-        <View style={styles.indicatorContainer}>
-          <Canvas
-            style={[styles.canvasStyle]}
-            children={
-              <>
-                <RoundedRect
-                  x={0}
-                  y={0}
-                  width={indicatorContainerWidth - 1}
-                  height={20}
-                  r={20}
-                  color="white"
-                  style={'stroke'}
-                  strokeWidth={1.5}
-                />
-                <Group transform={translateX}>{getSliderSubView()}</Group>
-              </>
-            }
-            accessibilityLabelledBy={undefined}
-            accessibilityLanguage={undefined}
-          />
-        </View>
-      </>
+      </View>
     </SafeAreaView>
   );
 };
@@ -313,9 +330,10 @@ const styles = StyleSheet.create({
   indexStyle: { fontSize: 30, fontWeight: '700' },
   indicatorContainer: {
     alignItems: 'center',
-    alignSelf: 'center',
+    // alignSelf: 'center',
     marginTop: 5,
     width: indicatorContainerWidth,
+    marginLeft: 15,
   },
   rowContainer: {
     alignItems: 'center',
