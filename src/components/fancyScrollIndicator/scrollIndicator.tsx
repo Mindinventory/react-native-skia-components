@@ -29,7 +29,9 @@ interface IScrollIndicatorProps {
   indicatorType?: IndictorType;
 }
 
-const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
+const ScrollIndicator = ({
+  indicatorType = 'square',
+}: IScrollIndicatorProps) => {
   const starPath = Skia.Path.Make();
   starPath.moveTo(8, 0);
   starPath.lineTo(11, 5);
@@ -47,6 +49,8 @@ const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
   const animationValue = useValue(0);
   const rotateValue = useValue(0);
   const data = new Array(6).fill('_');
+  let firstRoundedViewIndex = 0;
+  let lastRoundedViewIndex = 0;
 
   let flatListref = useRef<FlatList>(null);
 
@@ -58,14 +62,6 @@ const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
     ];
   }, [animationValue]);
 
-  // const starTranslateX = useComputedValue(() => {
-  //   return [
-  //     {
-  //       translateX: indicatorContainerWidth / 2 - 8,
-  //     },
-  //   ];
-  // }, [animationValue]);
-
   const rotationValue = useComputedValue(() => {
     return [
       {
@@ -76,34 +72,59 @@ const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
 
   const getSliderSubView = () => {
     let iMultiply = 0;
-
     // return new Array(Math.round(data.length / 2))
     return new Array(3).fill('').map((_item, index) => {
-      // let halfOfSlider = indicatorContainerWidth - xPos * 2 - 5 * (index + 1);
       iMultiply += 2;
       const nextIndex = index + 1;
+      if (index === 0) {
+        firstRoundedViewIndex = indicatorContainerWidth - 25 * iMultiply + 1;
+      } else if (index === 2) {
+        lastRoundedViewIndex = indicatorContainerWidth - 25 * iMultiply + 1;
+      } else {
+      }
+
       return (
-        <Group key={index}>
-          <RoundedRect
-            x={xPosition * nextIndex}
-            y={0}
-            width={indicatorContainerWidth - 25 * iMultiply + 1}
-            height={20}
-            r={20}
-            origin={{
-              x: 10,
-              y: 8,
-            }}
-            color={'white'}
-            style={'stroke'}
-            strokeWidth={1.5}
-            transform={translateX}
-          />
-        </Group>
+        <>
+          <Group key={index} style="fill" color={'red'} transform={translateX}>
+            <RoundedRect
+              x={xPosition * nextIndex}
+              y={0}
+              width={indicatorContainerWidth - 25 * iMultiply + 1}
+              height={20}
+              r={20}
+              origin={{
+                x: 10,
+                y: 8,
+              }}
+              color={'white'}
+              style={'stroke'}
+              strokeWidth={0.9}
+            />
+            {getscrollIndicatorComponent()}
+          </Group>
+        </>
       );
     });
   };
 
+  /*
+  <Group
+    color="lightblue"
+    layer={
+      <Paint>
+        <Blur blur={10} />
+        <ColorMatrix
+          matrix={[
+            1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 18,
+            -7,
+          ]}
+        />
+      </Paint>
+    }>
+    <Circle cx={30} cy={10} r={20} color={'red'}/>
+    <Circle cx={70} cy={10} r={20} color={'gold'}/>
+  </Group>
+  */
   const getscrollIndicatorComponent = () => {
     switch (indicatorType) {
       case 'star':
@@ -118,19 +139,77 @@ const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
             style={'fill'}
             transform={rotationValue}
           />
+          // <Group
+          //   transform={rotationValue}
+          //   origin={{
+          //     x: 0,
+          //     y: 0,
+          //   }}
+          // >
+          //   <Rect x={10} y={2} width={14} height={14} color="gold" />
+          //   <Rect
+          //     x={10}
+          //     y={-15}
+          //     width={14.5}
+          //     height={14.5}
+          //     color="gold"
+          //     transform={[
+          //       {
+          //         rotate: Math.PI / 3.5,
+          //       },
+          //     ]}
+          //   />
+          // </Group>
+          // <Group style={'stroke'} color="gold" transform={translateX}>
+          //   <Line
+          //     p1={vec(5, 5)}
+          //     p2={vec(20, 5)}
+          //     color="gold"
+          //     style="stroke"
+          //     strokeWidth={5}
+          //   />
+          //   <Line
+          //     p1={vec(20, 5)}
+          //     p2={vec(5, 15)}
+          //     color="gold"
+          //     style="stroke"
+          //     strokeWidth={5}
+          //   />
+          //   <Line
+          //     p1={vec(5, 15)}
+          //     p2={vec(15, -5)}
+          //     color="gold"
+          //     style="stroke"
+          //     strokeWidth={5}
+          //   />
+          //   <Line
+          //     p1={vec(15, -5)}
+          //     p2={vec(15, 15)}
+          //     color="gold"
+          //     style="stroke"
+          //     strokeWidth={5}
+          //   />
+          //   <Line
+          //     p1={vec(15, 15)}
+          //     p2={vec(5, 5)}
+          //     color="gold"
+          //     style="stroke"
+          //     strokeWidth={5}
+          //   />
+          // </Group>
         );
 
       case 'square':
         return (
           <RoundedRect
-            x={4}
+            x={120}
             y={4}
             height={10}
             width={10}
             style={'fill'}
             color={'gold'}
             origin={{
-              x: 8,
+              x: 125,
               y: 9,
             }}
             transform={rotationValue}
@@ -170,6 +249,14 @@ const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
             const calculated =
               nativeEvent.contentOffset.x * (indicatorContainerWidth / bgWidth);
 
+            console.log('calculated >>>> : ', calculated);
+            console.log(
+              'firstRoundedViewIndex >>>',
+              firstRoundedViewIndex,
+              'lastRoundedViewIndex >>>> : ',
+              lastRoundedViewIndex
+            );
+
             if (animationValue.current > calculated) {
               rotateValue.current -= INDICATOR_SPEED;
               if (rotateValue.current < 0) {
@@ -180,7 +267,7 @@ const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
             }
 
             rotateValue.current;
-            animationValue.current = calculated;
+            animationValue.current = Math.abs(calculated);
           }}
           renderItem={({ index }) => {
             return (
@@ -205,20 +292,7 @@ const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
                   style={'stroke'}
                   strokeWidth={1.5}
                 />
-                <Group transform={translateX}>
-                  {getscrollIndicatorComponent()}
-                  {/* <Path
-                    path={starPath}
-                    color="gold"
-                    origin={{
-                      x: 8,
-                      y: 9,
-                    }}
-                    style={'fill'}
-                    transform={translateX}
-                  /> */}
-                </Group>
-                {getSliderSubView()}
+                <Group transform={translateX}>{getSliderSubView()}</Group>
               </>
             }
             accessibilityLabelledBy={undefined}
@@ -232,7 +306,7 @@ const ScrollIndicator = ({ indicatorType = 'star' }: IScrollIndicatorProps) => {
 
 const styles = StyleSheet.create({
   canvasStyle: {
-    height: 20,
+    height: 120,
     marginHorizontal: 40,
     width: indicatorContainerWidth,
   },
