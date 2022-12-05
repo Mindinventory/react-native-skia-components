@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import type { NeoPopButtonProps } from './neoPopButton.type';
+import { useSoundPlayer } from './useSoundPlayer';
 
 export const useNeoPopButton = (props: NeoPopButtonProps) => {
   const {
@@ -12,6 +13,9 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
     title = ' ',
     titleSize = 30,
     width = 200,
+    sound = { name: 'default', type: 'mp3' },
+    isSoundEnable = false,
+    onPressOutSoundEnabled = false,
   } = props;
 
   const buttonWidth = width || 250;
@@ -29,6 +33,12 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
     y: buttonWidth / 2 - titleSize / 2,
   });
   const [boxShadow, setBoxShadow] = useState(0);
+  const { name: soundName, type: soundType } = sound;
+  const { playSound } = useSoundPlayer({
+    isSoundEnable: isSoundEnable,
+    name: soundName || '',
+    type: soundType ?? '',
+  });
 
   const defaultFakeBoxTransition = () => {
     return {
@@ -53,6 +63,7 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
       y: textPosition.y - x,
     });
     setBoxShadow(10);
+    playSound();
   };
 
   const onPressOut = () => {
@@ -66,6 +77,10 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
       y: textPosition.y + x,
     });
     setBoxShadow(0);
+
+    if (onPressOutSoundEnabled) {
+      playSound();
+    }
   };
 
   const startFakeBoxTransition = () => {

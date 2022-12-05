@@ -83,8 +83,11 @@ const ListComponentScreen = () => {
               <Button
                 width={80}
                 height={80}
+                sound={{ name: 'default', type: 'mp3' }}
                 title={`${index + 1}`}
                 sideShadowColor={'#363636'}
+                isSoundEnable={true}
+                onPressOutSoundEnabled={false}
                 bottomShadowColor={'#363636'}
                 backgroundColor={'#f96b8f'}
                 textStyle={styles.neoBtnTextStyle}
