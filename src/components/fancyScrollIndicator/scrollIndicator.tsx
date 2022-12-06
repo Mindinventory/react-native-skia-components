@@ -1,17 +1,15 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   Dimensions,
   FlatList,
   SafeAreaView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
 import {
   Canvas,
   Group,
-  Path,
   RoundedRect,
   Skia,
   useComputedValue,
@@ -23,16 +21,24 @@ const ItemWidth = Dimensions.get('screen').width - 20;
 const indicatorContainerWidth = ItemWidth / 1.5;
 const INDICATOR_SPEED = 0.025;
 const xPosition = 0;
-type IndictorType = 'star' | 'square';
-
+const IndicatorHeight = 20;
+const IndicatorRadius = IndicatorHeight * 2;
 var scrollInWidth = 0;
 
 interface IScrollIndicatorProps {
-  indicatorType?: IndictorType;
+  indicatorItemColor?: string;
+  indicatorBorderColor?: string;
+  innerViewLineColor?: string;
+  renderItem: (data: any, index: number) => JSX.Element;
+  data: Array<any>;
 }
 
 const ScrollIndicator = ({
-  indicatorType = 'square',
+  indicatorItemColor = 'gold',
+  indicatorBorderColor = 'white',
+  innerViewLineColor = 'white',
+  renderItem,
+  data,
 }: IScrollIndicatorProps) => {
   const starPath = Skia.Path.Make();
   starPath.moveTo(8, 0);
@@ -50,13 +56,14 @@ const ScrollIndicator = ({
 
   const animationValue = useValue(0);
   const rotateValue = useValue(0);
-  const data = new Array(6).fill('_');
+  var scrollmin = 1;
 
-  let flatListref = useRef<FlatList>(null);
+  if (data.length === 0) {
+    throw 'Please add array values to render scroll indicator';
+  }
 
   const translateX = () => {
     return useComputedValue(() => {
-      console.log('animationValue: ', animationValue.current);
       return [
         {
           translateX: animationValue.current,
@@ -67,7 +74,6 @@ const ScrollIndicator = ({
 
   const translate = (indexes: number) => {
     return useComputedValue(() => {
-      console.log('animationValue: ', animationValue.current);
       return [
         {
           translateX: animationValue.current * indexes,
@@ -85,10 +91,7 @@ const ScrollIndicator = ({
   }, [rotateValue]);
 
   const getSliderSubView = () => {
-    let iMultiply = 0;
-    // return new Array(Math.round(data.length / 2))
     return new Array(3).fill('').map((_item, index) => {
-      iMultiply += 2;
       const nextIndex = index + 1;
       const indexes = index + 1;
 
@@ -98,10 +101,8 @@ const ScrollIndicator = ({
         scrollInWidth = indicatorContainerWidth * 0.2 * 2;
       } else if (index === 2) {
         scrollInWidth = indicatorContainerWidth * 0.2 * 1;
+        scrollmin = scrollInWidth;
       }
-
-      console.log('scrollInWidth: ', scrollInWidth);
-      console.log('indicatorContainerWidth: ', indicatorContainerWidth);
 
       return (
         <Group
@@ -114,151 +115,99 @@ const ScrollIndicator = ({
             x={xPosition * nextIndex}
             y={0}
             width={scrollInWidth}
-            height={20}
-            r={20}
+            height={IndicatorHeight}
+            r={IndicatorRadius}
             origin={{
               x: 10,
               y: 8,
             }}
-            color={'white'}
+            color={innerViewLineColor}
             style={'stroke'}
             strokeWidth={0.9}
           />
-          {index === 2 && getscrollIndicatorComponent()}
+          {index === 2 && getscrollIndicatorComponent(scrollInWidth)}
         </Group>
       );
     });
   };
 
-  /*
-  <Group
-    color="lightblue"
-    layer={
-      <Paint>
-        <Blur blur={10} />
-        <ColorMatrix
-          matrix={[
-            1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 18,
-            -7,
-          ]}
-        />
-      </Paint>
-    }>
-    <Circle cx={30} cy={10} r={20} color={'red'}/>
-    <Circle cx={70} cy={10} r={20} color={'gold'}/>
-  </Group>
-  */
-  const getscrollIndicatorComponent = () => {
-    switch (indicatorType) {
-      case 'star':
-        return (
-          <Path
-            path={starPath}
-            color="gold"
-            origin={{
-              x: 8,
-              y: 9,
-            }}
-            style={'fill'}
-            transform={rotationValue}
-          />
-          // <Group
-          //   transform={rotationValue}
-          //   origin={{
-          //     x: 0,
-          //     y: 0,
-          //   }}
-          // >
-          //   <Rect x={10} y={2} width={14} height={14} color="gold" />
-          //   <Rect
-          //     x={10}
-          //     y={-15}
-          //     width={14.5}
-          //     height={14.5}
-          //     color="gold"
-          //     transform={[
-          //       {
-          //         rotate: Math.PI / 3.5,
-          //       },
-          //     ]}
-          //   />
-          // </Group>
-          // <Group style={'stroke'} color="gold" transform={translateX}>
-          //   <Line
-          //     p1={vec(5, 5)}
-          //     p2={vec(20, 5)}
-          //     color="gold"
-          //     style="stroke"
-          //     strokeWidth={5}
-          //   />
-          //   <Line
-          //     p1={vec(20, 5)}
-          //     p2={vec(5, 15)}
-          //     color="gold"
-          //     style="stroke"
-          //     strokeWidth={5}
-          //   />
-          //   <Line
-          //     p1={vec(5, 15)}
-          //     p2={vec(15, -5)}
-          //     color="gold"
-          //     style="stroke"
-          //     strokeWidth={5}
-          //   />
-          //   <Line
-          //     p1={vec(15, -5)}
-          //     p2={vec(15, 15)}
-          //     color="gold"
-          //     style="stroke"
-          //     strokeWidth={5}
-          //   />
-          //   <Line
-          //     p1={vec(15, 15)}
-          //     p2={vec(5, 5)}
-          //     color="gold"
-          //     style="stroke"
-          //     strokeWidth={5}
-          //   />
-          // </Group>
-        );
+  const getscrollIndicatorComponent = (_lastViewWidth: number) => {
+    return (
+      <RoundedRect
+        x={scrollmin / 2.5} //12
+        y={IndicatorHeight / 3.5} //4
+        height={IndicatorHeight / 2}
+        width={IndicatorHeight / 2}
+        style={'fill'}
+        color={indicatorItemColor}
+        origin={{
+          x: scrollmin / 2.5 + 4, //16
+          y: IndicatorHeight / 2, //9
+        }}
+        transform={rotationValue}
+      />
+    );
+    // switch (indicatorType) {
+    //   case 'star':
+    //     return (
+    //       <Group transform={[{ translateX: scrollmin / 2.5 }]}>
+    //         <Path
+    //           path={starPath}
+    //           color="gold"
+    //           origin={{
+    //             x: 8,
+    //             y: 10,
+    //           }}
+    //           style={'stroke'}
+    //           transform={rotationValue}
+    //         />
+    //       </Group>
+    //     );
 
-      case 'square':
-        return (
-          <RoundedRect
-            x={12}
-            y={4}
-            height={10}
-            width={10}
-            style={'fill'}
-            color={'gold'}
-            origin={{
-              x: 16,
-              y: 9,
-            }}
-            transform={rotationValue}
-          />
-        );
+    //   case 'oval':
+    //     return (
+    //       <Group transform={[{ translateX: scrollmin / 2.5 }]}>
+    //         <Oval rect={rect(-5, 6, 15, 4)} />
+    //         <Oval rect={rect(0, 0, 4, 15)} />
+    //       </Group>
+    //     );
 
-      default:
-        return (
-          <Path
-            path={starPath}
-            color="gold"
-            origin={{
-              x: 8,
-              y: 9,
-            }}
-            style={'fill'}
-            transform={rotationValue}
-          />
-        );
-    }
+    //   case 'square':
+    //     return (
+    //       <RoundedRect
+    //         x={scrollmin / 2.5} //12
+    //         y={IndicatorHeight / 3.5} //4
+    //         height={IndicatorHeight / 2}
+    //         width={IndicatorHeight / 2}
+    //         style={'fill'}
+    //         color={'gold'}
+    //         origin={{
+    //           x: scrollmin / 2.5 + 4, //16
+    //           y: IndicatorHeight / 2, //9
+    //         }}
+    //         transform={rotationValue}
+    //       />
+    //     );
+
+    //   default:
+    //     return (
+    //       <Path
+    //         path={starPath}
+    //         color="gold"
+    //         origin={{
+    //           x: 8,
+    //           y: 9,
+    //         }}
+    //         style={'fill'}
+    //         transform={rotationValue}
+    //       />
+    //     );
+    // }
   };
 
   return (
     <SafeAreaView>
       <FlatList
-        ref={flatListref}
         data={data}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -268,12 +217,15 @@ const ScrollIndicator = ({
           const { nativeEvent } = e;
           bgWidth = nativeEvent?.contentSize?.width || 0;
 
+          const indic =
+            indicatorContainerWidth - indicatorContainerWidth / data.length;
+
+          const differnece = indic / scrollmin;
+
           const calculated =
             (nativeEvent.contentOffset.x *
               (indicatorContainerWidth / bgWidth)) /
-            4.2;
-
-          console.log('calculated >>>> : ', calculated);
+            differnece;
 
           if (animationValue.current > calculated) {
             rotateValue.current -= INDICATOR_SPEED;
@@ -284,16 +236,10 @@ const ScrollIndicator = ({
             rotateValue.current += INDICATOR_SPEED;
           }
 
-          animationValue.current = Math.abs(calculated);
+          animationValue.current = calculated;
         }}
         keyExtractor={(_, index) => index.toString()}
-        renderItem={({ index }) => {
-          return (
-            <View style={styles.rowContainer}>
-              <Text style={styles.indexStyle}>{index + 1}</Text>
-            </View>
-          );
-        }}
+        renderItem={({ item, index }) => renderItem(item, index)}
       />
       <View style={styles.indicatorContainer}>
         <Canvas
@@ -304,9 +250,9 @@ const ScrollIndicator = ({
                 x={0}
                 y={0}
                 width={indicatorContainerWidth - 1}
-                height={20}
-                r={20}
-                color="white"
+                height={IndicatorHeight}
+                r={IndicatorRadius}
+                color={indicatorBorderColor}
                 style={'stroke'}
                 strokeWidth={1.5}
               />
@@ -323,26 +269,16 @@ const ScrollIndicator = ({
 
 const styles = StyleSheet.create({
   canvasStyle: {
-    height: 120,
+    height: IndicatorHeight,
     marginHorizontal: 40,
     width: indicatorContainerWidth,
   },
-  indexStyle: { fontSize: 30, fontWeight: '700' },
   indicatorContainer: {
     alignItems: 'center',
-    // alignSelf: 'center',
     marginTop: 5,
     width: indicatorContainerWidth,
     marginLeft: 15,
   },
-  rowContainer: {
-    alignItems: 'center',
-    backgroundColor: 'red',
-    height: 100,
-    justifyContent: 'center',
-    marginHorizontal: 10,
-    width: ItemWidth,
-  },
 });
 
-export default ScrollIndicator;
+export default React.memo(ScrollIndicator);

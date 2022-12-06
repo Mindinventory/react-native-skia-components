@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import * as React from 'react';
 import {
+  Dimensions,
   FlatList,
   SafeAreaView,
   ScrollView,
@@ -16,6 +17,8 @@ import {
   CircularProgressBar,
   ScrollIndicator,
 } from '@mindinventory/react-native-neopop';
+
+const ItemWidth = Dimensions.get('screen').width - 20;
 
 const ListComponentScreen = () => {
   const components = [
@@ -153,7 +156,16 @@ const ListComponentScreen = () => {
   const renderScrollIndicator = () => {
     return (
       <View style={styles.centerItemStyle}>
-        <ScrollIndicator />
+        <ScrollIndicator
+          data={new Array(6).fill(' ')}
+          renderItem={(_item, index) => {
+            return (
+              <View style={styles.rowContainer}>
+                <Text style={styles.indexStyle}>{index + 1}</Text>
+              </View>
+            );
+          }}
+        />
       </View>
     );
   };
@@ -247,6 +259,7 @@ const styles = StyleSheet.create({
   floatingTextStyle: {
     fontSize: 24,
   },
+  indexStyle: { fontSize: 30, fontWeight: '700' },
   mainContainer: {
     alignItems: 'center',
     alignSelf: 'center',
@@ -265,6 +278,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
+  },
+  rowContainer: {
+    alignItems: 'center',
+    backgroundColor: 'red',
+    borderRadius: 10,
+    height: 90,
+    justifyContent: 'center',
+    marginBottom: 10,
+    marginHorizontal: 10,
+    width: ItemWidth,
   },
   safeAreabackground: {
     backgroundColor: '#202020',
