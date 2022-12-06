@@ -19,7 +19,7 @@ yarn add @mindinventory/react-native-skia-components
 ## Preview
 
 
-https://user-images.githubusercontent.com/104554054/205296197-bd0966fc-d72d-4c55-ba95-df4883a5dcc0.mp4
+https://github.com/Mindinventory/react-native-skia-components/blob/dev/media/screen.gif
 
 
 
@@ -184,7 +184,7 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License!
 
-@mindinventory/react-native-skia-components [MIT-licensed](https://github.com/Mindinventory/react-native-skia-components/blob/main/LICENSE).
+@mindinventory/react-native-skia-components [MIT-licensed](https://github.com/Mindinventory/react-native-skia-components/blob/dev/LICENSE).
 
 # Let us know!
 
