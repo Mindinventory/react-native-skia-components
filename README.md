@@ -99,6 +99,7 @@ animateBorder={'disco'}
   sideShadowColor={"rgba(250, 226, 46, 1)"}
   style={...style}
   titleSize={10}
+  disabled={false}
 />
 ```
 ![neoPop](https://user-images.githubusercontent.com/104554054/205282417-e10ca1da-cfe6-46b7-ae2b-0fb7843951fe.gif)
@@ -159,6 +160,7 @@ animateBorder={'disco'}
 | isFloating        | _boolean (Optional)_ | set value `true` or `false` to get either Floating or NeoPop button. |
 | floatAnimation    | _boolean (Optional)_ | set value `true` or `false` to get button float animation on or off. |
 | duration          | _number (Optional)_  | set duration of the floatAnimation of the button. |
+| disabled          | _boolean (Optional)_ | set button disabled or not. |
 
 # FloatingButton Props
 

@@ -86,21 +86,6 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
         ]}
         disabled={disabled}
       >
-        {/* {true ? (
-          <View style={styles.neoPopButtonStyle.btnLabel.loaderView}>
-            {new Array(4).fill('').map((_, index) => {
-              return (
-                <Animated.View
-                  key={index.toString()}
-                  style={[
-                    styles.neoPopButtonStyle.btnLabel.loader,
-                    loaderTransformStyle,
-                  ]}
-                />
-              );
-            })}
-          </View>
-        ) : ( */}
         <Animated.Text
           adjustsFontSizeToFit
           style={[
@@ -114,7 +99,6 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
         >
           {title}
         </Animated.Text>
-        {/* )} */}
       </TouchableOpacity>
     </View>
   );
