@@ -1,6 +1,6 @@
 # @mindinventory/react-native-skia-components
 
-This library provide UIKit like Buttons, Circle Progress and and Card layout.
+This library provide UIKit like Card, NeoPop button and and Floating button.
 
 ## Installation
 
