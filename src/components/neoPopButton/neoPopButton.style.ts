@@ -16,6 +16,15 @@ export const neoPopButtonStyle = () => {
       overflow: 'hidden',
       position: 'absolute',
     },
+    loader: {
+      backgroundColor: 'black',
+      height: 8,
+      marginHorizontal: 5,
+      width: 8,
+    },
+    loaderView: {
+      flexDirection: 'row',
+    },
     verticalStyle: {
       marginTop: '5%',
     },

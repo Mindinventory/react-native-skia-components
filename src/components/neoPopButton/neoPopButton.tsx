@@ -4,6 +4,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { Canvas, Group, Path } from '@shopify/react-native-skia';
 import Animated from 'react-native-reanimated';
 
+import { miColor } from '../../themes';
 import type { NeoPopButtonProps } from './neoPopButton.type';
 import { useNeoPopButton } from './useNeoPopButton';
 
@@ -27,8 +28,8 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
     transform,
     textTransformStyle,
     titleSize,
+    disabled,
   } = useNeoPopButton(props);
-
   return (
     <View style={styles.starWarButtonStyle.container}>
       <Canvas
@@ -83,7 +84,23 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
             width: width,
           },
         ]}
+        disabled={disabled}
       >
+        {/* {true ? (
+          <View style={styles.neoPopButtonStyle.btnLabel.loaderView}>
+            {new Array(4).fill('').map((_, index) => {
+              return (
+                <Animated.View
+                  key={index.toString()}
+                  style={[
+                    styles.neoPopButtonStyle.btnLabel.loader,
+                    loaderTransformStyle,
+                  ]}
+                />
+              );
+            })}
+          </View>
+        ) : ( */}
         <Animated.Text
           adjustsFontSizeToFit
           style={[
@@ -91,11 +108,13 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
             { fontSize: titleSize },
             textStyle && { ...textStyle },
             { transform: [{ rotateX: '45deg' }, { rotateZ: '0deg' }] },
+            disabled && { color: miColor.grayShade },
             textTransformStyle,
           ]}
         >
           {title}
         </Animated.Text>
+        {/* )} */}
       </TouchableOpacity>
     </View>
   );
