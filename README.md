@@ -19,7 +19,7 @@ yarn add @mindinventory/react-native-skia-components
 ## Preview
 
 
-https://github.com/Mindinventory/react-native-skia-components/blob/dev/media/screen.gif
+https://github.com/Mindinventory/react-native-skia-components/blob/fix/readme-update/media/screen.gif
 
 
 
