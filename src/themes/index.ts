@@ -1,6 +1,4 @@
 import { miColor } from './miColor';
-import { miUiStyle as style } from './miStyle';
-
-const miUiStyle = style();
+import { miUiStyle } from './miStyle';
 
 export { miColor, miUiStyle };

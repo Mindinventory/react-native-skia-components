@@ -6,8 +6,7 @@ export * from './useMiUiContext';
 
 export type MiUiContextType = {
   colors: typeof miColor;
-  styles: typeof miUiStyle;
-  props: any;
+  styles: ReturnType<typeof miUiStyle>;
 };
 
 export const MiUiContext = createContext<MiUiContextType | undefined>(
@@ -16,17 +15,15 @@ export const MiUiContext = createContext<MiUiContextType | undefined>(
 
 export interface MiUiProviderPropsType {
   children: JSX.Element;
-  props: any;
 }
 
-export const MiUiProvider = ({ children, props }: MiUiProviderPropsType) => {
+export const MiUiProvider = ({ children }: MiUiProviderPropsType) => {
   const miUiContext = useMemo(() => {
     return {
       colors: miColor,
-      props,
-      styles: miUiStyle,
+      styles: miUiStyle(),
     };
-  }, [props]);
+  }, []);
 
   return (
     <MiUiContext.Provider value={miUiContext}>{children}</MiUiContext.Provider>

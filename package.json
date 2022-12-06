@@ -1,5 +1,5 @@
 {
-  "name": "@mindinventory/react-native-neopop",
+  "name": "@mindinventory/react-native-skia-components",
   "version": "1.0.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -33,7 +33,10 @@
     "prepare": "husky install",
     "release": "release-it",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install && yarn example pods"
+    "bootstrap": "yarn example && yarn install && yarn example pods",
+    "run:start": "cd example && yarn start",
+    "run:ios": "cd example && yarn ios",
+    "run:android": "cd example && yarn android"
   },
   "keywords": [
     "progress circle",
@@ -47,13 +50,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/Mindinventory/react-native-neopop",
+  "repository": "https://github.com/Mindinventory/react-native-skia-components",
   "author": "Mindinventory",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Mindinventory/react-native-neopop/issues"
+    "url": "https://github.com/Mindinventory/react-native-skia-components/issues"
   },
-  "homepage": "https://github.com/Mindinventory/react-native-neopop#readme",
+  "homepage": "https://github.com/Mindinventory/react-native-skia-components#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -65,6 +68,7 @@
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
+    "babel-plugin-module-resolver": "^4.1.0",
     "commitlint": "^17.0.2",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
@@ -247,6 +251,7 @@
   },
   "dependencies": {
     "@shopify/react-native-skia": "^0.1.157",
+    "react-native-gesture-handler": "^2.8.0",
     "react-native-reanimated": "^2.12.0"
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import * as React from 'react';
 import {
   FlatList,
@@ -14,7 +13,9 @@ import {
   Button,
   Card,
   CircularProgressBar,
-} from '@mindinventory/react-native-neopop';
+} from '@mindinventory/react-native-skia-components';
+
+import { miColor } from '../constant/colors';
 
 const ListComponentScreen = () => {
   const components = [
@@ -22,6 +23,7 @@ const ListComponentScreen = () => {
     { id: 1, name: 'Progress' },
     { id: 2, name: 'New Pop' },
     { id: 3, name: 'Floating' },
+    { id: 4, name: 'Star War' },
   ];
   const [selected, setSelected] = React.useState(0);
 
@@ -64,7 +66,7 @@ const ListComponentScreen = () => {
       <View style={styles.centerItemStyle}>
         <CircularProgressBar
           progress={40}
-          shadowColor={'white'}
+          shadowColor={miColor.white}
           gradientColors={['#292626']}
         />
       </View>
@@ -84,22 +86,11 @@ const ListComponentScreen = () => {
                 width={80}
                 height={80}
                 title={`${index + 1}`}
-                sideShadowColor={'#363636'}
-                bottomShadowColor={'#363636'}
-                backgroundColor={'#f96b8f'}
+                sideShadowColor={miColor.lightGray}
+                bottomShadowColor={miColor.lightGray}
+                backgroundColor={miColor.lightPink}
                 textStyle={styles.neoBtnTextStyle}
-                onPress={() => {
-                  console.log('NeoPop onPress');
-                }}
-                onPressIn={() => {
-                  console.log('NeoPop onPressIn');
-                }}
-                onPressOut={() => {
-                  console.log('NeoPop onPressOut');
-                }}
-                onLongPress={() => {
-                  console.log('NeoPop onLongPress');
-                }}
+                onPress={() => {}}
               />
             </View>
           );
@@ -108,27 +99,77 @@ const ListComponentScreen = () => {
     );
   };
 
-  const renderFlaotingButton = () => {
+  const renderFloatingButton = () => {
     return (
       <View style={styles.centerItemStyle}>
         <Button
           preset="floating"
-          width={250}
-          height={65}
+          width={150}
+          height={50}
           title="PRESS ME"
           textStyle={styles.floatingTextStyle}
-          onPress={() => {
-            console.log('floating onPress');
-          }}
-          onPressIn={() => {
-            console.log('floating onPressIn');
-          }}
-          onPressOut={() => {
-            console.log('floating onPressOut');
-          }}
-          onLongPress={() => {
-            console.log('floating onLongPress');
-          }}
+          onPress={() => {}}
+        />
+      </View>
+    );
+  };
+
+  const renderStarWarButton = () => {
+    return (
+      <View style={styles.centerItemStyle}>
+        <Button
+          preset="starWar"
+          onPress={() => {}}
+          title="Button"
+          colors={[miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan]}
+          filled={'outer'}
+          gradientType={'linear'}
+          buttonBorderRadius={50}
+          width={200}
+          height={20}
+          titleSize={20}
+          titleColor={miColor.white}
+          animation
+          backgroundColor={miColor.white}
+        />
+        <Button
+          preset="starWar"
+          title="Button 2"
+          colors={[miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan]}
+          filled={'solid'}
+          gradientType={'sweep'}
+          titleSize={20}
+          blurRadius={10}
+          titleColor={miColor.white}
+          width={200}
+          height={20}
+          animation={true}
+        />
+        <Button
+          preset="starWar"
+          title="Button 2"
+          colors={[miColor.cyan, miColor.magenta, miColor.yellow, miColor.cyan]}
+          filled={'inner'}
+          gradientType={'radial'}
+          titleSize={20}
+          blurRadius={10}
+          titleColor={miColor.white}
+          width={200}
+          height={20}
+          animation={false}
+        />
+        <Button
+          preset="starWar"
+          title="Button 3"
+          colors={miColor.darkYellowShade}
+          filled={'normal'}
+          gradientType={'linear'}
+          titleSize={20}
+          blurRadius={5}
+          titleColor={miColor.white}
+          width={200}
+          height={20}
+          animation={true}
         />
       </View>
     );
@@ -141,15 +182,17 @@ const ListComponentScreen = () => {
       return remderCircleProgress();
     } else if (selected === 2) {
       return renderNeoPopButton();
+    } else if (selected === 3) {
+      return renderFloatingButton();
     } else {
-      return renderFlaotingButton();
+      return renderStarWarButton();
     }
   };
 
   const renderComponent = () => {
     return (
       <ScrollView>
-        <View style={styles.containerStyle}>{renderLayout()}</View>
+        <View>{renderLayout()}</View>
       </ScrollView>
     );
   };
@@ -194,7 +237,7 @@ export default ListComponentScreen;
 
 const styles = StyleSheet.create({
   cardNumber: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 22,
   },
   cardStyle: {
@@ -204,16 +247,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   carNameText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 15,
     marginTop: 0,
   },
   centerItemStyle: {
     alignSelf: 'center',
   },
-  containerStyle: {},
   coponentListStyle: {
-    borderColor: 'white',
+    borderColor: miColor.white,
     borderRadius: 10,
     borderWidth: 0.9,
     marginHorizontal: 10,
@@ -237,7 +279,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#202020',
+    backgroundColor: miColor.darkBlack,
     height: '100%',
     justifyContent: 'center',
     width: '100%',
@@ -246,7 +288,7 @@ const styles = StyleSheet.create({
     marginLeft: -10,
   },
   neoBtnTextStyle: {
-    color: 'white',
+    color: miColor.white,
   },
   neoButtonLayout: {
     flexDirection: 'row',
@@ -254,26 +296,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   safeAreabackground: {
-    backgroundColor: '#202020',
+    backgroundColor: miColor.darkBlack,
   },
   selectedItem: {
-    backgroundColor: '#f96b8f',
+    backgroundColor: miColor.lightPink,
     borderWidth: 0,
   },
   selectedText: {
-    color: 'white',
+    color: miColor.white,
     fontWeight: '800',
   },
   timeText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 15,
   },
   unSelectedText: {
-    color: 'white',
+    color: miColor.white,
     fontWeight: '500',
   },
   validText: {
-    color: 'gold',
+    color: miColor.gold,
     fontSize: 10,
   },
 });

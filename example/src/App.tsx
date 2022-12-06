@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import ListComponentScreen from './screens/listComponentScreen';
+import StackNavigation from './navigation/navigation';
 
 const App = () => {
-  return <ListComponentScreen />;
+  return <StackNavigation />;
 };
 
 export default App;

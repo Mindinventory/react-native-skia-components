@@ -8,36 +8,49 @@ import {
   vec,
 } from '@shopify/react-native-skia';
 
-interface BackgroundGradientProps {
-  blur: number;
-  borderColors: string[];
-  canvasPadding: number;
-  cardRadius?: number;
-  height: number;
-  width: number;
-}
+import type { BackgroundGradientProps } from './card.type';
+import { useBackgroundGradient } from './useBackgroundGradient';
 
 const BackgroundGradient = (props: BackgroundGradientProps) => {
-  const { blur, borderColors, canvasPadding, cardRadius, height, width } =
-    props;
+  const {
+    CANVAS_HEIGHT,
+    CANVAS_WIDTH,
+    canvasPadding,
+    width,
+    height,
+    cardRadius,
+    borderColors,
+    transform,
+    blur,
+  } = useBackgroundGradient(props);
+
   return (
     <Canvas
-      style={{ height: height + canvasPadding, width: width + canvasPadding }} children={(<>
+      style={{
+        height: CANVAS_HEIGHT,
+        width: CANVAS_WIDTH,
+      }}
+      children={
         <RoundedRect
           x={canvasPadding / 2}
           y={canvasPadding / 2}
           width={width}
           height={height}
-          color="gold"
           r={cardRadius}
         >
           <SweepGradient
+            origin={vec(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2)}
             c={vec((width + canvasPadding) / 2, (height + canvasPadding) / 2)}
             colors={borderColors}
+            transform={transform}
           />
-          <BlurMask blur={blur} style="solid" />
-        </RoundedRect></>)} accessibilityLabelledBy={undefined} accessibilityLanguage={undefined} />
+          <BlurMask blur={blur} style={'solid'} />
+        </RoundedRect>
+      }
+      accessibilityLabelledBy={undefined}
+      accessibilityLanguage={undefined}
+    />
   );
 };
 
-export default BackgroundGradient;
+export default React.memo(BackgroundGradient);

@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { miColor } from '../../themes';
+
 export const circularProgressBarStyle = () => {
   const circle = StyleSheet.create({
     container: {
@@ -17,7 +19,7 @@ export const circularProgressBarStyle = () => {
 
   const textContainer = StyleSheet.create({
     textStyle: {
-      color: '#ccc',
+      color: miColor.gray,
       fontWeight: 'bold',
     },
     textView: {

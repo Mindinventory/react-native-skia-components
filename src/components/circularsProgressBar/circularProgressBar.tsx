@@ -12,9 +12,11 @@ import {
   vec,
 } from '@shopify/react-native-skia';
 
-import { miUiStyle } from '../../themes';
 import type { CircularProgressBarProps } from './circularProgressBar.type';
 import { useCircularProgress } from './useCircularProgressBar';
+
+const VEC_START = 12;
+const VEC_END = 200;
 
 const CircularProgressBar = (props: CircularProgressBarProps) => {
   const {
@@ -24,7 +26,7 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
     fillProgress,
     fontSize,
     fromCircle,
-    GradientColors,
+    gradientColors,
     path,
     progress,
     radius,
@@ -34,10 +36,13 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
     shadowRadius,
     strokeWidth,
     viewWidth,
+    styles,
   } = useCircularProgress(props);
 
+  const VIEW_WIDTH_DIV = viewWidth / 2;
+
   return (
-    <View>
+    <>
       <Canvas
         style={{
           elevation: elevation,
@@ -48,64 +53,66 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
           shadowRadius: shadowRadius,
           width: viewWidth,
         }}
-        children={(<>
-          <Group
-            transform={translate({
-              x: viewWidth / 2 - radius,
-              y: viewWidth / 2 - radius,
-            })}
-          >
-            <Group>
-              <LinearGradient
-                start={vec(12, 12)}
-                end={vec(200, 200)}
-                colors={GradientColors}
+        children={
+          <>
+            <Group
+              transform={translate({
+                x: VIEW_WIDTH_DIV - radius,
+                y: VIEW_WIDTH_DIV - radius,
+              })}
+            >
+              <Group>
+                <LinearGradient
+                  start={vec(VEC_START, VEC_START)}
+                  end={vec(VEC_END, VEC_END)}
+                  colors={gradientColors}
+                />
+                <Box box={fromCircle(radius, radius, radius)} />
+              </Group>
+              <Box
+                box={fromCircle(radius, radius, radius - strokeWidth - 10)}
+                color={backgroundColor}
               />
-              <Box box={fromCircle(radius, radius, radius)} />
-            </Group>
-            <Box
-              box={fromCircle(radius, radius, radius - strokeWidth - 10)}
-              color={backgroundColor}
-            />
 
-            <Group>
-              <SweepGradient
-                c={vec((radius * 3) / 2 + radius, radius * 3)}
-                colors={colors}
-              />
-              <Path
-                path={path}
-                style="stroke"
-                strokeWidth={strokeWidth}
-                end={fillProgress}
-                strokeCap="round"
-              />
+              <Group>
+                <SweepGradient
+                  c={vec((radius * 3) / 2 + radius, radius * 3)}
+                  colors={colors}
+                />
+                <Path
+                  path={path}
+                  style={'stroke'}
+                  strokeWidth={strokeWidth}
+                  end={fillProgress}
+                  strokeCap={'round'}
+                />
+              </Group>
             </Group>
-          </Group>
-        </>)}
+          </>
+        }
         accessibilityLabelledBy={undefined}
         accessibilityLanguage={undefined}
       />
       <View
         style={[
-          miUiStyle?.circularProgressBarStyle?.textContainer.textView,
+          styles?.circularProgressBarStyle?.textContainer.textView,
           {
-            left: viewWidth / 2 - fontSize,
-            top: viewWidth / 2 - fontSize / 2,
+            left: VIEW_WIDTH_DIV - fontSize,
+            top: VIEW_WIDTH_DIV - fontSize / 2,
           },
         ]}
       >
         <Text
           style={[
-            miUiStyle?.circularProgressBarStyle?.textContainer.textStyle,
+            styles?.circularProgressBarStyle?.textContainer.textStyle,
             { fontSize: fontSize },
           ]}
         >
           {progress}%
         </Text>
       </View>
-    </View>
+    </>
   );
 };
 
-export default CircularProgressBar;
+export default React.memo(CircularProgressBar);

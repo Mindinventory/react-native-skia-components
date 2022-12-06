@@ -1,127 +1,107 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
-import { Box, Canvas, Group, rect, rrect } from '@shopify/react-native-skia';
+import { Canvas, Group, Path } from '@shopify/react-native-skia';
+import Animated from 'react-native-reanimated';
 
-import { miUiStyle } from '../../themes';
+import { miColor } from '../../themes';
 import type { NeoPopButtonProps } from './neoPopButton.type';
 import { useNeoPopButton } from './useNeoPopButton';
 
 const NeoPopButton = (props: NeoPopButtonProps) => {
   const {
-    animatedHeight,
-    animatedWidth,
-    animatedX,
-    animatedY,
     backgroundColor,
     bottomShadowColor,
-    canvasButtonHeight,
-    canvasButtonWidth,
+    depthPath,
     height,
-    onPressButton,
-    onPressOut,
+    isFloating,
+    nonFloatingDepthPath,
+    onPressEnd,
+    onPressStart,
+    path,
+    shadowPath,
     sideShadowColor,
     textStyle,
     title,
-    titleSize,
-    transitionX,
-    transitionY,
     width,
-    x,
-    y,
+    styles,
+    transform,
+    textTransformStyle,
+    titleSize,
+    disabled,
   } = useNeoPopButton(props);
-
   return (
-    <TouchableOpacity
-      style={[
-        miUiStyle.neoPopButtonStyle.containerStyle.canvasStyle,
-        props.style || {},
-      ]}
-      onPress={props.onPress}
-      onLongPress={props.onLongPress}
-      onPressIn={() => {
-        onPressButton();
-        props.onPressIn?.();
-      }}
-      onPressOut={() => {
-        onPressOut();
-        props.onPressOut?.();
-      }}
-      activeOpacity={1}
-    >
+    <View style={styles.starWarButtonStyle.container}>
       <Canvas
-        style={{
-          height: canvasButtonHeight,
-          width: canvasButtonWidth,
-        }}
+        style={[
+          { height: height, width: width },
+          styles.neoPopButtonStyle.containerStyle.canvasStyle,
+          props.style || {},
+        ]}
         children={
           <>
-            <Group
-              origin={{ x: width, y: 0 }}
-              transform={[{ skewY: Math.PI / (1.4 * 3) }]}
-            >
-              <Box
-                box={rrect(
-                  rect(width + animatedY, 8, -y, height + animatedHeight),
-                  0,
-                  0
-                )}
-                color={sideShadowColor}
-              />
-            </Group>
-
-            <Group
-              origin={{ x: 0, y: height }}
-              transform={[{ skewX: Math.PI / 1.4 }]}
-            >
-              <Box
-                box={rrect(
-                  rect(x + animatedX, height, width + animatedWidth, -x),
-                  0,
-                  0
-                )}
-                color={bottomShadowColor}
-              />
-            </Group>
-
-            <Box
-              box={rrect(
-                rect(transitionX, transitionY + 8, width, height),
-                0,
-                0
-              )}
-              color={backgroundColor}
-            />
+            {isFloating ? (
+              <>
+                <Group transform={transform}>
+                  <Path path={path} color={backgroundColor} />
+                  <Path path={depthPath} color={sideShadowColor} />
+                </Group>
+                <Path
+                  path={shadowPath}
+                  color={bottomShadowColor}
+                  transform={transform}
+                />
+              </>
+            ) : (
+              <>
+                <Group transform={transform}>
+                  <Path path={path} color={backgroundColor} />
+                </Group>
+                <Group>
+                  <Path path={nonFloatingDepthPath} color={sideShadowColor} />
+                </Group>
+              </>
+            )}
           </>
         }
         accessibilityLabelledBy={undefined}
         accessibilityLanguage={undefined}
       />
-      <View
+      <TouchableOpacity
+        onPress={props?.onPress}
+        onLongPress={props?.onLongPress}
+        onPressIn={() => {
+          onPressStart();
+        }}
+        onPressOut={() => {
+          onPressEnd();
+        }}
+        activeOpacity={1}
         style={[
-          miUiStyle.neoPopButtonStyle.textContainer.textView,
+          styles.neoPopButtonStyle.btnLabel.labelView,
           {
             height: height,
-            left: transitionX,
-            top: transitionY + 8,
             width: width,
           },
         ]}
+        disabled={disabled}
       >
-        <Text
+        <Animated.Text
+          adjustsFontSizeToFit
           style={[
-            miUiStyle.neoPopButtonStyle.textContainer.textStyle,
-            {
-              fontSize: titleSize,
-            },
+            styles.neoPopButtonStyle.btnLabel.labelText,
+            { fontSize: titleSize },
             textStyle && { ...textStyle },
+            { transform: [{ rotateX: '45deg' }, { rotateZ: '0deg' }] },
+            disabled && { color: miColor.grayShade },
+            textTransformStyle,
           ]}
         >
           {title}
-        </Text>
-      </View>
-    </TouchableOpacity>
+        </Animated.Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
-export default NeoPopButton;
+export default React.memo(NeoPopButton);
