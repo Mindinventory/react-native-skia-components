@@ -108,7 +108,6 @@ const ScrollIndicator = ({
         <Group
           key={index.toString()}
           style="fill"
-          color={'red'}
           transform={translate(indexes)}
         >
           <RoundedRect
