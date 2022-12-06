@@ -23,7 +23,6 @@ const INDICATOR_SPEED = 0.025;
 const xPosition = 0;
 const IndicatorHeight = 20;
 const IndicatorRadius = IndicatorHeight * 2;
-var scrollInWidth = 0;
 
 interface IScrollIndicatorProps {
   indicatorItemColor?: string;
@@ -91,6 +90,7 @@ const ScrollIndicator = ({
   }, [rotateValue]);
 
   const getSliderSubView = () => {
+    var scrollInWidth = 0;
     return new Array(3).fill('').map((_item, index) => {
       const nextIndex = index + 1;
       const indexes = index + 1;
@@ -124,13 +124,13 @@ const ScrollIndicator = ({
             style={'stroke'}
             strokeWidth={0.9}
           />
-          {index === 2 && getscrollIndicatorComponent(scrollInWidth)}
+          {index === 2 && getscrollIndicatorComponent()}
         </Group>
       );
     });
   };
 
-  const getscrollIndicatorComponent = (_lastViewWidth: number) => {
+  const getscrollIndicatorComponent = () => {
     return (
       <RoundedRect
         x={scrollmin / 2.5} //12
@@ -146,62 +146,6 @@ const ScrollIndicator = ({
         transform={rotationValue}
       />
     );
-    // switch (indicatorType) {
-    //   case 'star':
-    //     return (
-    //       <Group transform={[{ translateX: scrollmin / 2.5 }]}>
-    //         <Path
-    //           path={starPath}
-    //           color="gold"
-    //           origin={{
-    //             x: 8,
-    //             y: 10,
-    //           }}
-    //           style={'stroke'}
-    //           transform={rotationValue}
-    //         />
-    //       </Group>
-    //     );
-
-    //   case 'oval':
-    //     return (
-    //       <Group transform={[{ translateX: scrollmin / 2.5 }]}>
-    //         <Oval rect={rect(-5, 6, 15, 4)} />
-    //         <Oval rect={rect(0, 0, 4, 15)} />
-    //       </Group>
-    //     );
-
-    //   case 'square':
-    //     return (
-    //       <RoundedRect
-    //         x={scrollmin / 2.5} //12
-    //         y={IndicatorHeight / 3.5} //4
-    //         height={IndicatorHeight / 2}
-    //         width={IndicatorHeight / 2}
-    //         style={'fill'}
-    //         color={'gold'}
-    //         origin={{
-    //           x: scrollmin / 2.5 + 4, //16
-    //           y: IndicatorHeight / 2, //9
-    //         }}
-    //         transform={rotationValue}
-    //       />
-    //     );
-
-    //   default:
-    //     return (
-    //       <Path
-    //         path={starPath}
-    //         color="gold"
-    //         origin={{
-    //           x: 8,
-    //           y: 9,
-    //         }}
-    //         style={'fill'}
-    //         transform={rotationValue}
-    //       />
-    //     );
-    // }
   };
 
   return (
