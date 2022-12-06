@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import { NeoPopButton } from '@mindinventory/react-native-skia-components';
@@ -6,7 +6,11 @@ import { NeoPopButton } from '@mindinventory/react-native-skia-components';
 import { miColor } from '../constant/colors';
 import { styles } from './componentStyle.style';
 
+let timeout: any;
+
 const NeoPopButtonExample = () => {
+  const [pressed, setPressed] = useState(false);
+
   return (
     <View style={[styles.centerItemStyle]}>
       <NeoPopButton
@@ -16,7 +20,17 @@ const NeoPopButtonExample = () => {
         bottomShadowColor={miColor.lightGray}
         textStyle={styles.floatingTextStyle}
         backgroundColor={miColor.yellowGold}
-        onPress={() => {}}
+        onPress={() => {
+          if (timeout) {
+            clearTimeout(timeout);
+          }
+
+          setPressed(true);
+          timeout = setTimeout(() => {
+            setPressed(false);
+          }, 2000);
+        }}
+        disabled={pressed}
       />
     </View>
   );

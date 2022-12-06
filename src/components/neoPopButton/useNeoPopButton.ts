@@ -17,19 +17,21 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
   const { styles } = useMiUiContext();
 
   const {
-    backgroundColor = NeoPopButtonConstant.default.backgroundColor,
+    backgroundColor: bgColor = NeoPopButtonConstant.default.backgroundColor,
     bottomShadowColor = NeoPopButtonConstant.default.bottomShadowColor,
     depth = NeoPopButtonConstant.default.depth,
     height: propHeight = NeoPopButtonConstant.default.height,
     isFloating = NeoPopButtonConstant.default.isFloating,
     shadowHeight = NeoPopButtonConstant.default.shadowHeight,
-    sideShadowColor = NeoPopButtonConstant.default.sideShadowColor,
+    sideShadowColor: bottomSdColor = NeoPopButtonConstant.default
+      .sideShadowColor,
     textStyle,
     title = NeoPopButtonConstant.default.title,
     width: propWidth = NeoPopButtonConstant.default.width,
     titleSize = NeoPopButtonConstant.default.titleSize,
     floatAnimation = NeoPopButtonConstant.default.floatAnimation,
     duration = NeoPopButtonConstant.default.duration,
+    disabled = false,
   } = props;
 
   let height = propHeight * 1.5;
@@ -38,11 +40,15 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
   const [shadowTranslate, setShadowTranslate] = useState(0);
   const [pressed, setPressed] = useState(false);
 
+  const backgroundColor = disabled ? 'darkgray' : bgColor;
+
+  const sideShadowColor = disabled ? 'gray' : bottomSdColor;
+
   const translate = useTiming(
     {
       from: 0,
       loop: true,
-      to: floatAnimation ? 11 : 0,
+      to: floatAnimation && !disabled ? 11 : 0,
       yoyo: true,
     },
     {
@@ -102,6 +108,7 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
     setPressed(true);
     translateY.current = isFloating ? shadowHeight : depth;
     setShadowTranslate(-shadowHeight);
+    // loaderTransform.value = 10;
   };
 
   const onPressEnd = () => {
@@ -111,25 +118,42 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
   };
 
   const textTransform = useSharedValue(0);
+  // const loaderTransform = useSharedValue(0);
 
   const transform = useComputedValue(() => {
     textTransform.value = translate.current;
     return [
-      { translateY: pressed ? 10 : !floatAnimation ? 0 : translate.current },
+      {
+        translateY:
+          pressed || disabled ? 10 : !floatAnimation ? 0 : translate.current,
+      },
     ];
-  }, [translate, pressed, floatAnimation]);
+  }, [translate, pressed, floatAnimation, disabled]);
 
   const textTransformStyle = useAnimatedStyle(() => {
     return {
       transform: [
         {
-          translateY: pressed ? 0 : textTransform.value - 12,
+          translateY: pressed || disabled ? 0 : textTransform.value - 12,
         },
-        { rotateX: '25deg' },
+        { rotateX: '45deg' },
         { rotateZ: '0deg' },
       ],
     };
-  }, [textTransform, pressed]);
+  }, [textTransform, pressed, disabled]);
+
+  // const loaderTransformStyle = useAnimatedStyle(() => {
+  //   return {
+  //     transform: [
+  //       {
+  //         translateY: withTiming(loaderTransform.value, {
+  //           duration: 1000,
+  //           easing: Easing.linear,
+  //         }),
+  //       },
+  //     ],
+  //   };
+  // }, [loaderTransform]);
 
   return {
     backgroundColor,
@@ -137,14 +161,17 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
     depth,
     depthPath,
     depthPath2,
+    disabled,
     floatAnimation,
     height,
     isFloating,
+    // loaderTransformStyle,
     nonFloatingDepthPath,
     onPressEnd,
     onPressStart,
     path,
     path2,
+    pressed,
     props,
     shadowHeight,
     shadowPath,
