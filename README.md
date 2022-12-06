@@ -18,9 +18,7 @@ yarn add @mindinventory/react-native-skia-components
 
 ## Preview
 
-
-https://user-images.githubusercontent.com/104554054/205296197-bd0966fc-d72d-4c55-ba95-df4883a5dcc0.mp4
-
+![navy and yellow modern business banner](https://user-images.githubusercontent.com/87525902/205893437-5280e346-4643-4621-bd80-934716f31753.gif)
 
 
 ### Supported platform
