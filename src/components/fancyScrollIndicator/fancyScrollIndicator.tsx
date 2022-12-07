@@ -1,14 +1,7 @@
 import React from 'react';
-import { FlatList, SafeAreaView, View } from 'react-native';
+import { FlatList, SafeAreaView, Text, View } from 'react-native';
 
-import {
-  Canvas,
-  Group,
-  RoundedRect,
-  Skia,
-  useComputedValue,
-  useValue,
-} from '@shopify/react-native-skia';
+import { Canvas, Group, RoundedRect } from '@shopify/react-native-skia';
 
 import { useFancyScrollIndicator } from './useFancyScrollIndicator';
 import type { IFancyScrollIndicatorProp } from './fancyScrollIndicator.type';
@@ -20,9 +13,10 @@ import {
 
 var bgWidth = 0;
 
-const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
+const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
   const {
-    data,
+    getAnimatedValue,
+    getRotateValue,
     indicatorBorderColor,
     indicatorContainerWidth,
     indicatorHeight,
@@ -30,48 +24,21 @@ const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
     indicatorRadius,
     indicatorSpeed,
     innerViewLineColor,
-    renderItem,
+    onScroll,
+    rotationValue,
+    translate,
+    translateX,
+    updateAnimated,
+    updateRotateValue,
     xPosition,
   } = useFancyScrollIndicator({ props });
 
-  const animationValue = useValue(0);
-  const rotateValue = useValue(0);
   var scrollmin = 1;
+  var scrollInWidth = 0;
 
-  if (data.length === 0) {
-    throw 'Please add array values to render scroll indicator';
-  }
-
-  const translateX = () => {
-    return useComputedValue(() => {
-      return [
-        {
-          translateX: animationValue.current,
-        },
-      ];
-    }, [animationValue]);
-  };
-
-  const translate = (indexes: number) => {
-    return useComputedValue(() => {
-      return [
-        {
-          translateX: animationValue.current * indexes,
-        },
-      ];
-    }, [animationValue]);
-  };
-
-  const rotationValue = useComputedValue(() => {
-    return [
-      {
-        rotate: rotateValue.current,
-      },
-    ];
-  }, [rotateValue]);
+  //MARK: - Inner slider
 
   const getSliderSubView = () => {
-    var scrollInWidth = 0;
     return new Array(3).fill('').map((_item, index) => {
       const nextIndex = index + 1;
       const indexes = index + 1;
@@ -84,7 +51,6 @@ const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
         scrollInWidth = indicatorContainerWidth * 0.2 * 1;
         scrollmin = scrollInWidth;
       }
-
       return (
         <Group
           key={index.toString()}
@@ -105,96 +71,98 @@ const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
             style={'stroke'}
             strokeWidth={0.9}
           />
-          {index === 2 && getscrollIndicatorComponent()}
+          {index === 2 ? (
+            <RoundedRect
+              x={scrollmin / 2.5} //12
+              y={indicatorHeight / 3.5} //4
+              height={indicatorHeight / 2}
+              width={indicatorHeight / 2}
+              style={'fill'}
+              color={indicatorItemColor}
+              origin={{
+                x: scrollmin / 2.5 + 4, //16
+                y: indicatorHeight / 2, //9
+              }}
+              transform={rotationValue}
+            />
+          ) : null}
         </Group>
       );
     });
   };
 
-  const getscrollIndicatorComponent = () => {
-    return (
-      <RoundedRect
-        x={scrollmin / 2.5} //12
-        y={indicatorHeight / 3.5} //4
-        height={indicatorHeight / 2}
-        width={indicatorHeight / 2}
-        style={'fill'}
-        color={indicatorItemColor}
-        origin={{
-          x: scrollmin / 2.5 + 4, //16
-          y: indicatorHeight / 2, //9
-        }}
-        transform={rotationValue}
-      />
-    );
+  //MARK: - Custom error
+  const throwErrorMessage = () => {
+    throw new Error('Currently we are support for only horizontal direction');
   };
 
   return (
     <SafeAreaView>
-      <FlatList
-        data={data}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={16}
-        bounces={false}
-        onScroll={(e) => {
-          const { nativeEvent } = e;
-          bgWidth = nativeEvent?.contentSize?.width || 0;
-
-          const indic =
-            indicatorContainerWidth - indicatorContainerWidth / data.length;
-
-          const differnece = indic / scrollmin;
-
-          const calculated =
-            (nativeEvent.contentOffset.x *
-              (indicatorContainerWidth / bgWidth)) /
-            differnece;
-
-          if (animationValue.current > calculated) {
-            rotateValue.current -= indicatorSpeed;
-            if (rotateValue.current < 0) {
-              rotateValue.current = 0;
-            }
-          } else {
-            rotateValue.current += indicatorSpeed;
-          }
-
-          animationValue.current = calculated;
-        }}
-        keyExtractor={(_, index) => index.toString()}
-        renderItem={({ item, index }) => renderItem(item, index)}
-      />
-      <View
-        style={[
-          scrollIndicatorStyle(indicatorContainerWidth).indicatorContainer,
-        ]}
-      >
-        <Canvas
-          style={[
-            canvasStyle(indicatorHeight, indicatorContainerWidth).canvasStyle,
-          ]}
-          children={
-            <>
-              <RoundedRect
-                x={0}
-                y={0}
-                width={indicatorContainerWidth - 1}
-                height={indicatorHeight}
-                r={indicatorRadius}
-                color={indicatorBorderColor}
-                style={'stroke'}
-                strokeWidth={1.5}
-              />
-              <Group transform={translateX()}>{getSliderSubView()}</Group>
-            </>
-          }
-          accessibilityLabelledBy={undefined}
-          accessibilityLanguage={undefined}
-        />
-      </View>
+      {props.horizontal ? (
+        <>
+          <FlatList
+            {...props}
+            showsHorizontalScrollIndicator={false}
+            onScroll={(e) => {
+              const { nativeEvent } = e;
+              console.log(nativeEvent);
+              bgWidth = nativeEvent?.contentSize?.width || 0;
+              const indic =
+                indicatorContainerWidth -
+                indicatorContainerWidth / (props.data ?? []).length;
+              const differnece = indic / scrollmin;
+              const calculated =
+                (nativeEvent.contentOffset.x *
+                  (indicatorContainerWidth / bgWidth)) /
+                differnece;
+              if (getAnimatedValue > calculated) {
+                updateRotateValue(getRotateValue - indicatorSpeed);
+                if (getRotateValue < 0) {
+                  updateRotateValue(0);
+                }
+              } else {
+                updateRotateValue(getRotateValue + indicatorSpeed);
+              }
+              console.log(calculated);
+              updateAnimated(calculated);
+              onScroll && onScroll(e);
+            }}
+          />
+          <View
+            style={[
+              scrollIndicatorStyle(indicatorContainerWidth).indicatorContainer,
+            ]}
+          >
+            <Canvas
+              style={[
+                canvasStyle(indicatorHeight, indicatorContainerWidth)
+                  .canvasStyle,
+              ]}
+              children={
+                <>
+                  <RoundedRect
+                    x={0}
+                    y={0}
+                    width={indicatorContainerWidth - 1}
+                    height={indicatorHeight}
+                    r={indicatorRadius}
+                    color={indicatorBorderColor}
+                    style={'stroke'}
+                    strokeWidth={1.5}
+                  />
+                  <Group transform={translateX()}>{getSliderSubView()}</Group>
+                </>
+              }
+              accessibilityLabelledBy={undefined}
+              accessibilityLanguage={undefined}
+            />
+          </View>
+        </>
+      ) : (
+        throwErrorMessage()
+      )}
     </SafeAreaView>
   );
 };
 
-export default React.memo(FancyScrollIndicator);
+export default FancyScrollIndicator;

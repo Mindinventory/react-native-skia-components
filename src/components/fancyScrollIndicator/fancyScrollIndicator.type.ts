@@ -1,7 +1,15 @@
-export interface IFancyScrollIndicatorProp {
+import type {
+  FlatListProps,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from 'react-native';
+
+export interface IFancyScrollIndicatorProp<ItemT>
+  extends Omit<FlatListProps<ItemT>, 'onScroll'> {
   indicatorItemColor?: string;
   indicatorBorderColor?: string;
   innerViewLineColor?: string;
-  renderItem: (data: any, index: number) => JSX.Element;
-  data: Array<any>;
+  onScroll?:
+    | ((event: NativeSyntheticEvent<NativeScrollEvent>) => void)
+    | undefined;
 }

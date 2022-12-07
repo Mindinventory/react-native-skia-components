@@ -1,3 +1,3 @@
-import FancyScrollIndicator from './fancyScrollIndicator';
+import { FancyScrollIndicator } from './fancyScrollIndicatorContainer';
 
 export { FancyScrollIndicator };

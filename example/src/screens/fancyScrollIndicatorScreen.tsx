@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Dimensions,
+  FlatList,
   ImageBackground,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   StyleSheet,
   Text,
   View,
@@ -23,7 +26,11 @@ const FancyScrollIndicatorScreen = () => {
       <View>
         <FancyScrollIndicator
           data={new Array(3).fill(' ')}
-          renderItem={(_item, _index) => {
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
+          bounces={false}
+          renderItem={({ _Item, index }) => {
             return (
               <Card
                 height={190}
@@ -53,11 +60,12 @@ const FancyScrollIndicatorScreen = () => {
                     </Text>
                     <Text style={styles.cardText}>Mindinventory</Text>
                   </View>
-                  <Text style={styles.cardNumber}>Card {_index + 1}</Text>
+                  <Text style={styles.cardNumber}>Card {index + 1}</Text>
                 </ImageBackground>
               </Card>
             );
           }}
+          keyExtractor={(_, index) => index.toString()}
         />
       </View>
     </View>
