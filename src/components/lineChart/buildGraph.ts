@@ -1,5 +1,5 @@
 import { Skia } from '@shopify/react-native-skia';
-import { curveLinear, line } from 'd3';
+import { CurveFactory, curveLinear, line } from 'd3';
 import { scaleLinear } from 'd3-scale';
 
 import { miColor } from '../../themes';
@@ -9,11 +9,28 @@ const { orange, yellow, lightGreen, green } = miColor;
 export const COLORS = [orange, yellow, lightGreen, green].map(Skia.Color);
 
 export const buildGraph = (
-  data: any[],
+  gData: any[],
   graphHeight: number,
   graphMargin: number,
-  graphWidth: number
+  graphWidth: number,
+  fill?: boolean,
+  fullWidthPreview?: boolean,
+  curve?: CurveFactory
 ) => {
+  const sData = [
+    ...gData.slice(0, 0),
+    { data: gData[0].data, value: 0 },
+    ...gData.slice(0),
+  ];
+
+  const data = fill
+    ? [
+        ...sData.slice(0, sData.length),
+        { data: sData[sData.length - 1].data, value: 0 },
+        ...sData.slice(sData.length),
+      ]
+    : gData.reverse();
+
   const max = Math.max(...data.map((val) => val.value));
   const min = Math.min(...data.map((val) => val.value));
 
@@ -25,13 +42,15 @@ export const buildGraph = (
 
   const x = scaleLinear()
     .domain([minDate, maxDate])
-    .range([graphMargin, graphWidth - 10]);
-  const y = scaleLinear().domain([min, max]).range([graphHeight, 0]);
+    .range([fullWidthPreview ? 0 : graphMargin, graphWidth - 24]);
+  const y = scaleLinear()
+    .domain([min, max])
+    .range([graphHeight - 24, 0]);
 
   const curvedLine = line<any>()
     .x((_d, index) => x(index))
     .y((d) => y(d.value))
-    .curve(curveLinear)(data.reverse());
+    .curve(curve ? curve : curveLinear)(data);
 
   const skPath = Skia.Path.MakeFromSVGString(curvedLine!);
   const graphData = {

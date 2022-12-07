@@ -1,9 +1,11 @@
 import type {
   PaintStyle,
   SkEnum,
+  SkiaMutableValue,
   SkiaValue,
   SkPath,
 } from '@shopify/react-native-skia';
+import type { CurveFactory } from 'd3';
 import type { ScaleLinear } from 'd3-scale';
 
 export interface LineChartProps {
@@ -25,6 +27,18 @@ export interface LineChartProps {
   selectionLabelStyle?: LabelProps;
   formateXLabel?: any;
   formateYLabel?: any;
+  fill?: boolean;
+  fullWidthPreview?: boolean;
+  isSlider?: boolean;
+  sliderStyle?: SliderStyleProps;
+  curve?: CurveFactory;
+}
+
+export interface SliderStyleProps {
+  innerColor?: string | Float32Array | number;
+  outerColor?: string | Float32Array | number;
+  outerRadius?: number;
+  innerRadius?: number;
 }
 
 export interface GraphData {
@@ -34,7 +48,7 @@ export interface GraphData {
 }
 
 export interface StyleProps {
-  color: string | Float32Array | number;
+  color?: string | Float32Array | number;
   style?: SkEnum<typeof PaintStyle>;
   strokeWidth?: number;
   isDotedGridLine?: boolean;
@@ -56,6 +70,7 @@ export interface SelectedPointProps {
   y: ScaleLinear<number, number, never>;
   yAxisData: number[];
   max: number;
+  formateXLabel?: any;
 }
 
 export interface GridLineProps {
@@ -87,11 +102,11 @@ export interface ClickPoints {
   end: number;
 }
 export interface AxisProps {
-  hideAxis: boolean;
   graphHeight: number;
   graphWidth: number;
   axisStyle: StyleProps;
   graphMargin: number;
+  fullWidthPreview?: boolean;
 }
 
 export interface AxisLabelsProps {
@@ -105,4 +120,15 @@ export interface AxisLabelsProps {
   formateXLabel?: any;
   formateYLabel?: any;
   data: any[];
+  fullWidthPreview?: boolean;
+}
+
+export interface SliderProps {
+  touchPos: SkiaMutableValue<any>;
+  font: any;
+  graphWidth: number;
+  yAxisData: number[];
+  y: ScaleLinear<number, number, never>;
+  max: number;
+  sliderStyle: SliderStyleProps;
 }

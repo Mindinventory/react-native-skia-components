@@ -10,8 +10,17 @@ import type {
 } from '../LineChartProps';
 
 export const useSelectionLabels = (props: SelectedPointProps) => {
-  const { xLabel, yLabel, x, data, selectionLabelStyle, y, yAxisData, max } =
-    props;
+  const {
+    xLabel,
+    yLabel,
+    x,
+    data,
+    selectionLabelStyle,
+    y,
+    yAxisData,
+    max,
+    formateXLabel,
+  } = props;
   const { color } = selectionLabelStyle;
   const [selectedPositions, setSelectedPositions] =
     useState<SelectedPositions>();
@@ -19,34 +28,16 @@ export const useSelectionLabels = (props: SelectedPointProps) => {
 
   const getX = (axisData: any[], point: number) => {
     const xPoint: ClickPoints[] = [];
-    axisData.forEach((item, index) => {
+    axisData.forEach((_item, index) => {
       if (index === 0) {
         xPoint.push({
-          end: x(
-            new Date(
-              axisData[
-                axisData.findIndex((xAxis) => xAxis.data === item.data)
-              ].data
-            )
-          ),
+          end: x(index),
           start: 0,
         });
       } else {
         xPoint.push({
-          end: x(
-            new Date(
-              axisData[
-                axisData.findIndex((xAxis) => xAxis.data === item.data)
-              ].data
-            )
-          ),
-          start: x(
-            new Date(
-              axisData[
-                axisData.findIndex((xAxis) => xAxis.data === item.data) - 1
-              ].data
-            )
-          ),
+          end: x(index),
+          start: x(index - 1),
         });
       }
     });
@@ -57,7 +48,13 @@ export const useSelectionLabels = (props: SelectedPointProps) => {
         xPoint.findIndex((xAxis) => xAxis.start <= point && xAxis.end >= point)
     );
 
-    return valueOfXY;
+    if (valueOfXY !== undefined) {
+      return isNaN(Number(valueOfXY.data))
+        ? valueOfXY.data
+        : Number(valueOfXY.data);
+    } else {
+      return {};
+    }
   };
 
   const getY = (point: number) => {
@@ -113,11 +110,21 @@ export const useSelectionLabels = (props: SelectedPointProps) => {
     const xData = getX(data, xLabel.current);
 
     if (xData && yLabel) {
-      setSelectedData(
-        `${moment(xData.data).format('DDMMM')}, ${Math.round(
-          getY(yLabel.current)
-        )}`
-      );
+      if (formateXLabel) {
+        if (isNaN(formateXLabel(xData))) {
+          setSelectedData(
+            `${formateXLabel(xData)}, ${Math.round(getY(yLabel.current))}`
+          );
+        } else {
+          setSelectedData(
+            `${moment(formateXLabel(xData)).format('DDMMM')}, ${Math.round(
+              getY(yLabel.current)
+            )}`
+          );
+        }
+      } else {
+        setSelectedData(`${xData}, ${Math.round(getY(yLabel.current))}`);
+      }
     }
   }, [xLabel, yLabel]);
 

@@ -5,6 +5,7 @@ export const miColor = {
   gray: '#F0F0F0',
   green: 'green',
   lightGreen: '#61E0A1',
+  lightPink: '#DA4167',
   orange: '#F69D69',
   pink: '#ed184f',
   purple: '#6231ff',

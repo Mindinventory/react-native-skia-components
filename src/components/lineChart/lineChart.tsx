@@ -9,7 +9,8 @@ import { Cursor } from './cursor/cursor';
 import GridLines from './gridLines/gridLines';
 import type { LineChartProps } from './LineChartProps';
 import { SelectionLabels } from './selectionLabels/selectionLabels';
-import { useGraphTouchHandler } from './useGraphTouchHandler';
+import { Slider } from './slider/slider';
+import { useSliderTouchHandler } from './slider/useSliderTouchHandler';
 import { useLineChart } from './useLineChart';
 
 const LineChart = (props: LineChartProps) => {
@@ -44,6 +45,11 @@ const LineChart = (props: LineChartProps) => {
     canvasWidth,
     formateXLabel,
     formateYLabel,
+    fullWidthPreview,
+    result,
+    touchPos,
+    isSlider,
+    sliderStyle,
   } = useLineChart(props);
   const { color, style, strokeWidth } = chartPathStyle;
 
@@ -51,23 +57,28 @@ const LineChart = (props: LineChartProps) => {
     <View style={styles.lineChartStyle.canvasStyles.canvasContainer}>
       <Canvas
         style={{ height: canvasHeight, width: canvasWidth }}
-        onTouch={useGraphTouchHandler({
-          graphHeight,
-          graphWidth,
-          x: xLabel,
-          xBounds: graphMargin,
-          y: yLabel,
-          yBounds: graphHeight + 5,
-        })}
+        onTouch={
+          useSliderTouchHandler({ graphWidth, result, touchPos })
+          //   useGraphTouchHandler({
+          //     graphHeight,
+          //     graphWidth,
+          //     x: xLabel,
+          //     xBounds: graphMargin,
+          //     y: yLabel,
+          //     yBounds: graphHeight + 5,
+          //   })
+        }
         children={
           <>
-            <Axis
-              hideAxis={hideAxis}
-              graphHeight={graphHeight}
-              graphWidth={graphWidth}
-              axisStyle={axisStyle}
-              graphMargin={graphMargin}
-            />
+            {!hideAxis && (
+              <Axis
+                graphHeight={graphHeight}
+                graphWidth={graphWidth}
+                axisStyle={axisStyle}
+                graphMargin={graphMargin}
+                fullWidthPreview={fullWidthPreview}
+              />
+            )}
 
             {/* {animateChart()} */}
 
@@ -86,9 +97,9 @@ const LineChart = (props: LineChartProps) => {
             <Path
               style={style}
               path={path}
-              strokeWidth={strokeWidth}
               color={color}
               start={0}
+              strokeWidth={strokeWidth}
               end={animationState}
             >
               {isGradient && (
@@ -112,6 +123,7 @@ const LineChart = (props: LineChartProps) => {
                 formateXLabel={formateXLabel}
                 formateYLabel={formateYLabel}
                 data={data}
+                fullWidthPreview={fullWidthPreview}
               />
             )}
 
@@ -135,6 +147,19 @@ const LineChart = (props: LineChartProps) => {
                 max={max}
                 yAxisData={yAxisData}
                 selectionLabelStyle={selectionLabelStyle}
+                formateXLabel={formateXLabel}
+              />
+            )}
+
+            {isSlider && (
+              <Slider
+                touchPos={touchPos}
+                font={font}
+                graphWidth={graphWidth}
+                yAxisData={yAxisData}
+                y={y}
+                max={max}
+                sliderStyle={sliderStyle}
               />
             )}
           </>

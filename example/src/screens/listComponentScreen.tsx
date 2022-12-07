@@ -178,11 +178,13 @@ const ListComponentScreen = () => {
       <View style={lineChartStyles.container}>
         <LineChartComponent
           canvasHeight={Dimensions.get('window').height * 0.5}
-          canvasWidth={Dimensions.get('window').width * 0.85}
+          canvasWidth={Dimensions.get('window').width * 0.8}
           fontPath={require('../assets/font/Roboto-Bold.ttf')}
           data={data}
           isGradient={true}
-          isGridLines={true}
+          isSlider={true}
+          fill={true}
+          chartPathStyle={{ style: 'fill', strokeWidth: 4 }}
           labelStyle={lineChartStyles.labelStyle}
           axisStyle={lineChartStyles.axisStyle}
           formateXLabel={(value: string) => `${moment(value).format('DDMMM')}`}
@@ -193,7 +195,7 @@ const ListComponentScreen = () => {
 
   const renderComponent = () => {
     return (
-      <ScrollView>
+      <ScrollView bounces={false}>
         <View style={styles.containerStyle}>{renderLayout()}</View>
       </ScrollView>
     );
@@ -280,7 +282,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   mainContainer: {
-    alignItems: 'center',
+    // alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: '#202020',
     height: '100%',

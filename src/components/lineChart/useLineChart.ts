@@ -5,13 +5,14 @@ import {
   useFont,
   useValue,
 } from '@shopify/react-native-skia';
+import { curveLinear } from 'd3';
 
 import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
 import { buildGraph, COLORS } from '../lineChart/buildGraph';
 import type { LineChartProps } from './LineChartProps';
 
-const { black, white } = miColor;
+const { black, white, lightPink } = miColor;
 
 export const useLineChart = (props: LineChartProps) => {
   const {
@@ -49,7 +50,20 @@ export const useLineChart = (props: LineChartProps) => {
     selectionLabelStyle = { color: black },
     formateXLabel,
     formateYLabel,
+    fill,
+    fullWidthPreview,
+    isSlider = false,
+    curve = curveLinear,
   } = props;
+
+  const sliderStyle = {
+    innerColor: lightPink,
+    innerRadius: 7.5,
+    outerColor: white,
+    outerRadius: 10,
+    ...props.sliderStyle,
+  };
+
   const { styles } = useMiUiContext();
 
   const font = useFont(fontPath, 8);
@@ -72,14 +86,19 @@ export const useLineChart = (props: LineChartProps) => {
     data,
     graphHeight,
     graphMargin,
-    graphWidth
+    graphWidth,
+    fill,
+    fullWidthPreview,
+    curve
   );
+
+  let result;
 
   const path = useComputedValue(() => {
     const start = graphData.curve;
     const end = graphData.curve;
 
-    const result = start.interpolate(end, 1);
+    result = start.interpolate(end, 1);
     return result?.toSVGString() ?? '0';
   }, [animationState]);
 
@@ -88,6 +107,8 @@ export const useLineChart = (props: LineChartProps) => {
 
   const xLabel = useValue(-10);
   const yLabel = useValue(-10);
+
+  const touchPos = useValue(result?.getPoint(0));
 
   return {
     animateChart,
@@ -101,6 +122,7 @@ export const useLineChart = (props: LineChartProps) => {
     font,
     formateXLabel,
     formateYLabel,
+    fullWidthPreview,
     gradientColors,
     graphHeight,
     graphMargin,
@@ -110,11 +132,15 @@ export const useLineChart = (props: LineChartProps) => {
     hideLabels,
     isGradient,
     isGridLines,
+    isSlider,
     labelStyle,
     max,
     path,
+    result,
     selectionLabelStyle,
+    sliderStyle,
     styles,
+    touchPos,
     x,
     xAxisData,
     xLabel,

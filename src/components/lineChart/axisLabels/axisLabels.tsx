@@ -17,6 +17,7 @@ const AxisLabels = (props: AxisLabelsProps) => {
     formateXLabel,
     formateYLabel,
     data,
+    fullWidthPreview,
   } = props;
 
   return (
@@ -33,25 +34,26 @@ const AxisLabels = (props: AxisLabelsProps) => {
                 : data[item].data.toString()
             }
             x={x(item)}
-            y={graphHeight + MARGIN}
+            y={graphHeight - MARGIN}
           />
         );
       })}
 
-      {yAxisData.map((item, index) => {
-        return (
-          <Text
-            text={
-              formateYLabel ? formateYLabel(item.toString()) : item.toString()
-            }
-            color={textColor}
-            x={2}
-            y={y(item) + 2}
-            key={index.toString()}
-            font={font}
-          />
-        );
-      })}
+      {!fullWidthPreview &&
+        yAxisData.map((item, index) => {
+          return (
+            <Text
+              text={
+                formateYLabel ? formateYLabel(item.toString()) : item.toString()
+              }
+              color={textColor}
+              x={5}
+              y={y(item) + 4}
+              key={index.toString()}
+              font={font}
+            />
+          );
+        })}
     </>
   );
 };
