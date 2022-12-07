@@ -1,8 +1,8 @@
-# @mindinventory/react-native-skia-components
+# @mindinventory/react-native-skia-components [![](https://img.shields.io/npm/v/@mindinventory/react-native-skia-components.svg)](https://www.npmjs.com/package/@mindinventory/react-native-skia-components) ![@mindinventory/React Native Skia Components Top Language](https://img.shields.io/github/languages/top/Mindinventory/react-native-skia-components) ![@mindinventory/React Native Skia Components TypeScript](https://badgen.net/npm/types/tslib) ![@mindinventory/React Native Skia Components License](https://img.shields.io/github/license/mindinventory/react-native-skia-components) ![IOS](https://img.shields.io/badge/IOS-9cf)  ![Android](https://img.shields.io/badge/Android-green)
 
 This library provide UIKit like Card, NeoPop button and and Floating button.
 
-<a href="https://www.mindinventory.com/?utm_source=gthb&utm_medium=repo&utm_campaign=lassi">![navy and yellow modern business banner](https://user-images.githubusercontent.com/87525902/205893437-5280e346-4643-4621-bd80-934716f31753.gif)</a>
+<a href="https://www.mindinventory.com/?utm_source=gthb&utm_medium=repo&utm_campaign=react-native-skia-components">![navy and yellow modern business banner](https://user-images.githubusercontent.com/87525902/205893437-5280e346-4643-4621-bd80-934716f31753.gif)</a>
 
 ## Installation
 
