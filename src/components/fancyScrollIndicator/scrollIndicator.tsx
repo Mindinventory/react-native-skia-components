@@ -21,7 +21,7 @@ const ItemWidth = Dimensions.get('screen').width - 20;
 const indicatorContainerWidth = ItemWidth / 1.5;
 const INDICATOR_SPEED = 0.025;
 const xPosition = 0;
-const IndicatorHeight = 20;
+const IndicatorHeight = 15;
 const IndicatorRadius = IndicatorHeight * 2;
 
 interface IScrollIndicatorProps {
