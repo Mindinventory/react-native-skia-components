@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Dimensions,
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { FlatList, SafeAreaView, View } from 'react-native';
 
 import {
   Canvas,
@@ -16,42 +10,30 @@ import {
   useValue,
 } from '@shopify/react-native-skia';
 
+import { useFancyScrollIndicator } from './useFancyScrollIndicator';
+import type { IFancyScrollIndicatorProp } from './fancyScrollIndicator.type';
+
+import {
+  canvasStyle,
+  scrollIndicatorStyle,
+} from './fancyScrollIndicator.style';
+
 var bgWidth = 0;
-const ItemWidth = Dimensions.get('screen').width - 20;
-const indicatorContainerWidth = ItemWidth / 1.5;
-const INDICATOR_SPEED = 0.025;
-const xPosition = 0;
-const IndicatorHeight = 15;
-const IndicatorRadius = IndicatorHeight * 2;
 
-interface IFancyScrollIndicatorProp {
-  indicatorItemColor?: string;
-  indicatorBorderColor?: string;
-  innerViewLineColor?: string;
-  renderItem: (data: any, index: number) => JSX.Element;
-  data: Array<any>;
-}
-
-const FancyScrollIndicator = ({
-  indicatorItemColor = 'gold',
-  indicatorBorderColor = 'white',
-  innerViewLineColor = 'white',
-  renderItem,
-  data,
-}: IFancyScrollIndicatorProp) => {
-  const starPath = Skia.Path.Make();
-  starPath.moveTo(8, 0);
-  starPath.lineTo(11, 5);
-  starPath.lineTo(16, 5);
-  starPath.lineTo(13, 9);
-  starPath.lineTo(14, 15);
-  starPath.lineTo(9, 12);
-  starPath.lineTo(3, 15);
-  starPath.lineTo(5, 9);
-  starPath.lineTo(0, 6);
-  starPath.lineTo(6, 5);
-  starPath.lineTo(8, 0);
-  starPath.close();
+const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
+  
+  const {
+    data,
+    INDICATOR_SPEED,
+    indicatorBorderColor,
+    indicatorContainerWidth,
+    IndicatorHeight,
+    indicatorItemColor,
+    IndicatorRadius,
+    innerViewLineColor,
+    renderItem,
+    xPosition,
+  } = useFancyScrollIndicator({ props });
 
   const animationValue = useValue(0);
   const rotateValue = useValue(0);
@@ -184,9 +166,15 @@ const FancyScrollIndicator = ({
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ item, index }) => renderItem(item, index)}
       />
-      <View style={styles.indicatorContainer}>
+      <View
+        style={[
+          scrollIndicatorStyle(indicatorContainerWidth).indicatorContainer,
+        ]}
+      >
         <Canvas
-          style={[styles.canvasStyle]}
+          style={[
+            canvasStyle(IndicatorHeight, indicatorContainerWidth).canvasStyle,
+          ]}
           children={
             <>
               <RoundedRect
@@ -209,19 +197,5 @@ const FancyScrollIndicator = ({
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  canvasStyle: {
-    height: IndicatorHeight,
-    marginHorizontal: 40,
-    width: indicatorContainerWidth,
-  },
-  indicatorContainer: {
-    alignItems: 'center',
-    marginTop: 5,
-    width: indicatorContainerWidth,
-    marginLeft: 15,
-  },
-});
 
 export default React.memo(FancyScrollIndicator);

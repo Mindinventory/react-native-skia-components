@@ -10,6 +10,7 @@ export const miColor = {
   darkGray: '#151515',
   darkGrayShade: '#2B2F33',
   darkYellowShade: 'rgba(195, 161, 60,1)',
+  gold: 'gold',
   gray: '#F0F0F0',
   grayShade: '#ccc',
   green: 'green',

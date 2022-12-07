@@ -9,7 +9,7 @@ import {
 
 import {
   Card,
-  ScrollIndicator,
+  FancyScrollIndicator,
 } from '@mindinventory/react-native-skia-components';
 
 import { miColor } from '../constant/colors';
@@ -17,11 +17,11 @@ import { bullets } from '../constant/constant';
 
 const { height: DEVICE_HEIGHT, width: DEVICE_WIDTH } = Dimensions.get('screen');
 
-const FancyScrollIndicator = () => {
+const FancyScrollIndicatorScreen = () => {
   return (
     <View style={styles.container}>
       <View>
-        <ScrollIndicator
+        <FancyScrollIndicator
           data={new Array(3).fill(' ')}
           renderItem={(_item, _index) => {
             return (
@@ -53,6 +53,7 @@ const FancyScrollIndicator = () => {
                     </Text>
                     <Text style={styles.cardText}>Mindinventory</Text>
                   </View>
+                  <Text style={styles.cardNumber}>Card {_index + 1}</Text>
                 </ImageBackground>
               </Card>
             );
@@ -63,7 +64,7 @@ const FancyScrollIndicator = () => {
   );
 };
 
-export default FancyScrollIndicator;
+export default FancyScrollIndicatorScreen;
 
 const styles = StyleSheet.create({
   card: {

@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { FloatingButton } from '../components';
 import CardComponent from '../screens/cards/cardComponent';
 import CardScreen from '../screens/cards/cardScreen';
-import FancyScrollIndicator from '../screens/fancyScrollIndicator';
+import FancyScrollIndicatorScreen from '../screens/fancyScrollIndicatorScreen';
 import NeoPopButtonExample from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
 import StarWarsButtonScreen from '../screens/starWarsButtonScreen';
@@ -53,7 +53,7 @@ const StackNavigation = () => {
         <Stack.Screen name={'FloatingButton'} component={FloatingButton} />
         <Stack.Screen
           name={'FancyScrollIndicator'}
-          component={FancyScrollIndicator}
+          component={FancyScrollIndicatorScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
