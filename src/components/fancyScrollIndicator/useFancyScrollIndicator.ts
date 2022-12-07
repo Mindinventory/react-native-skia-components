@@ -8,12 +8,12 @@ export const useFancyScrollIndicator = ({
 }: {
   props: IFancyScrollIndicatorProp;
 }) => {
-  const ItemWidth = Dimensions.get('screen').width - 20;
-  const indicatorContainerWidth = ItemWidth / 1.5;
-  const INDICATOR_SPEED = 0.025;
+  const itemWidth = Dimensions.get('screen').width - 20;
+  const indicatorContainerWidth = itemWidth / 1.5;
+  const indicatorHeight = 15;
+  const indicatorRadius = indicatorHeight * 2;
+  const indicatorSpeed = 0.025;
   const xPosition = 0;
-  const IndicatorHeight = 15;
-  const IndicatorRadius = IndicatorHeight * 2;
   const {
     data,
     indicatorBorderColor = miColor.white,
@@ -24,12 +24,12 @@ export const useFancyScrollIndicator = ({
 
   return {
     data,
-    INDICATOR_SPEED,
     indicatorBorderColor,
     indicatorContainerWidth,
-    IndicatorHeight,
+    indicatorHeight,
     indicatorItemColor,
-    IndicatorRadius,
+    indicatorRadius,
+    indicatorSpeed,
     innerViewLineColor,
     renderItem,
     xPosition,

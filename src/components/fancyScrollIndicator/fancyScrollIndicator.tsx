@@ -21,15 +21,14 @@ import {
 var bgWidth = 0;
 
 const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
-  
   const {
     data,
-    INDICATOR_SPEED,
     indicatorBorderColor,
     indicatorContainerWidth,
-    IndicatorHeight,
+    indicatorHeight,
     indicatorItemColor,
-    IndicatorRadius,
+    indicatorRadius,
+    indicatorSpeed,
     innerViewLineColor,
     renderItem,
     xPosition,
@@ -96,8 +95,8 @@ const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
             x={xPosition * nextIndex}
             y={0}
             width={scrollInWidth}
-            height={IndicatorHeight}
-            r={IndicatorRadius}
+            height={indicatorHeight}
+            r={indicatorRadius}
             origin={{
               x: 10,
               y: 8,
@@ -116,14 +115,14 @@ const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
     return (
       <RoundedRect
         x={scrollmin / 2.5} //12
-        y={IndicatorHeight / 3.5} //4
-        height={IndicatorHeight / 2}
-        width={IndicatorHeight / 2}
+        y={indicatorHeight / 3.5} //4
+        height={indicatorHeight / 2}
+        width={indicatorHeight / 2}
         style={'fill'}
         color={indicatorItemColor}
         origin={{
           x: scrollmin / 2.5 + 4, //16
-          y: IndicatorHeight / 2, //9
+          y: indicatorHeight / 2, //9
         }}
         transform={rotationValue}
       />
@@ -153,12 +152,12 @@ const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
             differnece;
 
           if (animationValue.current > calculated) {
-            rotateValue.current -= INDICATOR_SPEED;
+            rotateValue.current -= indicatorSpeed;
             if (rotateValue.current < 0) {
               rotateValue.current = 0;
             }
           } else {
-            rotateValue.current += INDICATOR_SPEED;
+            rotateValue.current += indicatorSpeed;
           }
 
           animationValue.current = calculated;
@@ -173,7 +172,7 @@ const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
       >
         <Canvas
           style={[
-            canvasStyle(IndicatorHeight, indicatorContainerWidth).canvasStyle,
+            canvasStyle(indicatorHeight, indicatorContainerWidth).canvasStyle,
           ]}
           children={
             <>
@@ -181,8 +180,8 @@ const FancyScrollIndicator = (props: IFancyScrollIndicatorProp) => {
                 x={0}
                 y={0}
                 width={indicatorContainerWidth - 1}
-                height={IndicatorHeight}
-                r={IndicatorRadius}
+                height={indicatorHeight}
+                r={indicatorRadius}
                 color={indicatorBorderColor}
                 style={'stroke'}
                 strokeWidth={1.5}
