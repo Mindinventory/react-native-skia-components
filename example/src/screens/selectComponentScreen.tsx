@@ -74,7 +74,7 @@ const SelectComponentScreen = () => {
         {arrComponents.map((item, index) => {
           return (
             <TouchableOpacity
-              key={index+item.id.toString()}
+              key={index + item.id.toString()}
               style={styles.animOptionStyle}
               onPress={() => item.navigation()}
             >
