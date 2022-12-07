@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { FloatingButton } from '../components';
 import CardComponent from '../screens/cards/cardComponent';
 import CardScreen from '../screens/cards/cardScreen';
+import FancyScrollIndicator from '../screens/fancyScrollIndicator';
 import NeoPopButtonExample from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
 import StarWarsButtonScreen from '../screens/starWarsButtonScreen';
@@ -17,6 +18,7 @@ export type StackNavigationParamList = {
   StarWarsButtonScreen: undefined;
   CardScreen: undefined;
   FloatingButton: undefined;
+  FancyScrollIndicator: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -24,7 +26,14 @@ const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        }}
+      >
         <Stack.Screen
           name={'SelectComponentScreen'}
           component={SelectComponentScreen}
@@ -42,6 +51,10 @@ const StackNavigation = () => {
           component={StarWarsButtonScreen}
         />
         <Stack.Screen name={'FloatingButton'} component={FloatingButton} />
+        <Stack.Screen
+          name={'FancyScrollIndicator'}
+          component={FancyScrollIndicator}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
