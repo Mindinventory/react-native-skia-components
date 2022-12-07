@@ -1,6 +1,7 @@
 import {
   Easing,
   runTiming,
+  SkPath,
   useComputedValue,
   useFont,
   useValue,
@@ -92,7 +93,7 @@ export const useLineChart = (props: LineChartProps) => {
     curve
   );
 
-  let result;
+  let result!: SkPath | null;
 
   const path = useComputedValue(() => {
     const start = graphData.curve;
@@ -108,7 +109,7 @@ export const useLineChart = (props: LineChartProps) => {
   const xLabel = useValue(-10);
   const yLabel = useValue(-10);
 
-  const touchPos = useValue(result?.getPoint(0));
+  const touchPos = useValue(result!.getPoint(0));
 
   return {
     animateChart,

@@ -11,7 +11,7 @@ export const useSliderTouchHandler = ({
 }: {
   touchPos: SkiaMutableValue<any>;
   graphWidth: number;
-  result: SkPath | undefined;
+  result: SkPath | null;
 }) => {
   const getPointAtPositionInPath = (x: number, width: number, path: SkPath) => {
     const index = Math.max(0, Math.floor(x / (width / 16)));
