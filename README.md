@@ -2,7 +2,10 @@
 
 This library provide UIKit like Card, NeoPop button and and Floating button.
 
-<a href="https://www.mindinventory.com/?utm_source=gthb&utm_medium=repo&utm_campaign=react-native-skia-components">![navy and yellow modern business banner](https://user-images.githubusercontent.com/87525902/205893437-5280e346-4643-4621-bd80-934716f31753.gif)</a>
+<a href="https://www.mindinventory.com/?utm_source=gthb&utm_medium=repo&utm_campaign=react-native-skia-components">![@mindinventory react-native-skia-components](https://user-images.githubusercontent.com/104554054/206368640-89fce526-5151-4b63-a39f-4a855ad14be9.gif)</a>
+
+
+
 
 ## Installation
 
