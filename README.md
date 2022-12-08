@@ -22,7 +22,18 @@ yarn add @mindinventory/react-native-skia-components
 ```
 
 
+### Included Components
 
+- AnimatedCard ('yoyo' | 'disco' | 'rotate' | 'bounce')
+- NeoPopButton
+- FloatingButton
+
+### Upcoming Components
+
+- Fancy Scroll Indicator
+- Amazing Line & Bar Chart
+- Circular Progress Bar
+- Star-War Buttons
 
 ### Supported platform
 
@@ -183,11 +194,6 @@ animateBorder={'disco'}
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
-### Library used
-
-* [React-Native-Skia](https://github.com/Shopify/react-native-skia)
-* [React-Native-Reanimated](https://github.com/software-mansion/react-native-reanimated)
-
 ## 📱 Check out other lists of our Mobile UI libraries
 
 <a href="https://github.com/Mindinventory?language=kotlin">
@@ -215,7 +221,6 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 <a href="https://github.com/Mindinventory?language=python">
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"></a>
-
 <br></br>
 
 <h4><a href="https://www.mindinventory.com/whitepapers.php?utm_source=gthb&utm_medium=special&utm_campaign=react-native-skia-components"><u> 📝 Get FREE Industry WhitePapers →</u></a></h4>
@@ -223,7 +228,12 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## Check out our Work
 <a href="https://dribbble.com/mindinventory">
 <img src="https://img.shields.io/badge/Dribbble-EA4C89?style=for-the-badge&logo=dribbble&logoColor=white" /> </a>
-<br></br>
+</br>
+
+### Library used
+
+* [React-Native-Skia](https://github.com/Shopify/react-native-skia)
+* [React-Native-Reanimated](https://github.com/software-mansion/react-native-reanimated)
 
 ## License!
 
