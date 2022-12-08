@@ -19,17 +19,20 @@ export const buildGraph = (
 ) => {
   const sData = [
     ...gData.slice(0, 0),
-    { data: gData[0].data, value: 0 },
+    { data: gData.sort((a, b) => a.data - b.data)[0].data, value: 0 },
     ...gData.slice(0),
   ];
 
   const data = fill
     ? [
         ...sData.slice(0, sData.length),
-        { data: sData[sData.length - 1].data, value: 0 },
+        {
+          data: sData.sort((a, b) => a.data - b.data)[sData.length - 1].data,
+          value: 0,
+        },
         ...sData.slice(sData.length),
       ]
-    : gData.reverse();
+    : gData;
 
   const max = Math.max(...data.map((val) => val.value));
   const min = Math.min(...data.map((val) => val.value));
@@ -50,7 +53,7 @@ export const buildGraph = (
   const curvedLine = line<any>()
     .x((_d, index) => x(index))
     .y((d) => y(d.value))
-    .curve(curve ? curve : curveLinear)(data);
+    .curve(curve ? curve : curveLinear)(fill ? data : data.reverse());
 
   const skPath = Skia.Path.MakeFromSVGString(curvedLine!);
   const graphData = {

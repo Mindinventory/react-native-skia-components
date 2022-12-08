@@ -121,6 +121,8 @@ export interface AxisLabelsProps {
   formateYLabel?: any;
   data: any[];
   fullWidthPreview?: boolean;
+  graphWidth: number;
+  fill: boolean | undefined;
 }
 
 export interface SliderProps {

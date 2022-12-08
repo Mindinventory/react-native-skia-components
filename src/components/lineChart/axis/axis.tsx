@@ -13,7 +13,7 @@ const Axis = (props: AxisProps) => {
   return (
     <>
       <Line
-        p1={vec(graphMargin, graphHeight - 22)}
+        p1={vec(fullWidthPreview ? 0 : graphMargin, graphHeight - 22)}
         p2={vec(graphWidth, graphHeight - 22)}
         color={color}
         style={style}

@@ -183,8 +183,7 @@ const ListComponentScreen = () => {
           data={data}
           isGradient={true}
           isSlider={true}
-          fill={true}
-          chartPathStyle={{ style: 'fill', strokeWidth: 4 }}
+          chartPathStyle={{ style: 'stroke', strokeWidth: 4 }}
           labelStyle={lineChartStyles.labelStyle}
           axisStyle={lineChartStyles.axisStyle}
           formateXLabel={(value: string) => `${moment(value).format('DDMMM')}`}

@@ -49,6 +49,7 @@ const LineChart = (props: LineChartProps) => {
     result,
     touchPos,
     isSlider,
+    fill,
     sliderStyle,
   } = useLineChart(props);
   const { color, style, strokeWidth } = chartPathStyle;
@@ -120,9 +121,11 @@ const LineChart = (props: LineChartProps) => {
                 graphHeight={graphHeight}
                 yAxisData={yAxisData}
                 y={y}
+                fill={fill}
                 formateXLabel={formateXLabel}
                 formateYLabel={formateYLabel}
                 data={data}
+                graphWidth={graphWidth}
                 fullWidthPreview={fullWidthPreview}
               />
             )}

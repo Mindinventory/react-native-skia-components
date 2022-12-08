@@ -109,7 +109,7 @@ export const useLineChart = (props: LineChartProps) => {
   const xLabel = useValue(-10);
   const yLabel = useValue(-10);
 
-  const touchPos = useValue(result!.getPoint(0));
+  const touchPos = useValue(result?.getPoint(0));
 
   return {
     animateChart,
@@ -120,6 +120,7 @@ export const useLineChart = (props: LineChartProps) => {
     chartPathStyle,
     cursorStyle,
     data,
+    fill,
     font,
     formateXLabel,
     formateYLabel,

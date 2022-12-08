@@ -18,7 +18,11 @@ const AxisLabels = (props: AxisLabelsProps) => {
     formateYLabel,
     data,
     fullWidthPreview,
+    graphWidth,
+    fill,
   } = props;
+
+  const marginWidth = graphWidth * 0.06;
 
   return (
     <>
@@ -33,7 +37,7 @@ const AxisLabels = (props: AxisLabelsProps) => {
                 ? formateXLabel(data[item].data)
                 : data[item].data.toString()
             }
-            x={x(item)}
+            x={fill ? x(item) + marginWidth : x(item)}
             y={graphHeight - MARGIN}
           />
         );
