@@ -61,6 +61,14 @@ const SelectComponentScreen = () => {
         >
           <Text style={styles.animOtherOptionText}>FLOATING BUTTON</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.animOptionNoneStyle}
+          onPress={() => {
+            navigation.navigate('ImageProcessingScreen');
+          }}
+        >
+          <Text style={styles.animOtherOptionText}>IMAGE PROFCESSING</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
