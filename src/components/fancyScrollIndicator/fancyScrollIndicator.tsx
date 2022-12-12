@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, SafeAreaView, Text, View } from 'react-native';
+import { FlatList, SafeAreaView, View } from 'react-native';
 
 import { Canvas, Group, RoundedRect } from '@shopify/react-native-skia';
 
