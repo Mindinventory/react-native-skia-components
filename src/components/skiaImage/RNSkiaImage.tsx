@@ -16,8 +16,8 @@ import { useSkiaImage } from './useSkiaImage';
 
 const SkiaImageComponent = (props: SkiaImageProps) => {
   const {
-    CANVAS_HEIGHT,
-    CANVAS_WIDTH,
+    canvasHeight,
+    canvasWidth,
     padding,
     clipPadding,
     clip,
@@ -29,20 +29,19 @@ const SkiaImageComponent = (props: SkiaImageProps) => {
   } = useSkiaImage(props);
 
   const image = useImage(source);
+  const imageClipPadding = clipPadding ? clipPadding : padding;
 
   if (image == null) {
     return null;
   }
-
-  const imageClipPadding = clipPadding ? clipPadding : padding;
 
   const renderImageView = () => {
     return (
       <Image
         x={padding / 2}
         y={padding / 2}
-        width={CANVAS_WIDTH - padding}
-        height={CANVAS_HEIGHT - padding}
+        width={canvasWidth - padding}
+        height={canvasHeight - padding}
         image={image}
         fit={imageSizeMode}
       >
@@ -55,8 +54,8 @@ const SkiaImageComponent = (props: SkiaImageProps) => {
     <View>
       <Canvas
         style={{
-          height: CANVAS_HEIGHT,
-          width: CANVAS_WIDTH,
+          height: canvasHeight,
+          width: canvasWidth,
         }}
         children={
           <>
@@ -66,8 +65,8 @@ const SkiaImageComponent = (props: SkiaImageProps) => {
                   rect(
                     imageClipPadding * 2,
                     imageClipPadding * 2,
-                    CANVAS_HEIGHT - imageClipPadding * 4,
-                    CANVAS_HEIGHT - imageClipPadding * 4
+                    canvasHeight - imageClipPadding * 4,
+                    canvasHeight - imageClipPadding * 4
                   ),
                   clipRadius,
                   clipRadius

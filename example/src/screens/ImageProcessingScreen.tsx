@@ -17,9 +17,9 @@ const ImageProcessingScreen = () => {
         }
         filterMatrix={ImageColorMatrix.SEPIA}
         clip={true}
-        invertClip={false}
-        clipRadius={140}
-        clipPadding={10}
+        invertClip={true}
+        clipRadius={10}
+        clipPadding={30}
         imageSizeMode="fill"
       />
     </View>

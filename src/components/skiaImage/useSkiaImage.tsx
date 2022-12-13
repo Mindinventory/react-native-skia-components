@@ -13,13 +13,13 @@ export const useSkiaImage = (props: SkiaImageProps) => {
     imageSizeMode = 'cover',
   } = props;
 
-  const CANVAS_HEIGHT = height;
-  const CANVAS_WIDTH = width;
+  const canvasHeight = height;
+  const canvasWidth = width;
   const padding = 10;
 
   return {
-    CANVAS_HEIGHT,
-    CANVAS_WIDTH,
+    canvasHeight,
+    canvasWidth,
     clip,
     clipPadding,
     clipRadius,
