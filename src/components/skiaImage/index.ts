@@ -1,4 +1,4 @@
-import SkiaImage from './SkiaImage';
+import SkiaImage from './RNSkiaImage';
 import { ImageColorMatrix } from './SkiaImage.type';
 
 export { SkiaImage, ImageColorMatrix };

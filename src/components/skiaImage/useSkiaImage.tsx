@@ -1,4 +1,4 @@
-import { ClipRatio, ImageColorMatrix, SkiaImageProps } from './SkiaImage.type';
+import { ImageColorMatrix, SkiaImageProps } from './SkiaImage.type';
 
 export const useSkiaImage = (props: SkiaImageProps) => {
   const {
@@ -6,31 +6,25 @@ export const useSkiaImage = (props: SkiaImageProps) => {
     width,
     source,
     filterMatrix = ImageColorMatrix.NONE,
-    clip = false,
     invertClip = false,
     clipRadius = 50,
-    clipRatio,
+    clipPadding,
+    clip,
+    imageSizeMode = 'cover',
   } = props;
 
-  const CANVAS_WIDTH = width;
   const CANVAS_HEIGHT = height;
+  const CANVAS_WIDTH = width;
   const padding = 10;
-  const clippingRatio: ClipRatio = clipRatio
-    ? clipRatio
-    : {
-        height: 100,
-        radius: 100,
-        width: 100,
-        x: 10,
-        y: 10,
-      };
+
   return {
     CANVAS_HEIGHT,
     CANVAS_WIDTH,
     clip,
-    clippingRatio,
+    clipPadding,
     clipRadius,
     filterMatrix,
+    imageSizeMode,
     invertClip,
     padding,
     source,

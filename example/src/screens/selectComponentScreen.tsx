@@ -54,7 +54,7 @@ const SelectComponentScreen = () => {
           <Text style={styles.animOtherOptionText}>STAR WAR BUTTON</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.animOptionNoneStyle}
+          style={styles.animOptionStyle}
           onPress={() => {
             navigation.navigate('FloatingButton');
           }}

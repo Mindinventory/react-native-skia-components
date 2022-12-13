@@ -1,3 +1,5 @@
+import type { Fit } from '@shopify/react-native-skia';
+
 const JUNO = [
   1, 0, 0, 0, 0, -0.4, 1.3, -0.4, 0.2, -0.1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0,
 ];
@@ -27,23 +29,16 @@ export const ImageColorMatrix = {
   SEPIA: SEPIA,
   VALENCIA: VALENCIA,
 };
-
-export interface ClipRatio {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  radius: number;
-}
 export interface SkiaImageProps {
+  clip?: boolean;
+  clipPadding?: number;
   clipRadius?: number;
+  filterMatrix?: number[];
   height: number;
-  width: number;
-  source: string;
+  imageSizeMode?: Fit;
+  invertClip?: boolean;
   padding?: number;
   radius?: number;
-  filterMatrix?: number[];
-  clip?: boolean;
-  invertClip?: boolean;
-  clipRatio?: ClipRatio;
+  source: string;
+  width: number;
 }

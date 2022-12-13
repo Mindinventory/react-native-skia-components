@@ -16,9 +16,11 @@ const ImageProcessingScreen = () => {
           'https://farm3.staticflickr.com/2220/1572613671_7311098b76_z_d.jpg'
         }
         filterMatrix={ImageColorMatrix.SEPIA}
-        clip
+        clip={true}
         invertClip={false}
-        clipRadius={50}
+        clipRadius={140}
+        clipPadding={10}
+        imageSizeMode="fill"
       />
     </View>
   );
