@@ -3,38 +3,30 @@ import { FlatList, SafeAreaView, View } from 'react-native';
 
 import { Canvas, Group, RoundedRect } from '@shopify/react-native-skia';
 
-import { useFancyScrollIndicator } from './useFancyScrollIndicator';
-import type { IFancyScrollIndicatorProp } from './fancyScrollIndicator.type';
-
 import {
   canvasStyle,
   scrollIndicatorStyle,
 } from './fancyScrollIndicator.style';
+import type { IFancyScrollIndicatorProp } from './fancyScrollIndicator.type';
+import { useFancyScrollIndicator } from './useFancyScrollIndicator';
 
-var bgWidth = 0;
+var scrollMin = 1;
+var scrollInWidth = 0;
 
 const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
   const {
-    getAnimatedValue,
-    getRotateValue,
     indicatorBorderColor,
     indicatorContainerWidth,
     indicatorHeight,
     indicatorItemColor,
     indicatorRadius,
-    indicatorSpeed,
     innerViewLineColor,
-    onScroll,
     rotationValue,
     translate,
     translateX,
-    updateAnimated,
-    updateRotateValue,
+    handleScroll,
     xPosition,
   } = useFancyScrollIndicator({ props });
-
-  var scrollmin = 1;
-  var scrollInWidth = 0;
 
   //MARK: - Inner slider
 
@@ -49,12 +41,12 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
         scrollInWidth = indicatorContainerWidth * 0.2 * 2;
       } else if (index === 2) {
         scrollInWidth = indicatorContainerWidth * 0.2 * 1;
-        scrollmin = scrollInWidth;
+        scrollMin = scrollInWidth;
       }
       return (
         <Group
           key={index.toString()}
-          style="fill"
+          style={'fill'}
           transform={translate(indexes)}
         >
           <RoundedRect
@@ -73,14 +65,14 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
           />
           {index === 2 ? (
             <RoundedRect
-              x={scrollmin / 2.5} //12
+              x={scrollMin / 2.5} //12
               y={indicatorHeight / 3.5} //4
               height={indicatorHeight / 2}
               width={indicatorHeight / 2}
               style={'fill'}
               color={indicatorItemColor}
               origin={{
-                x: scrollmin / 2.5 + 4, //16
+                x: scrollMin / 2.5 + 4, //16
                 y: indicatorHeight / 2, //9
               }}
               transform={rotationValue}
@@ -103,30 +95,7 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
           <FlatList
             {...props}
             showsHorizontalScrollIndicator={false}
-            onScroll={(e) => {
-              const { nativeEvent } = e;
-              console.log(nativeEvent);
-              bgWidth = nativeEvent?.contentSize?.width || 0;
-              const indic =
-                indicatorContainerWidth -
-                indicatorContainerWidth / (props.data ?? []).length;
-              const differnece = indic / scrollmin;
-              const calculated =
-                (nativeEvent.contentOffset.x *
-                  (indicatorContainerWidth / bgWidth)) /
-                differnece;
-              if (getAnimatedValue > calculated) {
-                updateRotateValue(getRotateValue - indicatorSpeed);
-                if (getRotateValue < 0) {
-                  updateRotateValue(0);
-                }
-              } else {
-                updateRotateValue(getRotateValue + indicatorSpeed);
-              }
-              console.log(calculated);
-              updateAnimated(calculated);
-              onScroll && onScroll(e);
-            }}
+            onScroll={(e) => handleScroll({ e, scrollMin })}
           />
           <View
             style={[
@@ -150,7 +119,7 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
                     style={'stroke'}
                     strokeWidth={1.5}
                   />
-                  <Group transform={translateX()}>{getSliderSubView()}</Group>
+                  <Group transform={translateX}>{getSliderSubView()}</Group>
                 </>
               }
               accessibilityLabelledBy={undefined}

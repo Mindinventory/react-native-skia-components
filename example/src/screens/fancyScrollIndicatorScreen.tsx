@@ -27,7 +27,7 @@ const FancyScrollIndicatorScreen = () => {
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
           bounces={false}
-          renderItem={({ _Item, index }) => {
+          renderItem={({ index }) => {
             return (
               <Card
                 height={190}

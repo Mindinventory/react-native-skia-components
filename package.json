@@ -250,7 +250,7 @@
     ]
   },
   "dependencies": {
-    "@shopify/react-native-skia": "^0.1.157",
+    "@shopify/react-native-skia": "0.1.163",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-reanimated": "^2.12.0"
   }
