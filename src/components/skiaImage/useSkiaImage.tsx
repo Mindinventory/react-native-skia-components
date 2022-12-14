@@ -2,15 +2,16 @@ import { ImageColorMatrix, SkiaImageProps } from './SkiaImage.type';
 
 export const useSkiaImage = (props: SkiaImageProps) => {
   const {
-    height,
-    width,
-    source,
-    filterMatrix = ImageColorMatrix.NONE,
-    invertClip = false,
-    clipRadius = 50,
-    clipPadding,
+    blur = 0,
     clip,
+    clipPadding,
+    clipRadius = 50,
+    filterMatrix = ImageColorMatrix.NONE,
+    height,
     imageSizeMode = 'cover',
+    invertClip = false,
+    source,
+    width,
   } = props;
 
   const canvasHeight = height;
@@ -18,6 +19,7 @@ export const useSkiaImage = (props: SkiaImageProps) => {
   const padding = 10;
 
   return {
+    blur,
     canvasHeight,
     canvasWidth,
     clip,

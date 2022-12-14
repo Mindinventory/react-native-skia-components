@@ -41,4 +41,5 @@ export interface SkiaImageProps {
   radius?: number;
   source: string;
   width: number;
+  blur?: number
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import {
+  Blur,
   Canvas,
   ColorMatrix,
   Group,
@@ -16,6 +17,7 @@ import { useSkiaImage } from './useSkiaImage';
 
 const SkiaImageComponent = (props: SkiaImageProps) => {
   const {
+    blur,
     canvasHeight,
     canvasWidth,
     padding,
@@ -45,7 +47,9 @@ const SkiaImageComponent = (props: SkiaImageProps) => {
         image={image}
         fit={imageSizeMode}
       >
-        <ColorMatrix matrix={filterMatrix} />
+        <Blur blur={blur} mode="clamp">
+          <ColorMatrix matrix={filterMatrix} />
+        </Blur>
       </Image>
     );
   };
