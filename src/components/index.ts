@@ -5,3 +5,4 @@ export * from './floatingButton';
 export * from './starWarButton';
 export * from './neoPopButton';
 export * from './fancyScrollIndicator';
+export * from './flipView';

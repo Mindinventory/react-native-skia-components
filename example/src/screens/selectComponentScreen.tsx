@@ -63,6 +63,13 @@ const SelectComponentScreen = () => {
         navigation.navigate('FancyScrollIndicator');
       },
     },
+    {
+      id: 6,
+      name: 'FLIP THE VIEW HORIZONTALLY OR VERTICALLY',
+      navigation: () => {
+        navigation.navigate('FlipViewExample');
+      },
+    },
   ];
   return (
     <SafeAreaView style={styles.container}>

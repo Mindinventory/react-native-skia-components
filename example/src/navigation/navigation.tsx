@@ -7,6 +7,7 @@ import { FloatingButton } from '../components';
 import CardComponent from '../screens/cards/cardComponent';
 import CardScreen from '../screens/cards/cardScreen';
 import FancyScrollIndicatorScreen from '../screens/fancyScrollIndicatorScreen';
+import FlipViewExample from '../screens/flipViewExample';
 import NeoPopButtonExample from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
 import StarWarsButtonScreen from '../screens/starWarsButtonScreen';
@@ -19,6 +20,7 @@ export type StackNavigationParamList = {
   CardScreen: undefined;
   FloatingButton: undefined;
   FancyScrollIndicator: undefined;
+  FlipViewExample: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +57,7 @@ const StackNavigation = () => {
           name={'FancyScrollIndicator'}
           component={FancyScrollIndicatorScreen}
         />
+        <Stack.Screen name={'FlipViewExample'} component={FlipViewExample} />
       </Stack.Navigator>
     </NavigationContainer>
   );
