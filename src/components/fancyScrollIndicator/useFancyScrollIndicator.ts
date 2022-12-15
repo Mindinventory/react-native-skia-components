@@ -2,6 +2,7 @@ import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 
 import { useComputedValue, useValue } from '@shopify/react-native-skia';
 
+import { useMiUiContext } from '../../context';
 import { FancyScrollConstant } from './fancyScroll.constant';
 import type { IFancyScrollIndicatorProp } from './fancyScrollIndicator.type';
 
@@ -10,12 +11,16 @@ export const useFancyScrollIndicator = <T>({
 }: {
   props: IFancyScrollIndicatorProp<T>;
 }) => {
+  const { styles } = useMiUiContext();
+
   const itemWidth = FancyScrollConstant.itemLayoutSize.itemWidth;
-  const indicatorContainerWidth = itemWidth / 1.5;
+  const indicatorContainerWidth =
+    itemWidth / FancyScrollConstant.itemLayoutSize.itemWidthDevider;
   const indicatorHeight = FancyScrollConstant.indicator.height;
-  const indicatorRadius = indicatorHeight * 2;
+  const indicatorRadius =
+    indicatorHeight * FancyScrollConstant.indicator.radiusMultiPlier;
   const indicatorSpeed = FancyScrollConstant.indicator.speed;
-  const xPosition = 0;
+  const xPosition = FancyScrollConstant.indicator.xPositionInitialiser;
 
   const {
     indicatorBorderColor = FancyScrollConstant.indicator.borderColor,
@@ -89,6 +94,11 @@ export const useFancyScrollIndicator = <T>({
     onScroll && onScroll(e);
   };
 
+  //MARK: - Custom error
+  const throwErrorMessage = () => {
+    throw new Error('Currently we are support for only horizontal direction');
+  };
+
   return {
     animationValue,
     getAnimatedValue: animationValue.current,
@@ -103,6 +113,9 @@ export const useFancyScrollIndicator = <T>({
     innerViewLineColor,
     onScroll,
     rotationValue,
+    scrollEventThrottle: FancyScrollConstant.default.scrollEventThrottle,
+    styles,
+    throwErrorMessage,
     translate,
     translateX,
     updateRotateValue,

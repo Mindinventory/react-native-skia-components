@@ -3,18 +3,16 @@ import { FlatList, SafeAreaView, View } from 'react-native';
 
 import { Canvas, Group, RoundedRect } from '@shopify/react-native-skia';
 
-import {
-  canvasStyle,
-  scrollIndicatorStyle,
-} from './fancyScrollIndicator.style';
+import { FancyScrollConstant } from './fancyScroll.constant';
 import type { IFancyScrollIndicatorProp } from './fancyScrollIndicator.type';
 import { useFancyScrollIndicator } from './useFancyScrollIndicator';
 
-var scrollMin = 1;
-var scrollInWidth = 0;
+var scrollMin = FancyScrollConstant.default.scrollMinInitialval;
+var scrollInWidth = FancyScrollConstant.default.scrollIndicatorWidthInitial;
 
 const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
   const {
+    handleScroll,
     indicatorBorderColor,
     indicatorContainerWidth,
     indicatorHeight,
@@ -22,9 +20,11 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
     indicatorRadius,
     innerViewLineColor,
     rotationValue,
+    scrollEventThrottle,
+    styles,
+    throwErrorMessage,
     translate,
     translateX,
-    handleScroll,
     xPosition,
   } = useFancyScrollIndicator({ props });
 
@@ -36,11 +36,17 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
       const indexes = index + 1;
 
       if (index === 0) {
-        scrollInWidth = indicatorContainerWidth * 0.2 * 3;
+        scrollInWidth =
+          indicatorContainerWidth *
+          FancyScrollConstant.subIndicatorlayer.largeIndicatorMultiplier;
       } else if (index === 1) {
-        scrollInWidth = indicatorContainerWidth * 0.2 * 2;
+        scrollInWidth =
+          indicatorContainerWidth *
+          FancyScrollConstant.subIndicatorlayer.mediumIndicatorMultiplier;
       } else if (index === 2) {
-        scrollInWidth = indicatorContainerWidth * 0.2 * 1;
+        scrollInWidth =
+          indicatorContainerWidth *
+          FancyScrollConstant.subIndicatorlayer.smallIndicatorMultiplier;
         scrollMin = scrollInWidth;
       }
       return (
@@ -56,24 +62,43 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
             height={indicatorHeight}
             r={indicatorRadius}
             origin={{
-              x: 10,
-              y: 8,
+              x: FancyScrollConstant.subIndicatorlayer.initialXPosition,
+              y: FancyScrollConstant.subIndicatorlayer.initialYPosition,
             }}
             color={innerViewLineColor}
             style={'stroke'}
-            strokeWidth={0.9}
+            strokeWidth={FancyScrollConstant.subIndicatorlayer.strockWidth}
           />
           {index === 2 ? (
             <RoundedRect
-              x={scrollMin / 2.5}
-              y={indicatorHeight / 3.5}
-              height={indicatorHeight / 2}
-              width={indicatorHeight / 2}
+              x={
+                scrollMin /
+                FancyScrollConstant.centerSquareView.subLayerXDevider
+              }
+              y={
+                indicatorHeight /
+                FancyScrollConstant.centerSquareView.subLayerYDevider
+              }
+              height={
+                indicatorHeight /
+                FancyScrollConstant.centerSquareView.subLayerSizeDevider
+              }
+              width={
+                indicatorHeight /
+                FancyScrollConstant.centerSquareView.subLayerSizeDevider
+              }
               style={'fill'}
               color={indicatorItemColor}
               origin={{
-                x: scrollMin / 2.5 + 4,
-                y: indicatorHeight / 2,
+                x:
+                  scrollMin /
+                    FancyScrollConstant.centerSquareView
+                      .subLayerOriginXDevider +
+                  FancyScrollConstant.centerSquareView
+                    .subLayerOriginXPlusDevider,
+                y:
+                  indicatorHeight /
+                  FancyScrollConstant.centerSquareView.subLayerOriginYDevider,
               }}
               transform={rotationValue}
             />
@@ -83,11 +108,6 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
     });
   };
 
-  //MARK: - Custom error
-  const throwErrorMessage = () => {
-    throw new Error('Currently we are support for only horizontal direction');
-  };
-
   return (
     <SafeAreaView>
       {props.horizontal ? (
@@ -95,29 +115,39 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
           <FlatList
             {...props}
             showsHorizontalScrollIndicator={false}
+            bounces={false}
+            scrollEventThrottle={scrollEventThrottle}
             onScroll={(e) => handleScroll({ e, scrollMin })}
           />
           <View
             style={[
-              scrollIndicatorStyle(indicatorContainerWidth).indicatorContainer,
+              styles.fancyScrollIndicatorStyle.indicatorContainer,
+              {
+                width: indicatorContainerWidth,
+              },
             ]}
           >
             <Canvas
               style={[
-                canvasStyle(indicatorHeight, indicatorContainerWidth)
-                  .canvasStyle,
+                styles.fancyScrollCanvasStyle.canvasStyle,
+                {
+                  height: indicatorHeight,
+                  width: indicatorContainerWidth,
+                },
               ]}
               children={
                 <>
                   <RoundedRect
-                    x={0}
-                    y={0}
+                    x={FancyScrollConstant.indicator.mainRoundedViewXPosition}
+                    y={FancyScrollConstant.indicator.mainRoundedViewYPosition}
                     width={indicatorContainerWidth - 1}
                     height={indicatorHeight}
                     r={indicatorRadius}
                     color={indicatorBorderColor}
                     style={'stroke'}
-                    strokeWidth={1.5}
+                    strokeWidth={
+                      FancyScrollConstant.indicator.mainRoundedViewStrokeWidth
+                    }
                   />
                   <Group transform={translateX}>{getSliderSubView()}</Group>
                 </>

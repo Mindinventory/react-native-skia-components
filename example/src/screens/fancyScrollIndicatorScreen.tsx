@@ -24,9 +24,6 @@ const FancyScrollIndicatorScreen = () => {
         <FancyScrollIndicator
           data={new Array(3).fill(' ')}
           horizontal
-          showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={16}
-          bounces={false}
           renderItem={({ index }) => {
             return (
               <Card
@@ -37,7 +34,8 @@ const FancyScrollIndicatorScreen = () => {
                 blur={16}
                 animation={'bounce'}
                 borderColors={[miColor.bluishGray, miColor.gray]}
-                animateBorder={'yoyo'}
+                animateBorder={'yoyo'}'
+                '
               >
                 <ImageBackground
                   source={{
