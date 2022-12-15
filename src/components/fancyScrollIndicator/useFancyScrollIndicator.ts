@@ -1,32 +1,26 @@
-import {
-  Dimensions,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-} from 'react-native';
+import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 
 import { useComputedValue, useValue } from '@shopify/react-native-skia';
 
-import { miColor } from '../../themes';
+import { FancyScrollConstant } from './fancyScroll.constant';
 import type { IFancyScrollIndicatorProp } from './fancyScrollIndicator.type';
-
-var bgWidth = 0;
 
 export const useFancyScrollIndicator = <T>({
   props,
 }: {
   props: IFancyScrollIndicatorProp<T>;
 }) => {
-  const itemWidth = Dimensions.get('screen').width - 20;
+  const itemWidth = FancyScrollConstant.itemLayoutSize.itemWidth;
   const indicatorContainerWidth = itemWidth / 1.5;
-  const indicatorHeight = 15;
+  const indicatorHeight = FancyScrollConstant.indicator.height;
   const indicatorRadius = indicatorHeight * 2;
-  const indicatorSpeed = 0.025;
+  const indicatorSpeed = FancyScrollConstant.indicator.speed;
   const xPosition = 0;
 
   const {
-    indicatorBorderColor = miColor.white,
-    indicatorItemColor = miColor.gold,
-    innerViewLineColor = miColor.white,
+    indicatorBorderColor = FancyScrollConstant.indicator.borderColor,
+    indicatorItemColor = FancyScrollConstant.indicator.itemColor,
+    innerViewLineColor = FancyScrollConstant.indicator.lineColor,
     onScroll,
   } = props;
 
@@ -73,7 +67,7 @@ export const useFancyScrollIndicator = <T>({
   }) => {
     const { nativeEvent } = e;
 
-    bgWidth = nativeEvent?.contentSize?.width || 0;
+    const bgWidth = nativeEvent?.contentSize?.width || 0;
 
     const indic =
       indicatorContainerWidth -

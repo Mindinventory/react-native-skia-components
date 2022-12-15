@@ -65,15 +65,15 @@ const FancyScrollIndicator = <T,>(props: IFancyScrollIndicatorProp<T>) => {
           />
           {index === 2 ? (
             <RoundedRect
-              x={scrollMin / 2.5} //12
-              y={indicatorHeight / 3.5} //4
+              x={scrollMin / 2.5}
+              y={indicatorHeight / 3.5}
               height={indicatorHeight / 2}
               width={indicatorHeight / 2}
               style={'fill'}
               color={indicatorItemColor}
               origin={{
-                x: scrollMin / 2.5 + 4, //16
-                y: indicatorHeight / 2, //9
+                x: scrollMin / 2.5 + 4,
+                y: indicatorHeight / 2,
               }}
               transform={rotationValue}
             />
