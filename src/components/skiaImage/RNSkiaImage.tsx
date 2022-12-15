@@ -2,16 +2,15 @@ import React from 'react';
 import { View } from 'react-native';
 
 import {
-  Blur,
   Canvas,
-  ColorMatrix,
   Group,
-  Image,
   rect,
   rrect,
   useImage,
 } from '@shopify/react-native-skia';
 
+import { ImageConstant } from './Image.Constant';
+import RNImage from './RNImage';
 import type { SkiaImageProps } from './SkiaImage.type';
 import { useSkiaImage } from './useSkiaImage';
 
@@ -39,18 +38,16 @@ const SkiaImageComponent = (props: SkiaImageProps) => {
 
   const renderImageView = () => {
     return (
-      <Image
-        x={padding / 2}
-        y={padding / 2}
+      <RNImage
         width={canvasWidth - padding}
         height={canvasHeight - padding}
+        x={padding / ImageConstant.operational.paddingDivider}
+        y={padding / ImageConstant.operational.paddingDivider}
+        blur={blur}
         image={image}
-        fit={imageSizeMode}
-      >
-        <Blur blur={blur} mode="clamp">
-          <ColorMatrix matrix={filterMatrix} />
-        </Blur>
-      </Image>
+        imageSizeMode={imageSizeMode}
+        filterMatrix={filterMatrix}
+      />
     );
   };
 
@@ -67,10 +64,16 @@ const SkiaImageComponent = (props: SkiaImageProps) => {
               <Group
                 clip={rrect(
                   rect(
-                    imageClipPadding * 2,
-                    imageClipPadding * 2,
-                    canvasHeight - imageClipPadding * 4,
-                    canvasHeight - imageClipPadding * 4
+                    imageClipPadding *
+                      ImageConstant.operational.groupPositionMultiplier,
+                    imageClipPadding *
+                      ImageConstant.operational.groupPositionMultiplier,
+                    canvasHeight -
+                      imageClipPadding *
+                        ImageConstant.operational.groupSizeMultiplier,
+                    canvasHeight -
+                      imageClipPadding *
+                        ImageConstant.operational.groupSizeMultiplier
                   ),
                   clipRadius,
                   clipRadius
