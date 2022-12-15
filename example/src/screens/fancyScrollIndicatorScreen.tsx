@@ -34,8 +34,7 @@ const FancyScrollIndicatorScreen = () => {
                 blur={16}
                 animation={'bounce'}
                 borderColors={[miColor.bluishGray, miColor.gray]}
-                animateBorder={'yoyo'}'
-                '
+                animateBorder={'yoyo'}
               >
                 <ImageBackground
                   source={{
