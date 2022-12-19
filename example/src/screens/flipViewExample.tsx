@@ -25,10 +25,9 @@ const FlipViewExample = () => {
     <ScrollView contentContainerStyle={styles.contain} bounces={false}>
       <FlipView
         style={styles.cardContainer}
-        flipDirection={'vertical'}
+        flipDirection={'horizontal'}
         flipZoom={0.1}
         ref={flipRef}
-        duration={1000}
       >
         <Pressable style={styles.card} onPress={() => flipRef.current?.flip()}>
           <View style={styles.cardContain}>
