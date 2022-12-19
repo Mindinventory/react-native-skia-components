@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { FloatingButton } from '../components';
+import Testing from '../components/Testing';
 import CardComponent from '../screens/cards/cardComponent';
 import CardScreen from '../screens/cards/cardScreen';
 import NeoPopButtonExample from '../screens/neoPopButton';
@@ -17,6 +18,7 @@ export type StackNavigationParamList = {
   StarWarsButtonScreen: undefined;
   CardScreen: undefined;
   FloatingButton: undefined;
+  SwipeActionButton: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -42,6 +44,7 @@ const StackNavigation = () => {
           component={StarWarsButtonScreen}
         />
         <Stack.Screen name={'FloatingButton'} component={FloatingButton} />
+        <Stack.Screen name={'SwipeActionButton'} component={Testing} />
       </Stack.Navigator>
     </NavigationContainer>
   );
