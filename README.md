@@ -154,6 +154,8 @@ animateBorder={'disco'}
 {...}
 </FlipView>
 ```
+![flipview](https://user-images.githubusercontent.com/104554054/208624029-6363f5c8-6bd8-41e5-a3ab-095bf7be4bc5.gif)
+
 
 # Props to use
 
