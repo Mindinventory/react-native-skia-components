@@ -27,6 +27,7 @@ yarn add @mindinventory/react-native-skia-components
 - AnimatedCard ('yoyo' | 'disco' | 'rotate' | 'bounce')
 - NeoPopButton
 - FloatingButton
+- FlipView
 
 ### Upcoming Components
 
@@ -47,6 +48,7 @@ import {
   Card,
   NeoPopButton,
   FloatingButton,
+  FlipView,
 } from '@mindinventory/react-native-skia-components';
 ```
 
@@ -137,6 +139,22 @@ animateBorder={'disco'}
 ```
 <img width="364" alt="Screenshot 2022-11-14 at 11 19 29 AM" src="https://user-images.githubusercontent.com/82019401/201585018-814ca046-a13f-4d1a-9396-1282b6f1e7db.png">
 
+
+# FlipView
+
+```js
+<FlipView
+  style={styles.cardContainer}
+  flipDirection={'horizontal'}
+  flipZoom={0.1}
+  ref={flipRef}
+  duration={1000}
+  perspective={1000}
+>
+{...}
+</FlipView>
+```
+
 # Props to use
 
 # Card Props
@@ -190,6 +208,19 @@ animateBorder={'disco'}
 | textStyle         | _style (Optional)_   | Give TextStyle button title texts.                                   |
 | titleSize         | _number (Optional)_  | Set text size of title.                                              |
 | isFloating        | _boolean (Optional)_ | set value `true` or `false` to get Floating button. |
+
+# FlipView Props
+
+| Parameter         | Type                 | Description                                                          |
+| ----------------- | -------------------- | -------------------------------------------------------------------- |
+| style             | _style (Optional)_   | Provide an style to inner elements of the `FlipView`.                |
+| children          | _JSX.ELement[]_      | render elements render inside the `FlipView`. Provide 2 child element Front and Back |
+| flipZoom          | _number (Optional)_  | Provide an flipZoom scale of the view when it animate.             |
+| flipDirection     | _string (Optional)_  | Provide an flipDirection of the view that in horizontal or vertical. |
+| perspective       | _number (Optional)_  | Provide an perspective value of the view for zIndex. |
+| duration          | _number (Optional)_  | Duration of the flip card animation. |
+| ref(FlipViewRef) | _React.ElementRef_ |  To flip the view use flip() function. and get value of is view or not isFlip. |
+
 ## Contributing!
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
