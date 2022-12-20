@@ -29,10 +29,15 @@ export interface FlipCardPropType {
    */
   style?: StyleProp<ViewStyle>;
   /**
-   * render elements render inside the `FlipView`.
+   * Element that render on `Front` side of the view.
    * @type JSX.Element
    */
-  children: JSX.Element[];
+  frontView?: JSX.Element;
+  /**
+   * Element that render on `Back` side of the view.
+   * @type JSX.Element
+   */
+  backView?: JSX.Element;
   /**
    * Provide an flipZoom scale of the view when it animate.
    * @example
@@ -44,8 +49,8 @@ export interface FlipCardPropType {
   /**
    * Provide an flipDirection of the view that in horizontal or vertical.
    * @enum
-   * - `horizontal`: FlipView in horizontal.
-   * - `vertical`: FlipView in vertical.
+   * - `horizontal`: FlipView in horizontal way.
+   * - `vertical`: FlipView in vertical way.
    * @example
    * flipDirection={'horizontal'}
    * @default 'horizontal'

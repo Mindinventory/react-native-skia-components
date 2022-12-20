@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import {
   Dimensions,
   Image,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -28,8 +27,7 @@ const FlipViewExample = () => {
         flipDirection={'horizontal'}
         flipZoom={0.1}
         ref={flipRef}
-      >
-        <Pressable style={styles.card} onPress={() => flipRef.current?.flip()}>
+        frontView={
           <View style={styles.cardContain}>
             <Image
               source={{
@@ -59,38 +57,40 @@ const FlipViewExample = () => {
               </Text>
             </View>
           </View>
-        </Pressable>
+        }
+        backView={
+          <View style={styles.cardContain}>
+            <Image
+              source={{
+                uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
+              }}
+              style={styles.image}
+              resizeMode={'cover'}
+            />
+            <View style={styles.textView}>
+              <Text>
+                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
+                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
+                provident illum dignissimos iure est!
+              </Text>
 
-        <View style={styles.cardContain}>
-          <Image
-            source={{
-              uri: 'https://cdn.dribbble.com/users/1233499/screenshots/15300502/media/8d39c3d799dba2b2f4926cce616c119b.png',
-            }}
-            style={styles.image}
-            resizeMode={'cover'}
-          />
-          <View style={styles.textView}>
-            <Text>
-              {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-              amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-              provident illum dignissimos iure est!
-            </Text>
-            <Text>
-              {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-              amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-              provident illum dignissimos iure est!
-            </Text>
-            <Text>
-              {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-              amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-              provident illum dignissimos iure est!
-            </Text>
+              <Text>
+                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
+                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
+                provident illum dignissimos iure est!
+              </Text>
+              <Text>
+                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
+                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
+                provident illum dignissimos iure est!
+              </Text>
+            </View>
           </View>
-        </View>
-      </FlipView>
+        }
+      />
     </ScrollView>
   );
 };

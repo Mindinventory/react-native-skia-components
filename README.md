@@ -150,9 +150,13 @@ animateBorder={'disco'}
   ref={flipRef}
   duration={1000}
   perspective={1000}
->
-{...}
-</FlipView>
+  frontView={
+    <View style={{flex:1, backgroundColor:'red'}} />
+  }
+  backView={
+    <View style={{flex: 1, backgroundColor: 'green'}}/>
+  }
+/>
 ```
 ![flipview](https://user-images.githubusercontent.com/104554054/208624029-6363f5c8-6bd8-41e5-a3ab-095bf7be4bc5.gif)
 
@@ -216,7 +220,8 @@ animateBorder={'disco'}
 | Parameter         | Type                 | Description                                                          |
 | ----------------- | -------------------- | -------------------------------------------------------------------- |
 | style             | _style (Optional)_   | Provide an style to inner elements of the `FlipView`.                |
-| children          | _JSX.ELement[]_      | render elements render inside the `FlipView`. Provide 2 child element Front and Back |
+| frontView          | _JSX.ELement (Required)_    | Element that render on `Front` side of the view. |
+| backView          | _JSX.ELement (Required)_     | Element that render on `Back` side of the view. |
 | flipZoom          | _number (Optional)_  | Provide an flipZoom scale of the view when it animate.             |
 | flipDirection     | _string (Optional)_  | Provide an flipDirection of the view that in horizontal or vertical. |
 | perspective       | _number (Optional)_  | Provide an perspective value of the view for zIndex. |

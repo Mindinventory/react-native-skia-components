@@ -1,8 +1,10 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { Animated, Pressable } from 'react-native';
 
 import type { FlipCardPropType, RefType } from './flipView.type';
 import { useFlipView } from './useFlipView';
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 /**
  *
@@ -15,16 +17,27 @@ const FlipView: React.ForwardRefRenderFunction<RefType, FlipCardPropType> = (
   props,
   forwardRef
 ) => {
-  const { style, sides, scaling, cardATransform, cardBTransform, styles } =
+  const { style, scaling, cardATransform, cardBTransform, styles, flip } =
     useFlipView({ forwardRef, props });
+
+  if (!props.frontView) {
+    throw new Error('frontView Element is not available');
+  }
+
+  if (!props.backView) {
+    throw new Error('backView Element is not available');
+  }
 
   return (
     <Animated.View style={[style, scaling]}>
-      <Animated.View style={[styles.cardContainer, cardATransform]}>
-        {sides[0]}
-      </Animated.View>
+      <AnimatedPressable
+        style={[styles.cardContainer, cardATransform]}
+        onPress={flip}
+      >
+        {props.frontView}
+      </AnimatedPressable>
       <Animated.View style={[styles.cardContainer, cardBTransform]}>
-        {sides[1]}
+        {props.backView}
       </Animated.View>
     </Animated.View>
   );

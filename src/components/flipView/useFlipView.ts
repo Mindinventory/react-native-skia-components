@@ -1,6 +1,7 @@
 import { Ref, useCallback, useImperativeHandle, useRef } from 'react';
 import { Animated } from 'react-native';
 
+import { FlipViewConstant } from './flipView.constant';
 import { flipViewStyle } from './flipView.style';
 import { FlipCardPropType, FlipDirectionType, RefType } from './flipView.type';
 
@@ -16,15 +17,13 @@ export const useFlipView = ({ props, forwardRef }: FlipView) => {
 
   const {
     style,
-    children,
-    flipZoom = 0.09,
-    flipDirection = FlipDirectionType.horizontal,
-    perspective = 800,
-    duration = 1000,
+    flipZoom = FlipViewConstant.default.flipZoom,
+    flipDirection = FlipViewConstant.default.flipDirection,
+    perspective = FlipViewConstant.default.perspective,
+    duration = FlipViewConstant.default.duration,
   } = props;
 
   const side = 0;
-  const sides = children;
 
   const progress = useRef(new Animated.Value(0)).current;
   const rotation = useRef(new Animated.ValueXY({ x: 50, y: 50 })).current;
@@ -150,10 +149,10 @@ export const useFlipView = ({ props, forwardRef }: FlipView) => {
   return {
     cardATransform,
     cardBTransform,
+    flip,
     isFlip,
     props,
     scaling,
-    sides,
     style,
     styles,
   };
