@@ -8,7 +8,11 @@ import { styles } from './componentStyle.style';
 const SwipeActionButtonExample = () => {
   return (
     <View style={styles.centerItemStyle}>
-      <SwipeActionButton />
+      <SwipeActionButton
+        height={60}
+        title={'Swipe to pay'}
+        onComplete={() => {}}
+      />
     </View>
   );
 };
