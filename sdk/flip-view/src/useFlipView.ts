@@ -1,26 +1,30 @@
 import { Ref, useCallback, useImperativeHandle, useRef } from 'react';
 import { Animated } from 'react-native';
 
+import {
+  FlipCardPropType,
+  FlipDirectionType,
+  RefType,
+} from '../types/flipView.type';
 import { FlipViewConstant } from './flipView.constant';
 import { flipViewStyle } from './flipView.style';
-import { FlipCardPropType, FlipDirectionType, RefType } from './flipView.type';
 
 let isFlip: boolean = false;
 
 interface FlipView {
-  props: FlipCardPropType;
   forwardRef: Ref<RefType> | undefined;
+  props: FlipCardPropType;
 }
 
 export const useFlipView = ({ props, forwardRef }: FlipView) => {
   const styles = flipViewStyle();
 
   const {
-    style,
-    flipZoom = FlipViewConstant.default.flipZoom,
-    flipDirection = FlipViewConstant.default.flipDirection,
-    perspective = FlipViewConstant.default.perspective,
     duration = FlipViewConstant.default.duration,
+    flipDirection = FlipViewConstant.default.flipDirection,
+    flipZoom = FlipViewConstant.default.flipZoom,
+    perspective = FlipViewConstant.default.perspective,
+    style,
   } = props;
 
   const side = 0;

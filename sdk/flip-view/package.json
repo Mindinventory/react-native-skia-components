@@ -1,0 +1,15 @@
+{
+    "name": "@mindinventory/react-native-skia-flip-view",
+    "version": "1.0.0",
+    "description": "A react native component that can flip between its front and back",
+    "repository": "https://github.com/Mindinventory/react-native-skia-components/tree/main/sdk/flip-view",
+    "author": "Mindinventory",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/Mindinventory/react-native-skia-components/issues"
+    },
+    "homepage": "https://github.com/Mindinventory/react-native-skia-components/tree/main/sdk/flip-view#readme",
+    "publishConfig": {
+      "registry": "https://registry.npmjs.org/"
+    }
+  }

@@ -1,4 +1,4 @@
-import { FlipDirectionType } from './flipView.type';
+import { FlipDirectionType } from '../types/flipView.type';
 
 export const FlipViewConstant = {
   default: {

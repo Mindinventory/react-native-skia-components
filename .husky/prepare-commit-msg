@@ -32,6 +32,8 @@ call_lefthook()
   fi
 }
 
+# lefthook_version: 9df6c1f1f0b607d16db43f25a405e842
 
+call_lefthook "install"
 
-call_lefthook "run pre-commit $@"
+call_lefthook "run prepare-commit-msg $@"

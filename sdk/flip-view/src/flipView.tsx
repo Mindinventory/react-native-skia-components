@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, Pressable } from 'react-native';
 
-import type { FlipCardPropType, RefType } from './flipView.type';
+import type { FlipCardPropType, RefType } from '../types/flipView.type';
 import { useFlipView } from './useFlipView';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);

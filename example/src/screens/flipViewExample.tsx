@@ -11,7 +11,7 @@ import {
 import {
   FlipView,
   FlipViewRef,
-} from '@mindinventory/react-native-skia-components';
+} from '@mindinventory/react-native-skia-flip-view';
 
 import { miColor } from '../constant/colors';
 
@@ -20,8 +20,8 @@ const { width, height } = Dimensions.get('window');
 const FlipViewExample = () => {
   const flipRef = useRef<FlipViewRef>(null);
 
-  return (
-    <ScrollView contentContainerStyle={styles.contain} bounces={false}>
+  const renderFlipCardComponent = () => {
+    return (
       <FlipView
         style={styles.cardContainer}
         flipDirection={'horizontal'}
@@ -91,6 +91,12 @@ const FlipViewExample = () => {
           </View>
         }
       />
+    );
+  };
+
+  return (
+    <ScrollView contentContainerStyle={styles.contain} bounces={false}>
+      {renderFlipCardComponent()}
     </ScrollView>
   );
 };
@@ -101,7 +107,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   cardContain: {
-    backgroundColor: 'white',
+    backgroundColor: miColor.white,
     borderRadius: 30,
     height: height * 0.7,
     width: width * 0.8,
@@ -117,7 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
   cardStyle: {
-    backgroundColor: 'black',
+    backgroundColor: miColor.black,
     height: height * 0.7,
     justifyContent: 'space-around',
     width: width * 0.7,
