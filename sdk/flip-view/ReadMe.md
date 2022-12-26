@@ -5,13 +5,13 @@ This library provide Flipview component which can flip horizontal or vertical.
 using npm
 
 ```sh
-npm install @mindinventory/react-native-skia-flip-view
+npm install @mindinventory/react-native-flip-view
 ```
 
 using yarn
 
 ```sh
-yarn add @mindinventory/react-native-skia-flip-view
+yarn add @mindinventory/react-native-flip-view
 ```
 
 ### Supported platform
@@ -23,12 +23,11 @@ yarn add @mindinventory/react-native-skia-flip-view
 
 # FlipView
 
-
 ```sh
 import {
   FlipView,
   FlipViewRef,
-} from '@mindinventory/react-native-skia-flip-view';
+} from '@mindinventory/react-native-flip-view';
 ```
 
 ```js

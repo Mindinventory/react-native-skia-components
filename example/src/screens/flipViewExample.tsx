@@ -8,10 +8,7 @@ import {
   View,
 } from 'react-native';
 
-import {
-  FlipView,
-  FlipViewRef,
-} from '@mindinventory/react-native-skia-flip-view';
+import { FlipView, FlipViewRef } from '@mindinventory/react-native-flip-view';
 
 import { miColor } from '../constant/colors';
 
