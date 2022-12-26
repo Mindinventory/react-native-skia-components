@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Animated,
@@ -17,7 +17,8 @@ import { SwipeButtonText } from './SwipeButtonText';
 
 interface SwipeActionButtonProps {
   onComplete: () => void;
-
+  onError: boolean;
+  setOnError: (error: boolean) => void;
   width?: number;
 
   disabled?: boolean;
@@ -31,10 +32,12 @@ interface SwipeActionButtonProps {
   borderRadius?: number;
   title: string;
 
-  textStyle?: TextStyle;
+  textStyle?: StyleProp<TextStyle>;
   customText?: JSX.Element;
   icon?: JSX.Element;
-  indicator?: JSX.Element;
+  activityIndicator?: JSX.Element;
+  circleBackgroundColor?: string;
+  backgroundColor?: string;
 }
 
 export const DEFAULT_HEIGHT = 70;
@@ -51,7 +54,11 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
   textStyle,
   customText,
   icon,
-  indicator,
+  activityIndicator,
+  circleBackgroundColor,
+  backgroundColor,
+  onError = false,
+  setOnError,
 }) => {
   const [animationCompleted, setAnimationCompleted] = useState<boolean>(false);
   const [endReached, setEndReached] = useState<boolean>(false);
@@ -76,7 +83,26 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
 
     return setEndReached(false);
   };
-
+  useEffect(() => {
+    if (onError) {
+      setAnimationCompleted(false);
+      setIsLoading(false);
+      Animated.spring(translateWidth, {
+        friction: 5,
+        tension: 10,
+        toValue: width,
+        useNativeDriver: false,
+      }).start();
+      Animated.spring(translateX, {
+        friction: 5,
+        tension: 10,
+        toValue: scrollDistance,
+        useNativeDriver: false,
+      }).start();
+      onRelease();
+      setOnError(!onError);
+    }
+  }, [onError, scrollDistance, setOnError, translateWidth, translateX, width]);
   const animateToEnd = () => {
     Animated.spring(translateX, {
       friction: 5,
@@ -91,7 +117,6 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
       useNativeDriver: false,
     }).start();
     setIsLoading(true);
-
     onComplete();
     return setEndReached(true);
   };
@@ -135,7 +160,7 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
         containerStyle,
         styles.mainContainer,
         {
-          backgroundColor: 'white',
+          backgroundColor: backgroundColor ? backgroundColor : 'white',
           borderRadius,
           height,
           width: animationCompleted
@@ -149,6 +174,7 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
     >
       {!animationCompleted && (
         <SwipeButtonCircle
+          circleBackgroundColor={circleBackgroundColor}
           Icon={icon}
           scrollDistance={scrollDistance}
           borderRadius={borderRadius}
@@ -158,8 +184,8 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
         />
       )}
 
-      {indicator ? (
-        indicator
+      {activityIndicator ? (
+        activityIndicator
       ) : (
         <ActivityIndicator
           animating={isLoading}
@@ -170,6 +196,7 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
 
       {!animationCompleted && (
         <SwipeButtonText
+          width={width}
           customText={customText}
           translateX={translateX}
           title={title}
@@ -189,7 +216,6 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flexDirection: 'row',
-
     padding: 2,
   },
 });

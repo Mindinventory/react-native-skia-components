@@ -6,12 +6,14 @@ interface SwipeButtonText {
   title: string;
   textStyle?: TextStyle;
   customText?: JSX.Element;
+  width: number;
 }
 export const SwipeButtonText: FC<SwipeButtonText> = ({
   translateX,
   title,
   textStyle,
   customText,
+  width,
 }) => {
   return (
     <Animated.View
@@ -19,7 +21,7 @@ export const SwipeButtonText: FC<SwipeButtonText> = ({
         styles.titleContainer,
         {
           opacity: translateX.interpolate({
-            inputRange: [0, 180, 210],
+            inputRange: [0, 180, width],
             outputRange: [1, 0.3, 0],
           }),
           transform: [
@@ -40,7 +42,6 @@ export const SwipeButtonText: FC<SwipeButtonText> = ({
           numberOfLines={2}
           allowFontScaling={false}
           style={[styles.title, textStyle]}
-          testID="Title"
         >
           {title}
         </Animated.Text>
