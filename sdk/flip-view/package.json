@@ -8,7 +8,7 @@
     "bugs": {
       "url": "https://github.com/Mindinventory/react-native-skia-components/issues"
     },
-    "homepage": "https://github.com/Mindinventory/react-native-skia-components/tree/main/sdk/flip-view#readme",
+    "homepage": "https://github.com/Mindinventory/react-native-skia-components/blob/main/flipView/sdk/flip-view#readme",
     "publishConfig": {
       "registry": "https://registry.npmjs.org/"
     }
