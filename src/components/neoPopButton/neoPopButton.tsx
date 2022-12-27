@@ -64,8 +64,6 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
             )}
           </>
         }
-        accessibilityLabelledBy={undefined}
-        accessibilityLanguage={undefined}
       />
       <TouchableOpacity
         onPress={props?.onPress}
