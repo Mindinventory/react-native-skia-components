@@ -92,8 +92,6 @@ const FloatingButton = (props: FloatingButtonProps) => {
             />
           </>
         }
-        accessibilityLabelledBy={undefined}
-        accessibilityLanguage={undefined}
       />
       <View
         style={[

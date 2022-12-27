@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@mindinventory/react-native-skia-components": ["./src/index"]
+      "@mindinventory/react-native-skia-components": ["./src/index"],
+      "@mindinventory/react-native-flip-view": ["./sdk/flip-view/index"],
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

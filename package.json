@@ -46,6 +46,10 @@
     "neopop",
     "button",
     "circiel progress",
+    "flip",
+    "flip-component",
+    "flip-view",
+    "flipview",
     "react-native",
     "ios",
     "android"

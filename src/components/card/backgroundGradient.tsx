@@ -47,8 +47,6 @@ const BackgroundGradient = (props: BackgroundGradientProps) => {
           <BlurMask blur={blur} style={'solid'} />
         </RoundedRect>
       }
-      accessibilityLabelledBy={undefined}
-      accessibilityLanguage={undefined}
     />
   );
 };
