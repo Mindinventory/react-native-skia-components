@@ -90,8 +90,6 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
             </Group>
           </>
         }
-        accessibilityLabelledBy={undefined}
-        accessibilityLanguage={undefined}
       />
       <View
         style={[

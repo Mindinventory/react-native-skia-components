@@ -97,8 +97,6 @@ export const StarWarButtonComponent = React.memo(
               <BlurMask blur={blurRadius} style={filled} />
             </RoundedRect>
           }
-          accessibilityLabelledBy={undefined}
-          accessibilityLanguage={undefined}
         />
         <Animated.View
           style={[
