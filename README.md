@@ -228,8 +228,8 @@ animateBorder={'disco'}
 | duration          | _number (Optional)_  | Duration of the flip card animation. |
 | ref(FlipViewRef) | _React.ElementRef_ |  To flip the view use flip() function. and get value of is view or not isFlip. |
 
-## Contributing!
 
+## Contributing!
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
 ## 📱 Check out other lists of our Mobile UI libraries
