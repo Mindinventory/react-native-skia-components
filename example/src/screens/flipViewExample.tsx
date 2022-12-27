@@ -1,18 +1,10 @@
 import React, { useRef } from 'react';
-import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { FlipView, FlipViewRef } from '@mindinventory/react-native-flip-view';
 
 import { miColor } from '../constant/colors';
-
-const { width, height } = Dimensions.get('window');
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from '../constant/constant';
 
 const FlipViewExample = () => {
   const flipRef = useRef<FlipViewRef>(null);
@@ -35,22 +27,19 @@ const FlipViewExample = () => {
             />
             <View style={styles.textView}>
               <Text>
-                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-                provident illum dignissimos iure est!
+                {'\n'}In general, AI systems work by ingesting large amounts of
+                labeled training data, analyzing the data for correlations and
+                patterns, and using these patterns to make predictions about
+                future states. In this way, a chatbot that is fed examples of
+                text chats can learn to produce lifelike exchanges with people,
+                or an image recognition tool can learn to identify and describe
+                objects in images by reviewing millions of examples!
               </Text>
               <Text>
-                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-                provident illum dignissimos iure est!
-              </Text>
-              <Text>
-                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-                provident illum dignissimos iure est!
+                {'\n'}Learning processes. This aspect of AI programming focuses
+                on acquiring data and creating rules for how to turn the data
+                into actionable information. The rules, which are called
+                algorithms!
               </Text>
             </View>
           </View>
@@ -66,23 +55,21 @@ const FlipViewExample = () => {
             />
             <View style={styles.textView}>
               <Text>
-                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-                provident illum dignissimos iure est!
+                {'\n'}UI design and UX design are two of the most often confused
+                and conflated terms in web and app design. And understandably
+                so. They’re usually placed together in a single term, UI/UX
+                design, and viewed from the surface they seem to be describing
+                the same thing. It’s often hard to find solid descriptions of
+                the two that don’t descend too far into jargon. But fear not!
               </Text>
 
               <Text>
-                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-                provident illum dignissimos iure est!
-              </Text>
-              <Text>
-                {'\n'}Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam, fugit! At alias maiores ipsa facere quisquam nulla
-                amet cupiditate fugiat reiciendis, animi nobis voluptatibus id
-                provident illum dignissimos iure est!
+                {'\n'}“UX” stands for “user experience.” A user’s experience of
+                the app is determined by how they interact with it. Is the
+                experience smooth and intuitive or clunky and confusing? Does
+                navigating the app feel logical or does it feel arbitrary? Does
+                interacting with the app give people the sense that they’re
+                efficiently accomplishing the tasks they set out to achieve.
               </Text>
             </View>
           </View>
@@ -100,20 +87,21 @@ const FlipViewExample = () => {
 
 const styles = StyleSheet.create({
   card: {
-    height: height * 0.7,
+    height: DEVICE_HEIGHT * 0.7,
     padding: 5,
   },
   cardContain: {
     backgroundColor: miColor.white,
     borderRadius: 30,
-    height: height * 0.7,
-    width: width * 0.8,
+    height: DEVICE_HEIGHT * 0.7,
+    overflow: 'hidden',
+    width: DEVICE_WIDTH * 0.8,
   },
   cardContainer: {
-    height: width / 2,
+    height: DEVICE_WIDTH / 2,
     marginHorizontal: 8,
     marginVertical: 12,
-    width: width / 2 - 20,
+    width: DEVICE_WIDTH / 2 - 20,
   },
   cardNumber: {
     color: miColor.gold,
@@ -121,9 +109,9 @@ const styles = StyleSheet.create({
   },
   cardStyle: {
     backgroundColor: miColor.black,
-    height: height * 0.7,
+    height: DEVICE_HEIGHT * 0.7,
     justifyContent: 'space-around',
-    width: width * 0.7,
+    width: DEVICE_WIDTH * 0.7,
   },
   carNameText: {
     color: miColor.gold,
