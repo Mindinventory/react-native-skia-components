@@ -1,6 +1,6 @@
 {
   "name": "@mindinventory/react-native-skia-components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -8,6 +8,7 @@
   "react-native": "src/index",
   "source": "src/index",
   "files": [
+    "sdk",
     "src",
     "lib",
     "android",
@@ -31,6 +32,7 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "husky install",
+    "prepack": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn install && yarn example pods",
