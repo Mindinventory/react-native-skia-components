@@ -48,7 +48,6 @@ import {
   Card,
   NeoPopButton,
   FloatingButton,
-  FlipView,
 } from '@mindinventory/react-native-skia-components';
 ```
 
