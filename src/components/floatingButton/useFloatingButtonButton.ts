@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { useValue } from '@shopify/react-native-skia';
+
 import { useMiUiContext } from '../../context';
 import { FloatingButtonConstant } from './floatingButton.constant';
 import type { FloatingButtonProps } from './floatingButton.type';
@@ -16,7 +18,12 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
     title = FloatingButtonConstant.default.title,
     titleSize = FloatingButtonConstant.default.titleSize,
     width = FloatingButtonConstant.default.width,
+    strokeColor = FloatingButtonConstant.default.strokeColor,
   } = props;
+
+  const buttonType = !props.buttonType
+    ? FloatingButtonConstant.default.buttonType
+    : props.buttonType;
 
   const buttonWidth = width;
   const buttonHeight = height;
@@ -27,8 +34,8 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
 
   const TEXT_POSITION = buttonWidth / 2 - titleSize;
 
-  const [x] = useState<number>(-20);
-  const [y] = useState<number>(-20);
+  const x = -20;
+  const y = -20;
   const [animatedWidth, setAnimatedWidth] = useState<number>(0);
   const [animatedX, setAnimatedX] = useState<number>(0);
   const [animatedHeight, setAnimatedHeight] = useState<number>(0);
@@ -50,6 +57,8 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
     defaultFakeBoxTransition()
   );
 
+  const pressed = useValue(false);
+
   const onPressButton = () => {
     updateBoxShadow(startFakeBoxTransition);
     setAnimatedWidth(50);
@@ -62,6 +71,7 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
       y: textPosition.y - x,
     });
     setBoxShadow(10);
+    pressed.current = true;
   };
 
   const onPressOut = () => {
@@ -75,6 +85,7 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
       y: textPosition.y + x,
     });
     setBoxShadow(0);
+    pressed.current = false;
   };
 
   const startFakeBoxTransition = () => {
@@ -93,14 +104,17 @@ export const useFloatingButton = (props: FloatingButtonProps) => {
     bottomShadowColor,
     boxShadow,
     buttonHeight,
+    buttonType,
     buttonWidth,
     canvasButtonHeight,
     canvasButtonWidth,
     height,
     onPressButton,
     onPressOut,
+    pressed,
     props,
     sideShadowColor,
+    strokeColor,
     styles,
     textStyle,
     title,

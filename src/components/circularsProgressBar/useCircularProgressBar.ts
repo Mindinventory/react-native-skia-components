@@ -7,6 +7,7 @@ import {
 } from '@shopify/react-native-skia';
 
 import { useMiUiContext } from '../../context';
+import { usePrevious } from '../../hooks/usePrevious';
 import { miColor } from '../../themes';
 import type { CircularProgressBarProps } from './circularProgressBar.type';
 
@@ -45,6 +46,8 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
     strokeWidth = SHADOW_WIDTH,
   } = props;
 
+  const prevAmount = usePrevious({ progress });
+
   const size = containerSize;
   const viewWidth = size;
   const path = Skia.Path.Make();
@@ -57,14 +60,22 @@ export const useCircularProgress = (props: CircularProgressBarProps) => {
       y: 0,
     },
     ARC_DEGREE,
-    (progress / 100) * 360
+    progress * 360
   );
   const fromCircle = (cx: number, cy: number, r: number) =>
     rrect(rect(cx - r, cy - r, 2 * r, 2 * r), r, r);
 
   const fillProgress = useTiming(
-    { from: 0, to: progress },
-    { duration: ANIM_DURATION, easing: Easing.circle }
+    {
+      from:
+        prevAmount === undefined
+          ? 0
+          : prevAmount?.progress > 100
+          ? 1
+          : prevAmount?.progress / 100,
+      to: progress > 100 ? 1 : progress / 100,
+    },
+    { duration: ANIM_DURATION, easing: Easing.bounce }
   );
 
   return {

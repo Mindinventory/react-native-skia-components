@@ -7,6 +7,7 @@ import { FloatingButton } from '../components';
 import { miColor } from '../constant/colors';
 import CardComponent from '../screens/cards/cardComponent';
 import CardScreen from '../screens/cards/cardScreen';
+import CircularProgressExample from '../screens/circularProgressExample';
 import FlipViewExample from '../screens/flipViewExample';
 import NeoPopButtonExample from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
@@ -20,6 +21,7 @@ export type StackNavigationParamList = {
   CardScreen: undefined;
   FloatingButton: undefined;
   FlipViewExample: undefined;
+  CircularProgressExample: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -54,6 +56,10 @@ const StackNavigation = () => {
         />
         <Stack.Screen name={'FloatingButton'} component={FloatingButton} />
         <Stack.Screen name={'FlipViewExample'} component={FlipViewExample} />
+        <Stack.Screen
+          name={'CircularProgressExample'}
+          component={CircularProgressExample}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

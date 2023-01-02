@@ -25,6 +25,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     width: '100%',
   },
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   coponentListStyle: {
     borderColor: miColor.white,
     borderRadius: 10,

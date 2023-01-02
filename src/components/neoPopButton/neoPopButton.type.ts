@@ -23,4 +23,6 @@ export interface NeoPopButtonProps extends ButtonProps {
    * @type boolean
    */
   disabled?: boolean;
+  strokes?: boolean;
+  strokeColor?: string;
 }

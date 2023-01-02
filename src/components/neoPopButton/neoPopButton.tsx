@@ -29,6 +29,9 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
     textTransformStyle,
     titleSize,
     disabled,
+    pressed,
+    strokes,
+    strokeColor,
   } = useNeoPopButton(props);
   return (
     <View style={styles.starWarButtonStyle.container}>
@@ -57,11 +60,28 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
                 <Group transform={transform}>
                   <Path path={path} color={backgroundColor} />
                 </Group>
-                <Group>
-                  <Path path={nonFloatingDepthPath} color={sideShadowColor} />
-                </Group>
+                {!pressed && (
+                  <>
+                    <Group>
+                      <Path
+                        path={nonFloatingDepthPath}
+                        color={sideShadowColor}
+                      />
+                    </Group>
+                  </>
+                )}
               </>
             )}
+            {strokes ? (
+              <Group transform={transform}>
+                <Path
+                  path={path}
+                  color={strokeColor}
+                  style={'stroke'}
+                  strokeWidth={3}
+                />
+              </Group>
+            ) : null}
           </>
         }
       />
@@ -89,7 +109,7 @@ const NeoPopButton = (props: NeoPopButtonProps) => {
           style={[
             styles.neoPopButtonStyle.btnLabel.labelText,
             { fontSize: titleSize },
-            textStyle && { ...textStyle },
+            textStyle && textStyle,
             { transform: [{ rotateX: '45deg' }, { rotateZ: '0deg' }] },
             disabled && { color: miColor.grayShade },
             textTransformStyle,

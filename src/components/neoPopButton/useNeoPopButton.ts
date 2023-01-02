@@ -32,6 +32,8 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
     floatAnimation = NeoPopButtonConstant.default.floatAnimation,
     duration = NeoPopButtonConstant.default.duration,
     disabled = false,
+    strokes = false,
+    strokeColor = NeoPopButtonConstant.default.strokeColor,
   } = props;
 
   let height = propHeight * 1.5;
@@ -161,6 +163,8 @@ export const useNeoPopButton = (props: NeoPopButtonProps) => {
     shadowPath,
     shadowTranslate,
     sideShadowColor,
+    strokeColor,
+    strokes,
     styles,
     textStyle,
     textTransformStyle,

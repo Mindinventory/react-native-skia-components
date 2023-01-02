@@ -39,6 +39,16 @@ const CircularProgressBar = (props: CircularProgressBarProps) => {
     styles,
   } = useCircularProgress(props);
 
+  if (progress < 0) {
+    // eslint-disable-next-line no-console
+    console.warn('Progress value cannot be negative');
+  }
+
+  if (progress > 100) {
+    // eslint-disable-next-line no-console
+    console.warn('Progress value cannot be more than 100');
+  }
+
   const VIEW_WIDTH_DIV = viewWidth / 2;
 
   return (

@@ -99,7 +99,7 @@ export interface ButtonProps {
    * Provide an style to button title text.
    * @type TextStyle
    */
-  textStyle?: TextStyle;
+  textStyle?: StyleProp<TextStyle>;
   /**
    * Provide an title to button.
    * @type string

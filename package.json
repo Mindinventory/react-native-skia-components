@@ -99,7 +99,10 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "@shopify/react-native-skia": "*",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*"
   },
   "jest": {
     "preset": "react-native",

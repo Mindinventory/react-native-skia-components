@@ -11,6 +11,7 @@ export const NeoPopButtonConstant = {
     isFloating: true,
     shadowHeight: 10,
     sideShadowColor: miColor.darkYellowShade,
+    strokeColor: miColor.primaryGreen,
     title: 'Pay',
     titleSize: 10,
     width: 150,

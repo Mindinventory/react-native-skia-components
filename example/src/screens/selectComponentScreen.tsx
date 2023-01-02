@@ -63,6 +63,13 @@ const SelectComponentScreen = () => {
         navigation.navigate('FlipViewExample');
       },
     },
+    {
+      id: 7,
+      name: 'CIRCULAR PROGRESS BAR',
+      navigation: () => {
+        navigation.navigate('CircularProgressExample');
+      },
+    },
   ];
 
   return (

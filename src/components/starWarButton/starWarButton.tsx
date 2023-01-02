@@ -118,7 +118,7 @@ export const StarWarButtonComponent = React.memo(
                 color: titleColor,
                 fontSize: titleSize,
               },
-              textStyle && { ...textStyle },
+              textStyle && textStyle,
             ]}
           >
             {title}

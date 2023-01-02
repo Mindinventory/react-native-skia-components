@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { Box, Canvas, Group, rect, rrect } from '@shopify/react-native-skia';
 
-import type { FloatingButtonProps } from './floatingButton.type';
+import { ButtonType, FloatingButtonProps } from './floatingButton.type';
 import { useFloatingButton } from './useFloatingButtonButton';
 
 const FloatingButton = (props: FloatingButtonProps) => {
@@ -29,7 +29,18 @@ const FloatingButton = (props: FloatingButtonProps) => {
     x,
     y,
     styles,
+    buttonType,
+    strokeColor,
   } = useFloatingButton(props);
+
+  // Elevated
+  // Flat
+  // Flat Strokes
+  // Elevated Strokes
+  //rgb(48,79,14)
+  //rgb(78,132,14)
+
+  // console.log('render');
 
   return (
     <TouchableOpacity
@@ -53,35 +64,39 @@ const FloatingButton = (props: FloatingButtonProps) => {
           width: canvasButtonWidth,
         }}
         children={
-          <>
-            <Group
-              origin={{ x: width, y: 0 }}
-              transform={[{ skewY: Math.PI / (1.4 * 3) }]}
-            >
-              <Box
-                box={rrect(
-                  rect(width + animatedY, 8, -y, height + animatedHeight),
-                  0,
-                  0
-                )}
-                color={sideShadowColor}
-              />
-            </Group>
+          <Group>
+            {buttonType === ButtonType.elevated ||
+            buttonType === ButtonType.elevatedStrokes ? (
+              <>
+                <Group
+                  origin={{ x: width, y: 0 }}
+                  transform={[{ skewY: Math.PI / (1.4 * 3) }]}
+                >
+                  <Box
+                    box={rrect(
+                      rect(width + animatedY, 8, -y, height + animatedHeight),
+                      0,
+                      0
+                    )}
+                    color={sideShadowColor}
+                  />
+                </Group>
 
-            <Group
-              origin={{ x: 0, y: height }}
-              transform={[{ skewX: Math.PI / 1.4 }]}
-            >
-              <Box
-                box={rrect(
-                  rect(x + animatedX, height, width + animatedWidth, -x),
-                  0,
-                  0
-                )}
-                color={bottomShadowColor}
-              />
-            </Group>
-
+                <Group
+                  origin={{ x: 0, y: height }}
+                  transform={[{ skewX: Math.PI / 1.4 }]}
+                >
+                  <Box
+                    box={rrect(
+                      rect(x + animatedX, height, width + animatedWidth, -x),
+                      0,
+                      0
+                    )}
+                    color={bottomShadowColor}
+                  />
+                </Group>
+              </>
+            ) : null}
             <Box
               box={rrect(
                 rect(transitionX, transitionY + 8, width, height),
@@ -90,7 +105,20 @@ const FloatingButton = (props: FloatingButtonProps) => {
               )}
               color={backgroundColor}
             />
-          </>
+            {buttonType === ButtonType.elevatedStrokes ||
+            buttonType === ButtonType.flatStrokes ? (
+              <Box
+                box={rrect(
+                  rect(transitionX, transitionY + 8, width, height),
+                  0,
+                  0
+                )}
+                style={'stroke'}
+                color={strokeColor}
+                strokeWidth={2}
+              />
+            ) : null}
+          </Group>
         }
       />
       <View
@@ -110,7 +138,7 @@ const FloatingButton = (props: FloatingButtonProps) => {
             {
               fontSize: titleSize,
             },
-            textStyle && { ...textStyle },
+            textStyle && textStyle,
           ]}
         >
           {title}

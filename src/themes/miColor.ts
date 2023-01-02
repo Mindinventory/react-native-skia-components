@@ -1,4 +1,5 @@
 export const miColor = {
+  backgroundGray: 'rgba(61, 61, 61, 1)',
   black: '#000000',
   blackShade: '#101113',
   blue: 'blue',
@@ -9,6 +10,7 @@ export const miColor = {
   cyan: 'cyan',
   darkGray: '#151515',
   darkGrayShade: '#2B2F33',
+  darkGreen: 'rgba(141, 208, 74, 1)',
   darkYellowShade: 'rgba(195, 161, 60,1)',
   gray: '#F0F0F0',
   grayShade: '#ccc',
@@ -17,7 +19,9 @@ export const miColor = {
   lightGreen: '#B9E5AA',
   lightYellowShade: 'rgba(250, 226, 46, 1)',
   magenta: 'magenta',
+  pineGreen: 'rgb(48,79,14)',
   pink: '#ed184f',
+  primaryGreen: 'rgb(78,132,14)',
   purple: '#31C',
   red: 'red',
   transparent: '#ffffff00',
