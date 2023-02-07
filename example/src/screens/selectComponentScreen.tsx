@@ -19,56 +19,76 @@ type StackNavigation = NativeStackNavigationProp<
 
 const SelectComponentScreen = () => {
   const navigation = useNavigation<StackNavigation>();
+
+  const arrComponents = [
+    {
+      id: 1,
+      name: 'CARD EXAMPLE SCREEN',
+      navigation: () => {
+        navigation.navigate('CardScreen');
+      },
+    },
+    {
+      id: 2,
+      name: 'CARD COMPONENT',
+      navigation: () => {
+        navigation.navigate('CardComponent');
+      },
+    },
+    {
+      id: 3,
+      name: 'NEO-POP BUTTON',
+      navigation: () => {
+        navigation.navigate('NeoPopButton');
+      },
+    },
+    {
+      id: 4,
+      name: 'STAR WARS BUTTON',
+      navigation: () => {
+        navigation.navigate('StarWarsButtonScreen');
+      },
+    },
+    {
+      id: 5,
+      name: 'FLOATING BUTTON',
+      navigation: () => {
+        navigation.navigate('FloatingButton');
+      },
+    },
+    {
+      id: 6,
+      name: 'FLIP VIEW HORIZONTALLY OR VERTICALLY',
+      navigation: () => {
+        navigation.navigate('FlipViewExample');
+      },
+    },
+    {
+      id: 7,
+      name: 'SWIPE ACTION BUTTON',
+      navigation: () => {
+        navigation.navigate('SwipeActionButton');
+      },
+    }
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
         <View style={styles.selectAnimContainer}>
           <Text style={styles.selectAnimText}>SELECT COMPONENT TYPE</Text>
         </View>
-        <TouchableOpacity
-          style={styles.animOptionStyle}
-          onPress={() => navigation.navigate('CardScreen')}
-        >
-          <Text style={styles.animOptionText}>CARD EXAMPLE SCREEN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.animOptionStyle}
-          onPress={() => navigation.navigate('CardComponent')}
-        >
-          <Text style={styles.animOptionText}>CARD COMPONENT</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.animOptionStyle}
-          onPress={() => {
-            navigation.navigate('NeoPopButton');
-          }}
-        >
-          <Text style={styles.animOtherOptionText}>NEO-POP BUTTON</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.animOptionStyle}
-          onPress={() => {
-            navigation.navigate('StarWarsButtonScreen');
-          }}
-        >
-          <Text style={styles.animOtherOptionText}>STAR WAR BUTTON</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.animOptionStyle}
-          onPress={() => {
-            navigation.navigate('FloatingButton');
-          }}
-        >
-          <Text style={styles.animOtherOptionText}>FLOATING BUTTON</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.animOptionNoneStyle}
-          onPress={() => {
-            navigation.navigate('SwipeActionButton');
-          }}
-        >
-          <Text style={styles.animOtherOptionText}>SWIPE ACTION BUTTON</Text>
-        </TouchableOpacity>
+        {arrComponents.map((item) => {
+          return (
+            <TouchableOpacity
+              style={styles.animOptionStyle}
+              onPress={item.navigation}
+              key={item.id}
+            >
+              <Text style={styles.animOptionText}>{item.name}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </SafeAreaView>
   );

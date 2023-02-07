@@ -4,8 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { FloatingButton, SwipeActionButton } from '../components';
+import { miColor } from '../constant/colors';
 import CardComponent from '../screens/cards/cardComponent';
 import CardScreen from '../screens/cards/cardScreen';
+import FlipViewExample from '../screens/flipViewExample';
 import NeoPopButtonExample from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
 import StarWarsButtonScreen from '../screens/starWarsButtonScreen';
@@ -17,6 +19,7 @@ export type StackNavigationParamList = {
   StarWarsButtonScreen: undefined;
   CardScreen: undefined;
   FloatingButton: undefined;
+  FlipViewExample: undefined;
   SwipeActionButton: undefined;
 };
 
@@ -25,7 +28,15 @@ const Stack = createNativeStackNavigator();
 const StackNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerBackTitle: '',
+          headerStyle: {
+            backgroundColor: miColor.black,
+          },
+          headerTintColor: miColor.white,
+        }}
+      >
         <Stack.Screen
           name={'SelectComponentScreen'}
           component={SelectComponentScreen}
@@ -47,6 +58,7 @@ const StackNavigation = () => {
           name={'SwipeActionButton'}
           component={SwipeActionButton}
         />
+        <Stack.Screen name={'FlipViewExample'} component={FlipViewExample} />
       </Stack.Navigator>
     </NavigationContainer>
   );

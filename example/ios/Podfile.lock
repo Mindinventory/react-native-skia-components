@@ -74,7 +74,7 @@ PODS:
   - fmt (6.2.1)
   - glog (0.3.5)
   - libevent (2.1.12)
-  - mindinventory-react-native-skia-components (1.0.0):
+  - mindinventory-react-native-skia-components (1.0.2):
     - React-Core
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
@@ -292,32 +292,32 @@ PODS:
     - RCTTypeSafety
     - React-Core
     - ReactCommon/turbomodule/core
-  - react-native-skia (0.1.163):
+  - react-native-skia (0.1.167):
     - React
     - React-callinvoker
     - React-Core
-    - react-native-skia/Api (= 0.1.163)
-    - react-native-skia/Jsi (= 0.1.163)
-    - react-native-skia/RNSkia (= 0.1.163)
-    - react-native-skia/SkiaHeaders (= 0.1.163)
-    - react-native-skia/Utils (= 0.1.163)
-  - react-native-skia/Api (0.1.163):
+    - react-native-skia/Api (= 0.1.167)
+    - react-native-skia/Jsi (= 0.1.167)
+    - react-native-skia/RNSkia (= 0.1.167)
+    - react-native-skia/SkiaHeaders (= 0.1.167)
+    - react-native-skia/Utils (= 0.1.167)
+  - react-native-skia/Api (0.1.167):
     - React
     - React-callinvoker
     - React-Core
-  - react-native-skia/Jsi (0.1.163):
+  - react-native-skia/Jsi (0.1.167):
     - React
     - React-callinvoker
     - React-Core
-  - react-native-skia/RNSkia (0.1.163):
+  - react-native-skia/RNSkia (0.1.167):
     - React
     - React-callinvoker
     - React-Core
-  - react-native-skia/SkiaHeaders (0.1.163):
+  - react-native-skia/SkiaHeaders (0.1.167):
     - React
     - React-callinvoker
     - React-Core
-  - react-native-skia/Utils (0.1.163):
+  - react-native-skia/Utils (0.1.167):
     - React
     - React-callinvoker
     - React-Core
@@ -602,7 +602,7 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  mindinventory-react-native-skia-components: 854f6173032790d470981224092f061066fcfb72
+  mindinventory-react-native-skia-components: 47d086796a3bacfd9609da6ebecf3c87ff73757a
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
   RCTRequired: 21229f84411088e5d8538f21212de49e46cc83e2
@@ -619,7 +619,7 @@ SPEC CHECKSUMS:
   React-jsinspector: badd81696361249893a80477983e697aab3c1a34
   React-logger: fdda34dd285bdb0232e059b19d9606fa0ec3bb9c
   react-native-safe-area-context: 99b24a0c5acd0d5dcac2b1a7f18c49ea317be99a
-  react-native-skia: b8dea1953ce02c7b859ebf972b3d275c7d81373a
+  react-native-skia: 5b93d33bd1d89e998c924e093bad63fec59a6337
   React-perflogger: e68d3795cf5d247a0379735cbac7309adf2fb931
   React-RCTActionSheet: 05452c3b281edb27850253db13ecd4c5a65bc247
   React-RCTAnimation: 578eebac706428e68466118e84aeacf3a282b4da
