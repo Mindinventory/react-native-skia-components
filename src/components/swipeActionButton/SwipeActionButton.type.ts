@@ -23,6 +23,7 @@ export interface SwipeActionButtonProps {
   activityIndicator?: JSX.Element;
   circleBackgroundColor?: string;
   backgroundColor?: string;
+  progressColor?: string;
 }
 
 export interface SwipeButtonCircleProps {

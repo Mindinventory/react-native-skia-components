@@ -48,9 +48,9 @@ export const SwipeButtonText: FC<SwipeButtonTextProps> = ({
 const styles = StyleSheet.create({
   title: {
     color: 'black',
-    fontSize: 16,
-    maxWidth: '50%',
+    fontSize: 24,
     textAlign: 'center',
+    width: '50%',
   },
   titleContainer: {
     alignItems: 'center',

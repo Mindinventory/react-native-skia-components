@@ -30,6 +30,7 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
   backgroundColor,
   onError = false,
   setOnError,
+  progressColor,
 }) => {
   const {
     animationCompleted,
@@ -83,6 +84,7 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
         <ActivityIndicator
           animating={isLoading}
           style={styles.activityIndicator}
+          color={progressColor}
           size={'small'}
         />
       )}

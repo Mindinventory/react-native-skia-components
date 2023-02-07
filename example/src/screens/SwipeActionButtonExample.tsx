@@ -11,6 +11,7 @@ const SwipeActionButtonExample = () => {
   return (
     <View style={styles.centerItemStyle}>
       <SwipeActionButton
+        progressColor={'red'}
         circleBackgroundColor={'blue'}
         height={60}
         title={'Swipe to pay'}
