@@ -1,3 +1,3 @@
-import SwipeActionButton from './SwipeActionButton';
+import { SwipeActionButton } from './SwipeActionButtonContainer';
 
 export { SwipeActionButton };

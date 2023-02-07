@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { MiUiProvider } from '../../context';
 import CardComponent from './card';
 import type { CardProps } from './card.type';
+import { MiUiProvider } from '../../context';
 
 export const Card = (props: CardProps) => (
   <MiUiProvider>

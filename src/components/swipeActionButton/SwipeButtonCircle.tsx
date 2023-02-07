@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Animated, StyleSheet } from 'react-native';
+import { Animated } from 'react-native';
 
 import type { SwipeButtonCircleProps } from './SwipeActionButton.type';
+import { useMiUiContext } from '../../context';
 
 export const SwipeButtonCircle: FC<SwipeButtonCircleProps> = ({
   translateX,
@@ -12,15 +13,16 @@ export const SwipeButtonCircle: FC<SwipeButtonCircleProps> = ({
   height,
   scrollDistance,
 }) => {
+  const { styles, colors } = useMiUiContext();
   return (
     <Animated.View
       {...panHandlers}
       style={[
-        styles.mainContainer,
+        styles.swipeActionButtonStyle.mainContainerCircle,
         {
           backgroundColor: circleBackgroundColor
             ? circleBackgroundColor
-            : 'red',
+            : colors.red,
           borderRadius,
           transform: [{ translateX: translateX }],
           width: height,
@@ -54,11 +56,3 @@ export const SwipeButtonCircle: FC<SwipeButtonCircleProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    alignItems: 'center',
-    height: '100%',
-    justifyContent: 'center',
-    zIndex: 2,
-  },
-});

@@ -6,16 +6,35 @@ import {
   PanResponderGestureState,
 } from 'react-native';
 
-import { DEFAULT_WIDTH } from './SwipeActionButton';
+import type { SwipeActionButtonProps } from './SwipeActionButton.type';
+import {
+  DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE,
+  DEFAULT_HEIGHT,
+  DEFAULT_WIDTH,
+} from '../../../example/src/constant/constant';
+import { useMiUiContext } from '../../context';
 
-const useSwipeActionButton = (
-  onComplete: () => void,
-  onError: boolean,
-  setOnError: (error: boolean) => void,
-  width: number,
-  completeThresholdPercentage: number,
-  height: number
-) => {
+const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
+  const { styles, colors } = useMiUiContext();
+  const {
+    completeThresholdPercentage = DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE,
+    onComplete,
+    width = DEFAULT_WIDTH,
+    containerStyle,
+    height = DEFAULT_HEIGHT,
+    borderRadius = height / 2,
+    title,
+    textStyle,
+    customText,
+    icon,
+    activityIndicator,
+    circleBackgroundColor,
+    backgroundColor = colors.white,
+    onError = false,
+    setOnError,
+    progressColor,
+  } = props;
+
   const [animationCompleted, setAnimationCompleted] = useState<boolean>(false);
   const [endReached, setEndReached] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -111,12 +130,30 @@ const useSwipeActionButton = (
     });
 
   return {
+    activityIndicator,
     animationCompleted,
+    backgroundColor,
+    borderRadius,
+    circleBackgroundColor,
+    completeThresholdPercentage,
+    containerStyle,
+    customText,
+    height,
+    icon,
     isLoading,
+    onComplete,
+    onError,
     panResponser,
+    progressColor,
     scrollDistance,
+    setOnError,
+    textStyle,
+    title,
     translateWidth,
     translateX,
+    width,
+    styles,
+    colors
   };
 };
 

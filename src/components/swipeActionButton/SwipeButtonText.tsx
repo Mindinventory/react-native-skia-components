@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Animated, StyleSheet } from 'react-native';
+import { Animated } from 'react-native';
 
 import type { SwipeButtonTextProps } from './SwipeActionButton.type';
+import { useMiUiContext } from '../../context';
 
 export const SwipeButtonText: FC<SwipeButtonTextProps> = ({
   translateX,
@@ -10,10 +11,11 @@ export const SwipeButtonText: FC<SwipeButtonTextProps> = ({
   customText,
   width,
 }) => {
+  const { styles } = useMiUiContext();
   return (
     <Animated.View
       style={[
-        styles.titleContainer,
+        styles.swipeActionButtonStyle.titleContainer,
         {
           opacity: translateX.interpolate({
             inputRange: [0, 180, width],
@@ -36,7 +38,7 @@ export const SwipeButtonText: FC<SwipeButtonTextProps> = ({
         <Animated.Text
           numberOfLines={2}
           allowFontScaling={false}
-          style={[styles.title, textStyle]}
+          style={[styles.swipeActionButtonStyle.title, textStyle]}
         >
           {title}
         </Animated.Text>
@@ -45,21 +47,3 @@ export const SwipeButtonText: FC<SwipeButtonTextProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  title: {
-    color: 'black',
-    fontSize: 24,
-    textAlign: 'center',
-    width: '50%',
-  },
-  titleContainer: {
-    alignItems: 'center',
-    bottom: 0,
-    flex: 1,
-    justifyContent: 'center',
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-  },
-});

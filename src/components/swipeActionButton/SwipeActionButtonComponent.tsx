@@ -1,51 +1,33 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { ActivityIndicator, Animated } from 'react-native';
 
 import type { SwipeActionButtonProps } from './SwipeActionButton.type';
 import { SwipeButtonCircle } from './SwipeButtonCircle';
 import { SwipeButtonText } from './SwipeButtonText';
 import useSwipeActionButton from './useSwipeActionButton';
-import {
-  DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE,
-  DEFAULT_HEIGHT,
-  DEFAULT_WIDTH,
-} from '../../../example/src/constant/constant';
-import { useMiUiContext } from '../../context';
 
-const SwipeActionButton: FC<SwipeActionButtonProps> = ({
-  completeThresholdPercentage = DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE,
-  onComplete,
-  width = DEFAULT_WIDTH,
-  containerStyle,
-  height = DEFAULT_HEIGHT,
-  borderRadius = height / 2,
-  title,
-  textStyle,
-  customText,
-  icon,
-  activityIndicator,
-  circleBackgroundColor,
-  backgroundColor,
-  onError = false,
-  setOnError,
-  progressColor,
-}) => {
+const SwipeActionButtonComponent = (props: SwipeActionButtonProps) => {
   const {
+    activityIndicator,
     animationCompleted,
+    backgroundColor,
+    borderRadius,
+    circleBackgroundColor,
+    containerStyle,
+    customText,
+    height,
+    icon,
     isLoading,
     panResponser,
-    translateWidth,
+    progressColor,
     scrollDistance,
+    textStyle,
+    title,
+    translateWidth,
     translateX,
-  } = useSwipeActionButton(
-    onComplete,
-    onError,
-    setOnError,
     width,
-    completeThresholdPercentage,
-    height
-  );
-  const { styles } = useMiUiContext();
+    styles,
+  } = useSwipeActionButton({ props });
 
   return (
     <Animated.View
@@ -53,7 +35,7 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
         containerStyle,
         styles.swipeActionButtonStyle.mainContainer,
         {
-          backgroundColor: backgroundColor ? backgroundColor : 'white',
+          backgroundColor: backgroundColor,
           borderRadius,
           height,
           width: animationCompleted
@@ -101,4 +83,4 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
   );
 };
 
-export default SwipeActionButton;
+export default SwipeActionButtonComponent;

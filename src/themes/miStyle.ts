@@ -4,6 +4,7 @@ import { cardStyle, circularProgressBarStyle } from '../components';
 import { floatingButtonStyle } from '../components/floatingButton';
 import { neoPopButtonStyle } from '../components/neoPopButton';
 import { starWarButtonStyle } from '../components/starWarButton/starWarButton.style';
+import { swipeActionButtonStyle } from '../components/swipeActionButton/swipeActionButton.style';
 
 const { width: ScreenWidth, height: ScreenHeight } = Dimensions.get('window');
 
@@ -16,5 +17,6 @@ export const miUiStyle = () => {
     ScreenHeight,
     ScreenWidth,
     starWarButtonStyle: starWarButtonStyle(),
+    swipeActionButtonStyle: swipeActionButtonStyle(),
   };
 };
