@@ -1,19 +1,17 @@
 import React, { FC } from 'react';
-import {
-  ActivityIndicator,
-  Animated,
-  Dimensions,
-  StyleSheet,
-} from 'react-native';
+import { ActivityIndicator, Animated } from 'react-native';
 
 import type { SwipeActionButtonProps } from './SwipeActionButton.type';
 import { SwipeButtonCircle } from './SwipeButtonCircle';
 import { SwipeButtonText } from './SwipeButtonText';
 import useSwipeActionButton from './useSwipeActionButton';
+import {
+  DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE,
+  DEFAULT_HEIGHT,
+  DEFAULT_WIDTH,
+} from '../../../example/src/constant/constant';
+import { useMiUiContext } from '../../context';
 
-export const DEFAULT_HEIGHT = 70;
-export const DEFAULT_WIDTH = Dimensions.get('window').width * 0.9;
-export const DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE = 70;
 const SwipeActionButton: FC<SwipeActionButtonProps> = ({
   completeThresholdPercentage = DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE,
   onComplete,
@@ -47,12 +45,13 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
     completeThresholdPercentage,
     height
   );
+  const { styles } = useMiUiContext();
 
   return (
     <Animated.View
       style={[
         containerStyle,
-        styles.mainContainer,
+        styles.swipeActionButtonStyle.mainContainer,
         {
           backgroundColor: backgroundColor ? backgroundColor : 'white',
           borderRadius,
@@ -83,7 +82,7 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
       ) : (
         <ActivityIndicator
           animating={isLoading}
-          style={styles.activityIndicator}
+          style={styles.swipeActionButtonStyle.activityIndicator}
           color={progressColor}
           size={'small'}
         />
@@ -101,17 +100,5 @@ const SwipeActionButton: FC<SwipeActionButtonProps> = ({
     </Animated.View>
   );
 };
-const styles = StyleSheet.create({
-  activityIndicator: {
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-  },
-  mainContainer: {
-    flexDirection: 'row',
-    padding: 2,
-  },
-});
+
 export default SwipeActionButton;
