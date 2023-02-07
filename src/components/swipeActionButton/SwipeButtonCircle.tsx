@@ -1,16 +1,9 @@
 import React, { FC } from 'react';
-import { Animated, GestureResponderHandlers, StyleSheet } from 'react-native';
+import { Animated, StyleSheet } from 'react-native';
 
-interface SwipeButtonCircle {
-  panHandlers: GestureResponderHandlers;
-  Icon?: JSX.Element;
-  translateX: Animated.Value;
-  circleBackgroundColor?: string;
-  borderRadius?: number;
-  height: number;
-  scrollDistance: number;
-}
-export const SwipeButtonCircle: FC<SwipeButtonCircle> = ({
+import type { SwipeButtonCircleProps } from './SwipeActionButton.type';
+
+export const SwipeButtonCircle: FC<SwipeButtonCircleProps> = ({
   translateX,
   panHandlers,
   Icon,

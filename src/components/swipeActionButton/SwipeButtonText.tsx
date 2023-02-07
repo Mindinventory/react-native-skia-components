@@ -1,14 +1,9 @@
 import React, { FC } from 'react';
-import { Animated, StyleSheet, TextStyle } from 'react-native';
+import { Animated, StyleSheet } from 'react-native';
 
-interface SwipeButtonText {
-  translateX: Animated.Value & { _value?: number };
-  title: string;
-  textStyle?: TextStyle;
-  customText?: JSX.Element;
-  width: number;
-}
-export const SwipeButtonText: FC<SwipeButtonText> = ({
+import type { SwipeButtonTextProps } from './SwipeActionButton.type';
+
+export const SwipeButtonText: FC<SwipeButtonTextProps> = ({
   translateX,
   title,
   textStyle,
