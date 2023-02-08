@@ -9,6 +9,11 @@ export const swipeActionButtonStyle = () => {
       right: 0,
       top: 0,
     },
+    customIndicator: {
+      alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center',
+    },
     mainContainer: {
       flexDirection: 'row',
       padding: 2,

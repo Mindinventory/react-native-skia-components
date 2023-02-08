@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Animated } from 'react-native';
+import { ActivityIndicator, Animated, View } from 'react-native';
 
 import type { SwipeActionButtonProps } from './SwipeActionButton.type';
 import { SwipeButtonCircle } from './SwipeButtonCircle';
@@ -29,6 +29,24 @@ const SwipeActionButtonComponent = (props: SwipeActionButtonProps) => {
     styles,
   } = useSwipeActionButton({ props });
 
+  const showActivityIndicator = () => {
+    if (activityIndicator) {
+      return (
+        <View style={styles.swipeActionButtonStyle.customIndicator}>
+          {activityIndicator}
+        </View>
+      );
+    } else {
+      return (
+        <ActivityIndicator
+          animating={isLoading}
+          style={styles.swipeActionButtonStyle.activityIndicator}
+          color={progressColor}
+          size={'small'}
+        />
+      );
+    }
+  };
   return (
     <Animated.View
       style={[
@@ -59,16 +77,7 @@ const SwipeActionButtonComponent = (props: SwipeActionButtonProps) => {
         />
       )}
 
-      {activityIndicator ? (
-        activityIndicator
-      ) : (
-        <ActivityIndicator
-          animating={isLoading}
-          style={styles.swipeActionButtonStyle.activityIndicator}
-          color={progressColor}
-          size={'small'}
-        />
-      )}
+      {isLoading && showActivityIndicator()}
 
       {!animationCompleted && (
         <SwipeButtonText
