@@ -44,13 +44,11 @@ const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
   );
   let buttonWidth: number;
   if (typeof width === 'string') {
-    console.log('1111');
     buttonWidth =
       (DEVICE_WIDTH * Number(width.substring(0, width.length - 1))) / 100;
   } else {
     buttonWidth = width;
   }
-  console.log("buttonWidth",buttonWidth);
   const [translateWidth] = useState<Animated.Value & { _value?: number }>(
     new Animated.Value(buttonWidth)
   );
@@ -151,6 +149,7 @@ const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
     animationCompleted,
     backgroundColor,
     borderRadius,
+    buttonWidth,
     circleBackgroundColor,
     colors,
     completeThresholdPercentage,
@@ -160,7 +159,6 @@ const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
     icon,
     isLoading,
     onComplete,
-    buttonWidth,
     onError,
     panResponser,
     progressColor,
