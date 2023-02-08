@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { FloatingButton } from '../components';
 import { miColor } from '../constant/colors';
+import BottomSheeetExample from '../screens/bottomSheeetExample';
 import CardComponent from '../screens/cards/cardComponent';
 import CardScreen from '../screens/cards/cardScreen';
 import FlipViewExample from '../screens/flipViewExample';
@@ -20,6 +21,7 @@ export type StackNavigationParamList = {
   CardScreen: undefined;
   FloatingButton: undefined;
   FlipViewExample: undefined;
+  BottomSheeetExample: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -54,6 +56,10 @@ const StackNavigation = () => {
         />
         <Stack.Screen name={'FloatingButton'} component={FloatingButton} />
         <Stack.Screen name={'FlipViewExample'} component={FlipViewExample} />
+        <Stack.Screen
+          name={'BottomSheeetExample'}
+          component={BottomSheeetExample}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

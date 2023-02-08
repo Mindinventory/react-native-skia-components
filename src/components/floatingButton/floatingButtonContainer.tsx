@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { MiUiProvider } from '../../context';
 import FloatingButtonComponent from './floatingButton';
 import type { FloatingButtonProps } from './floatingButton.type';
+import { MiUiProvider } from '../../context';
 
 export const FloatingButton = (props: FloatingButtonProps) => (
   <MiUiProvider>

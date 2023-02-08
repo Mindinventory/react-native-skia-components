@@ -1,13 +1,13 @@
 import { Ref, useCallback, useImperativeHandle, useRef } from 'react';
 import { Animated } from 'react-native';
 
+import { FlipViewConstant } from './flipView.constant';
+import { flipViewStyle } from './flipView.style';
 import {
   FlipCardPropType,
   FlipDirectionType,
   RefType,
 } from '../types/flipView.type';
-import { FlipViewConstant } from './flipView.constant';
-import { flipViewStyle } from './flipView.style';
 
 let isFlip: boolean = false;
 

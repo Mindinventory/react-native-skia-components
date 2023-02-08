@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { MiUiProvider } from '../../context';
 import NeoPopButtonComponent from './neoPopButton';
 import type { NeoPopButtonProps } from './neoPopButton.type';
+import { MiUiProvider } from '../../context';
 
 export const NeoPopButton = (props: NeoPopButtonProps) => (
   <MiUiProvider>

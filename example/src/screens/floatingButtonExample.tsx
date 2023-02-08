@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 import { FloatingButton } from '@mindinventory/react-native-skia-components';
 
-import { miColor } from '../constant/colors';
 import { styles } from './componentStyle.style';
+import { miColor } from '../constant/colors';
 
 const FloatingButtonExample = () => {
   return (

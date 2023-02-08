@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 import { NeoPopButton } from '@mindinventory/react-native-skia-components';
 
-import { miColor } from '../constant/colors';
 import { styles } from './componentStyle.style';
+import { miColor } from '../constant/colors';
 
 let timeout: any;
 

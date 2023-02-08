@@ -8,9 +8,9 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-import { useMiUiContext } from '../../context';
 import { CardConstant } from './card.constant';
 import { AnimationType, CardProps } from './card.type';
+import { useMiUiContext } from '../../context';
 
 export const useCard = ({ props }: { props: CardProps }) => {
   const { styles } = useMiUiContext();

@@ -8,9 +8,9 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-import { useMiUiContext } from '../../context';
 import { StarWarButtonConstant } from './starWarButton.constant';
 import { GradientType, StarWarButtonProps } from './starWarButton.type';
+import { useMiUiContext } from '../../context';
 
 export const useStarWarButton = (props: StarWarButtonProps) => {
   const { styles } = useMiUiContext();

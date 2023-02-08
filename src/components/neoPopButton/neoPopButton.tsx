@@ -4,9 +4,9 @@ import { TouchableOpacity, View } from 'react-native';
 import { Canvas, Group, Path } from '@shopify/react-native-skia';
 import Animated from 'react-native-reanimated';
 
-import { miColor } from '../../themes';
 import type { NeoPopButtonProps } from './neoPopButton.type';
 import { useNeoPopButton } from './useNeoPopButton';
+import { miColor } from '../../themes';
 
 const NeoPopButton = (props: NeoPopButtonProps) => {
   const {

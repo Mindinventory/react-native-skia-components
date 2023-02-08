@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 
-import { miColor } from '../../themes';
 import { AnimateBorderType, AnimationType } from './card.type';
+import { miColor } from '../../themes';
 
 const { width: ScreenWidth } = Dimensions.get('window');
 

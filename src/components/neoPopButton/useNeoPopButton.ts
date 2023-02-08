@@ -9,9 +9,9 @@ import {
 } from '@shopify/react-native-skia';
 import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
-import { useMiUiContext } from '../../context';
 import { NeoPopButtonConstant } from './neoPopButton.constant';
 import type { NeoPopButtonProps } from './neoPopButton.type';
+import { useMiUiContext } from '../../context';
 
 export const useNeoPopButton = (props: NeoPopButtonProps) => {
   const { styles } = useMiUiContext();

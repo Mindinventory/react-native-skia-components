@@ -63,6 +63,13 @@ const SelectComponentScreen = () => {
         navigation.navigate('FlipViewExample');
       },
     },
+    {
+      id: 7,
+      name: 'BOTTOMSHEET',
+      navigation: () => {
+        navigation.navigate('BottomSheeetExample');
+      },
+    },
   ];
 
   return (

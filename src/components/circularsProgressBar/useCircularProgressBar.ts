@@ -6,9 +6,9 @@ import {
   useTiming,
 } from '@shopify/react-native-skia';
 
+import type { CircularProgressBarProps } from './circularProgressBar.type';
 import { useMiUiContext } from '../../context';
 import { miColor } from '../../themes';
-import type { CircularProgressBarProps } from './circularProgressBar.type';
 
 const CONTAINER_SIZE = 250;
 const CONTAINER_ELEVATION = 8;

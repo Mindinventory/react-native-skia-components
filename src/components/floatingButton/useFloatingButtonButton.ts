@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useMiUiContext } from '../../context';
 import { FloatingButtonConstant } from './floatingButton.constant';
 import type { FloatingButtonProps } from './floatingButton.type';
+import { useMiUiContext } from '../../context';
 
 export const useFloatingButton = (props: FloatingButtonProps) => {
   const { styles } = useMiUiContext();

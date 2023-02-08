@@ -1,5 +1,5 @@
-import { miColor } from '../../themes';
 import { FilledType, GradientType } from './starWarButton.type';
+import { miColor } from '../../themes';
 
 export const StarWarButtonConstant = {
   default: {
