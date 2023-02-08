@@ -10,7 +10,7 @@ export interface SwipeActionButtonProps {
   onComplete: () => void;
   onError: boolean;
   setOnError: (error: boolean) => void;
-  width?: number;
+  width?: number | string;
   disabled?: boolean;
   completeThresholdPercentage?: number;
   containerStyle?: StyleProp<ViewStyle>;

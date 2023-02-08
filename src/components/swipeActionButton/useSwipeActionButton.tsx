@@ -11,6 +11,7 @@ import {
   DEFAULT_COMPLETE_THRESHOLD_PERCENTAGE,
   DEFAULT_HEIGHT,
   DEFAULT_WIDTH,
+  DEVICE_WIDTH,
 } from '../../../example/src/constant/constant';
 import { useMiUiContext } from '../../context';
 
@@ -41,11 +42,20 @@ const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
   const [translateX] = useState<Animated.Value & { _value?: number }>(
     new Animated.Value(0)
   );
+  let buttonWidth: number;
+  if (typeof width === 'string') {
+    console.log('1111');
+    buttonWidth =
+      (DEVICE_WIDTH * Number(width.substring(0, width.length - 1))) / 100;
+  } else {
+    buttonWidth = width;
+  }
+  console.log("buttonWidth",buttonWidth);
   const [translateWidth] = useState<Animated.Value & { _value?: number }>(
-    new Animated.Value(DEFAULT_WIDTH)
+    new Animated.Value(buttonWidth)
   );
 
-  const scrollDistance = width - height - 4;
+  const scrollDistance = buttonWidth - height - 4;
   const completeThreshold =
     scrollDistance * (completeThresholdPercentage / 100);
   const animateToStart = () => {
@@ -65,7 +75,7 @@ const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
       Animated.spring(translateWidth, {
         friction: 5,
         tension: 10,
-        toValue: width,
+        toValue: buttonWidth,
         useNativeDriver: false,
       }).start();
       Animated.spring(translateX, {
@@ -77,7 +87,14 @@ const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
       onRelease();
       setOnError(!onError);
     }
-  }, [onError, scrollDistance, setOnError, translateWidth, translateX, width]);
+  }, [
+    onError,
+    scrollDistance,
+    setOnError,
+    translateWidth,
+    translateX,
+    buttonWidth,
+  ]);
   const animateToEnd = () => {
     Animated.spring(translateX, {
       friction: 5,
@@ -135,6 +152,7 @@ const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
     backgroundColor,
     borderRadius,
     circleBackgroundColor,
+    colors,
     completeThresholdPercentage,
     containerStyle,
     customText,
@@ -142,18 +160,17 @@ const useSwipeActionButton = ({ props }: { props: SwipeActionButtonProps }) => {
     icon,
     isLoading,
     onComplete,
+    buttonWidth,
     onError,
     panResponser,
     progressColor,
     scrollDistance,
     setOnError,
+    styles,
     textStyle,
     title,
     translateWidth,
     translateX,
-    width,
-    styles,
-    colors
   };
 };
 

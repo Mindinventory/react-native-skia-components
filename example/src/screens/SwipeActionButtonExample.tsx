@@ -13,7 +13,8 @@ const SwipeActionButtonExample = () => {
       <SwipeActionButton
         progressColor={'red'}
         circleBackgroundColor={'blue'}
-        height={60}
+        height={70}
+        width={'90%'}
         title={'Swipe to pay'}
         onComplete={() => {
           setTimeout(() => {

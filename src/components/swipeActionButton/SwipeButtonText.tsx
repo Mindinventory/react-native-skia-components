@@ -18,7 +18,7 @@ export const SwipeButtonText: FC<SwipeButtonTextProps> = ({
         styles.swipeActionButtonStyle.titleContainer,
         {
           opacity: translateX.interpolate({
-            inputRange: [0, 180, width],
+            inputRange: [0, width - 50, width],
             outputRange: [1, 0.3, 0],
           }),
           transform: [

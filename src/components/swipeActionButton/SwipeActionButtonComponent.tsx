@@ -25,7 +25,7 @@ const SwipeActionButtonComponent = (props: SwipeActionButtonProps) => {
     title,
     translateWidth,
     translateX,
-    width,
+    buttonWidth,
     styles,
   } = useSwipeActionButton({ props });
 
@@ -40,10 +40,10 @@ const SwipeActionButtonComponent = (props: SwipeActionButtonProps) => {
           height,
           width: animationCompleted
             ? translateWidth.interpolate({
-                inputRange: [0, width],
-                outputRange: [0, width],
+                inputRange: [0, buttonWidth],
+                outputRange: [0, buttonWidth],
               })
-            : width,
+            : buttonWidth,
         },
       ]}
     >
@@ -72,7 +72,7 @@ const SwipeActionButtonComponent = (props: SwipeActionButtonProps) => {
 
       {!animationCompleted && (
         <SwipeButtonText
-          width={width}
+          width={buttonWidth}
           customText={customText}
           translateX={translateX}
           title={title}
