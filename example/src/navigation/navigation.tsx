@@ -11,6 +11,7 @@ import FlipViewExample from '../screens/flipViewExample';
 import NeoPopButtonExample from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
 import StarWarsButtonScreen from '../screens/starWarsButtonScreen';
+import SwipableExampleScreen from '../screens/SwipableExampleScreen';
 
 export type StackNavigationParamList = {
   SelectComponentScreen: undefined;
@@ -20,6 +21,7 @@ export type StackNavigationParamList = {
   CardScreen: undefined;
   FloatingButton: undefined;
   FlipViewExample: undefined;
+  SwipableExampleScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -54,6 +56,10 @@ const StackNavigation = () => {
         />
         <Stack.Screen name={'FloatingButton'} component={FloatingButton} />
         <Stack.Screen name={'FlipViewExample'} component={FlipViewExample} />
+        <Stack.Screen
+          name={'SwipableExampleScreen'}
+          component={SwipableExampleScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

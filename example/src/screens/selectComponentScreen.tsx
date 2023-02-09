@@ -63,6 +63,13 @@ const SelectComponentScreen = () => {
         navigation.navigate('FlipViewExample');
       },
     },
+    {
+      id: 7,
+      name: 'Swipable Card',
+      navigation: () => {
+        navigation.navigate('SwipableExampleScreen');
+      },
+    },
   ];
 
   return (
