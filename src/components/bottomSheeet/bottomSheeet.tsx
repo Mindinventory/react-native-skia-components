@@ -1,18 +1,18 @@
 import React from 'react';
-import { Button, Dimensions, Text, View } from 'react-native';
+import { Button, Dimensions, View } from 'react-native';
 
 import {
   GestureHandlerRootView,
-  PanGestureHandler,
+  PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
-import Animated, {
+import {
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import CustomBottomSheet from './customBottomSheet';
 
+import CustomBottomSheet from './customBottomSheet';
 import { useBottomSheeet } from './useBottomSheeet';
 
 const { height } = Dimensions.get('window');
@@ -34,22 +34,22 @@ const BottomSheeet = () => {
       top: withSpring(top.value, SPRING_CONFIG),
     };
   });
-  const gestureHandler = useAnimatedGestureHandler({
-    onActive(event, context) {
-      top.value = context.startTop + event.translationY;
-    },
-    onEnd() {
-      if (top.value > height / 2 + 200) {
-        top.value = height;
-      } else {
-        top.value = height / 2;
-      }
-    },
-    onStart(_, context) {
-      context.startTop = top.value;
-    },
-  });
-
+  const gestureHandler =
+    useAnimatedGestureHandler<PanGestureHandlerGestureEvent>({
+      onActive(event, context: any) {
+        top.value = context.startTop + event.translationY;
+      },
+      onEnd() {
+        if (top.value > height / 2 + 200) {
+          top.value = height;
+        } else {
+          top.value = height / 2;
+        }
+      },
+      onStart(_, context: any) {
+        context.startTop = top.value;
+      },
+    });
   return (
     <>
       <GestureHandlerRootView>
@@ -63,16 +63,6 @@ const BottomSheeet = () => {
           animatedStyles={animatedStyles}
           gestureHandler={gestureHandler}
         />
-        {/* <PanGestureHandler onGestureEvent={gestureHandler}>
-          <Animated.View
-            style={[
-              styles.bottomSheeetStyle.bottomSheetContainer,
-              animatedStyles,
-            ]}
-          >
-            <Text>Hello</Text>
-          </Animated.View>
-        </PanGestureHandler> */}
       </GestureHandlerRootView>
     </>
   );
