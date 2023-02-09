@@ -3,7 +3,6 @@ import { StyleSheet, Text } from 'react-native';
 
 import { PanGestureHandler } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
-// OnGestureEvent<PanGestureHandlerGestureEvent>
 
 interface CustomBottomSheetProps {
   animatedStyles: any;
@@ -14,6 +13,7 @@ const CustomBottomSheet = ({
   gestureHandler,
   animatedStyles,
 }: CustomBottomSheetProps) => {
+  // const gestureHandler = useAnimatedGestureHandler({});
   return (
     <>
       {/* <GestureHandlerRootView> */}
