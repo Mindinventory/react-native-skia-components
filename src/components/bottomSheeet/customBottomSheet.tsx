@@ -1,11 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import {
+  ImageStyle,
+  StyleSheet,
+  Text,
+  TextStyle,
+  ViewStyle,
+} from 'react-native';
 
 import { PanGestureHandler } from 'react-native-gesture-handler';
-import Animated from 'react-native-reanimated';
+import Animated, { AnimatedStyleProp } from 'react-native-reanimated';
 
 interface CustomBottomSheetProps {
-  animatedStyles: any;
+  animatedStyles: AnimatedStyleProp<ViewStyle | ImageStyle | TextStyle>;
   gestureHandler: any;
 }
 

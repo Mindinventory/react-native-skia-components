@@ -1,11 +1,19 @@
 import React from 'react';
-import { Button, Dimensions, View } from 'react-native';
+import {
+  Button,
+  Dimensions,
+  ImageStyle,
+  TextStyle,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 import {
   GestureHandlerRootView,
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
 import {
+  AnimatedStyleProp,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
@@ -29,7 +37,9 @@ const BottomSheeet = () => {
   const { styles } = useBottomSheeet();
   const top = useSharedValue(height);
 
-  const animatedStyles = useAnimatedStyle(() => {
+  const animatedStyles = useAnimatedStyle<
+    AnimatedStyleProp<ViewStyle | ImageStyle | TextStyle>
+  >(() => {
     return {
       top: withSpring(top.value, SPRING_CONFIG),
     };
