@@ -6,23 +6,20 @@ import Animated from 'react-native-reanimated';
 
 interface CustomBottomSheetProps {
   animatedStyles: any;
-  gestureHandler: () => void;
+  gestureHandler: any;
 }
 
 const CustomBottomSheet = ({
   gestureHandler,
   animatedStyles,
 }: CustomBottomSheetProps) => {
-  // const gestureHandler = useAnimatedGestureHandler({});
   return (
     <>
-      {/* <GestureHandlerRootView> */}
       <PanGestureHandler onGestureEvent={gestureHandler}>
         <Animated.View style={[styles.bottomSheetContainer, animatedStyles]}>
           <Text>Hello</Text>
         </Animated.View>
       </PanGestureHandler>
-      {/* </GestureHandlerRootView> */}
     </>
   );
 };

@@ -1,5 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
+const { width } = Dimensions.get('window');
 export const bottomSheeetStyle = () => {
   return StyleSheet.create({
     bottomSheetContainer: {
@@ -11,6 +12,7 @@ export const bottomSheeetStyle = () => {
       elevation: 5,
       justifyContent: 'center',
       left: 0,
+
       padding: 20,
       position: 'absolute',
       right: 0,
@@ -24,8 +26,10 @@ export const bottomSheeetStyle = () => {
     },
     container: {
       alignItems: 'center',
+
       flex: 1,
       justifyContent: 'center',
+      width: width,
     },
   });
 };
