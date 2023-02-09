@@ -20,6 +20,7 @@ import {
   withSpring,
 } from 'react-native-reanimated';
 
+import type { BottomSheeetProps } from './bottomSheeet.type';
 import CustomBottomSheet from './customBottomSheet';
 import { useBottomSheeet } from './useBottomSheeet';
 
@@ -33,8 +34,8 @@ const SPRING_CONFIG = {
   stiffness: 500,
 };
 
-const BottomSheeet = () => {
-  const { styles } = useBottomSheeet();
+const BottomSheeet = (props: BottomSheeetProps) => {
+  const { styles } = useBottomSheeet({ props });
   const top = useSharedValue(height);
 
   const animatedStyles = useAnimatedStyle<
@@ -72,6 +73,7 @@ const BottomSheeet = () => {
         <CustomBottomSheet
           animatedStyles={animatedStyles}
           gestureHandler={gestureHandler}
+          children={props.children}
         />
       </GestureHandlerRootView>
     </>

@@ -1,12 +1,17 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { BottomSheeet } from '@mindinventory/react-native-skia-components';
 
 const BottomSheeetExample = () => {
   return (
     <View style={styles.container}>
-      <BottomSheeet />
+      <Text>Test</Text>
+      <BottomSheeet>
+        <View>
+          <Text>Bottom sheet example</Text>
+        </View>
+      </BottomSheeet>
     </View>
   );
 };
