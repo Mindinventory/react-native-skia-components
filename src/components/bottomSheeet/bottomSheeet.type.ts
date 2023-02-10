@@ -10,7 +10,7 @@ export interface BottomSheeetProps {
    * @default true
    * @type boolean
    */
-  isVisible?: boolean;
+  isVisible: boolean;
   children: JSX.Element;
 }
 
@@ -18,4 +18,9 @@ export interface CustomBottomSheetProps {
   animatedStyles: AnimatedStyleProp<ViewStyle | ImageStyle | TextStyle>;
   gestureHandler: any;
   children: JSX.Element;
+}
+
+export enum DisplayEnum {
+  displayTypeNone = 'none',
+  displayTypeFlex = 'flex',
 }
