@@ -12,12 +12,15 @@ export interface BottomSheeetProps {
    */
   isVisible: boolean;
   children: JSX.Element;
+  showHandle?: boolean;
+  onClose?: () => void;
 }
 
 export interface CustomBottomSheetProps {
   animatedStyles: AnimatedStyleProp<ViewStyle | ImageStyle | TextStyle>;
   gestureHandler: any;
   children: JSX.Element;
+  showHandle?: boolean;
 }
 
 export enum DisplayEnum {

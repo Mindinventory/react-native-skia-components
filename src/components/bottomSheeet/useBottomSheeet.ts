@@ -19,18 +19,21 @@ const SPRING_CONFIG = {
   overshootClamping: true,
   restDisplacementThreshold: 0.1,
   restSpeedThreshold: 0.1,
-  stiffness: 500,
+  stiffness: 800,
 };
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 export const useBottomSheeet = ({ props }: { props: BottomSheeetProps }) => {
   const { styles } = useMiUiContext();
   const top = useSharedValue(height);
   const display = useSharedValue(DisplayEnum.displayTypeNone);
 
-  // const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const { isVisible = BottomSheeetConstant.default.isVisible } = props;
+  const {
+    isVisible = BottomSheeetConstant.default.isVisible,
+    showHandle = BottomSheeetConstant.default.showHandle,
+    onClose,
+  } = props;
   const animatedStyles = useAnimatedStyle<
     AnimatedStyleProp<ViewStyle | ImageStyle | TextStyle>
   >(() => {
@@ -73,13 +76,19 @@ export const useBottomSheeet = ({ props }: { props: BottomSheeetProps }) => {
     }
   }, [display, isVisible, top]);
 
+  const onPressBackDrop = () => {
+    top.value = withSpring(height, SPRING_CONFIG);
+    display.value = DisplayEnum.displayTypeNone;
+    onClose && onClose();
+  };
+
   return {
     animatedStyles,
     gestureHandler,
-    height,
     isVisible,
+    onPressBackDrop,
     rootViewStyle,
+    showHandle,
     styles,
-    width,
   };
 };

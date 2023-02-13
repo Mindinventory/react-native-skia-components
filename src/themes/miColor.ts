@@ -21,6 +21,7 @@ export const miColor = {
   purple: '#31C',
   red: 'red',
   transparent: '#ffffff00',
+  transparentWithBlackShade: 'rgba(0,0,0,0.5)',
   white: '#FFFFFF',
   yellow: 'yellow',
   yellowGold: '#s93b8c4',
