@@ -4,8 +4,10 @@ import { Dimensions, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import type { PanGestureHandlerGestureEvent } from 'react-native-gesture-handler';
 import {
   AnimatedStyleProp,
+  runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
@@ -28,6 +30,7 @@ export const useBottomSheeet = ({ props }: { props: BottomSheeetProps }) => {
   const { styles } = useMiUiContext();
   const top = useSharedValue(height);
   const display = useSharedValue(DisplayEnum.displayTypeNone);
+  const disappearFlag = useSharedValue(0);
 
   const {
     isVisible = BottomSheeetConstant.default.isVisible,
@@ -59,6 +62,7 @@ export const useBottomSheeet = ({ props }: { props: BottomSheeetProps }) => {
         if (top.value > height / 2 + 200) {
           top.value = height;
           display.value = DisplayEnum.displayTypeNone;
+          disappearFlag.value = 1;
         } else {
           top.value = context.startTop + event.translationY;
         }
@@ -68,11 +72,19 @@ export const useBottomSheeet = ({ props }: { props: BottomSheeetProps }) => {
       },
     });
 
+  useDerivedValue(() => {
+    if (onClose) {
+      if (top.value === height && disappearFlag.value === 1) {
+        disappearFlag.value = 0;
+        runOnJS(onClose)();
+      }
+    }
+  }, [top.value]);
+
   useEffect(() => {
     if (isVisible) {
       top.value = withSpring(height / 2, SPRING_CONFIG);
       display.value = DisplayEnum.displayTypeFlex;
-      // setIsBottomSheetOpen(true);
     }
   }, [display, isVisible, top]);
 

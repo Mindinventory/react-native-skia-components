@@ -11,6 +11,11 @@ export const bottomSheeetStyle = () => {
       position: 'absolute',
       width: width,
     },
+    canvasStyle: {
+      height: height,
+      position: 'absolute',
+      width: width,
+    },
     container: {
       alignItems: 'center',
       flex: 1,

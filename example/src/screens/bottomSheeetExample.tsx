@@ -12,6 +12,7 @@ const BottomSheeetExample = () => {
         title="Open"
         onPress={() => setIsBottomSheetOpen(!isBottomSheetOpen)}
       />
+
       <BottomSheeet isVisible={isBottomSheetOpen}>
         <View>
           <Text>Bottom sheet example</Text>
