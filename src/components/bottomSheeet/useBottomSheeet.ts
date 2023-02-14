@@ -85,6 +85,9 @@ export const useBottomSheeet = ({ props }: { props: BottomSheeetProps }) => {
     if (isVisible) {
       top.value = withSpring(height / 2, SPRING_CONFIG);
       display.value = DisplayEnum.displayTypeFlex;
+    } else {
+      top.value = height;
+      display.value = DisplayEnum.displayTypeNone;
     }
   }, [display, isVisible, top]);
 
