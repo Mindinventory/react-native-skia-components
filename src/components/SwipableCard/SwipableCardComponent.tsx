@@ -1,195 +1,175 @@
-import React, { useState } from 'react';
-import {
-  Animated,
-  Dimensions,
-  Image,
-  PanResponder,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import React, { useEffect } from 'react';
+import { Animated, View } from 'react-native';
 
-// import Swiper from 'react-native-deck-swiper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import type { SwipableCardsProps } from './SwipableCards.type';
+import CardOverlayContainer from './cardOverlayContainer';
+import type { SwipableCardsProps } from './swipableCards.type';
+import { useSwipableCardComponent } from './useSwipableCardComponent';
 
-const SwipableCardComponent: React.FC<SwipableCardsProps> = ({
-  cardHeight = 450,
-  cardSpace = 40,
-  cardWidth = Dimensions.get('screen').width - cardSpace,
-}) => {
-  const renderData = new Array(4).fill('');
-  const [cardItems, _setCardItems] = useState(renderData);
-  const { width: SCREEN_WIDTH } = useWindowDimensions();
-  const animatedValue = React.useRef(new Animated.Value(0)).current;
+const SwipableCardComponent = (props: SwipableCardsProps) => {
+  const {
+    animateAllDirection,
+    cardHeight,
+    cardItems,
+    cardStackBottomSpace,
+    cardStackTopSpace,
+    cardView,
+    cardWidth,
+    controlViews,
+    currentIndex,
+    dislikeOverlayOpacity,
+    fadeNextCardAnimation,
+    getPositionX,
+    getPositionY,
+    leftOverlapView,
+    likeOverlayOpacity,
+    nextCardOpactiy,
+    nextCardScale,
+    onControlPress,
+    onPress,
+    overlayCardContainerStyle,
+    panResponder,
+    rightOverlapView,
+    rotateCard,
+    styles,
+  } = useSwipableCardComponent({ props });
 
-  const animatedStyle = {
-    transform: [{ translateX: animatedValue }],
+  useEffect(() => {
+    if (cardStackTopSpace > 0 && cardStackBottomSpace > 0) {
+      throw Error('Either space can be added from top or bottom.');
+    }
+  }, [cardStackBottomSpace, cardStackTopSpace]);
+
+  const renderOverlapCard = () => {
+    return (
+      <CardOverlayContainer
+        overlayCardContainerStyle={overlayCardContainerStyle}
+        leftOverlapView={
+          <Animated.View
+            style={[
+              styles.swiperCardStyle.commonOverlayStyle,
+              styles.swiperCardStyle.leftOverlayStyle,
+              { opacity: likeOverlayOpacity },
+            ]}
+          >
+            {leftOverlapView()}
+          </Animated.View>
+        }
+        rightOverlapView={
+          <Animated.View
+            style={[
+              styles.swiperCardStyle.commonOverlayStyle,
+              styles.swiperCardStyle.rightOverlayStyle,
+              { opacity: dislikeOverlayOpacity },
+            ]}
+          >
+            {rightOverlapView()}
+          </Animated.View>
+        }
+      />
+    );
   };
 
-  // const useSwiper = React.useRef(null).current;
-  // const handleOnSwipedLeft = () => useSwiper.swipeLeft();
-  // const handleOnSwipedTop = () => useSwiper.swipeTop();
-  // const handleOnSwipedRight = () => useSwiper.swipeRight();
+  const renderCardItem = (item: any, index: number) => {
+    const incrementalItem = index + 1;
+    const zIndexValue = cardItems.length - incrementalItem + 1;
 
-  const panResponderr = React.useRef(
-    PanResponder.create({
-      onPanResponderMove: (_e, _gestureState) => {
-        // animatedValue.setValue(gestureState.dx);
-        Animated.event([null, { dx: animatedValue }]);
-      },
-      onPanResponderRelease: (_e, gestureState) => {
-        if (gestureState.dx > 120) {
-          Animated.spring(animatedValue, {
-            tension: 1,
-            toValue: SCREEN_WIDTH,
-            useNativeDriver: true,
-          }).start();
-        } else if (gestureState.dx < -120) {
-          Animated.spring(animatedValue, {
-            tension: 1,
-            toValue: -SCREEN_WIDTH,
-            useNativeDriver: true,
-          }).start();
-        } else {
-          Animated.spring(animatedValue, {
-            tension: 1,
-            toValue: 0,
-            useNativeDriver: true,
-          }).start();
-        }
-      },
-      onStartShouldSetPanResponder: (_e, gestureState) => {
-        Math.abs(gestureState.dx) > Math.abs(gestureState.dy);
-        return true;
-      },
-    })
-  ).current;
-
-  const renderCardItem = () => {
-    return (
-      <Animated.View>
+    if (index < currentIndex) {
+      return null;
+    } else if (index === currentIndex) {
+      return (
         <Animated.View
-          {...panResponderr.panHandlers}
+          {...panResponder.panHandlers}
+          key={`child_${index}`}
           style={[
-            animatedStyle,
             {
               height: cardHeight,
-              marginHorizontal: cardSpace / 2,
+              transform: [
+                { translateX: getPositionX },
+                { translateY: animateAllDirection ? getPositionY : 0 },
+                { rotate: rotateCard },
+              ],
               width: cardWidth,
+              zIndex: zIndexValue,
             },
-            styles.cardContainer,
+            styles.swiperCardStyle.cardContainer,
           ]}
         >
-          <Image
-            source={{
-              uri: 'https://farm4.staticflickr.com/3752/9684880330_9b4698f7cb_z_d.jpg',
-            }}
-            style={[styles.cardImageStyle]}
-            resizeMode="cover"
-          />
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => onPress && onPress(item)}
+          >
+            {cardView(item)}
+            {renderOverlapCard()}
+          </TouchableOpacity>
         </Animated.View>
-      </Animated.View>
+      );
+    } else {
+      return (
+        <Animated.View
+          key={`child_${index}`}
+          style={[
+            {
+              height: cardHeight,
+              transform: [{ scale: nextCardScale }],
+              width: cardWidth,
+              zIndex: zIndexValue - 1,
+            },
+            fadeNextCardAnimation && { opacity: nextCardOpactiy },
+            cardStackTopSpace > 0 && { bottom: cardStackTopSpace + index * 5 },
+            cardStackBottomSpace > 0 && {
+              top: cardStackBottomSpace + index * 5,
+            },
+            styles.swiperCardStyle.cardContainer,
+          ]}
+        >
+          {cardView(item)}
+        </Animated.View>
+      );
+    }
+  };
+
+  const renderBottomControls = () => {
+    return (
+      <View
+        style={[
+          styles.swiperCardStyle.bottomControlContainer,
+          {
+            marginTop: cardHeight - 45,
+            width: cardWidth,
+          },
+        ]}
+      >
+        {(controlViews ?? []).map((view: JSX.Element, index: number) => {
+          return (
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPress={() => onControlPress && onControlPress(index)}
+              style={styles.swiperCardStyle.commonButtonContainer}
+            >
+              {view}
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
+  };
+
+  const renderLibView = () => {
+    return (
+      <>
+        {renderBottomControls()}
+        {cardItems.map((value: any, index: number) =>
+          renderCardItem(value, index)
+        )}
+      </>
     );
   };
 
   return (
-    <View style={styles.mainContainer}>
-      {/* <Swiper
-        ref={useSwiper}
-        animateCardOpacity
-        containerStyle={{}}
-        cards={cardItems}
-        renderCard={renderCardItem}
-        cardIndex={0}
-        backgroundColor="white"
-        stackSize={2}
-        infinite
-        showSecondCard
-        animateOverlayLabelsOpacity
-        overlayLabels={{
-          left: {
-            title: 'NOPE',
-            element: <OverlayLabel label="NOPE" color="#E5566D" />,
-            style: {
-              wrapper: styles.overlayWrapper,
-            },
-          },
-          right: {
-            title: 'LIKE',
-            element: <OverlayLabel label="LIKE" color="#4CCC93" />,
-            style: {
-              wrapper: {
-                ...styles.overlayWrapper,
-                alignItems: 'flex-start',
-                marginLeft: 30,
-              },
-            },
-          },
-        }}
-      /> */}
-      <View style={styles.cardItemContainer}>
-        {cardItems.map(() => {
-          return renderCardItem();
-        })}
-      </View>
-      <View
-        style={[
-          { marginHorizontal: cardSpace / 2, width: cardWidth },
-          styles.controlsContainer,
-        ]}
-      >
-        {new Array(3).fill('').map(() => {
-          return <View style={styles.overlayButtonContainer} />;
-        })}
-      </View>
-    </View>
+    <View style={styles.swiperCardStyle.rootContainer}>{renderLibView()}</View>
   );
 };
 
 export default React.memo(SwipableCardComponent);
-
-const styles = StyleSheet.create({
-  cardContainer: {
-    elevation: 2,
-    marginTop: 50,
-    shadowColor: 'white',
-    shadowOffset: {
-      height: -5,
-      width: 0,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 6,
-  },
-  cardImageStyle: {
-    borderRadius: 20,
-    height: '100%',
-    width: '100%',
-  },
-  cardItemContainer: {
-    flexDirection: 'row',
-    paddingBottom: 20,
-  },
-  controlsContainer: {
-    alignItems: 'center',
-    borderRadius: 10,
-    flexDirection: 'row',
-    height: 70,
-    justifyContent: 'space-around',
-    marginTop: 10,
-  },
-  mainContainer: { backgroundColor: 'black', height: '100%' },
-  overlayButtonContainer: {
-    backgroundColor: 'white',
-    borderRadius: 60,
-    height: 60,
-    shadowColor: 'gold',
-    shadowOffset: {
-      height: -5,
-      width: 0,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 6,
-    width: 60,
-  },
-});

@@ -65,7 +65,7 @@ const SelectComponentScreen = () => {
     },
     {
       id: 7,
-      name: 'Swipable Card',
+      name: 'SWIPABLE CARD',
       navigation: () => {
         navigation.navigate('SwipableExampleScreen');
       },

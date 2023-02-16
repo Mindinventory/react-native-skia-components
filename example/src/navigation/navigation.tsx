@@ -11,7 +11,7 @@ import FlipViewExample from '../screens/flipViewExample';
 import NeoPopButtonExample from '../screens/neoPopButton';
 import SelectComponentScreen from '../screens/selectComponentScreen';
 import StarWarsButtonScreen from '../screens/starWarsButtonScreen';
-import SwipableExampleScreen from '../screens/SwipableExampleScreen';
+import SwipableExampleScreen from '../screens/swipableExampleScreen';
 
 export type StackNavigationParamList = {
   SelectComponentScreen: undefined;
